@@ -1,3 +1,413 @@
-html {
-    background-color: red;
-}
+@charset "UTF-8";
+
+/**
+*   Name: Portfolio 2017 - Main Stylesheet
+*   Author: Jamal Ali-Mohammed
+*   Author URI: https://jda.io
+*/
+
+/*------------------------------------*\
+    #VARIABLES-ETC
+\*------------------------------------*/
+
+    /*-- Core Colors --*/
+
+    $primary-color: #455C72;
+    $secondary-color: #4272CB;
+    $light-color: #F6F6F6;
+    $gray-color: #ECF0F1;
+
+    /*-- Typography --*/
+
+    $fallback-family: Helvetica, Arial, sans-serif, clean;
+    $heading-family: 'Posterama 1927', $fallback-family;
+    $body-family: 'Proxima Nova Alt Rg', $fallback-family;
+    $branding-family: 'Posterama 2001', $heading-family;
+
+
+/*------------------------------------*\
+    #FONT-FACE-IMPORT
+\*------------------------------------*/
+
+    /*-- Posterama 2001 --*/
+    // Posterama 2001 for the logo type. This is temporary until a proper SVG is made.
+
+    @font-face {
+        font-family: 'Posterama 2001';
+        src: url('../inc/fonts/hinted-Posterama2001-Bold.eot');
+        src: local('Posterama 2001 Bold'), local('Posterama2001-Bold'),
+        url('../inc/fonts/hinted-Posterama2001-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../inc/fonts/hinted-Posterama2001-Bold.woff2') format('woff2'),
+        url('../inc/fonts/hinted-Posterama2001-Bold.ttf') format('truetype');
+        font-display: swap;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    /*-- Posterama 1927 --*/
+
+    @font-face {
+        font-family: 'Posterama 1927';
+        src: url('../inc/fonts/hinted-Posterama1927-SemiBold.eot');
+        src: local('Posterama 1927 SemiBold'), local('Posterama1927-SemiBold'),
+        url('../inc/fonts/hinted-Posterama1927-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../inc/fonts/hinted-Posterama1927-SemiBold.woff2') format('woff2'),
+        url('../inc/fonts/hinted-Posterama1927-SemiBold.ttf') format('truetype');
+        font-display: swap;
+        font-style: normal;
+        font-weight: 600;
+    }
+
+    @font-face {
+        font-family: 'Posterama 1927';
+        src: url('../inc/fonts/hinted-Posterama1927-Bold.eot');
+        src: local('Posterama 1927 Bold'), local('Posterama1927-Bold'),
+        url('../inc/fonts/hinted-Posterama1927-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../inc/fonts/hinted-Posterama1927-Bold.woff2') format('woff2'),
+        url('../inc/fonts/hinted-Posterama1927-Bold.ttf') format('truetype');
+        font-display: swap;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    /*-- Proxima Nova --*/
+
+    @font-face {
+        font-family: 'Proxima Nova Alt Rg';
+        src: url('../inc/fonts/hinted-ProximaNovaA-Regular.eot');
+        src: local('Proxima Nova Alt Regular'), local('ProximaNovaA-Regular'),
+        url('../inc/fonts/hinted-ProximaNovaA-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../inc/fonts/hinted-ProximaNovaA-Regular.woff2') format('woff2'),
+        url('../inc/fonts/hinted-ProximaNovaA-Regular.ttf') format('truetype');
+        font-display: swap;
+        font-style: normal;
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: 'Proxima Nova Alt Rg';
+        src: url('../inc/fonts/hinted-ProximaNovaA-RegularIt.eot');
+        src: local('Proxima Nova Alt Regular Italic'), local('ProximaNovaA-RegularIt'),
+        url('../inc/fonts/hinted-ProximaNovaA-RegularIt.eot?#iefix') format('embedded-opentype'),
+        url('../inc/fonts/hinted-ProximaNovaA-RegularIt.woff2') format('woff2'),
+        url('../inc/fonts/hinted-ProximaNovaA-RegularIt.ttf') format('truetype');
+        font-display: swap;
+        font-style: italic;
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: 'Proxima Nova Alt Rg';
+        src: url('../inc/fonts/hinted-ProximaNovaA-Bold.eot');
+        src: local('Proxima Nova Alt Bold'), local('ProximaNovaA-Bold'),
+        url('../inc/fonts/hinted-ProximaNovaA-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../inc/fonts/hinted-ProximaNovaA-Bold.woff2') format('woff2'),
+        url('../inc/fonts/hinted-ProximaNovaA-Bold.ttf') format('truetype');
+        font-display: swap;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    @font-face {
+        font-family: 'Proxima Nova Alt Rg';
+        src: url('../inc/fonts/hinted-ProximaNovaA-BoldIt.eot');
+        src: local('Proxima Nova Alt Bold Italic'), local('ProximaNovaA-BoldIt'),
+        url('../inc/fonts/hinted-ProximaNovaA-BoldIt.eot?#iefix') format('embedded-opentype'),
+        url('../inc/fonts/hinted-ProximaNovaA-BoldIt.woff2') format('woff2'),
+        url('../inc/fonts/hinted-ProximaNovaA-BoldIt.ttf') format('truetype');
+        font-display: swap;
+        font-style: italic;
+        font-weight: bold;
+    }
+
+
+/*------------------------------------*\
+    #BASE-STYLES
+\*------------------------------------*/
+
+    html,
+    body { background-color: $gray-color; }
+
+    body {
+        color: $primary-color;
+        font-family: $body-family;
+        letter-spacing: -0.4;
+        text-align: left;
+        -webkit-font-smoothing: antialiased;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+        &:link,
+        &:visited,
+        &:active { text-decoration: none; }
+    }
+
+
+/*------------------------------------*\
+    #INDEPENDENT-COMPONENTS
+\*------------------------------------*/
+
+    .logo--primary {
+        cursor: pointer;
+        color: $primary-color;
+        font-family: $branding-family;
+        font-weight: bold;
+        letter-spacing: -0.48;
+        line-height: 1;
+        margin-bottom: 4rem;
+        text-transform: uppercase;
+        user-select: none;
+
+        span { color: $secondary-color; }
+
+        a {
+            /* There's likely a better way to write the following section,
+             * but oh well, w/e this isn't a mission-critical project. :)
+             */
+
+            &:link,
+            &:link span { transition: color 0.2s ease-in-out; }
+            &:link,
+            &:visited {
+                color: $primary-color;
+                text-decoration: none;
+
+                span { color: $secondary-color; }
+            }
+            &:hover,
+            &:focus {
+                color: lighten($secondary-color, 5%);
+
+                span { color: lighten($primary-color, 5%); }
+            }
+            &:active {
+                color: $primary-color;
+
+                span { color: $secondary-color; }
+            }
+        }
+    }
+
+    .social-bar { font-size: 2rem; }
+
+        .social-bar__link {
+            display: inline-block;
+
+            a {
+                &:link,
+                &:visited {
+                    color: $primary-color;
+                    display: block;
+                    padding: 0.5rem 0.5rem;
+                    transition: all 0.2s ease-in-out;
+                }
+                &:hover,
+                &:focus {
+                    color: $secondary-color;
+                    transform: scale(1.1);
+                }
+                &:active { color: $primary-color; }
+            }
+
+            &:first-child { margin-left: -0.5rem; }
+        }
+
+
+/*------------------------------------*\
+    #BOOTSTRAP-COMPONENT-CUSTOMIZATIONS
+\*------------------------------------*/
+
+    /*-- Typography --*/
+
+    b,
+    strong { font-weight: bold; } // For some reason Bootstrap uses "bolder" instead of "bold."
+
+    .lead {
+        font-size: 1.5rem;
+        letter-spacing: -0.4;
+        line-height: 1.8;
+    }
+
+
+/*------------------------------------*\
+    #HEADER
+\*------------------------------------*/
+
+    .header { padding: 2rem 1rem; }
+
+        .header--primary { margin-bottom: 2rem; }
+
+        .header__intro { margin-bottom: 2rem; }
+
+
+/*------------------------------------*\
+    #MAIN-CONTENT
+\*------------------------------------*/
+
+    /*-- Project Gallery --*/
+
+    .project-tiles {}
+
+        .project-tiles__container {
+            padding-left: 0.9375rem;
+            padding-right: 0.9375rem;
+
+            .left-column,
+            .right-column { margin-bottom: 0; }
+        }
+
+        .project-tiles__tile {
+            background: linear-gradient(60deg, lighten($primary-color, 25%), darken($primary-color, 15%));
+            color: $light-color;
+            display: block;
+            height: 300px;
+            width: 100%;
+            margin: 0;
+            position: relative;
+
+            &:hover,
+            &:focus {
+                .project-tiles__meta {
+                    ul {
+                        transform: translate(0%, -30%);
+                        opacity: 0;
+                    }
+
+                    .project-tiles__meta__link {
+                        opacity: 1;
+                        transform: translate(0%, 0%);
+                    }
+                }
+
+                .project-tiles__backdrop {
+                    .overlay--dark { opacity: 0; }
+                    .overlay--project { opacity: 0.8; }
+                    img { transform: translate(-50%, -50%) scale(1.1); }
+                }
+            }
+        }
+
+            .project-tiles__project-link {
+                display: block;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 15;
+                text-indent: -9999px;
+            }
+
+            .project-tiles__content {
+                padding: 1.5rem;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 10;
+
+                .project-client {
+                    display: block;
+                    margin-bottom: 1rem;
+                }
+
+                .project-title {
+                    font-family: $heading-family;
+                    font-size: 2rem;
+                    font-weight: bold;
+                    letter-spacing: -0.5;
+                    line-height: 1.25;
+                }
+
+                .project-desc { display: none; }
+            }
+
+            .project-tiles__meta {
+                ul {
+                    padding: 0 1.5rem 1.5rem;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 5;
+                    transform: translate(0%, 0%);
+                    transition: all 0.5s ease-out;
+
+                    li {
+                        display: inline-block;
+                        margin-right: 1.5rem;
+                        margin-top: 0.5rem;
+
+                        &:last-child { margin-right: 0; }
+                    }
+                }
+
+                .project-tiles__meta__link {
+                    padding: 0 1.5rem 1.5rem;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 4;
+                    opacity: 0;
+                    transform: translate(0%, 30%);
+                    transition: all 0.5s ease-out;
+                    text-decoration: underline;
+
+                    .fa { vertical-align: middle; }
+                }
+            }
+
+            .project-tiles__backdrop {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+
+                .overlay {
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    transition: opacity 0.2s ease-in-out;
+                }
+
+                .overlay--dark {
+                    background: $primary-color;
+                    opacity: 0.25;
+                    z-index: 3;
+                }
+
+                .overlay--project {
+                    opacity: 0;
+                    z-index: 2;
+                }
+
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(1);
+                    width: 100%;
+                    height: auto;
+                    transition: all 0.2s ease-in-out;
+                    z-index: 1;
+                }
+            }
+
+
+
+
+/*------------------------------------*\
+    #MEDIA-QUERIES
+\*------------------------------------*/
+
+    @media (min-width: 510px) {
+        .social-bar { margin: 2rem 0; }
+    }
+
+    @media (min-width: 768px) {
+        .header { padding: 4rem 3rem; }
+    }
+
+    @media (min-width: 991px) {
+        .header { padding: 6rem 3rem 4rem; }
+    }
