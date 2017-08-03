@@ -368,7 +368,7 @@
                 .project-tiles__backdrop {
                     .overlay--dark { opacity: 0; }
                     .overlay--project { opacity: 0.8; }
-                    img { transform: scale(1.1); }
+                    img { transform: translate(-50%, -50%) scale(1.1); }
                 }
             }
         }
@@ -411,10 +411,9 @@
 
             .project-tiles__meta {
                 ul {
-                    padding: 0 1.5rem 1.5rem;
                     position: absolute;
-                    bottom: 0;
-                    left: 0;
+                    bottom: 1.5rem;
+                    left: 1.5rem;
                     z-index: 5;
                     transform: translate(0%, 0%);
                     transition: all 0.5s ease-out;
@@ -472,17 +471,18 @@
                     display: block;
                     height: 100%;
                     width: 100%;
-                    position: absolute;
+                    position: relative;
                     z-index: 1;
                     overflow: hidden;
 
                     img {
-                        top: 0;
-                        left: 0;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
                         width: 100%;
                         height: auto;
                         transition: all 0.2s ease-in-out;
-                        transform: scale(1);
+                        transform: translate(-50%, -50%) scale(1);
                     }
                 }
             }
