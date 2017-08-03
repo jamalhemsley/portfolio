@@ -132,6 +132,7 @@
         color: $primary-color;
         font-family: $body-family;
         letter-spacing: -0.4;
+        line-height: 1.4;
         text-align: left;
         -webkit-font-smoothing: antialiased;
         -webkit-tap-highlight-color: transparent;
@@ -139,9 +140,17 @@
 
     a {
         &:link,
-        &:visited,
-        &:active { text-decoration: none; }
+        &:visited { text-decoration: none; }
     }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 { font-family: $heading-family; }
+
+    h1 { letter-spacing: -0.48; }
 
 
 /*------------------------------------*\
@@ -213,6 +222,58 @@
             &:first-child { margin-left: -0.5rem; }
         }
 
+        .social-bar--footer {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+
+            a {
+                &:link,
+                &:visited {
+                    border-bottom: 3px solid rgba($primary-color, 0.25);
+                    background-color: $primary-color;
+                    -webkit-background-clip: text;
+                    color: transparent;
+                    font-weight: bold;
+                    text-decoration: none;
+                    padding-bottom: 0.2rem;
+                    position: relative;
+
+                    &::after {
+                        background: linear-gradient(60deg, darken($secondary-color, 5%), lighten($secondary-color, 15%));
+                        content: '';
+                        height: 3px;
+                        width: 100%;
+                        position: absolute;
+                        bottom: -0.2rem;
+                        left: 0;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                    }
+                }
+
+                &:hover,
+                &:focus {
+                    background-image: linear-gradient(60deg, darken($secondary-color, 5%), lighten($secondary-color, 5%));
+                    -webkit-background-clip: text;
+                    color: transparent;
+
+                    &::after { opacity: 1; }
+                }
+
+                &:active {
+                    background-image: none;
+                    color: lighten($primary-color, 5%);
+                    border-bottom-color: $primary-color;
+
+                    &::after { opacity: 0; }
+                }
+            }
+
+            li {
+                margin-bottom: 2rem;
+            }
+        }
+
 
 /*------------------------------------*\
     #BOOTSTRAP-COMPONENT-CUSTOMIZATIONS
@@ -242,12 +303,25 @@
 
 
 /*------------------------------------*\
+    #FOOTER
+\*------------------------------------*/
+
+    .footer { padding: 2rem 1rem; }
+
+        .footer--primary { margin-bottom: 2rem; }
+
+        .footer__credits {
+
+        }
+
+
+/*------------------------------------*\
     #MAIN-CONTENT
 \*------------------------------------*/
 
     /*-- Project Gallery --*/
 
-    .project-tiles {}
+    .project-tiles { margin-bottom: 4rem; }
 
         .project-tiles__container {
             padding-left: 0.9375rem;
@@ -257,11 +331,22 @@
             .right-column { margin-bottom: 0; }
         }
 
+        /* Taking a break here to create some variables for the height of the tiles.
+         * This is honestly just a quick fix until I find a better way to to this (just lazy coding tbh).
+         * These are used in the #MEDIA-QUERIES section, but specified here for reference (could be better in #VARIABLES).
+         */
+
+        $project-tiles__tile-height: 312px;
+        $project-tiles__tile-height-sm: 312px;
+        $project-tiles__tile-height-md: 360px;
+        $project-tiles__tile-height-lg: 416px;
+        $project-tiles__tile-height-xl: 416px;
+
         .project-tiles__tile {
             background: linear-gradient(60deg, lighten($primary-color, 25%), darken($primary-color, 15%));
             color: $light-color;
             display: block;
-            height: 300px;
+            height: $project-tiles__tile-height;
             width: 100%;
             margin: 0;
             position: relative;
@@ -283,10 +368,12 @@
                 .project-tiles__backdrop {
                     .overlay--dark { opacity: 0; }
                     .overlay--project { opacity: 0.8; }
-                    img { transform: translate(-50%, -50%) scale(1.1); }
+                    img { transform: scale(1.1); }
                 }
             }
         }
+
+            .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height} * 1.25); }
 
             .project-tiles__project-link {
                 display: block;
@@ -342,15 +429,16 @@
                 }
 
                 .project-tiles__meta__link {
-                    padding: 0 1.5rem 1.5rem;
+                    border-bottom: 1px solid $light-color;
+                    padding-bottom: .25rem;
                     position: absolute;
-                    bottom: 0;
-                    left: 0;
+                    bottom: 1.75rem;
+                    left: 1.5rem;
                     z-index: 4;
                     opacity: 0;
                     transform: translate(0%, 30%);
                     transition: all 0.5s ease-out;
-                    text-decoration: underline;
+                    text-decoration: none;
 
                     .fa { vertical-align: middle; }
                 }
@@ -359,7 +447,6 @@
             .project-tiles__backdrop {
                 height: 100%;
                 width: 100%;
-                overflow: hidden;
                 position: relative;
 
                 .overlay {
@@ -372,7 +459,7 @@
 
                 .overlay--dark {
                     background: $primary-color;
-                    opacity: 0.25;
+                    opacity: 0.4;
                     z-index: 3;
                 }
 
@@ -381,19 +468,86 @@
                     z-index: 2;
                 }
 
-                img {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%) scale(1);
+                .backdrop-image {
+                    display: block;
+                    height: 100%;
                     width: 100%;
-                    height: auto;
-                    transition: all 0.2s ease-in-out;
+                    position: absolute;
                     z-index: 1;
+                    overflow: hidden;
+
+                    img {
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: auto;
+                        transition: all 0.2s ease-in-out;
+                        transform: scale(1);
+                    }
                 }
             }
 
+    /*-- Content Section Formatting --*/
 
+    .content {
+        a {
+            &:link,
+            &:visited {
+                border-bottom: 2px solid rgba($primary-color, 0.25);
+                background-color: $primary-color;
+                -webkit-background-clip: text;
+                color: transparent;
+                font-weight: bold;
+                text-decoration: none;
+                padding-bottom: 0rem;
+                position: relative;
+
+                &::after {
+                    background: linear-gradient(60deg, darken($secondary-color, 5%), lighten($secondary-color, 15%));
+                    content: '';
+                    height: 2px;
+                    width: 100%;
+                    position: absolute;
+                    bottom: -.125rem;
+                    left: 0;
+                    opacity: 0;
+                    transition: all 0.2s ease-in-out;
+                }
+            }
+
+            &:hover,
+            &:focus {
+                background-image: linear-gradient(60deg, darken($secondary-color, 5%), lighten($secondary-color, 5%));
+                -webkit-background-clip: text;
+                color: transparent;
+
+                &::after { opacity: 1; }
+            }
+
+            &:active {
+                background-image: none;
+                color: lighten($primary-color, 5%);
+                border-bottom-color: $primary-color;
+
+                &::after { opacity: 0; }
+            }
+        }
+
+        p,
+        dl { line-height: 1.6rem; }
+    }
+
+    /*-- Bio Section --*/
+
+    .human-bio { padding: 1rem; }
+
+        .human-bio__profile-breakdown {
+            dt {
+                font-weight: bold;
+                margin-bottom: 1rem;
+            }
+            dd { margin-bottom: 2rem; }
+        }
 
 
 /*------------------------------------*\
@@ -404,10 +558,68 @@
         .social-bar { margin: 2rem 0; }
     }
 
-    @media (min-width: 768px) {
-        .header { padding: 4rem 3rem; }
+    @media (min-width: 570px) {
+        .project-tiles__container {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
 
-    @media (min-width: 991px) {
+    @media (min-width: 768px) {
+        .header { padding: 4rem 3rem; }
+        .project-tiles__tile {
+            height: $project-tiles__tile-height-md;
+
+            &:hover,
+            &:focus {
+                .project-tiles__content .project-desc {
+                    transform: translate(0%, 0%);
+                    opacity: 0.8;
+                }
+            }
+        }
+        .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height-md} * 1.25); }
+        .project-tiles__content {
+            padding: 3rem;
+
+            .project-client { font-size: 1.25rem;}
+        }
+        .project-tiles__content .project-desc {
+            display: block;
+            font-size: 1.8rem;
+            margin-top: 1.5rem;
+            opacity: 0;
+            transform: translate(-3%, 0%);
+            transition: all 0.5s ease-in-out;
+        }
+        .project-tiles__meta {
+            ul,
+            .project-tiles__meta__link {
+                font-size: 1.25rem;
+                padding-bottom: .25rem;
+                bottom: 3.25rem;
+                left: 3rem;
+            }
+        }
+        .human-bio { padding: 3rem; }
+        .social-bar--footer {
+            li {
+                display: inline-block;
+                margin-right: 2rem;
+                margin-bottom: 2rem;
+
+                &:last-child { margin-right: 0; }
+            }
+        }
+    }
+
+    @media (min-width: 992px) {
         .header { padding: 6rem 3rem 4rem; }
+        .project-tiles__tile { height: $project-tiles__tile-height-lg; }
+        .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height-lg} * 1.25); }
+    }
+
+    @media (min-width: 1200px) {
+        .project-tiles__tile { height: $project-tiles__tile-height-xl; }
+        .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height-xl} * 1.25); }
     }
