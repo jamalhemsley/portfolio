@@ -177,6 +177,7 @@
 
             &:link,
             &:link span { transition: color 0.2s ease-in-out; }
+
             &:link,
             &:visited {
                 color: $primary-color;
@@ -184,12 +185,14 @@
 
                 span { color: $secondary-color; }
             }
+
             &:hover,
             &:focus {
                 color: lighten($secondary-color, 5%);
 
                 span { color: lighten($primary-color, 5%); }
             }
+
             &:active {
                 color: $primary-color;
 
@@ -239,7 +242,7 @@
                     position: relative;
 
                     &::after {
-                        background: linear-gradient(60deg, darken($secondary-color, 5%), lighten($secondary-color, 15%));
+                        background: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
                         content: '';
                         height: 3px;
                         width: 100%;
@@ -253,7 +256,7 @@
 
                 &:hover,
                 &:focus {
-                    background-image: linear-gradient(60deg, darken($secondary-color, 5%), lighten($secondary-color, 5%));
+                    background-image: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
                     -webkit-background-clip: text;
                     color: transparent;
 
@@ -503,7 +506,7 @@
                 position: relative;
 
                 &::after {
-                    background: linear-gradient(60deg, darken($secondary-color, 5%), lighten($secondary-color, 15%));
+                    background: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
                     content: '';
                     height: 2px;
                     width: 100%;
@@ -517,7 +520,7 @@
 
             &:hover,
             &:focus {
-                background-image: linear-gradient(60deg, darken($secondary-color, 5%), lighten($secondary-color, 5%));
+                background-image: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
                 -webkit-background-clip: text;
                 color: transparent;
 
