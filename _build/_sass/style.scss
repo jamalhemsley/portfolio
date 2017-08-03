@@ -240,6 +240,7 @@
                     text-decoration: none;
                     padding-bottom: 0.2rem;
                     position: relative;
+                    transition: all 0.2s ease-in-out;
 
                     &::after {
                         background: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
@@ -258,6 +259,7 @@
                 &:focus {
                     background-image: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
                     -webkit-background-clip: text;
+                    border-bottom-color: rgba($primary-color, 0);
                     color: transparent;
 
                     &::after { opacity: 1; }
@@ -311,10 +313,19 @@
 
     .footer { padding: 2rem 1rem; }
 
-        .footer--primary { margin-bottom: 2rem; }
+        .footer--primary {
+            margin-bottom: 2rem;
+        }
 
         .footer__credits {
+            margin: 5rem auto 1rem;
+            text-align: center;
 
+            .logo-mark {
+                width: 3rem;
+                height: auto;
+                margin-bottom: 2rem;
+            }
         }
 
 
@@ -371,7 +382,7 @@
                 .project-tiles__backdrop {
                     .overlay--dark { opacity: 0; }
                     .overlay--project { opacity: 0.8; }
-                    img { transform: translate(-50%, -50%) scale(1.1); }
+                    .backdrop-image { transform: scale(1); }
                 }
             }
         }
@@ -460,8 +471,8 @@
                 }
 
                 .overlay--dark {
-                    background: $primary-color;
-                    opacity: 0.4;
+                    background: linear-gradient(135deg, darken($primary-color, 25%), rgba(lighten($primary-color, 15%), 0));
+                    opacity: 0.6;
                     z-index: 3;
                 }
 
@@ -471,23 +482,38 @@
                 }
 
                 .backdrop-image {
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
                     display: block;
                     height: 100%;
                     width: 100%;
                     position: relative;
                     z-index: 1;
-                    overflow: hidden;
-
-                    img {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        width: 100%;
-                        height: auto;
-                        transition: all 0.2s ease-in-out;
-                        transform: translate(-50%, -50%) scale(1);
-                    }
+                    transform: scale(1);
+                    transition: all 0.2s ease-in-out;
                 }
+
+                /* Old CSS. This will be reinstated when I switch to using CloudFront + PHP for dynamically resized images.
+                    .backdrop-image {
+                        display: block;
+                        height: 100%;
+                        width: 100%;
+                        position: relative;
+                        z-index: 1;
+                        overflow: hidden;
+
+                        img {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            width: 100%;
+                            height: auto;
+                            transition: all 0.2s ease-in-out;
+                            transform: translate(-50%, -50%) scale(1);
+                        }
+                    }
+                */
             }
 
     /*-- Content Section Formatting --*/
@@ -504,6 +530,7 @@
                 text-decoration: none;
                 padding-bottom: 0rem;
                 position: relative;
+                transition: all 0.2s ease-in-out;
 
                 &::after {
                     background: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
@@ -522,6 +549,7 @@
             &:focus {
                 background-image: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
                 -webkit-background-clip: text;
+                border-bottom-color: rgba($primary-color, 0);
                 color: transparent;
 
                 &::after { opacity: 1; }
@@ -542,7 +570,7 @@
 
     /*-- Bio Section --*/
 
-    .human-bio { padding: 1rem; }
+    .human-bio { padding: 3rem 1rem; }
 
         .human-bio__profile-breakdown {
             dt {
@@ -569,7 +597,7 @@
     }
 
     @media (min-width: 768px) {
-        .header { padding: 4rem 3rem; }
+        .header { padding: 4rem 0; }
         .project-tiles__tile {
             height: $project-tiles__tile-height-md;
 
@@ -589,7 +617,7 @@
         }
         .project-tiles__content .project-desc {
             display: block;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-top: 1.5rem;
             opacity: 0;
             transform: translate(-3%, 0%);
@@ -604,7 +632,6 @@
                 left: 3rem;
             }
         }
-        .human-bio { padding: 3rem; }
         .social-bar--footer {
             li {
                 display: inline-block;
@@ -614,12 +641,32 @@
                 &:last-child { margin-right: 0; }
             }
         }
+        .human-bio { padding: 4rem 1rem; }
+        .footer__credits {
+            margin: 5rem auto 2rem;
+        }
     }
 
     @media (min-width: 992px) {
-        .header { padding: 6rem 3rem 4rem; }
+        .header { padding: 6rem 0 4rem; }
         .project-tiles__tile { height: $project-tiles__tile-height-lg; }
         .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height-lg} * 1.25); }
+        .human-bio { padding: 5rem 1rem; }
+        .human-bio__profile-breakdown {
+            dt {
+                float: left;
+            }
+            dd {
+                margin-left: 6rem;
+                margin-bottom: 2rem;
+
+                &::after {
+                    display: block;
+                    clear: left;
+                    content: '';
+                }
+            }
+        }
     }
 
     @media (min-width: 1200px) {
