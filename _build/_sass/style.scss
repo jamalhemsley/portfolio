@@ -22,27 +22,11 @@
     $fallback-family: Helvetica, Arial, sans-serif, clean;
     $heading-family: 'Posterama 1927', $fallback-family;
     $body-family: 'Proxima Nova Alt Rg', $fallback-family;
-    $branding-family: 'Posterama 2001', $heading-family;
 
 
 /*------------------------------------*\
     #FONT-FACE-IMPORT
 \*------------------------------------*/
-
-    /*-- Posterama 2001 --*/
-    // Posterama 2001 for the logo type. This is temporary until a proper SVG is made.
-
-    @font-face {
-        font-family: 'Posterama 2001';
-        src: url('../inc/fonts/hinted-Posterama2001-Bold.eot');
-        src: local('Posterama 2001 Bold'), local('Posterama2001-Bold'),
-        url('../inc/fonts/hinted-Posterama2001-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../inc/fonts/hinted-Posterama2001-Bold.woff2') format('woff2'),
-        url('../inc/fonts/hinted-Posterama2001-Bold.ttf') format('truetype');
-        font-display: swap;
-        font-style: normal;
-        font-weight: bold;
-    }
 
     /*-- Posterama 1927 --*/
 
@@ -158,29 +142,22 @@
     #INDEPENDENT-COMPONENTS
 \*------------------------------------*/
 
-    .logo--primary {
+    .logo{
         cursor: pointer;
-        color: $primary-color;
-        font-family: $branding-family;
-        font-weight: bold;
-        letter-spacing: -0.48;
+        height: auto;
+        width: 6rem;
         line-height: 1;
         margin-bottom: 4rem;
-        text-transform: uppercase;
         user-select: none;
+    }
 
-        span { color: $secondary-color; }
+        .logo--primary {
+            path {
+                fill: $primary-color;
 
-        a {
-            &:link,
-            &:visited {
-                color: $primary-color;
-                text-decoration: none;
-
-                span { color: $secondary-color; }
+                &:last-child { fill: $secondary-color; }
             }
         }
-    }
 
     .social-bar { font-size: 2rem; }
 
@@ -590,7 +567,7 @@
 
     @media (min-width: 768px) {
         .header { padding: 4rem 2rem; }
-        .logo--primary { margin-top: 0.45rem; }
+        .logo--primary { margin-top: 0.2rem; }
         .lead {
             font-size: 1.8rem;
             line-height: 1.6;
@@ -637,13 +614,13 @@
             li { margin-right: 2rem; }
         }
         .human-bio { padding: 4rem 2rem; }
-        .footer--primary h3 { margin-top: 0.45rem; }
+        .footer--primary h3 { margin-top: 0.4rem; }
         .footer__credits { margin: 5rem auto 2rem; }
     }
 
     @media (min-width: 992px) {
-        .header { padding: 6rem 3rem 4rem; }
-        .logo--primary { margin-top: 0.55rem; }
+        .header { padding: 6rem 3rem 3rem; }
+        .logo--primary { margin-top: 0.45rem; }
         .lead { font-size: 2rem; }
         .project-tiles,
         .footer {
@@ -672,7 +649,7 @@
     }
 
     @media (min-width: 1200px) {
-        .logo--primary { margin-top: 0.7rem; }
+        .logo--primary { margin-top: 0.5rem; }
         .lead { font-size: 2.2rem; }
         .project-tiles__tile { height: $project-tiles__tile-height-xl; }
         .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height-xl} * 1.25); }

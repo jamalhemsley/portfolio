@@ -10,7 +10,7 @@ gulp.task('sass-compile', function() {
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(autoprefixer({browsers: ['last 2 versions']}))
         .pipe(rename('style.min.css'))
-        .pipe(gulp.dest('./assets/css/'))
+        .pipe(gulp.dest('assets/css/'))
         .pipe(reload({stream: true}));
 });
 
