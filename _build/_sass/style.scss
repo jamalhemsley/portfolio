@@ -15,7 +15,7 @@
     $primary-color: #455C72;
     $secondary-color: #4272CB;
     $light-color: #F6F6F6;
-    $gray-color: lighten(#ECF0F1, 5%);
+    $gray-color: #FBFCFC;
 
     /*-- Typography --*/
 
@@ -131,6 +131,7 @@
     body {
         color: $primary-color;
         font-family: $body-family;
+        font-size: 1.1rem;
         letter-spacing: -0.4;
         line-height: 1.4;
         text-align: left;
@@ -171,30 +172,10 @@
         span { color: $secondary-color; }
 
         a {
-            /* There's likely a better way to write the following section,
-             * but oh well, w/e this isn't a mission-critical project. :)
-             */
-
-            &:link,
-            &:link span { transition: color 0.2s ease-in-out; }
-
             &:link,
             &:visited {
                 color: $primary-color;
                 text-decoration: none;
-
-                span { color: $secondary-color; }
-            }
-
-            &:hover,
-            &:focus {
-                color: lighten($secondary-color, 5%);
-
-                span { color: lighten($primary-color, 5%); }
-            }
-
-            &:active {
-                color: $primary-color;
 
                 span { color: $secondary-color; }
             }
@@ -203,81 +184,85 @@
 
     .social-bar { font-size: 2rem; }
 
-        .social-bar__link {
+    .social-bar__link {
+        display: inline-block;
+
+        a {
+            &:link,
+            &:visited {
+                color: $primary-color;
+                display: block;
+                padding: 0.5rem 0.5rem;
+                transition: all 0.2s ease-in-out;
+            }
+            &:hover,
+            &:focus {
+                color: $secondary-color;
+                transform: scale(1.1);
+            }
+            &:active { color: $primary-color; }
+        }
+
+        &:first-child { margin-left: -0.5rem; }
+    }
+
+    .social-bar--footer {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+
+        a {
+            &:link,
+            &:visited {
+                border-bottom: 3px solid rgba($primary-color, 0.25);
+                background-color: $primary-color;
+                -webkit-background-clip: text;
+                color: transparent;
+                font-weight: bold;
+                text-decoration: none;
+                padding-bottom: 0.2rem;
+                position: relative;
+                transition: all 0.2s ease-in-out;
+
+                &::after {
+                    background: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
+                    content: '';
+                    height: 3px;
+                    width: 100%;
+                    position: absolute;
+                    bottom: -0.2rem;
+                    left: 0;
+                    opacity: 0;
+                    transition: all 0.2s ease-in-out;
+                }
+            }
+
+            &:hover,
+            &:focus {
+                background-image: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
+                -webkit-background-clip: text;
+                border-bottom-color: rgba($primary-color, 0);
+                color: transparent;
+
+                &::after { opacity: 1; }
+            }
+
+            &:active {
+                background-image: none;
+                color: lighten($primary-color, 5%);
+                border-bottom-color: $primary-color;
+
+                &::after { opacity: 0; }
+            }
+        }
+
+        li {
             display: inline-block;
+            margin-right: 1.5rem;
+            margin-bottom: 2rem;
 
-            a {
-                &:link,
-                &:visited {
-                    color: $primary-color;
-                    display: block;
-                    padding: 0.5rem 0.5rem;
-                    transition: all 0.2s ease-in-out;
-                }
-                &:hover,
-                &:focus {
-                    color: $secondary-color;
-                    transform: scale(1.1);
-                }
-                &:active { color: $primary-color; }
-            }
-
-            &:first-child { margin-left: -0.5rem; }
+            &:last-child { margin-right: 0; }
         }
-
-        .social-bar--footer {
-            font-size: 1.5rem;
-            margin-top: 2rem;
-
-            a {
-                &:link,
-                &:visited {
-                    border-bottom: 3px solid rgba($primary-color, 0.25);
-                    background-color: $primary-color;
-                    -webkit-background-clip: text;
-                    color: transparent;
-                    font-weight: bold;
-                    text-decoration: none;
-                    padding-bottom: 0.2rem;
-                    position: relative;
-                    transition: all 0.2s ease-in-out;
-
-                    &::after {
-                        background: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
-                        content: '';
-                        height: 3px;
-                        width: 100%;
-                        position: absolute;
-                        bottom: -0.2rem;
-                        left: 0;
-                        opacity: 0;
-                        transition: all 0.2s ease-in-out;
-                    }
-                }
-
-                &:hover,
-                &:focus {
-                    background-image: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
-                    -webkit-background-clip: text;
-                    border-bottom-color: rgba($primary-color, 0);
-                    color: transparent;
-
-                    &::after { opacity: 1; }
-                }
-
-                &:active {
-                    background-image: none;
-                    color: lighten($primary-color, 5%);
-                    border-bottom-color: $primary-color;
-
-                    &::after { opacity: 0; }
-                }
-            }
-
-            li {
-                margin-bottom: 2rem;
-            }
-        }
+    }
 
     .text-divider {
         cursor: default;
@@ -299,19 +284,19 @@
     .lead {
         font-size: 1.5rem;
         letter-spacing: -0.4;
-        line-height: 1.8;
+        line-height: 1.6;
     }
 
 
-/*------------------------------------*\
-    #HEADER
-\*------------------------------------*/
+    /*------------------------------------*\
+        #HEADER
+    \*------------------------------------*/
 
-    .header { padding: 2rem 1rem; }
+    .header { padding: 4rem 1rem 2rem; }
 
-        .header--primary { margin-bottom: 2rem; }
+    .header--primary { margin-bottom: 2rem; }
 
-        .header__intro { margin-bottom: 2rem; }
+    .header__intro { margin-bottom: 2rem; }
 
 
 /*------------------------------------*\
@@ -320,20 +305,18 @@
 
     .footer { padding: 2rem 1rem; }
 
-        .footer--primary {
-            margin-bottom: 2rem;
-        }
+    .footer--primary { margin-bottom: 2rem; }
 
-        .footer__credits {
-            margin: 5rem auto 1rem;
-            text-align: center;
+    .footer__credits {
+        margin: 5rem auto 1rem;
+        text-align: center;
 
-            .logo-mark {
-                width: 3rem;
-                height: auto;
-                margin-bottom: 2rem;
-            }
+        .logo-mark {
+            width: 3rem;
+            height: auto;
+            margin-bottom: 1rem;
         }
+    }
 
 
 /*------------------------------------*\
@@ -344,184 +327,184 @@
 
     .project-tiles { margin-bottom: 4rem; }
 
-        .project-tiles__container {
-            padding-left: 0.9375rem;
-            padding-right: 0.9375rem;
+    .project-tiles__container {
+        padding-left: 0.9375rem;
+        padding-right: 0.9375rem;
 
-            .left-column,
-            .right-column { margin-bottom: 0; }
-        }
+        .left-column,
+        .right-column { margin-bottom: 0; }
+    }
 
-        /* Taking a break here to create some variables for the height of the tiles.
-         * This is honestly just a quick fix until I find a better way to to this (just lazy coding tbh).
-         * These are used in the #MEDIA-QUERIES section, but specified here for reference (could be better in #VARIABLES).
-         */
+    /* Taking a break here to create some variables for the height of the tiles.
+     * This is honestly just a quick fix until I find a better way to to this (just lazy coding tbh).
+     * These are used in the #MEDIA-QUERIES section, but specified here for reference (could be better in #VARIABLES).
+     */
 
-        $project-tiles__tile-height: 312px;
-        $project-tiles__tile-height-sm: 312px;
-        $project-tiles__tile-height-md: 360px;
-        $project-tiles__tile-height-lg: 416px;
-        $project-tiles__tile-height-xl: 416px;
+    $project-tiles__tile-height: 320px;
+    $project-tiles__tile-height-sm: 320px;
+    $project-tiles__tile-height-md: 400px;
+    $project-tiles__tile-height-lg: 440px;
+    $project-tiles__tile-height-xl: 480px;
 
-        .project-tiles__tile {
-            background: linear-gradient(60deg, lighten($primary-color, 25%), darken($primary-color, 15%));
-            color: $light-color;
-            display: block;
-            height: $project-tiles__tile-height;
-            width: 100%;
-            margin: 0;
-            position: relative;
+    .project-tiles__tile {
+        background: linear-gradient(60deg, lighten($primary-color, 25%), darken($primary-color, 15%));
+        color: $light-color;
+        display: block;
+        height: $project-tiles__tile-height;
+        width: 100%;
+        margin: 0;
+        position: relative;
 
-            &:hover,
-            &:focus {
-                .project-tiles__meta {
-                    ul {
-                        transform: translate(0%, -30%);
-                        opacity: 0;
-                    }
-
-                    .project-tiles__meta__link {
-                        opacity: 1;
-                        transform: translate(0%, 0%);
-                    }
-                }
-
-                .project-tiles__backdrop {
-                    .overlay--dark { opacity: 0; }
-                    .overlay--project { opacity: 0.8; }
-                    .backdrop-image { transform: scale(1); }
-                }
-            }
-        }
-
-            .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height} * 1.25); }
-
-            .project-tiles__project-link {
-                display: block;
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 15;
-                text-indent: -9999px;
-            }
-
-            .project-tiles__content {
-                padding: 1.5rem;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 10;
-
-                .project-client {
-                    display: block;
-                    margin-bottom: 1rem;
-                }
-
-                .project-title {
-                    font-family: $heading-family;
-                    font-size: 2rem;
-                    font-weight: bold;
-                    letter-spacing: -0.5;
-                    line-height: 1.25;
-                }
-
-                .project-desc { display: none; }
-            }
-
+        &:hover,
+        &:focus {
             .project-tiles__meta {
                 ul {
-                    position: absolute;
-                    bottom: 1.5rem;
-                    left: 1.5rem;
-                    z-index: 5;
-                    transform: translate(0%, 0%);
-                    transition: all 0.5s ease-out;
-
-                    li {
-                        display: inline-block;
-                        margin-right: 1.5rem;
-                        margin-top: 0.5rem;
-
-                        &:last-child { margin-right: 0; }
-                    }
+                    transform: translate(0%, -30%);
+                    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                    opacity: 0;
                 }
 
                 .project-tiles__meta__link {
-                    border-bottom: 1px solid $light-color;
-                    padding-bottom: .25rem;
-                    position: absolute;
-                    bottom: 1.75rem;
-                    left: 1.5rem;
-                    z-index: 4;
-                    opacity: 0;
-                    transform: translate(0%, 30%);
-                    transition: all 0.5s ease-out;
-                    text-decoration: none;
-
-                    .fa { vertical-align: middle; }
+                    opacity: 1;
+                    transform: translate(0%, 0%);
+                    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
                 }
             }
 
             .project-tiles__backdrop {
+                .overlay--dark { opacity: 0; }
+                .overlay--project { opacity: 0.9; }
+                .backdrop-image { transform: scale(1); }
+            }
+        }
+    }
+
+    .project-tiles__project-link {
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 15;
+        text-indent: -9999px;
+    }
+
+    .project-tiles__content {
+        padding: 1.5rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+
+        .project-client {
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-family: $heading-family;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: -0.5;
+            line-height: 1.25;
+        }
+
+        .project-desc { display: none; }
+    }
+
+    .project-tiles__meta {
+        ul {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 5;
+            transform: translate(0%, 0%);
+            transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+            li {
+                display: inline-block;
+                margin-right: 1.5rem;
+                margin-top: 0.5rem;
+
+                &:last-child { margin-right: 0; }
+            }
+        }
+
+        .project-tiles__meta__link {
+            border-bottom: 1px solid $light-color;
+            padding-bottom: .25rem;
+            position: absolute;
+            bottom: 1.75rem;
+            left: 1.5rem;
+            z-index: 4;
+            opacity: 0;
+            transform: translate(0%, 30%);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            text-decoration: none;
+
+            .fa { vertical-align: middle; }
+        }
+    }
+
+    .project-tiles__backdrop {
+        height: 100%;
+        width: 100%;
+        position: relative;
+
+        .overlay {
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            transition: opacity 0.4s ease-out;
+        }
+
+        .overlay--dark {
+            background: linear-gradient(135deg, darken($primary-color, 25%), rgba(lighten($primary-color, 15%), 0));
+            opacity: 0.6;
+            z-index: 3;
+        }
+
+        .overlay--project {
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .backdrop-image {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            transform: scale(1);
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Old CSS. This will be reinstated when I switch to using CloudFront + PHP for dynamically resized images.
+            .backdrop-image {
+                display: block;
                 height: 100%;
                 width: 100%;
                 position: relative;
+                z-index: 1;
+                overflow: hidden;
 
-                .overlay {
-                    display: block;
-                    height: 100%;
-                    width: 100%;
+                img {
                     position: absolute;
-                    transition: opacity 0.2s ease-in-out;
-                }
-
-                .overlay--dark {
-                    background: linear-gradient(135deg, darken($primary-color, 25%), rgba(lighten($primary-color, 15%), 0));
-                    opacity: 0.6;
-                    z-index: 3;
-                }
-
-                .overlay--project {
-                    opacity: 0;
-                    z-index: 2;
-                }
-
-                .backdrop-image {
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    display: block;
-                    height: 100%;
+                    top: 50%;
+                    left: 50%;
                     width: 100%;
-                    position: relative;
-                    z-index: 1;
-                    transform: scale(1);
+                    height: auto;
                     transition: all 0.2s ease-in-out;
+                    transform: translate(-50%, -50%) scale(1);
                 }
-
-                /* Old CSS. This will be reinstated when I switch to using CloudFront + PHP for dynamically resized images.
-                    .backdrop-image {
-                        display: block;
-                        height: 100%;
-                        width: 100%;
-                        position: relative;
-                        z-index: 1;
-                        overflow: hidden;
-
-                        img {
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            width: 100%;
-                            height: auto;
-                            transition: all 0.2s ease-in-out;
-                            transform: translate(-50%, -50%) scale(1);
-                        }
-                    }
-                */
             }
+        */
+    }
 
     /*-- Content Section Formatting --*/
 
@@ -572,20 +555,21 @@
         }
 
         p,
-        dl { line-height: 1.6rem; }
+        dl { line-height: 2rem; }
     }
 
     /*-- Bio Section --*/
 
     .human-bio { padding: 3rem 1rem; }
 
-        .human-bio__profile-breakdown {
-            dt {
-                font-weight: bold;
-                margin-bottom: 1rem;
-            }
-            dd { margin-bottom: 2rem; }
+    .human-bio__profile-breakdown {
+        dt {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            opacity: 0.6;
         }
+        dd { margin-bottom: 2rem; }
+    }
 
 
 /*------------------------------------*\
@@ -593,6 +577,7 @@
 \*------------------------------------*/
 
     @media (min-width: 510px) {
+        .lead { font-size: 1.8rem; }
         .social-bar { margin: 2rem 0; }
     }
 
@@ -605,6 +590,11 @@
 
     @media (min-width: 768px) {
         .header { padding: 4rem 2rem; }
+        .logo--primary { margin-top: 0.45rem; }
+        .lead {
+            font-size: 1.8rem;
+            line-height: 1.6;
+        }
         .project-tiles,
         .footer {
             padding-left: 2rem;
@@ -621,7 +611,6 @@
                 }
             }
         }
-        .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height-md} * 1.25); }
         .project-tiles__content {
             padding: 3rem;
 
@@ -632,8 +621,8 @@
             font-size: 1.5rem;
             margin-top: 1.5rem;
             opacity: 0;
-            transform: translate(-3%, 0%);
-            transition: all 0.5s ease-in-out;
+            transform: translate(-1%, 0%);
+            transition: all 0.3s ease-in;
         }
         .project-tiles__meta {
             ul,
@@ -645,22 +634,17 @@
             }
         }
         .social-bar--footer {
-            li {
-                display: inline-block;
-                margin-right: 2rem;
-                margin-bottom: 2rem;
-
-                &:last-child { margin-right: 0; }
-            }
+            li { margin-right: 2rem; }
         }
         .human-bio { padding: 4rem 2rem; }
-        .footer__credits {
-            margin: 5rem auto 2rem;
-        }
+        .footer--primary h3 { margin-top: 0.45rem; }
+        .footer__credits { margin: 5rem auto 2rem; }
     }
 
     @media (min-width: 992px) {
         .header { padding: 6rem 3rem 4rem; }
+        .logo--primary { margin-top: 0.55rem; }
+        .lead { font-size: 2rem; }
         .project-tiles,
         .footer {
             padding-left: 3rem;
@@ -684,9 +668,13 @@
                 }
             }
         }
+        .footer--primary h3 { margin-top: 0.55rem; }
     }
 
     @media (min-width: 1200px) {
+        .logo--primary { margin-top: 0.7rem; }
+        .lead { font-size: 2.2rem; }
         .project-tiles__tile { height: $project-tiles__tile-height-xl; }
         .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height-xl} * 1.25); }
+        .footer--primary h3 { margin-top: 0.7rem; }
     }
