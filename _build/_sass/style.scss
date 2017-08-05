@@ -142,10 +142,10 @@
     #INDEPENDENT-COMPONENTS
 \*------------------------------------*/
 
-    .logo{
+    .logo {
         cursor: pointer;
         height: auto;
-        width: 6rem;
+        width: 5.5rem;
         line-height: 1;
         margin-bottom: 4rem;
         user-select: none;
@@ -161,93 +161,99 @@
 
     .social-bar { font-size: 2rem; }
 
-    .social-bar__link {
-        display: inline-block;
+        .social-bar__link {
+            display: inline-block;
 
-        a {
-            &:link,
-            &:visited {
-                color: $primary-color;
-                display: block;
-                padding: 0.5rem 0.5rem;
-                transition: all 0.2s ease-in-out;
+            a {
+                &:link,
+                &:visited {
+                    color: $primary-color;
+                    display: block;
+                    line-height: 1;
+                    padding: 0.5rem 0.5rem;
+                    transition: all 0.2s ease-in-out;
+                }
+                &:hover,
+                &:focus {
+                    color: lighten($primary-color, 8%);
+                    transform: scale(1.1);
+                }
+                &:active { color: lighten($primary-color, 8%); }
             }
-            &:hover,
-            &:focus {
-                color: $secondary-color;
-                transform: scale(1.1);
-            }
-            &:active { color: $primary-color; }
+
+            &:first-child { margin-left: -0.5rem; }
         }
 
-        &:first-child { margin-left: -0.5rem; }
-    }
+        /*
+         * Had to set it to absolute because the "FOUT" of
+         * Font Awesome was shifting the pre-animated objects
+         * before loading.
+         */
 
-    .social-bar--footer {
-        font-size: 1.5rem;
-        margin-top: 2rem;
+        .social-bar--header {
+            position: absolute;
+            bottom: -3.7rem;
+            left: 0.95rem;
+            z-index: 3;
+        }
 
-        a {
-            &:link,
-            &:visited {
-                border-bottom: 3px solid rgba($primary-color, 0.25);
-                background-color: $primary-color;
-                -webkit-background-clip: text;
-                color: transparent;
-                font-weight: bold;
-                text-decoration: none;
-                padding-bottom: 0.2rem;
-                position: relative;
-                transition: all 0.2s ease-in-out;
+        .social-bar--footer {
+            font-size: 1.5rem;
+            margin-top: 2rem;
 
-                &::after {
-                    background: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
-                    content: '';
-                    height: 3px;
-                    width: 100%;
-                    position: absolute;
-                    bottom: -0.2rem;
-                    left: 0;
-                    opacity: 0;
+            a {
+                &:link,
+                &:visited {
+                    border-bottom: 3px solid rgba($primary-color, 0.25);
+                    background-color: $primary-color;
+                    -webkit-background-clip: text;
+                    color: transparent;
+                    font-weight: bold;
+                    text-decoration: none;
+                    padding-bottom: 0.2rem;
+                    position: relative;
                     transition: all 0.2s ease-in-out;
+
+                    &::after {
+                        background: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
+                        content: '';
+                        height: 3px;
+                        width: 100%;
+                        position: absolute;
+                        bottom: -0.2rem;
+                        left: 0;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                    }
+                }
+
+                &:hover,
+                &:focus {
+                    background-image: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
+                    -webkit-background-clip: text;
+                    border-bottom-color: rgba($primary-color, 0);
+                    color: transparent;
+
+                    &::after { opacity: 1; }
+                }
+
+                &:active {
+                    background-image: none;
+                    color: lighten($primary-color, 5%);
+                    border-bottom-color: $primary-color;
+
+                    &::after { opacity: 0; }
                 }
             }
 
-            &:hover,
-            &:focus {
-                background-image: linear-gradient(60deg, darken($secondary-color, 10%), lighten($secondary-color, 10%));
-                -webkit-background-clip: text;
-                border-bottom-color: rgba($primary-color, 0);
-                color: transparent;
+            li {
+                display: inline-block;
+                margin-right: 1.5rem;
+                margin-bottom: 2rem;
 
-                &::after { opacity: 1; }
-            }
-
-            &:active {
-                background-image: none;
-                color: lighten($primary-color, 5%);
-                border-bottom-color: $primary-color;
-
-                &::after { opacity: 0; }
+                &:last-child { margin-right: 0; }
             }
         }
-
-        li {
-            display: inline-block;
-            margin-right: 1.5rem;
-            margin-bottom: 2rem;
-
-            &:last-child { margin-right: 0; }
-        }
-    }
-
-    .text-divider {
-        cursor: default;
-        color: lighten($primary-color, 30%);
-        font-weight: bold;
-        padding: 0 0.75rem;
-        user-select: none;
-    }
 
 /*------------------------------------*\
     #BOOTSTRAP-COMPONENT-CUSTOMIZATIONS
@@ -274,6 +280,11 @@
     .header--primary { margin-bottom: 2rem; }
 
     .header__intro { margin-bottom: 2rem; }
+
+    .header__intro__container {
+        position: relative;
+        margin-bottom: 5.4rem;
+    }
 
 
 /*------------------------------------*\
@@ -543,9 +554,98 @@
         dt {
             font-weight: bold;
             margin-bottom: 1rem;
-            color: darken($secondary-color, 10%);
         }
         dd { margin-bottom: 2rem; }
+    }
+
+
+/*------------------------------------*\
+    #ANIMATIONS
+\*------------------------------------*/
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translate3d(0, -10%, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes revealUp {
+        from { margin-top: 2rem; }
+        to { margin-top: -1rem; }
+    }
+
+    @keyframes revealFadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes revealFadeInDark {
+        from { opacity: 0; }
+        to { opacity: 0.6; }
+    }
+
+    @keyframes revealFadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+
+    .fadeInDown {
+        animation: fadeInDown cubic-bezier(0.8, -0.95, 0.265, 2) 1;
+        animation-fill-mode: forwards;
+        animation-delay: 0.5s;
+        animation-duration: 1.1s;
+        opacity: 0;
+    }
+
+    .project-tiles .left-column,
+    .project-tiles .right-column {
+        animation: revealUp cubic-bezier(0.8, -0.95, 0.265, 2) 1;
+        animation-fill-mode: forwards;
+        animation-duration: 1.3s;
+        margin-top: 2rem;
+    }
+
+    .project-tiles .left-column { animation-delay: 1.3s; }
+
+    .project-tiles .right-column { animation-delay: 1.4s; }
+
+    .project-tiles__content,
+    .project-tiles__meta ul {
+        animation: revealFadeIn ease-in-out 1;
+        animation-duration: 0.4s;
+        animation-delay: 2.9s;
+    }
+
+    .overlay--dark {
+        animation: revealFadeInDark ease-in-out 1;
+        animation-duration: 0.4s;
+        animation-delay: 3.35s;
+        animation-fill-mode: backwards;
+        opacity: 0;
+    }
+
+    .project-tiles__content {
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+
+    .project-tiles__meta ul {
+        animation-fill-mode: backwards;
+        opacity: 1;
+    }
+
+    .overlay--project {
+        animation: revealFadeOut ease-in-out 1;
+        animation-fill-mode: backwards;
+        animation-duration: 0.5s;
+        animation-delay: 3.3s;
+        opacity: 1;
     }
 
 
@@ -554,8 +654,10 @@
 \*------------------------------------*/
 
     @media (min-width: 510px) {
+        .header__intro__container { margin-bottom: 5.8rem; }
         .lead { font-size: 1.8rem; }
         .social-bar { margin: 2rem 0; }
+            .social-bar--header { bottom: -5.4rem; }
     }
 
     @media (min-width: 570px) {
@@ -567,7 +669,7 @@
 
     @media (min-width: 768px) {
         .header { padding: 4rem 2rem; }
-        .logo--primary { margin-top: 0.2rem; }
+        .logo { margin-top: 0.25rem; }
         .lead {
             font-size: 1.8rem;
             line-height: 1.6;
@@ -616,11 +718,22 @@
         .human-bio { padding: 4rem 2rem; }
         .footer--primary h3 { margin-top: 0.4rem; }
         .footer__credits { margin: 5rem auto 2rem; }
+        @keyframes revealUp {
+            from { margin-top: 4rem; }
+            to { margin-top: -2rem; }
+        }
+
+        .project-tiles .left-column { margin-top: 4rem; }
+        .project-tiles .right-column { margin-top: 4rem; }
     }
 
     @media (min-width: 992px) {
         .header { padding: 6rem 3rem 3rem; }
-        .logo--primary { margin-top: 0.45rem; }
+        .header__intro__container { margin-bottom: 7.5rem; }
+        .logo {
+            margin-top: 0.45rem;
+            width: 6rem;
+        }
         .lead { font-size: 2rem; }
         .project-tiles,
         .footer {
@@ -649,9 +762,16 @@
     }
 
     @media (min-width: 1200px) {
-        .logo--primary { margin-top: 0.5rem; }
+        .logo { margin-top: 0.65rem; }
+        .header__intro__container { margin-bottom: 5.8rem; }
         .lead { font-size: 2.2rem; }
         .project-tiles__tile { height: $project-tiles__tile-height-xl; }
         .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height-xl} * 1.25); }
         .footer--primary h3 { margin-top: 0.7rem; }
+        @keyframes revealUp {
+            from { margin-top: 9rem; }
+            to { margin-top: 0; }
+        }
+        .project-tiles .left-column { margin-top: 9rem; }
+        .project-tiles .right-column { margin-top: 9rem; }
     }

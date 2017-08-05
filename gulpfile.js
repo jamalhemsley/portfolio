@@ -1,9 +1,9 @@
-const gulp = require('gulp');
-const sass = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
-const rename = require('gulp-rename');
-const browserSync = require('browser-sync');
-const reload = browserSync.reload;
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
+var rename = require('gulp-rename');
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
 
 gulp.task('sass-compile', function() {
     gulp.src('./_build/_sass/**/*.scss')
