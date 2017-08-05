@@ -275,7 +275,7 @@
         #HEADER
     \*------------------------------------*/
 
-    .header { padding: 4rem 1rem 2rem; }
+    .header { padding: 4rem 1rem 1rem; }
 
     .header--primary { margin-bottom: 2rem; }
 
@@ -576,8 +576,8 @@
     }
 
     @keyframes revealUp {
-        from { margin-top: 2rem; }
-        to { margin-top: -1rem; }
+        from { transform: translateY(8%); }
+        to { transform: translateY(0); }
     }
 
     @keyframes revealFadeIn {
@@ -603,17 +603,23 @@
         opacity: 0;
     }
 
-    .project-tiles .left-column,
-    .project-tiles .right-column {
+    .project-tiles .left-column {
         animation: revealUp cubic-bezier(0.8, -0.95, 0.265, 2) 1;
-        animation-fill-mode: forwards;
+        animation-delay: 1.3s;
         animation-duration: 1.3s;
-        margin-top: 2rem;
+        animation-fill-mode: forwards;
+        transform: translateY(8%);
+        will-change: transform;
     }
 
-    .project-tiles .left-column { animation-delay: 1.3s; }
-
-    .project-tiles .right-column { animation-delay: 1.4s; }
+    .project-tiles .right-column {
+        animation: revealUp cubic-bezier(0.8, -0.95, 0.265, 2) 1;
+        animation-delay: 1.4s;
+        animation-duration: 1.3s;
+        animation-fill-mode: forwards;
+        transform: translateY(8%);
+        will-change: transform;
+    }
 
     .project-tiles__content,
     .project-tiles__meta ul {
@@ -654,10 +660,17 @@
 \*------------------------------------*/
 
     @media (min-width: 510px) {
+        .header { margin-bottom: 1rem; }
         .header__intro__container { margin-bottom: 5.8rem; }
         .lead { font-size: 1.8rem; }
         .social-bar { margin: 2rem 0; }
             .social-bar--header { bottom: -5.4rem; }
+        @keyframes revealUp {
+            from { transform: translateY(10%); }
+            to { transform: translateY(0); }
+        }
+        .project-tiles .left-column,
+        .project-tiles .right-column { transform: translateY(10%); }
     }
 
     @media (min-width: 570px) {
@@ -668,7 +681,10 @@
     }
 
     @media (min-width: 768px) {
-        .header { padding: 4rem 2rem; }
+        .header {
+            padding: 4rem 2rem;
+            margin-bottom: 0.5rem;
+        }
         .logo { margin-top: 0.25rem; }
         .lead {
             font-size: 1.8rem;
@@ -719,16 +735,15 @@
         .footer--primary h3 { margin-top: 0.4rem; }
         .footer__credits { margin: 5rem auto 2rem; }
         @keyframes revealUp {
-            from { margin-top: 4rem; }
-            to { margin-top: -2rem; }
+            from { transform: translateY(13%); }
+            to { transform: translateY(0); }
         }
-
-        .project-tiles .left-column { margin-top: 4rem; }
-        .project-tiles .right-column { margin-top: 4rem; }
+        .project-tiles .left-column,
+        .project-tiles .right-column { transform: translateY(13%); }
     }
 
     @media (min-width: 992px) {
-        .header { padding: 6rem 3rem 3rem; }
+        .header { padding: 6rem 3rem 1rem; }
         .header__intro__container { margin-bottom: 7.5rem; }
         .logo {
             margin-top: 0.45rem;
@@ -759,19 +774,20 @@
             }
         }
         .footer--primary h3 { margin-top: 0.55rem; }
+        @keyframes revealUp {
+            from { transform: translateY(10%); }
+            to { transform: translateY(0); }
+        }
+        .project-tiles .left-column,
+        .project-tiles .right-column { transform: translateY(10%); }
     }
 
     @media (min-width: 1200px) {
+        .header { margin-bottom: 3rem; }
         .logo { margin-top: 0.65rem; }
         .header__intro__container { margin-bottom: 5.8rem; }
         .lead { font-size: 2.2rem; }
         .project-tiles__tile { height: $project-tiles__tile-height-xl; }
         .project-tiles__tile--tall { height: calc(#{$project-tiles__tile-height-xl} * 1.25); }
         .footer--primary h3 { margin-top: 0.7rem; }
-        @keyframes revealUp {
-            from { margin-top: 9rem; }
-            to { margin-top: 0; }
-        }
-        .project-tiles .left-column { margin-top: 9rem; }
-        .project-tiles .right-column { margin-top: 9rem; }
     }
