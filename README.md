@@ -8,7 +8,6 @@ Feel free to use the code however you want (as long as you don't straight rip it
 
 **To Do:**
 
-* ~~Fix anchor hover animations.~~ Not broken, but linear-gradients can't be animated in that fashion. :(
 * Add in lazy loading of images to further improve load times.
 * Build the subpage skeleton.
 * Integrate InstaClick.js.
