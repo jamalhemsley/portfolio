@@ -123,6 +123,11 @@
         -webkit-tap-highlight-color: transparent;
     }
 
+    *::selection {
+        background: rgba($secondary-color, 0.9);
+        color: $light-color;
+    }
+
     a {
         &:link,
         &:visited { text-decoration: none; }
@@ -197,10 +202,12 @@
          */
 
         .social-bar--header {
+            cursor: default;
             position: absolute;
             bottom: -3.7rem;
             left: 0.95rem;
             z-index: 3;
+            user-select: none;
         }
 
         .social-bar--footer {
