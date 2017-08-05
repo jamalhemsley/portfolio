@@ -133,7 +133,13 @@
     h3,
     h4,
     h5,
-    h6 { font-family: $heading-family; }
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 { font-family: $heading-family; }
 
     h1 { letter-spacing: -0.48; }
 
@@ -574,7 +580,9 @@
     .human-bio__profile-breakdown {
         dt {
             font-weight: bold;
+            line-height: 2rem;
             margin-bottom: 1rem;
+            vertical-align: text-bottom;
         }
         dd { margin-bottom: 2rem; }
     }
@@ -791,7 +799,7 @@
                 float: left;
             }
             dd {
-                margin-left: 6rem;
+                margin-left: 6.5rem;
                 margin-bottom: 2rem;
 
                 &::after {
