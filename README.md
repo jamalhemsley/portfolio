@@ -11,6 +11,7 @@ Feel free to use the code however you want (as long as you don't straight rip it
 * Add in lazy loading of images to further improve load times.
 * Build the subpage skeleton.
 * Integrate InstaClick.js.
+* Add sticky scrolling to my avatar on the bio section.
 * *N/E* Add in projects so it's finally presentable.
 * Bake in page switching animations for that there SPA feel.
 * Go back and clean up CSS rules at some point...
