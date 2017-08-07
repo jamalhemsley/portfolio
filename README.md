@@ -9,10 +9,9 @@ Feel free to use the code however you want (as long as you don't straight rip it
 **To Do:**
 
 * Priority:
-    * Add sticky scrolling to my avatar on the bio section.
     * Add lazy loading for images.
+        * Now that the overflow clipping "issue" is fixed this can be revisited! :D
     * Go back and clean up CSS rules.
-    * *N/E* Add in projects so it's finally presentable.
     
 * Secondary:
     * Build the subpage skeleton.

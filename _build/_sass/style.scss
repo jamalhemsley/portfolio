@@ -471,12 +471,13 @@
     .project-tiles__backdrop {
         height: 100%;
         width: 100%;
+        overflow: hidden;
         position: relative;
 
         .overlay {
             display: block;
             height: 100%;
-            width: 100%;
+            width: 101%; /* 101% a a fix for the issue with clipping with "overflow: hidden;" on .project-tiles__backdrop. */
             position: absolute;
             transition: opacity 0.4s ease-out;
         }
@@ -501,30 +502,9 @@
             width: 100%;
             position: relative;
             z-index: 1;
-            transform: scale(1);
-            transition: all 0.2s ease-in-out;
+            transform: scale(1.1);
+            transition: transform 0.4s ease-in-out;
         }
-
-        /* Old CSS. This will be reinstated when I switch to using CloudFront + PHP for dynamically resized images.
-            .backdrop-image {
-                display: block;
-                height: 100%;
-                width: 100%;
-                position: relative;
-                z-index: 1;
-                overflow: hidden;
-
-                img {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    width: 100%;
-                    height: auto;
-                    transition: all 0.2s ease-in-out;
-                    transform: translate(-50%, -50%) scale(1);
-                }
-            }
-        */
     }
 
     /*-- Content Section Formatting --*/
@@ -584,15 +564,15 @@
 
     .human-bio { padding: 3rem 1rem; }
 
-    .human-bio__profile-breakdown {
-        dt {
-            font-weight: bold;
-            line-height: 2rem;
-            margin-bottom: 1rem;
-            vertical-align: text-bottom;
+        .human-bio__profile-breakdown {
+            dt {
+                font-weight: bold;
+                line-height: 2rem;
+                margin-bottom: 1rem;
+                vertical-align: text-bottom;
+            }
+            dd { margin-bottom: 2rem; }
         }
-        dd { margin-bottom: 2rem; }
-    }
 
 
 /*------------------------------------*\
@@ -775,6 +755,11 @@
             li { margin-right: 2rem; }
         }
         .human-bio { padding: 4rem 2rem; }
+        .human-bio__avatar {
+            position: sticky;
+            top: 3rem;
+            bottom: 0;
+        }
         .footer--primary h3 { margin-top: 0.4rem; }
         .footer__credits { margin: 5rem auto 2rem; }
         @keyframes revealUp {
