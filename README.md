@@ -8,13 +8,15 @@ Feel free to use the code however you want (as long as you don't straight rip it
 
 **To Do:**
 
-* Add in lazy loading of images to further improve load times.
-* Build the subpage skeleton.
-* Integrate InstaClick.js.
-* Add sticky scrolling to my avatar on the bio section.
-* *N/E* Add in projects so it's finally presentable.
-* Bake in page switching animations for that there SPA feel.
-* Go back and clean up CSS rules at some point...
-* Setup CloudFront and revisit using <img> tags for the project tiles rather than background images. This is done to further improve load times with more optimized image sizes and also integrate a better (see: fancier) method of lazy loading images.
-* Build a 404 page whenever I get around to it.
-* Place the website onto CraftCMS (for no good reason other than xp).
+* Priority:
+    * Add sticky scrolling to my avatar on the bio section.
+    * Add lazy loading for images.
+    * Go back and clean up CSS rules.
+    * *N/E* Add in projects so it's finally presentable.
+    
+* Secondary:
+    * Build the subpage skeleton.
+    * Utilize InstaClick.js or similar + animations.
+    * Setup CloudFront and revisit using <img> tags for the project tiles rather than background images. This is done to further improve load times with more optimized image sizes and also integrate a better (see: fancier) method of lazy loading images.
+    * Build a 404 page whenever I get around to it.
+    * Place the website onto CraftCMS (for no good reason other than xp).
