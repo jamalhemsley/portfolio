@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdaio/portfolio-2017.git"
+    "url": "git+https://github.com/jdaio/jdaio.github.io.git"
   },
   "author": "Jamal Ali-Mohammed",
   "license": "SEE LICENSE IN LICENSE.txt",
   "bugs": {
-    "url": "https://github.com/jdaio/portfolio-2017/issues"
+    "url": "https://github.com/jdaio/jdaio.github.io/issues"
   },
-  "homepage": "https://github.com/jdaio/portfolio-2017#readme",
+  "homepage": "https://github.com/jdaio/jdaio.github.io#readme",
   "devDependencies": {
     "browser-sync": "^2.18.12",
     "gulp": "^3.9.1",

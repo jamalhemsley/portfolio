@@ -11,7 +11,6 @@ Feel free to use the code however you want (as long as you don't straight rip it
 * Priority:
     * Add lazy loading for images.
         * Now that the overflow clipping "issue" is fixed this can be revisited! :D
-    * Go back and clean up CSS rules.
     
 * Secondary:
     * Build the subpage skeleton.
