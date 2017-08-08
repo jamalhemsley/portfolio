@@ -6,6 +6,7 @@
 *   Author URI: https://jda.github.io
 */
 
+
 /*------------------------------------*\
     #VARIABLES
 \*------------------------------------*/
@@ -516,7 +517,7 @@
                 position: relative;
                 z-index: 1;
                 transform: scale(1.1);
-                transition: transform 0.4s ease-in-out;
+                transition: transform 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
             }
         }
 
