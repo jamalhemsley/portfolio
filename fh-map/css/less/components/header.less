@@ -1,0 +1,93 @@
+@header-height: 54px;
+
+.c-header {
+	//padding-left: 6.25%;
+	//padding-right: 6.25%;
+	padding-top: 26px;
+	//overflow: hidden;
+	position: relative;
+	height: @header-height;
+
+	.c-menu-main {
+		margin-left: 16px;
+		position: absolute;
+		width: 100%;
+		z-index: 100;
+	}
+	.col-right {
+		position: absolute;
+		right: 0;
+		z-index: 101;
+		width: 50%;
+	}
+	.c-menu-sub {
+		float: right;
+	}
+	.c-search {
+		float: right;
+		margin-right: 30px;
+		//padding-bottom: 26px;
+	}
+	.spacer {
+		//height: 53px;
+	}
+}
+
+.c-logo {
+	width: 28px;
+	position: fixed;
+	top: 50%;
+	.translate(0, -50%);
+	left: 2.39%;
+}
+
+@media (max-width: 1335px) {
+	
+	.c-menu-main {
+
+		.item {
+
+			&:after {
+				margin: 0px 8px 0 9px;
+			}
+		}
+	}
+}
+
+@media (max-width: 1280px) {
+
+	.c-search {
+		width: 22px;
+		
+		.w {
+			border: none;
+			width: 22px;
+			
+			.icon {
+				cursor: pointer;
+			}
+		}
+		.tb {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 1092px) {
+
+	.c-header {
+
+		.c-menu-main {
+			display: none;
+		}
+		.col-right {
+			display: none;
+		}
+	}
+	.c-logo {
+		position: absolute;
+		top: -110px;
+		transform: rotate(90deg);
+		left: 150px;
+	}
+}

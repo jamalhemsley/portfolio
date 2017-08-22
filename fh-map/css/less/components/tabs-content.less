@@ -1,0 +1,29 @@
+.c-tabs-content {
+
+	ul {
+		padding: 0;
+	}
+	li {
+		list-style: none;
+		margin-right: 45px;
+		display: inline-block;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+	a {		 		
+		font-family: 'avertasemibold';
+		.fs(1.2, 2);
+		text-transform: uppercase;		
+		color: @color-gray;		
+		padding-bottom: 6px;
+
+		&.active,
+		&:hover {
+			color: #000;
+			text-decoration: none;
+			border-bottom: 2px solid @color-green;
+		}
+	}
+}

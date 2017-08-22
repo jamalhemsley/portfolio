@@ -1,0 +1,40 @@
+.c-bloc-cta {
+	position: relative;
+
+	&.light {
+
+		.title {
+			color: #000;
+		}
+	}
+	&.dark {
+		.title {
+			color: #fff;
+		}
+	}
+	
+	.img {
+
+		img {
+			.img-responsive();
+			.center-block();
+		}
+	}
+
+	.cont {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);		
+		text-align: center;
+	}
+	.title {
+		text-transform: uppercase;
+		.fs(3, 3.3);
+		margin-bottom: 31px;
+		font-family: 'averta';
+	}
+	.c-btn {
+
+	}
+}

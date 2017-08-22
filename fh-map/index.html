@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Map &amp; Filtering</title>
+
+    <link href="css/build.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+    <style>
+        body {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="pg-store-locator">
+    <div class="c-store-locations">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="map" id="map-canvas"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-1 filter-store-country">
+                    <div class="c-tabs-content">
+                        <ul>
+                            <li><a href="#" data-filter-marker-type="storeCountry" data-filter-markers="Canada">Canada</a></li>
+                            <li><a href="#" data-filter-marker-type="storeCountry" data-filter-markers="United States">United States</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-7 filter-store-type">
+                    <span><strong>Filter By</strong></span>
+                    <div class="filter-button">
+                        <input type="checkbox" id="sales" data-filter-marker-type="storeType" data-filter-markers="sales" />
+                        <label for="sales"><span class="marker"></span>Sales</label>
+                    </div>
+                    <div class="filter-button">
+                        <input type="checkbox" id="distributor" data-filter-marker-type="storeType" data-filter-markers="distributor" />
+                        <label for="distributor"><span class="marker"></span>Distributor</label>
+                    </div>
+                    <div class="filter-button">
+                        <input type="checkbox" id="representative" data-filter-marker-type="storeType" data-filter-markers="representative" />
+                        <label for="representative"><span class="marker"></span>Representative</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 filter-store-banners">
+                    <div class="store-banners-reveal">Banners <i class="fa fa-caret-up"></i></div>
+                    <div class="store-banners-content">
+                        <ul>
+                            <li>
+                                <div class="filter-button">
+                                    <input type="checkbox" id="filter-banner-all" />
+                                    <label><span class="marker"></span>Temp Button</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="filter-button">
+                                    <input type="checkbox" id="bannerCorporate" data-filter-marker-type="storeBanner" data-filter-markers="corporate" />
+                                    <label for="bannerCorporate"><span class="marker"></span>Corporate Banner</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="filter-button">
+                                    <input type="checkbox" id="bannerSales" data-filter-marker-type="storeBanner" data-filter-markers="sales" />
+                                    <label for="bannerSales"><span class="marker"></span>Sales Banner</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="filter-button">
+                                    <input type="checkbox" id="bannerRepresentative" data-filter-marker-type="storeBanner" data-filter-markers="representative" />
+                                    <label for="bannerRepresentative"><span class="marker"></span>Representative Banner</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 store-listings">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="store">
+                                <div class="tb_type" data-mc-storetype="sales">
+                                    <div class="tb_type_icon"></div>
+                                    Sales
+                                </div>
+                                <div class="tb_info">
+                                    <div class="tb_name" data-mc-storename="Rouillard, Inc. HQ">Rouillard, Inc.</div>
+                                    <div class="tb_banner" data-mc-storebanner="corporate">Corporate Office</div>
+                                    <div class="tb_address" data-mc-storeaddress="363, boul. des Chutes, Quebec (QC) Canada, G1E 3G1">
+                                        <p>363, boul. des Chutes<br />Quebec (QC) Canada<br />G1E 3G1</p>
+                                        <a class="tb_directions" href="#">Obtain Directions</a>
+                                    </div>
+                                    <div class="tb_contact">
+                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
+                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
+                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.ca</div>
+                                    </div>
+                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visiter le site Web <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="store">
+                                <div class="tb_type" data-mc-storetype="representative">
+                                    <div class="tb_type_icon"></div>
+                                    Representative
+                                </div>
+                                <div class="tb_info">
+                                    <div class="tb_name" data-mc-storename="QC Office #1">QC Office #1</div>
+                                    <div class="tb_banner" data-mc-storebanner="corporate">Corporate Office</div>
+                                    <div class="tb_address" data-mc-storeaddress="1 Place Ville-Marie Bureau 11441, Montreal, QC, H3B 3Y1">
+                                        <p>1 Place Ville-Marie Bureau 11441<br />Montreal, QC<br />H3B 3Y1</p>
+                                        <a class="tb_directions" href="#">Obtain Directions</a>
+                                    </div>
+                                    <div class="tb_contact">
+                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
+                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
+                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.ca</div>
+                                    </div>
+                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visiter le site Web <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="store">
+                                <div class="tb_type" data-mc-storetype="distributor">
+                                    <div class="tb_type_icon"></div>
+                                    Distributor
+                                </div>
+                                <div class="tb_info">
+                                    <div class="tb_name" data-mc-storename="Dist. Office #1">Dist. Office #1</div>
+                                    <div class="tb_banner" data-mc-storebanner="distribution">Distribution Center</div>
+                                    <div class="tb_address" data-mc-storeaddress="115 Montreal Rd., Vanier, ON, K1L 6E8">
+                                        <p>115 Montreal Rd<br />Vanier, ON<br />K1L 6E8</p>
+                                        <a class="tb_directions" href="#">Obtain Directions</a>
+                                    </div>
+                                    <div class="tb_contact">
+                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
+                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
+                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.ca</div>
+                                    </div>
+                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visiter le site Web <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="store">
+                                <div class="tb_type" data-mc-storetype="sales">
+                                    <div class="tb_type_icon"></div>
+                                    Sales
+                                </div>
+                                <div class="tb_info">
+                                    <div class="tb_name" data-mc-storename="Regional Sales #1">Regional Sales #1</div>
+                                    <div class="tb_banner" data-mc-storebanner="sales">QC Sales Office</div>
+                                    <div class="tb_address" data-mc-storeaddress="13935 Rue Saint-Simon, Mirabel, QC J7N 1P4">
+                                        <p>13935 Rue Saint-Simon<br />Mirabel, QC<br />J7N 1P4</p>
+                                        <a class="tb_directions" href="#">Obtain Directions</a>
+                                    </div>
+                                    <div class="tb_contact">
+                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
+                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
+                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.ca</div>
+                                    </div>
+                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visiter le site Web <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="store">
+                                <div class="tb_type" data-mc-storetype="representative">
+                                    <div class="tb_type_icon"></div>
+                                    Representative
+                                </div>
+                                <div class="tb_info">
+                                    <div class="tb_name" data-mc-storename="Regional Sales #1">Sorel Sales Office</div>
+                                    <div class="tb_banner" data-mc-storebanner="representative">QC Sales Office</div>
+                                    <div class="tb_address" data-mc-storeaddress="6750 Ave de la Plaza, Sorel, J3R 4L7">
+                                        <p>6750 Ave de la Plaza<br />Sorel<br />J3R 4L7</p>
+                                        <a class="tb_directions" href="#">Obtain Directions</a>
+                                    </div>
+                                    <div class="tb_contact">
+                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
+                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
+                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.ca</div>
+                                    </div>
+                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visiter le site Web <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 store-pagination">
+                    <div class="c-paging">
+                        <div class="item item-current">
+                            <a href="#">1</a>
+                        </div>
+                        <div class="item">
+                            <a href="#">2</a>
+                        </div>
+                        <div class="item">
+                            <a href="#">3</a>
+                        </div>
+                        <div class="item next">
+                            <a href="#">Suivante</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJOVC6O30bUKQAHbcFPcyoBNms2ugdyDI&libraries=geometry"></script>
+<script src="js/Rou/MapInfoBubble.js"></script>
+<script src="js/Rou/Map.js"></script>
+</body>
+</html>

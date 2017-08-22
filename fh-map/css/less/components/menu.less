@@ -1,0 +1,41 @@
+.c-menu {
+
+	.item {
+
+		&.with-submenu {
+
+			&.is-open {
+
+				a {
+					color: #000;
+
+					&:after {
+						.rotate(180deg);
+					}
+				}
+				.panel {
+					display: block;
+				}
+			}
+
+			a {
+				&:after {
+					content: "\f0d7";
+					font-family: FontAwesome;
+					font-weight: normal;
+					font-style: normal;
+					text-decoration:none;
+					color: #d3d4d5;
+					margin: 0 0 0 4px;
+					display: inline-block;
+				}				
+			}			
+		}
+
+		.panel {
+			display: none;
+			//border: 1px solid red;			
+			position: absolute;
+		}
+	}
+}
