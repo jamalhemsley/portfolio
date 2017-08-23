@@ -5522,24 +5522,23 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   left: -9999px;
 }
 .filter-button {
-  display: inline-block;
-  margin-left: 1.5rem;
-}
-.filter-button label {
   cursor: pointer;
+  display: inline-block;
+  background-color: transparent;
   border: 1px solid #e5e5e5;
   border-radius: 50px;
   color: #9c9e9f;
   text-transform: uppercase;
+  margin-left: 1.5rem;
   padding: 8px 16px;
 }
-.filter-button label:hover {
+.filter-button:focus {
+  outline: none;
+}
+.filter-button:hover {
   border-color: #6f903c;
 }
-.filter-button input {
-  display: none;
-}
-.filter-button input[type=checkbox]:checked + label {
+.filter-button[data-filter-active] {
   border-color: #88b04b;
 }
 .filter-store-type {
@@ -5575,8 +5574,7 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   color: #000;
   text-decoration: none;
 }
-.filter-store-country .c-tabs-content a.active,
-.filter-store-country .c-tabs-content a:active {
+.filter-store-country .c-tabs-content a[data-filter-active] {
   border-bottom: 2px solid #88b04b;
   color: #000;
   text-decoration: none;

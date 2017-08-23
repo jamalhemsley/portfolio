@@ -3,6 +3,7 @@ let mapObject = '';
 
 // Start to initialize everything.
 $(function() {
+    // Define all the settings for the parts of the component.
     const mapComponentSettings = {
         mapConfig: {
             mapSelectorId: 'map-canvas',
@@ -141,7 +142,7 @@ $(function() {
             markerType: 'storeType',
             markerIcon: {
                 path: 'M16.75,2.87a9.82,9.82,0,0,0-13.88,0A11.18,11.18,0,0,0,2,16.66L9.81,28l7.85-11.34a11.18,11.18,0,0,0-.91-13.81ZM9.9,13.3',
-                fillColor: '#f2f2f2', // Set the default color for uncategorized markers.
+                fillColor: '#f2f2f2',
                 fillOpacity: 1,
                 strokeWeight: 0,
                 scaledSize : new google.maps.Size(32, 48),
@@ -161,18 +162,37 @@ $(function() {
             minHeight: 1,
             shadowStyle: 0,
             padding: 0
+        },
+        toggleConfig: {
+            dataSelector: 'filter-marker-type',
+            dataValue: 'filter-markers'
         }
     };
 
+    // Setup function shortname.
     const mc = mapComponent(mapComponentSettings);
 
-    $('*[data-filter-marker-type]').on('change', function() {
-        mc.filterCtrl($(this).data('filter-marker-type'), $(this).data('filter-markers'));
+    // Set some colors.
+    $('.filter-store-type .filter-button').each(function() {
+        let setColor = $(this).data('filter-markers');
+
+        $('.marker', this).css('background-color', mapComponentSettings.itemConfig.itemTypes[setColor].color);
+    });
+
+    $(mapComponentSettings.itemConfig.itemSelector).each(function() {
+        let setColor = $('.tb_type', this).data('mc-storetype');
+
+        $('.tb_type_icon', this).css('background-color', mapComponentSettings.itemConfig.itemTypes[setColor].color);
     });
 });
 
-// Build the mapComponent function.
+/**
+ *      Build and render the map component.
+ *      @param {object} settings - Load in the settings passed into mapComponent().
+ *      @returns {{filterCtrl: filterCtrl}} - Functions to be called outside of mapComponent().
+ */
 function mapComponent(settings) {
+    // Shorten the settings parameter.
     let set = settings;
 
     // Set up filters and set them to off by default.
@@ -193,16 +213,23 @@ function mapComponent(settings) {
 
     // Setup object/array containers for map items and markers.
     let mapItems = []; // Holds the initialized mapItems.
+    let mapItemsNode = document.querySelectorAll(set.itemConfig.itemSelector); // Holds the node elements for the map items.
     let filteredMapItems = []; // Holds the filtered mapItems.
     let markers = {}; // Holds the markers.
 
-    // Setup the map initialization function.
+    // Setup infoBubble for the map.
+    const infoBubble = new InfoBubble(set.infoBubbleConfig);
+
+    // Setup the map component initialization function.
     function initMap() {
         // Create map with defined options.
         mapObject =  new google.maps.Map(document.getElementById(set.mapConfig.mapSelectorId), set.mapConfig.mapOptions);
 
         // Initialize all of the items that we'll use on the map.
         initMapItems();
+
+        // Initialize the filter toggles.
+        initFilterToggles();
 
         // Add the markers to the map.
         loadMapMarkers();
@@ -231,12 +258,42 @@ function mapComponent(settings) {
         });
     }
 
+    function initFilterToggles() {
+        const toggle = set.toggleConfig.dataSelector;
+        const toggleValue = set.toggleConfig.dataValue;
+        const el = $(`[data-${toggle}]`);
+
+        el.attr('data-filter-active', '');
+
+        el.click(function() {
+            const thisEl = $(this);
+            const checkAttr = thisEl.attr('dfs'); // Give a sort of unique marker to newly saved filter toggles.
+            const checkOtherAttr = el.not(this).attr('dfs');
+
+            if (typeof checkAttr !== 'undefined' && checkAttr !== false) {
+                thisEl.removeAttr('data-filter-active');
+                thisEl.removeAttr('dfs');
+            } else {
+                thisEl.attr('data-filter-active', '');
+                thisEl.attr('dfs', '');
+                el.filter(':not([dfs])').removeAttr('data-filter-active');
+                el.filter(':not([dfs])').removeAttr('dfs');
+            }
+            // Check if other elements have active, don't disable if they don't.
+
+
+            filterCtrl(thisEl.data(toggle), thisEl.data(toggleValue));
+        });
+    }
+
     function loadMapMarkers(mapMarkerItems) {
         // Check if modified map item list has been passed in.
         let mapMarkers = !!mapMarkerItems ? mapMarkerItems : mapItems;
 
-        // Setup infoBubble.
-        const infoBubble = new InfoBubble(set.infoBubbleConfig);
+        if (mapMarkers.length < 1) {
+            console.log('There are no items to place on the map!');
+            return;
+        }
 
         for (let i = 0; i < mapMarkers.length; i++) {
             let mapMarkerItem = mapMarkers[i];
@@ -273,13 +330,14 @@ function mapComponent(settings) {
                         mapMarkerItem[set.markerConfig.markerAddressLng] = geoLng;
                         mapMarkerItem[set.markerConfig.markerCountry] = geoCountry;
 
+                        // Create base marker.
                         let marker = new google.maps.Marker({
                             position: new google.maps.LatLng(geoLat, geoLng),
                             icon: set.markerConfig.markerIcon,
                             map: mapObject
                         });
 
-                        // Merge newly created marker object with the mapMarkerItem to create a complete marker.
+                        // Merge new marker object with the mapMarkerItem to create a complete marker.
                         Object.assign(marker, mapMarkerItem);
 
                         // Set the title and icon fillColor of the marker.
@@ -315,12 +373,15 @@ function mapComponent(settings) {
                             infoBubble.minWidth = $(`#${heightCalcId}`).outerWidth();
                             infoBubble.minHeight = $(`#${heightCalcId}`).outerHeight();
 
+                            // Close any open infoBubbles.
                             infoBubble.close();
 
+                            // Set content of a new infoBubble.
                             infoBubble.setContent(infoBubbleContent);
 
                             infoBubble.open(mapObject, marker);
 
+                            // Pan to clicked infoBubbles.
                             mapObject.panTo(this.getPosition());
                         });
 
@@ -331,6 +392,8 @@ function mapComponent(settings) {
 
                         // Add marker to markers object container.
                         markers[mapMarkerItem.id] = marker;
+
+                        // Add ID of marker to filteredMapItems for later use.
                         filteredMapItems.push(mapMarkerItem.id);
                     } else {
                         console.log('Geocode was not successful for the following reason: ' + status);
@@ -366,8 +429,10 @@ function mapComponent(settings) {
         // Create the temporary result array.
         let results = [];
 
+        // Get the index of the values passed into the function.
         let valueIndex = filters[filterType].indexOf(value);
 
+        // If the index of the passed in value is > -1 (i.e. exists already), remove it from filters.
         if (valueIndex > -1) {
             filters[filterType].splice(valueIndex, 1);
         } else {
@@ -412,7 +477,7 @@ function mapComponent(settings) {
             let mapItem = mapItems[i];
 
             if (value.indexOf(mapItem[dataProperty]) !== -1) {
-                filteredMarkers.push(mapItem)
+                filteredMarkers.push(mapItem);
             } else {
                 removeMarker(mapItem.id);
             }
@@ -431,6 +496,8 @@ function mapComponent(settings) {
             let index = filteredMapItems.indexOf(id);
 
             markers[id].setMap(null);
+
+            $(mapItemsNode[id]).hide();
 
             if (index > -1) {
                 filteredMapItems.splice(index, 1);
