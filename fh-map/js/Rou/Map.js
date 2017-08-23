@@ -175,6 +175,7 @@ $(function() {
     // Set some colors.
     $('.filter-store-type .filter-button').each(function() {
         let setColor = $(this).data('filter-markers');
+        $(this).attr('dfs', '');
 
         $('.marker', this).css('background-color', mapComponentSettings.itemConfig.itemTypes[setColor].color);
     });
@@ -203,12 +204,20 @@ function mapComponent(settings) {
 
     // Populate the filters object with filters from the itemConfig > itemFilters key.
     if (!!set.itemConfig.itemFilters) {
+
         for (let i = 0; i < set.itemConfig.itemFilters.length; i++) {
             filters[set.itemConfig.itemFilters[i]] = [];
         }
+
     } else {
         console.log('No filters have been made available.');
         return;
+    }
+
+    console.log(filters);
+
+    for (let i = 0; i < set.itemConfig.itemFilters.length; i++) {
+        filters[set.itemConfig.itemFilters[i]] = [];
     }
 
     // Setup object/array containers for map items and markers.
@@ -268,27 +277,31 @@ function mapComponent(settings) {
         el.click(function() {
             const thisEl = $(this);
             const checkAttr = thisEl.attr('dfs'); // Give a sort of unique marker to newly saved filter toggles.
-            const checkOtherAttr = el.not(this).attr('dfs');
 
             if (typeof checkAttr !== 'undefined' && checkAttr !== false) {
                 thisEl.removeAttr('data-filter-active');
                 thisEl.removeAttr('dfs');
+
+                el.not(this).filter('[dfs]').each(function() {
+                    filterCtrl($(this).data(toggle), $(this).data(toggleValue));
+                });
             } else {
                 thisEl.attr('data-filter-active', '');
                 thisEl.attr('dfs', '');
                 el.filter(':not([dfs])').removeAttr('data-filter-active');
                 el.filter(':not([dfs])').removeAttr('dfs');
+
+                el.not(this).filter('[dfs]').each(function() {
+                    filterCtrl($(this).data(toggle), $(this).data(toggleValue));
+                });
             }
-            // Check if other elements have active, don't disable if they don't.
-
-
-            filterCtrl(thisEl.data(toggle), thisEl.data(toggleValue));
         });
     }
 
     function loadMapMarkers(mapMarkerItems) {
         // Check if modified map item list has been passed in.
         let mapMarkers = !!mapMarkerItems ? mapMarkerItems : mapItems;
+
 
         if (mapMarkers.length < 1) {
             console.log('There are no items to place on the map!');
@@ -299,7 +312,9 @@ function mapComponent(settings) {
             let mapMarkerItem = mapMarkers[i];
 
             // If the marker is already on the map, don't place it again.
-            if (filteredMapItems.indexOf(mapMarkerItem.id) !== -1) continue;
+            if (filteredMapItems.indexOf(mapMarkerItem.id) !== -1) {
+                continue;
+            }
 
             /**
              *       --- Geocode Addresses ---
@@ -461,6 +476,8 @@ function mapComponent(settings) {
             results = results[0];
         }
 
+        console.log(results);
+
         loadMapMarkers(results);
     }
 
@@ -496,8 +513,6 @@ function mapComponent(settings) {
             let index = filteredMapItems.indexOf(id);
 
             markers[id].setMap(null);
-
-            $(mapItemsNode[id]).hide();
 
             if (index > -1) {
                 filteredMapItems.splice(index, 1);
