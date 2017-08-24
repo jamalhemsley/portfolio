@@ -121,6 +121,9 @@ $(function() {
             itemMetaPrefix: 'mc',
             itemSelector: '.store-listings .store',
             itemTypes: {
+                default: {
+                    color: '#f2f2f2'
+                },
                 distributor: {
                     color: '#9c9e9f'
                 },
@@ -130,7 +133,6 @@ $(function() {
                 sales: {
                     color: '#0f0708'
                 }
-
             }
         },
         markerConfig: {
@@ -172,18 +174,19 @@ $(function() {
     // Setup function shortname.
     const mc = mapComponent(mapComponentSettings);
 
-    // Set some colors.
-    $('.filter-store-type .filter-button').each(function() {
-        let setColor = $(this).data('filter-markers');
-        $(this).attr('dfs', '');
+    // Set Colors for individual elements.
+    $(`[data-${mapComponentSettings.toggleConfig.dataSelector}="storeType"]`).each(function() {
+        let thisEl = $(this);
 
-        $('.marker', this).css('background-color', mapComponentSettings.itemConfig.itemTypes[setColor].color);
-    });
+        thisEl.find('.marker').css('background-color', mapComponentSettings.itemConfig.itemTypes[thisEl.data('filter-markers')].color);
 
-    $(mapComponentSettings.itemConfig.itemSelector).each(function() {
-        let setColor = $('.tb_type', this).data('mc-storetype');
-
-        $('.tb_type_icon', this).css('background-color', mapComponentSettings.itemConfig.itemTypes[setColor].color);
+        thisEl.click(function() {
+            if (thisEl.is('[data-filter-active]')) {
+                thisEl.find('.marker').css('background-color', mapComponentSettings.itemConfig.itemTypes[thisEl.data('filter-markers')].color);
+            } else {
+                thisEl.find('.marker').css('background-color', mapComponentSettings.itemConfig.itemTypes.default.color);
+            }
+        });
     });
 });
 
@@ -204,30 +207,18 @@ function mapComponent(settings) {
 
     // Populate the filters object with filters from the itemConfig > itemFilters key.
     if (!!set.itemConfig.itemFilters) {
-
         for (let i = 0; i < set.itemConfig.itemFilters.length; i++) {
             filters[set.itemConfig.itemFilters[i]] = [];
         }
-
     } else {
         console.log('No filters have been made available.');
         return;
     }
 
-    console.log(filters);
-
-    for (let i = 0; i < set.itemConfig.itemFilters.length; i++) {
-        filters[set.itemConfig.itemFilters[i]] = [];
-    }
-
     // Setup object/array containers for map items and markers.
     let mapItems = []; // Holds the initialized mapItems.
-    let mapItemsNode = document.querySelectorAll(set.itemConfig.itemSelector); // Holds the node elements for the map items.
     let filteredMapItems = []; // Holds the filtered mapItems.
     let markers = {}; // Holds the markers.
-
-    // Setup infoBubble for the map.
-    const infoBubble = new InfoBubble(set.infoBubbleConfig);
 
     // Setup the map component initialization function.
     function initMap() {
@@ -237,11 +228,11 @@ function mapComponent(settings) {
         // Initialize all of the items that we'll use on the map.
         initMapItems();
 
-        // Initialize the filter toggles.
-        initFilterToggles();
-
         // Add the markers to the map.
         loadMapMarkers();
+
+        // Initialize filter toggles.
+        filterToggle();
     }
 
     // Initialize the array of all map items.
@@ -267,100 +258,62 @@ function mapComponent(settings) {
         });
     }
 
-    function initFilterToggles() {
-        const toggle = set.toggleConfig.dataSelector;
-        const toggleValue = set.toggleConfig.dataValue;
-        const el = $(`[data-${toggle}]`);
+    function filterToggle() {
+       const toggle = $(`*[data-${set.toggleConfig.dataSelector}]`);
 
-        el.attr('data-filter-active', '');
+       toggle.each(function() {
+           $(this).attr('data-filter-active', '');
+       });
 
-        el.click(function() {
-            const thisEl = $(this);
-            const checkAttr = thisEl.attr('dfs'); // Give a sort of unique marker to newly saved filter toggles.
+       toggle.click(function() {
+           if ($(this).is('[data-filter-active]')) {
+               $(this).removeAttr('data-filter-active');
+           } else {
+               $(this).attr('data-filter-active', '');
+           }
 
-            if (typeof checkAttr !== 'undefined' && checkAttr !== false) {
-                thisEl.removeAttr('data-filter-active');
-                thisEl.removeAttr('dfs');
 
-                el.not(this).filter('[dfs]').each(function() {
-                    filterCtrl($(this).data(toggle), $(this).data(toggleValue));
-                });
-            } else {
-                thisEl.attr('data-filter-active', '');
-                thisEl.attr('dfs', '');
-                el.filter(':not([dfs])').removeAttr('data-filter-active');
-                el.filter(':not([dfs])').removeAttr('dfs');
-
-                el.not(this).filter('[dfs]').each(function() {
-                    filterCtrl($(this).data(toggle), $(this).data(toggleValue));
-                });
-            }
-        });
+          filterCtrl($(this).data(`${set.toggleConfig.dataSelector}`), $(this).data(`${set.toggleConfig.dataValue}`));
+       });
     }
 
     function loadMapMarkers(mapMarkerItems) {
         // Check if modified map item list has been passed in.
         let mapMarkers = !!mapMarkerItems ? mapMarkerItems : mapItems;
 
-
         if (mapMarkers.length < 1) {
             console.log('There are no items to place on the map!');
             return;
         }
 
+        // Setup infoBubble for the map.
+        const infoBubble = new InfoBubble(set.infoBubbleConfig);
+
         for (let i = 0; i < mapMarkers.length; i++) {
             let mapMarkerItem = mapMarkers[i];
 
             // If the marker is already on the map, don't place it again.
-            if (filteredMapItems.indexOf(mapMarkerItem.id) !== -1) {
-                continue;
-            }
+            if (filteredMapItems.indexOf(mapMarkerItem.id) !== -1) continue;
 
-            /**
-             *       --- Geocode Addresses ---
-             *       We'll need to get the latitude and longitude of the address for the markers.
-             *       We'll also get the country that the address is in.
-             *       Unfortunately async functions have to be chained or run at once.
-             *       So, to get this done, the rest of loadMarkers() takes place here.
-             */
+            // Create base marker.
+            let marker = new google.maps.Marker({
+                title: mapMarkerItem[set.markerConfig.markerTitle],
+                position: new google.maps.LatLng(mapMarkerItem.storeLat, mapMarkerItem.storeLng),
+                icon: set.markerConfig.markerIcon,
+                map: mapObject
+            });
 
-            function codeMarker() {
-                const geocode = new google.maps.Geocoder();
-                const geocodeAddress = mapMarkerItem[set.markerConfig.markerAddress];
+            // Merge new marker object with the mapMarkerItem to create a complete marker.
+            Object.assign(marker, mapMarkerItem);
 
-                geocode.geocode({'address': geocodeAddress}, function(results, status) {
-                    if (status === 'OK') {
-                        const address = results[0].address_components;
-                        const geoLat = results[0].geometry.location.lat();
-                        const geoLng = results[0].geometry.location.lng();
-                        let geoCountry = '';
+            console.log(marker);
 
-                        for (let j = address.length - 1; j >= 0; j--) {
-                            if (address[j].types.indexOf('country') !== -1) {
-                                geoCountry = address[j].long_name;
-                            }
-                        }
+            // Set fillColor for the marker.
 
-                        mapMarkerItem[set.markerConfig.markerAddressLat] = geoLat;
-                        mapMarkerItem[set.markerConfig.markerAddressLng] = geoLng;
-                        mapMarkerItem[set.markerConfig.markerCountry] = geoCountry;
+            marker.icon.fillColor = set.itemConfig.itemTypes[marker[set.markerConfig.markerType]].color;
 
-                        // Create base marker.
-                        let marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(geoLat, geoLng),
-                            icon: set.markerConfig.markerIcon,
-                            map: mapObject
-                        });
-
-                        // Merge new marker object with the mapMarkerItem to create a complete marker.
-                        Object.assign(marker, mapMarkerItem);
-
-                        // Set the title and icon fillColor of the marker.
-                        marker.title = mapMarkerItem[set.markerConfig.markerTitle];
-                        marker.icon.fillColor = set.itemConfig.itemTypes[marker[set.markerConfig.markerType]].color;
-
-                        // Template for infoBubble content.
-                        const infoBubbleContent = `\
+            // Template for infoBubble content.
+            const infoBubbleContent = `\
                             <div class="marker-type">\
                                 <div class="marker-icon" style="background-color: ${marker.icon.fillColor};"></div> ${marker[set.markerConfig.markerType]}\
                             </div>\
@@ -370,53 +323,46 @@ function mapComponent(settings) {
                                 <a class="marker-directions" href="https://google.com/maps/">Obtain Directions</a>\
                             </div>`;
 
-                        // Add click functions to the markers.
-                        marker.addListener('click', function() {
-                            // Since infoBubbles aren't dynamically resized, we'll do it live.
-                            const heightCalcId = 'map-infobubble-height-calc';
-                            // const calcSelector = $(`#${heightCalcId}`);
+            // Add click functions to the markers.
+            marker.addListener('click', function() {
+                // Since infoBubbles aren't dynamically resized, we'll do it live.
+                const heightCalcId = 'map-infobubble-height-calc';
+                // const calcSelector = $(`#${heightCalcId}`);
 
-                            // Remove the current calculation div on the page, if there is one.
-                            $(`#${heightCalcId}`).remove();
+                // Remove the current calculation div on the page, if there is one.
+                $(`#${heightCalcId}`).remove();
 
-                            $('body').append(`<div id="map-infobubble-height-calc"></div>`);
+                $('body').append(`<div id="map-infobubble-height-calc"></div>`);
 
-                            // Setting the max width is necessary to have uniform infoBubble content widths.
-                            $(`#${heightCalcId}`).css(`width`, `${set.infoBubbleConfig.maxWidth}px`).append(infoBubbleContent);
+                // Setting the max width is necessary to have uniform infoBubble content widths.
+                $(`#${heightCalcId}`).css(`width`, `${set.infoBubbleConfig.maxWidth}px`).append(infoBubbleContent);
 
-                            // Catch the infoBubble object before it's launched and then (pseudo-)dynamically set the the height.
-                            infoBubble.minWidth = $(`#${heightCalcId}`).outerWidth();
-                            infoBubble.minHeight = $(`#${heightCalcId}`).outerHeight();
+                // Catch the infoBubble object before it's launched and then (pseudo-)dynamically set the the height.
+                infoBubble.minWidth = $(`#${heightCalcId}`).outerWidth();
+                infoBubble.minHeight = $(`#${heightCalcId}`).outerHeight();
 
-                            // Close any open infoBubbles.
-                            infoBubble.close();
+                // Close any open infoBubbles.
+                infoBubble.close();
 
-                            // Set content of a new infoBubble.
-                            infoBubble.setContent(infoBubbleContent);
+                // Set content of a new infoBubble.
+                infoBubble.setContent(infoBubbleContent);
 
-                            infoBubble.open(mapObject, marker);
+                infoBubble.open(mapObject, marker);
 
-                            // Pan to clicked infoBubbles.
-                            mapObject.panTo(this.getPosition());
-                        });
+                // Pan to clicked infoBubbles.
+                mapObject.panTo(this.getPosition());
+            });
 
-                        // Close any infoBubbles if anywhere else on the map is clicked.
-                        mapObject.addListener('click', function() {
-                            infoBubble.close();
-                        });
+            // Close any infoBubbles if anywhere else on the map is clicked.
+            mapObject.addListener('click', function() {
+                infoBubble.close();
+            });
 
-                        // Add marker to markers object container.
-                        markers[mapMarkerItem.id] = marker;
+            // Add marker to markers object container.
+            markers[mapMarkerItem.id] = marker;
 
-                        // Add ID of marker to filteredMapItems for later use.
-                        filteredMapItems.push(mapMarkerItem.id);
-                    } else {
-                        console.log('Geocode was not successful for the following reason: ' + status);
-                    }
-                });
-            }
-
-            codeMarker();
+            // Add ID of marker to filteredMapItems for later use.
+            filteredMapItems.push(mapMarkerItem.id);
         }
     }
 
@@ -474,9 +420,9 @@ function mapComponent(settings) {
         */
         if (results.length === 1) {
             results = results[0];
+        } else {
+            results = reduceArray(results);
         }
-
-        console.log(results);
 
         loadMapMarkers(results);
     }
@@ -493,7 +439,7 @@ function mapComponent(settings) {
         for (let i = 0; i < mapItems.length; i++) {
             let mapItem = mapItems[i];
 
-            if (value.indexOf(mapItem[dataProperty]) !== -1) {
+            if (value.indexOf(mapItem[dataProperty]) === -1) {
                 filteredMarkers.push(mapItem);
             } else {
                 removeMarker(mapItem.id);

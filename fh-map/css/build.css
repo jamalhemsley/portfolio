@@ -5574,7 +5574,7 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   color: #000;
   text-decoration: none;
 }
-.filter-store-country .c-tabs-content a[dfs] {
+.filter-store-country .c-tabs-content a[data-filter-active] {
   border-bottom: 2px solid #88b04b;
   color: #000;
   text-decoration: none;
