@@ -73,7 +73,7 @@
 	left: -9999px;
 }
 
-.filter-button {
+/* .filter-button {
 	cursor: pointer;
 	display: inline-block;
 	background-color: transparent;
@@ -89,7 +89,7 @@
 	&:hover { border-color: @color-green-hover; }
 
 	&[data-filter-active] { border-color: @color-green; }
-}
+} */
 
 .filter-store-type {
 	font-family: 'avertasemibold';
@@ -97,6 +97,24 @@
 	text-align: right;
 
 	.filter-button {
+		input {}
+
+		label {
+			cursor: pointer;
+			display: inline-block;
+			background-color: transparent;
+			border: 1px solid #e5e5e5;
+			border-radius: 50px;
+			color: @color-gray;
+			text-transform: uppercase;
+			margin-left: 1.5rem;
+			padding: 8px 16px;
+
+			&:focus { outline: none; }
+
+			&:hover { border-color: @color-green-hover; }
+		}
+
 		.marker {
 			display: inline-block;
 			background-color: @color-gray2;

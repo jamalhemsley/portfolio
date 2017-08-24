@@ -17,303 +17,113 @@
     </style>
 </head>
 <body>
-<div class="pg-store-locator">
-    <div class="c-store-locations">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="map" id="map-canvas"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3 col-sm-offset-1 filter-store-country">
-                    <div class="c-tabs-content">
-                        <ul>
-                            <li><a href="#" data-filter-marker-type="storeCountry" data-filter-markers="Canada">Canada</a></li>
-                            <li><a href="#" data-filter-marker-type="storeCountry" data-filter-markers="United States">United States</a></li>
-                        </ul>
+    <div class="pg-store-locator">
+        <div class="c-store-locations">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="map" id="map-canvas"></div>
                     </div>
                 </div>
-                <div class="col-sm-7 filter-store-type">
-                    <span><strong>Filter By</strong></span>
-                    <button class="filter-button" data-filter-marker-type="storeType" data-filter-markers="sales"><span class="marker"></span>Sales</button>
-                    <button class="filter-button" data-filter-marker-type="storeType" data-filter-markers="distributor"><span class="marker"></span>Distributor</button>
-                    <button class="filter-button" data-filter-marker-type="storeType" data-filter-markers="representative"><span class="marker"></span>Representative</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1 filter-store-banners">
-                    <div class="store-banners-reveal">Banners <i class="fa fa-caret-up"></i></div>
-                    <div class="store-banners-content">
-                        <ul>
-                            <li>
-                                <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="distributor">Distributor Banner</button>
-                            </li>
-                            <li>
-                                <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="corporate">Corporate Banner</button>
-                            </li>
-                            <li>
-                                <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="sales">Sales Banner</button>
-                            </li>
-                            <li>
-                                <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="representative">Sales Banner</button>
-                            </li>
-                        </ul>
+                <div class="row">
+                    <div class="col-sm-3 col-sm-offset-1 filter-store-country">
+                        <div id="country-filters"></div>
+                    </div>
+                    <div class="col-sm-7 filter-store-type">
+                        <div id="store-filters"></div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1 store-listings">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="store">
-                                <div class="tb_type" data-mc-storetype="sales">
-                                    <div class="tb_type_icon"></div>
-                                    Sales
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name" data-mc-storename="Rouillard, Inc. HQ">Rouillard, Inc.</div>
-                                    <div class="tb_banner" data-mc-storebanner="corporate">Corporate Office</div>
-                                    <div class="tb_address" data-mc-storeaddress="363, boul. des Chutes, Quebec (QC) Canada, G1E 3G1" data-mc-storecountry="Canada" data-mc-storelat="46.853962" data-mc-storelng="-71.19980">
-                                        <p>363, boul. des Chutes<br />Quebec (QC) Canada<br />G1E 3G1</p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.ca</div>
-                                    </div>
-                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visiter le site Web <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="store">
-                                <div class="tb_type" data-mc-storetype="sales">
-                                    <div class="tb_type_icon"></div>
-                                    Sales
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name" data-mc-storename="Rouillard US HQ">Rouillard US HQ</div>
-                                    <div class="tb_banner" data-mc-storebanner="corporate">U.S. Headquarters</div>
-                                    <div class="tb_address" data-mc-storeaddress="335 8th Ave, Manhattan, NY 10001" data-mc-storecountry="United States" data-mc-storelat="40.747641" data-mc-storelng="-73.997255">
-                                        <p>335 8th Ave<br />Manhattan, NY 1001<br />United States</p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.com</div>
-                                    </div>
-                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visit Website <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="store">
-                                <div class="tb_type" data-mc-storetype="representative">
-                                    <div class="tb_type_icon"></div>
-                                    Representative
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name" data-mc-storename="US Rep. #1">US Rep. #1</div>
-                                    <div class="tb_banner" data-mc-storebanner="representative">Regional Representative</div>
-                                    <div class="tb_address" data-mc-storeaddress="280 Court Street, Middlebury, VT 05753" data-mc-storecountry="United States" data-mc-storelat="44.002326" data-mc-storelng="-73.154205">
-                                        <p>280 Court Street<br />Middlebury, VT 05753<br />United States</p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.com</div>
-                                    </div>
-                                    <div class="tb_link"><a href="#" title="Visit Website">Visit Website<img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="store">
-                                <div class="tb_type" data-mc-storetype="representative">
-                                    <div class="tb_type_icon"></div>
-                                    Representative
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name" data-mc-storename="QC Office #1">QC Office #1</div>
-                                    <div class="tb_banner" data-mc-storebanner="corporate">Corporate Office</div>
-                                    <div class="tb_address" data-mc-storeaddress="1 Place Ville-Marie Bureau 11441, Montreal, QC, H3B 3Y1" data-mc-storecountry="Canada" data-mc-storelat="45.501782" data-mc-storelng="-73.567755">
-                                        <p>1 Place Ville-Marie Bureau 11441<br />Montreal, QC<br />H3B 3Y1</p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.ca</div>
-                                    </div>
-                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visiter le site Web <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="store">
-                                <div class="tb_type" data-mc-storetype="distributor">
-                                    <div class="tb_type_icon"></div>
-                                    Distributor
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name" data-mc-storename="Dist. Office #1">Dist. Office #1</div>
-                                    <div class="tb_banner" data-mc-storebanner="distribution">Distribution Center</div>
-                                    <div class="tb_address" data-mc-storeaddress="115 Montreal Rd., Vanier, ON, K1L 6E8" data-mc-storecountry="Canada" data-mc-storelat="45.434085" data-mc-storelng="-75.666725">
-                                        <p>115 Montreal Rd<br />Vanier, ON<br />K1L 6E8</p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.ca</div>
-                                    </div>
-                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visiter le site Web <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="store">
-                                <div class="tb_type" data-mc-storetype="distributor">
-                                    <div class="tb_type_icon"></div>
-                                    Distributor
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name" data-mc-storename="U.S. Primary Distribution">U.S. Primary Distribution</div>
-                                    <div class="tb_banner" data-mc-storebanner="distribution">Distribution Center</div>
-                                    <div class="tb_address" data-mc-storeaddress="RT 309 & Crestwood Drive, Mountain Top, PA 18707" data-mc-storecountry="United States" data-mc-storelat="41.143097" data-mc-storelng="-75.900175">
-                                        <p>RT 309 & Crestwood Drive<br />Mountain Top, PA 18707<br />United States</p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.com</div>
-                                    </div>
-                                    <div class="tb_link"><a href="#" title="Visit Website">Visit Website <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="store">
-                                <div class="tb_type" data-mc-storetype="sales">
-                                    <div class="tb_type_icon"></div>
-                                    Sales
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name" data-mc-storename="US Sales Office">US Sales Office</div>
-                                    <div class="tb_banner" data-mc-storebanner="corporate">Corporate Office</div>
-                                    <div class="tb_address" data-mc-storeaddress="4518 US Rte. 5, Derby, VT 05829" data-mc-storecountry="United States" data-mc-storelat="44.952052" data-mc-storelng="-72.159194">
-                                        <p>4518 US Rte. 5<br />Derby, VT 05829<br />United States</p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.com</div>
-                                    </div>
-                                    <div class="tb_link"><a href="#" title="Visit Website">Visit Website <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="store">
-                                <div class="tb_type" data-mc-storetype="sales">
-                                    <div class="tb_type_icon"></div>
-                                    Sales
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name" data-mc-storename="Regional Sales #1">Regional Sales #1</div>
-                                    <div class="tb_banner" data-mc-storebanner="sales">QC Sales Office</div>
-                                    <div class="tb_address" data-mc-storeaddress="13935 Rue Saint-Simon, Mirabel, QC J7N 1P4" data-mc-storecountry="Canada" data-mc-storelat="45.705313" data-mc-storelng="-74.095622">
-                                        <p>13935 Rue Saint-Simon<br />Mirabel, QC<br />J7N 1P4</p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.ca</div>
-                                    </div>
-                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visiter le site Web <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="store">
-                                <div class="tb_type" data-mc-storetype="representative">
-                                    <div class="tb_type_icon"></div>
-                                    Representative
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name" data-mc-storename="Regional Sales #1">Sorel Sales Office</div>
-                                    <div class="tb_banner" data-mc-storebanner="representative">QC Sales Office</div>
-                                    <div class="tb_address" data-mc-storeaddress="6750 Ave de la Plaza, Sorel, J3R 4L7" data-mc-storecountry="Canada" data-mc-storelat="46.015969" data-mc-storelng="-73.152831">
-                                        <p>6750 Ave de la Plaza<br />Sorel<br />J3R 4L7</p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.ca</div>
-                                    </div>
-                                    <div class="tb_link"><a href="#" title="Visiter le site Web">Visiter le site Web <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="store">
-                                <div class="tb_type" data-mc-storetype="distributor">
-                                    <div class="tb_type_icon"></div>
-                                    Distributor
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name" data-mc-storename="US Distribution #1">US Distribution #1</div>
-                                    <div class="tb_banner" data-mc-storebanner="distribution">Distribution Center</div>
-                                    <div class="tb_address" data-mc-storeaddress="1 Sycamore Street, Millinocket, ME 04462" data-mc-storecountry="United States" data-mc-storelat="45.657264" data-mc-storelng="-68.688706">
-                                        <p>1 Sycamore Street<br />Millinocket, ME 04462<br />United States</p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.com</div>
-                                    </div>
-                                    <div class="tb_link"><a href="#" title="Visit Website">Visit Website <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                                </div>
-                            </div>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 filter-store-banners">
+                        <div class="store-banners-reveal">Banners <i class="fa fa-caret-up"></i></div>
+                        <div class="store-banners-content">
+                            <ul>
+                                <li>
+                                    <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="distributor">Distributor Banner</button>
+                                </li>
+                                <li>
+                                    <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="corporate">Corporate Banner</button>
+                                </li>
+                                <li>
+                                    <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="sales">Sales Banner</button>
+                                </li>
+                                <li>
+                                    <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="representative">Sales Banner</button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1 store-pagination">
-                    <div class="c-paging">
-                        <div class="item item-current">
-                            <a href="#">1</a>
-                        </div>
-                        <div class="item">
-                            <a href="#">2</a>
-                        </div>
-                        <div class="item">
-                            <a href="#">3</a>
-                        </div>
-                        <div class="item next">
-                            <a href="#">Suivante</a>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 store-listings">
+                        <div class="row" id="store-listings-js"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 store-pagination">
+                        <div class="c-paging">
+                            <div class="item item-current">
+                                <a href="#">1</a>
+                            </div>
+                            <div class="item">
+                                <a href="#">2</a>
+                            </div>
+                            <div class="item">
+                                <a href="#">3</a>
+                            </div>
+                            <div class="item next">
+                                <a href="#">Suivante</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJOVC6O30bUKQAHbcFPcyoBNms2ugdyDI&libraries=geometry"></script>
-<script src="js/Rou/MapInfoBubble.js"></script>
-<script src="js/Rou/Map.js"></script>
+    <!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJOVC6O30bUKQAHbcFPcyoBNms2ugdyDI"></script>
+    <script src="js/Rou/filter.min.js"></script>
+    <script src="js/Rou/MapInfoBubble.js"></script>
+    <script src="js/Rou/mapItems.js"></script>
+    <script src="js/Rou/Map.js"></script>
+    <script id="store-item-template" type="text/html">
+        <div class="col-sm-4">
+            <div class="store">
+                <div class="tb_type">
+                    <div class="tb_type_icon"></div>
+                    <%= storeType %>
+                </div>
+                <div class="tb_info">
+                    <div class="tb_name"><%= storeName %></div>
+                    <div class="tb_banner"><%= storeBanner %></div>
+                    <div class="tb_address">
+                        <p><%= storeAddress %></p>
+                        <p><%= storeCountry %></p>
+                        <a class="tb_directions" href="#">Obtain Directions</a>
+                    </div>
+                    <div class="tb_contact">
+                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
+                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
+                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.com</div>
+                    </div>
+                    <div class="tb_link"><a href="<%= storeLink %>" title="Visiter le site Web">Visit Website <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script id="store-filter-template" type="text/html">
+        <div class="filter-button">
+            <input type="checkbox" id="<%= storeType %>" value="<%= value %>" />
+            <label for="<%= storeType %>"><span class="marker"></span><%= value %></label>
+        </div>
+    </script>
+    <script id="country-filter-template" type="text/html">
+        <div class="filter-button">
+            <input type="checkbox" id="<%= storeCountry %>" value="<%= value %>" />
+            <label for="<%= storeCountry %>"><span class="marker"></span><%= value %></label>
+        </div>
+    </script>
 </body>
 </html>

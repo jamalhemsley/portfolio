@@ -5521,7 +5521,32 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   top: 0;
   left: -9999px;
 }
-.filter-button {
+/* .filter-button {
+	cursor: pointer;
+	display: inline-block;
+	background-color: transparent;
+	border: 1px solid #e5e5e5;
+	border-radius: 50px;
+	color: @color-gray;
+	text-transform: uppercase;
+	margin-left: 1.5rem;
+	padding: 8px 16px;
+
+	&:focus { outline: none; }
+
+	&:hover { border-color: @color-green-hover; }
+
+	&[data-filter-active] { border-color: @color-green; }
+} */
+.filter-store-type {
+  font-family: 'avertasemibold';
+  font-size: 13px;
+  font-size: 1.3rem;
+  line-height: 17px;
+  line-height: 1.7rem;
+  text-align: right;
+}
+.filter-store-type .filter-button label {
   cursor: pointer;
   display: inline-block;
   background-color: transparent;
@@ -5532,22 +5557,11 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   margin-left: 1.5rem;
   padding: 8px 16px;
 }
-.filter-button:focus {
+.filter-store-type .filter-button label:focus {
   outline: none;
 }
-.filter-button:hover {
+.filter-store-type .filter-button label:hover {
   border-color: #6f903c;
-}
-.filter-button[data-filter-active] {
-  border-color: #88b04b;
-}
-.filter-store-type {
-  font-family: 'avertasemibold';
-  font-size: 13px;
-  font-size: 1.3rem;
-  line-height: 17px;
-  line-height: 1.7rem;
-  text-align: right;
 }
 .filter-store-type .filter-button .marker {
   display: inline-block;

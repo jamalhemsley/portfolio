@@ -1,0 +1,29 @@
+### Git Ignore ###
+
+# PHPStorm / JetBrains Stuff
+.idea/
+
+# Important Assets (Sketch & Hi-res Assets)
+_assets/sketch/
+_assets/branding/
+
+# Node Modules, check the JSON
+node_modules/
+
+# Compressed Files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
