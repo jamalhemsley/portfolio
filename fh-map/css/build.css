@@ -5447,7 +5447,7 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
 }
 .map {
   display: block;
-  height: 550px;
+  height: 304px;
   width: 100%;
   margin: 1rem auto 5rem;
 }
@@ -5551,10 +5551,13 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   font-size: 1.3rem;
   line-height: 17px;
   line-height: 1.7rem;
-  text-align: right;
+  text-align: center;
+  margin-bottom: 4rem;
 }
 .filter-storetype .filter-button label {
+  display: inline-block;
   margin-left: 1.5rem;
+  margin-bottom: 2rem;
 }
 .filter-storetype .filter-button .marker {
   display: inline-block;
@@ -5569,6 +5572,11 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   mask: url('../img/icons/Pin1.svg') 0 50%;
   mask-repeat: no-repeat;
   mask-size: 1.1rem;
+}
+.filter-storecountry {
+  text-align: center;
+  margin-bottom: 5rem;
+  padding-top: 6px;
 }
 .filter-storecountry .filter-button {
   border: none;
@@ -5596,7 +5604,6 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   font-size: 1.3rem;
   line-height: 17px;
   line-height: 1.7rem;
-  margin-top: 4rem;
 }
 .filter-storebanner .store-banners-reveal {
   display: block;
@@ -5610,8 +5617,8 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
 }
 .filter-storebanner ul {
   list-style: none;
-  margin: 0 0 2rem;
-  padding: 2rem 1rem;
+  margin: 0 0 0;
+  padding: 2rem 0;
 }
 .filter-storebanner ul li {
   display: inline-block;
@@ -5726,7 +5733,7 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   margin-left: 1rem;
 }
 .store-pagination {
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 .store-pagination ul {
   padding: 0;
@@ -5758,6 +5765,39 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
 }
 .store-pagination ul li.active a {
   border: 2px solid #88b04b;
+}
+/* Media Queries */
+@media (min-width: 576px) {
+  .map {
+    height: 400px;
+  }
+}
+@media (min-width: 768px) {
+  .map {
+    height: 440px;
+  }
+  .filter-storecountry {
+    text-align: left;
+  }
+  .filter-storetype {
+    text-align: right;
+    margin-bottom: 4rem;
+  }
+}
+@media (min-width: 992px) {
+  .map {
+    height: 500px;
+  }
+  .filter-storetype {
+    text-align: right;
+  }
+  .filter-storetype .filter-button label {
+    margin-bottom: 0;
+  }
+  .filter-storecountry {
+    text-align: left;
+    margin-bottom: 0;
+  }
 }
 .pg-homepage .c-hero-slideshow {
   margin-bottom: 123px;
@@ -5868,6 +5908,238 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
 }
 .c-product-details .c-product-config:nth-of-type(1) {
   margin-top: 0;
+}
+.pg-store-locations .map-search {
+  background-image: url('../img/tmp/bloc-cta-2.png');
+  background-size: cover;
+  min-height: 304px;
+  margin-bottom: 2rem;
+}
+.pg-store-locations .map-search .cont {
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transform: none;
+  width: 100%;
+  position: relative;
+}
+.pg-store-locations .map-search .cont .c-ariane {
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
+}
+.pg-store-locations .map-search .cont .c-ariane a {
+  color: #fff;
+}
+.pg-store-locations .map-search .cont .c-ariane a:after {
+  color: #fff;
+}
+.pg-store-locations .map-search .cont .c-ariane a.active {
+  font-family: 'avertasemibold';
+}
+.pg-store-locations .map-search .cont .cont-inner {
+  font-family: 'avertalight';
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 35px;
+  line-height: 3.5rem;
+}
+.pg-store-locations .map-search .cont .cont-inner .location-search-form {
+  margin: 12% auto 0;
+}
+.pg-store-locations .map-search .cont .cont-inner .location-search-form span.option {
+  display: block;
+  color: #fff;
+  padding: 16px 24px;
+}
+.pg-store-locations .map-search .cont .cont-inner .location-search-form input[type="text"],
+.pg-store-locations .map-search .cont .cont-inner .location-search-form button,
+.pg-store-locations .map-search .cont .cont-inner .location-search-form .c-btn,
+.pg-store-locations .map-search .cont .cont-inner .location-search-form span.option {
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 17px;
+  line-height: 1.7rem;
+}
+.pg-store-locations .map-search .cont .cont-inner .location-search-form .fa {
+  margin-right: 1rem;
+}
+.pg-store-locations .map-search .cont .cont-inner .location-search-form label {
+  display: block;
+  color: #fff;
+  text-align: left;
+}
+.pg-store-locations .map-search .cont .cont-inner .location-search-form button,
+.pg-store-locations .map-search .cont .cont-inner .location-search-form .c-btn {
+  cursor: pointer;
+  display: inline-block;
+  color: #fff;
+  border: none;
+  background-color: #88b04b;
+  padding: 16px 24px;
+}
+.pg-store-locations .map-search .cont .cont-inner .location-search-form button:hover,
+.pg-store-locations .map-search .cont .cont-inner .location-search-form .c-btn:hover {
+  text-decoration: none;
+  background-color: #6f903c;
+}
+.pg-store-locations .map-search .cont .cont-inner .location-search-form fieldset {
+  display: block;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+.pg-store-locations .map-search .cont .cont-inner .location-search-form fieldset input[type="text"] {
+  border: none;
+  display: inline-block;
+  text-align: left;
+  width: 50%;
+  color: #000;
+  padding: 16px 24px;
+  float: left;
+}
+.pg-store-locations .map-search .cont .cont-inner .location-search-form fieldset button {
+  width: 35%;
+  float: left;
+}
+.pg-store-locations footer,
+.pg-store-locations .c-footer {
+  border-top: 0;
+  padding-top: 0;
+}
+.pg-store-locations footer .menu,
+.pg-store-locations .c-footer .menu {
+  margin: 4rem auto;
+  text-align: center;
+  float: none;
+}
+.pg-store-locations footer .author,
+.pg-store-locations .c-footer .author {
+  margin-right: 0;
+  margin-bottom: 4rem;
+  float: none;
+}
+.pg-store-locations footer .author a,
+.pg-store-locations .c-footer .author a {
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .pg-store-locations .map-search {
+    height: 334px;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form {
+    margin: 14% auto 0;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form fieldset input[type="text"] {
+    width: 36rem !important;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form fieldset button {
+    width: 20rem ;
+  }
+  .pg-store-locations footer .menu,
+  .pg-store-locations .c-footer .menu {
+    float: left;
+    text-align: left;
+  }
+  .pg-store-locations footer .author,
+  .pg-store-locations .c-footer .author {
+    margin: 4rem auto;
+    float: right;
+  }
+}
+@media (max-width: 1092px) {
+  .c-logo {
+    left: 130px;
+  }
+  .c-menu-main,
+  .c-menu-sub,
+  .c-search,
+  .c-sociallinks {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .pg-store-locations .map-search {
+    height: 344px;
+  }
+  .pg-store-locations .map-search .cont .cont-inner {
+    font-family: 'avertalight';
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 35px;
+    line-height: 3.5rem;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form {
+    margin: 15% auto 0;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form span.option {
+    display: inline-block;
+    float: left;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form input[type="text"],
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form button,
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form .c-btn,
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form span.option {
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 17px;
+    line-height: 1.7rem;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form .fa {
+    margin-right: 1rem;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form label {
+    display: block;
+    color: #fff;
+    text-align: left;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form button,
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form .c-btn {
+    cursor: pointer;
+    display: inline-block;
+    color: #fff;
+    float: left;
+    border: none;
+    background-color: #88b04b;
+    padding: 16px 24px;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form button:hover,
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form .c-btn:hover {
+    text-decoration: none;
+    background-color: #6f903c;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form fieldset {
+    display: inline-block;
+    float: left;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form fieldset input[type="text"] {
+    width: 24rem !important;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form fieldset button {
+    width: 20rem ;
+  }
+}
+@media (min-width: 1200px) {
+  .pg-store-locations .map-search {
+    height: 386px;
+  }
+  .pg-store-locations .map-search .cont .cont-inner {
+    font-family: 'avertalight';
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 35px;
+    line-height: 3.5rem;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form {
+    margin: 12% auto 0;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form fieldset input[type="text"] {
+    width: 42rem !important;
+  }
+  .pg-store-locations .map-search .cont .cont-inner .location-search-form fieldset button {
+    width: 20rem ;
+  }
 }
 html {
   font-size: 10px;

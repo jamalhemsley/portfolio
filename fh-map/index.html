@@ -15,101 +15,272 @@
         }
     </style>
 </head>
-<body>
-    <div class="c-store-locations">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="map" id="map-canvas"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-1">
-                    <div class="filter-storecountry" id="filter-storecountry"></div>
-                    <script id="filter-storecountry-input" type="text/html">
-                        <div class="filter-button">
-                            <label>
-                                <input type="checkbox" value="<%= value %>" />
-                                <span class="marker"></span><%= value %>
-                            </label>
+<body class="pg-store-locations">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <header class="c-header">
+                    <div class="c-logo"><img src="img/icons/Rouillard1.svg" /></div>
+                    <div class="c-menu-main c-menu">
+                        <div class="item with-submenu">
+                            <a href="#">Produits</a>
                         </div>
-                    </script>
-                </div>
-                <div class="col-sm-6">
-                    <div class="filter-storetype" id="filter-storetype"></div>
-                    <script id="filter-storetype-input" type="text/html">
-                        <div class="filter-button" data-filter-markers="<%= value %>">
-                            <label>
-                                <input type="checkbox" value="<%= value %>" />
-                                <span class="marker"></span><%= value %>
-                            </label>
+                        <div class="item">
+                            <a href="#">Galerie</a>
                         </div>
-                    </script>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1 filter-storebanner">
-                    <div class="store-banners-reveal">Banners <span class="fa fa-caret-up"></span></div>
-                    <div class="store-banners-content">
-                        <ul id="filter-storebanner">
-                            <li>
-                                <div class="filter-button filter-all">
-                                    <label>
-                                        <input type="checkbox" value="all" />
-                                        <span class="marker"></span>All
-                                    </label>
+                        <div class="item with-submenu">
+                            <a href="#">Entreprise</a>
+                        </div>
+                        <div class="item">
+                            <a href="#">Resources</a>
+                        </div>
+                        <div class="item with-submenu">
+                            <a href="#">Contact</a>
+                        </div>
+                        <div class="item with-icon buyinglist">
+                            <a href="#">
+                                <img src="img/icons/Liste-achat1.svg" />
+                                <span>Liste d'achat</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="c-menu-sub c-menu">
+                        <div class="item">
+                            <a href="#">EN</a>
+                        </div>
+                        <div class="item with-submenu">
+                            <a href="#">QC</a>
+                            <div class="panel">
+                                <div class="pays">
+                                    <div class="item">
+                                        <div class="t">Canada</div>
+                                        <ul>
+                                            <li>Alberta</li>
+                                            <li>Colombie-Britanique</li>
+                                            <li>Île-du-Prince-Édouard</li>
+                                            <li>Manitoba</li>
+                                            <li>Nouveau-Brunswick</li>
+                                            <li>Nouvelle-Écosse</li>
+                                            <li>Ontario</li>
+                                            <li>Québec</li>
+                                            <li>Saskatchewan</li>
+                                            <li>Terre-Neuve-et-Labrador</li>
+                                        </ul>
+                                    </div>
+                                    <div class="item">
+                                        <div class="t">États-Unis</div>
+                                    </div>
                                 </div>
-                            </li>
+                            </div>
+                        </div>
+                        <div class="item connexion">
+                            <a href="#">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55">
+                                        <path d="M55 27.5C55 12.337 42.663 0 27.5 0S0 12.337 0 27.5c0 8.01 3.444 15.228 8.926 20.258l-.026.023.892.753c.058.05.12.09.18.137.473.393.964.766 1.464 1.127.162.117.324.234.49.348.533.368 1.08.717 1.64 1.048.123.072.246.142.37.212.612.35 1.238.678 1.88.98l.14.064c2.09.97 4.32 1.683 6.652 2.104l.184.033c.724.125 1.456.225 2.197.292.09.007.18.012.27.02.738.06 1.484.1 2.24.1.75 0 1.488-.04 2.222-.098.093-.008.186-.013.28-.02.734-.068 1.46-.165 2.177-.288l.186-.034c2.297-.412 4.495-1.11 6.557-2.055.076-.035.153-.068.23-.104.616-.29 1.22-.602 1.81-.935.147-.083.293-.167.44-.253.537-.317 1.066-.648 1.58-1 .185-.126.366-.26.55-.39.438-.317.87-.643 1.288-.984.094-.075.194-.14.285-.217l.915-.763-.027-.023C51.523 42.802 55 35.55 55 27.5zm-53 0C2 13.44 13.44 2 27.5 2S53 13.44 53 27.5c0 7.577-3.325 14.39-8.59 19.063-.293-.203-.59-.385-.892-.537l-8.467-4.233c-.76-.38-1.23-1.144-1.23-1.993v-2.957c.195-.242.402-.516.616-.817 1.096-1.548 1.975-3.27 2.616-5.123 1.267-.602 2.085-1.864 2.085-3.29V24.07c0-.868-.318-1.71-.887-2.37v-4.667c.052-.52.236-3.448-1.883-5.864C34.524 9.064 31.54 8 27.5 8s-7.024 1.065-8.867 3.168c-2.12 2.416-1.935 5.345-1.883 5.864V21.7c-.568.66-.887 1.5-.887 2.368v3.545c0 1.1.494 2.128 1.34 2.82.81 3.174 2.477 5.576 3.093 6.39v2.894c0 .816-.445 1.566-1.162 1.958l-7.907 4.313c-.252.137-.502.297-.752.476C5.275 41.792 2 35.022 2 27.5zm40.46 20.632c-.35.254-.707.5-1.068.735-.166.108-.33.216-.5.32-.472.293-.952.57-1.442.83-.108.058-.217.112-.326.168-1.126.577-2.29 1.073-3.488 1.476l-.127.044c-.628.208-1.263.393-1.905.552H33.6c-.65.16-1.305.294-1.965.403-.018.002-.036.006-.054.01-.62.1-1.246.173-1.874.228-.11.01-.222.017-.334.025-.62.047-1.245.077-1.872.077-.634 0-1.266-.03-1.895-.078-.11-.008-.218-.015-.326-.025-.635-.056-1.266-.13-1.89-.233l-.085-.015c-1.322-.222-2.623-.547-3.89-.972l-.118-.04c-.63-.214-1.25-.45-1.862-.713l-.013-.006c-.578-.25-1.145-.526-1.705-.817-.073-.038-.147-.074-.22-.113-.51-.273-1.01-.568-1.503-.876-.146-.092-.29-.185-.435-.28-.455-.296-.903-.605-1.34-.932-.044-.034-.087-.07-.132-.104l.096-.054 7.907-4.313c1.36-.74 2.206-2.164 2.206-3.713v-3.602l-.23-.278c-.023-.025-2.185-2.655-3.002-6.216l-.09-.395-.342-.22c-.48-.312-.77-.832-.77-1.393v-3.545c0-.465.198-.898.558-1.223l.33-.298v-5.57l-.01-.13c-.002-.025-.297-2.43 1.397-4.36C21.583 10.835 24.06 10 27.5 10c3.426 0 5.896.83 7.346 2.466 1.692 1.91 1.415 4.36 1.413 4.38l-.01 5.702.33.298c.36.324.557.758.557 1.223v3.544c0 .713-.485 1.36-1.18 1.575l-.498.152-.16.495c-.59 1.833-1.43 3.526-2.497 5.032-.262.37-.517.697-.736.948l-.248.283v3.7c0 1.612.895 3.062 2.337 3.782l8.467 4.233.16.083c-.107.08-.217.156-.325.234z"/>
+                                    </svg>
+                                </div>
+                                <span class="">Connexion</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="c-search">
+                        <div class="w">
+                            <div class="tb">
+                                <input type="" name="">
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="c-sociallinks">
+                    <ul>
+                        <li><a href="#"><span class="fa fa-houzz"></span></a></li>
+                        <li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+                        <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+                        <li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="c-bloc-cta dark map-search">
+                    <div class="cont">
+                        <ul class="c-ariane">
+                            <li><a href="#">Fil d'ariane</a></li>
+                            <li><a href="#">Lorem ipsum</a></li>
+                            <li><a href="#" class="active">Dollor</a></li>
                         </ul>
-                        <script id="filter-storebanner-input" type="text/html">
-                            <li>
+                        <div class="cont-inner">
+                            <div class="row">
+                                <div class="col-xs-10 col-xs-offset-1 col-lg-11">
+                                    <div class="location-search-form">
+                                        <label for="location-search">Enter your postal code.</label>
+                                        <fieldset>
+                                            <input type="text" id="location-search">
+                                            <button type="submit" class="c-btn">Rechercher</button>
+                                        </fieldset>
+                                        <span class="option">ou</span>
+                                        <a class="c-btn"><span class="fa fa-compass"></span> Detect My Position</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="c-store-locations">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="map" id="map-canvas"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+                            <div class="filter-storecountry" id="filter-storecountry"></div>
+                            <script id="filter-storecountry-input" type="text/html">
                                 <div class="filter-button">
                                     <label>
                                         <input type="checkbox" value="<%= value %>" />
                                         <span class="marker"></span><%= value %>
                                     </label>
                                 </div>
-                            </li>
-                        </script>
+                            </script>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="filter-storetype" id="filter-storetype"></div>
+                            <script id="filter-storetype-input" type="text/html">
+                                <div class="filter-button" data-filter-markers="<%= value %>">
+                                    <label>
+                                        <input type="checkbox" value="<%= value %>" />
+                                        <span class="marker"></span><%= value %>
+                                    </label>
+                                </div>
+                            </script>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1 filter-storebanner">
+                            <div class="store-banners-reveal">Banners <span class="fa fa-caret-up"></span></div>
+                            <div class="store-banners-content">
+                                <ul id="filter-storebanner">
+                                    <li>
+                                        <div class="filter-button filter-all">
+                                            <label>
+                                                <input type="checkbox" value="all" />
+                                                <span class="marker"></span>All
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <script id="filter-storebanner-input" type="text/html">
+                                    <li>
+                                        <div class="filter-button">
+                                            <label>
+                                                <input type="checkbox" value="<%= value %>" />
+                                                <span class="marker"></span><%= value %>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-10 col-sm-offset-1 store-listings">
+                            <div class="row row-eq-height" id="store-listings-js"></div>
+                            <script id="store-item-template" type="text/html">
+                                <div class="col-xs-12 col-sm-6 col-lg-4 store-item">
+                                    <div class="store">
+                                        <div class="tb_type">
+                                            <div class="tb_type_icon" data-storetype-color="<%= storeType %>"></div>
+                                            <%= storeType %>
+                                        </div>
+                                        <div class="tb_info">
+                                            <div class="tb_name"><%= storeName %></div>
+                                            <div class="tb_banner"><%= storeBanner %></div>
+                                            <div class="tb_address">
+                                                <p><%= storeAddress %></p>
+                                                <p><%= storeCountry %></p>
+                                                <a class="tb_directions" href="#">Obtain Directions</a>
+                                            </div>
+                                            <div class="tb_contact">
+                                                <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
+                                                <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
+                                                <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.com</div>
+                                            </div>
+                                        </div>
+                                        <div class="tb_link"><a href="<%= storeLink %>" title="Visiter le site Web">Visit Website <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
+                                    </div>
+                                </div>
+                            </script>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1 store-pagination" id="pagination">
+                            <span id="per_page" style="display: none;"></span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1 store-listings">
-                    <div class="row row-eq-height" id="store-listings-js"></div>
-                    <script id="store-item-template" type="text/html">
-                        <div class="col-sm-4 store-item">
-                            <div class="store">
-                                <div class="tb_type">
-                                    <div class="tb_type_icon" data-storetype-color="<%= storeType %>"></div>
-                                    <%= storeType %>
-                                </div>
-                                <div class="tb_info">
-                                    <div class="tb_name"><%= storeName %></div>
-                                    <div class="tb_banner"><%= storeBanner %></div>
-                                    <div class="tb_address">
-                                        <p><%= storeAddress %></p>
-                                        <p><%= storeCountry %></p>
-                                        <a class="tb_directions" href="#">Obtain Directions</a>
-                                    </div>
-                                    <div class="tb_contact">
-                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.com</div>
-                                    </div>
-                                </div>
-                                <div class="tb_link"><a href="<%= storeLink %>" title="Visiter le site Web">Visit Website <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                            </div>
-                        </div>
-                    </script>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1 store-pagination" id="pagination">
-                    <span id="per_page" style="display: none;"></span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="c-bloc-cta dark">
+                    <div class="img">
+                        <img src="img/tmp/bloc-cta-2.png">
+                    </div>
+                    <div class="cont">
+                        <div class="title">Découvrez nos produits</div>
+                        <a href="#" class="c-btn filled">Nos produits</a>
+                    </div>
                 </div>
             </div>
         </div>
+        <footer class="c-footer">
+            <div class="row">
+                <div class="col-xs-12 col-sm-5 col-sm-offset-1">
+                    <div class="menu">
+                        <div class="item">© 2017 Rouillard</div>
+                        <div class="item"><a href="#">Termes &amp; conditions</a></div>
+                        <div class="item"><a href="#">Politique de confidentialité</a></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-5">
+                    <div class="author">
+                        <div class="w">
+                            <a href="#" target="_blank">
+                                <span>Site Web conçu par</span>
+                                <div class="img">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 142.39 27.2">
+                                        <g id="Calque_2" data-name="Calque 2">
+                                            <g id="Calque_1-2" data-name="Calque 1">
+                                                <rect width="3.39" height="19.48" x="33.9" y="3.86" class="cls-1" rx=".44" ry=".44"/>
+                                                <path d="M52.6 3.86h-2.52a.4.4 0 0 0-.44.44v10.26c0 .27-.15.29-.25.05L45.71 4.19a.49.49 0 0 0-.48-.33H42.4a.4.4 0 0 0-.44.44v18.6a.4.4 0 0 0 .44.44h2.52a.4.4 0 0 0 .44-.44V12.63c0-.27.15-.29.25 0L49.29 23a.49.49 0 0 0 .48.33h2.83a.4.4 0 0 0 .4-.43V4.29a.4.4 0 0 0-.4-.43zM66.11 4.06a.64.64 0 0 0-.49-.2h-6.05a.64.64 0 0 0-.49.2l-1.23 1.22a.63.63 0 0 0-.2.49v7.4a.63.63 0 0 0 .2.49l1.22 1.22a.65.65 0 0 0 .49.2h4a.47.47 0 0 1 .37.16.47.47 0 0 1 .15.37v3.89a.47.47 0 0 1-.15.37.47.47 0 0 1-.37.15h-2a.48.48 0 0 1-.37-.15.48.48 0 0 1-.19-.37V18a.4.4 0 0 0-.44-.44h-2.47a.4.4 0 0 0-.44.44v3.38a.64.64 0 0 0 .2.49l1.22 1.22a.64.64 0 0 0 .49.2h6.05a.64.64 0 0 0 .49-.2l1.22-1.22a.64.64 0 0 0 .2-.49V13.7a.64.64 0 0 0-.2-.49L66.11 12a.64.64 0 0 0-.49-.2h-4a.47.47 0 0 1-.37-.15.48.48 0 0 1-.15-.37V7.73a.48.48 0 0 1 .15-.37.48.48 0 0 1 .37-.15h2a.47.47 0 0 1 .37.15.47.47 0 0 1 .15.37v1.42a.4.4 0 0 0 .44.44h2.54a.4.4 0 0 0 .44-.44V5.77a.63.63 0 0 0-.2-.49zM81.72 3.86h-9.48a.4.4 0 0 0-.44.44v2.41a.4.4 0 0 0 .44.44H75a.24.24 0 0 1 .27.27V22.9a.4.4 0 0 0 .44.44h2.52a.4.4 0 0 0 .44-.44V7.42a.24.24 0 0 1 .27-.27h2.77a.4.4 0 0 0 .44-.44V4.29a.4.4 0 0 0-.43-.43zM97.78 3.86H95a.49.49 0 0 0-.49.36l-2.19 7.07c0 .14-.11.19-.15.19s-.11 0-.15-.19l-2.17-7.07a.49.49 0 0 0-.48-.36H86.6a.4.4 0 0 0-.35.15.38.38 0 0 0 0 .37l4.19 12a1.1 1.1 0 0 1 .07.4v6.12a.4.4 0 0 0 .44.44h2.49a.4.4 0 0 0 .44-.44v-6.15a1.08 1.08 0 0 1 .07-.4l4.19-12a.38.38 0 0 0 0-.37.4.4 0 0 0-.36-.12zM112.82 3.86h-2.52a.4.4 0 0 0-.44.44v10.26c0 .27-.15.29-.24.05l-3.69-10.43a.5.5 0 0 0-.48-.33h-2.82a.4.4 0 0 0-.44.44V22.9a.4.4 0 0 0 .44.44h2.52a.4.4 0 0 0 .44-.44V12.63c0-.27.15-.29.24 0L109.52 23a.49.49 0 0 0 .48.33h2.82a.4.4 0 0 0 .44-.44V4.29a.4.4 0 0 0-.44-.43zM126.36 4.06a.64.64 0 0 0-.49-.2h-6a.65.65 0 0 0-.49.2l-1.22 1.22a.63.63 0 0 0-.2.49v15.66a.63.63 0 0 0 .2.49l1.22 1.22a.64.64 0 0 0 .49.2h6a.64.64 0 0 0 .49-.2l1.22-1.22a.64.64 0 0 0 .2-.49V18a.4.4 0 0 0-.44-.44h-2.52a.4.4 0 0 0-.44.44v1.42a.48.48 0 0 1-.15.37.48.48 0 0 1-.37.15h-1.96a.48.48 0 0 1-.38-.16.49.49 0 0 1-.15-.38V7.73a.48.48 0 0 1 .15-.37.47.47 0 0 1 .37-.15h1.93a.47.47 0 0 1 .37.15.47.47 0 0 1 .15.37v1.42a.4.4 0 0 0 .44.44h2.52a.4.4 0 0 0 .44-.44V5.77a.64.64 0 0 0-.2-.49zM141.95 3.86h-9.48a.4.4 0 0 0-.44.44v2.41a.4.4 0 0 0 .44.44h2.77a.24.24 0 0 1 .27.27V22.9a.4.4 0 0 0 .44.44h2.52a.4.4 0 0 0 .44-.44V7.42a.24.24 0 0 1 .27-.27h2.77a.4.4 0 0 0 .44-.44V4.29a.4.4 0 0 0-.44-.43z" class="cls-2"/>
+                                                <path d="M26.12 0H.23A.23.23 0 0 0 0 .23v19.29a.23.23 0 0 0 .11.2l12.95 7.45a.23.23 0 0 0 .11 0 .24.24 0 0 0 .12 0l12.94-7.45a.23.23 0 0 0 .12-.2V.23a.23.23 0 0 0-.23-.23zm-.78 1v18.06l-12.16 7L1 19.07V1z" class="cls-3"/>
+                                                <path d="M3.88 14.46h3.38L4.93 18a.17.17 0 0 0 .14.27h3.75a.17.17 0 0 0 .18-.16v-.7a.17.17 0 0 0-.17-.17H6.7L9 13.69a.17.17 0 0 0-.14-.27H5.52l3.24-4.84a.18.18 0 0 0 0-.19L6.84 5.3 12.65 9v12.4l-1.33-.77.7-9.8a.17.17 0 0 0 0-.13.18.18 0 0 0-.13-.06l-3.17-.06 1.46 1 .74.43-.65 9.09a.18.18 0 0 0 .09.17l2.73 1.57V23l.12-.07.13.07v-.14l2.66-1.6a.18.18 0 0 0 .08-.16l-.61-9.1.75-.44 1.45-1-3.18.06a.17.17 0 0 0-.12.06.17.17 0 0 0 0 .13l.7 9.79-1.33.77V9l5.81-3.7-1.97 3.1a.18.18 0 0 0 0 .18l3.24 4.84h-3.35a.18.18 0 0 0-.15.09.17.17 0 0 0 0 .17l2.33 3.55h-2.11a.17.17 0 0 0-.17.17v.7a.17.17 0 0 0 .17.17h3.74a.17.17 0 0 0 .15-.09.17.17 0 0 0 0-.18l-2.33-3.55h3.38a.18.18 0 0 0 .16-.1.17.17 0 0 0 0-.17l-2.1-3.12 1.28-8.14a.18.18 0 0 0 0-.15.18.18 0 0 0-.23 0l-8.41 5.32-2.8-1.78-5.57-3.55a.18.18 0 0 0-.23 0 .18.18 0 0 0 0 .15l1.28 8.13-2.12 3.15a.18.18 0 0 0 0 .19.17.17 0 0 0 .14.08zm2.81-4.67L6.11 6.1l1.47 2.36zm13 0l-.89-1.32 1.45-2.37z" class="cls-4"/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
