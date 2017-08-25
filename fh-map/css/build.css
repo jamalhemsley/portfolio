@@ -5728,6 +5728,37 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
 .store-pagination {
   margin-bottom: 2rem;
 }
+.store-pagination ul {
+  padding: 0;
+  margin: 0;
+}
+.store-pagination ul.pagination {
+  list-style-type: none;
+}
+.store-pagination ul li {
+  display: inline-block;
+  padding: 0;
+}
+.store-pagination ul li a {
+  padding: 14px 20px;
+  border: 1px solid #9c9e9f;
+  font-family: 'averta';
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 20px;
+  line-height: 2rem;
+  color: #9c9e9f;
+  text-align: center;
+  line-height: 44px;
+  text-transform: uppercase;
+}
+.store-pagination ul li a:hover {
+  color: #6f903c;
+  text-decoration: none;
+}
+.store-pagination ul li.active a {
+  border: 2px solid #88b04b;
+}
 .pg-homepage .c-hero-slideshow {
   margin-bottom: 123px;
 }

@@ -292,4 +292,40 @@
 
 .store-pagination {
 	margin-bottom: 2rem;
+
+	ul {
+		padding: 0;
+		margin: 0;
+
+		&.pagination {
+			list-style-type: none;
+		}
+
+		li {
+			display: inline-block;
+			padding: 0;
+
+			a {
+				padding: 14px 20px;
+				border: 1px solid @color-gray;
+				font-family: 'averta';
+				.fs(1.4, 2);
+				color: @color-gray;
+				text-align: center;
+				line-height: 44px;
+				text-transform: uppercase;
+
+				&:hover {
+					color: @color-green-hover;
+					text-decoration: none;
+				}
+			}
+
+			&.active {
+				a {
+					border: 2px solid @color-green;
+				}
+			}
+		}
+	}
 }

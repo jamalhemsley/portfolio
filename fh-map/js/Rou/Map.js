@@ -187,6 +187,8 @@ $(document).ready(function() {
 
     let afterFilter = function(result) {
         mapObject.updateMarkers(result);
+
+        infoBubble.close();
     };
 
     afterFilter(mapItems);
@@ -195,11 +197,19 @@ $(document).ready(function() {
         template: `${set.itemConfig.itemTemplate}`,
         callbacks: {
             afterFilter: afterFilter
+        },
+        pagination: {
+            container: '#pagination',
+            visiblePages: 5,
+            perPage: {
+                values: [3],
+                container: '#per_page'
+            },
         }
     });
 
-    FJS.addCriteria({field: 'storeType', ele: '#filter-storetype input:checkbox', all: 'all'});
-    FJS.addCriteria({field: 'storeCountry', ele: '#filter-storecountry input:checkbox', all: 'all'});
+    FJS.addCriteria({field: 'storeType', ele: '#filter-storetype input:checkbox'});
+    FJS.addCriteria({field: 'storeCountry', ele: '#filter-storecountry input:checkbox'});
     FJS.addCriteria({field: 'storeBanner', ele: '#filter-storebanner input:checkbox', all: 'all'});
 
     window.FJS = FJS;
@@ -258,6 +268,16 @@ function initItems() {
             $(this).parent().attr('data-filter-active', '');
         } else {
             $(this).parent().removeAttr('data-filter-active');
+        }
+    });
+
+    $('.filter-all label :checkbox', '#filter-storebanner').change(function() {
+        if (this.checked) {
+            $(this).parent().attr('data-filter-active', '');
+            $('#filter-storebanner').find('.filter-button label').attr('data-filter-active', '');
+        } else {
+            $(this).parent().removeAttr('data-filter-active');
+            $('#filter-storebanner').find('.filter-button label').removeAttr('data-filter-active', '');
         }
     });
 }

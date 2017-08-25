@@ -51,7 +51,16 @@
                 <div class="col-sm-10 col-sm-offset-1 filter-storebanner">
                     <div class="store-banners-reveal">Banners <span class="fa fa-caret-up"></span></div>
                     <div class="store-banners-content">
-                        <ul id="filter-storebanner"></ul>
+                        <ul id="filter-storebanner">
+                            <li>
+                                <div class="filter-button filter-all">
+                                    <label>
+                                        <input type="checkbox" value="all" />
+                                        <span class="marker"></span>All
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
                         <script id="filter-storebanner-input" type="text/html">
                             <li>
                                 <div class="filter-button">
@@ -96,21 +105,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-10 col-sm-offset-1 store-pagination">
-                    <div class="c-paging">
-                        <div class="item item-current">
-                            <a href="#">1</a>
-                        </div>
-                        <div class="item">
-                            <a href="#">2</a>
-                        </div>
-                        <div class="item">
-                            <a href="#">3</a>
-                        </div>
-                        <div class="item next">
-                            <a href="#">Suivante</a>
-                        </div>
-                    </div>
+                <div class="col-sm-10 col-sm-offset-1 store-pagination" id="pagination">
+                    <span id="per_page" style="display: none;"></span>
                 </div>
             </div>
         </div>
