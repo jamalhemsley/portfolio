@@ -1,9 +1,8 @@
 // Define all the settings for the parts of the component.
-const mapComponentSettings = {
+let mapComponentSettings = {
     mapConfig: {
         mapSelectorId: 'map-canvas',
         mapOptions: {
-            center: {lat: 46.082340, lng: -72.883422},
             disableDefaultUI: true,
             styles: [
                 {
@@ -103,7 +102,11 @@ const mapComponentSettings = {
         }
     },
     itemConfig: {
-        itemFilters: ['storeType', 'storeBanner', 'storeCountry'],
+        itemFilters: {
+            storeType: ['sales', 'distributor', 'representative'],
+            storeCountry: ['United States', 'Canada'],
+            storeBanner: ['distributor', 'corporate', 'sales']
+        },
         itemMeta: {
             storeType: '',
             storeName: '',
@@ -113,7 +116,9 @@ const mapComponentSettings = {
             storeLat: '',
             storeLng: ''
         },
-        itemMetaPrefix: 'mc',
+        itemContainer: '#store-listings-js',
+        itemTemplate: '#store-item-template',
+        itemMetaPrefix: '',
         itemSelector: '.store-listings .store',
         itemTypes: {
             default: {
@@ -142,8 +147,7 @@ const mapComponentSettings = {
             fillColor: '#f2f2f2',
             fillOpacity: 1,
             strokeWeight: 0,
-            scaledSize : new google.maps.Size(32, 48),
-            anchor: new google.maps.Point(10, 0)
+            anchor: new google.maps.Point(9.81, 28)
         }
     },
     infoBubbleConfig: {
@@ -165,18 +169,21 @@ const mapComponentSettings = {
         dataValue: 'filter-markers'
     }
 };
+
+// Setup settings shortname.
 const set = mapComponentSettings;
 
+// Launch function on page load.
 $(document).ready(function() {
+    renderStoreTypes();
+    renderCountryTypes();
+    renderBannerTypes();
 
-    renderStoreType();
-    renderCountryType();
-
-    initInputs();
+    initItems();
 
     let mapItem = mapItems[0];
 
-    mapObject.init(mapItem.storeLat, mapItem.storeLng, mapItems);
+    mapObject.init(mapItem[set.markerConfig.markerAddressLat], mapItem[set.markerConfig.markerAddressLng], mapItems);
 
     let afterFilter = function(result) {
         mapObject.updateMarkers(result);
@@ -184,46 +191,81 @@ $(document).ready(function() {
 
     afterFilter(mapItems);
 
-    let FJS = FilterJS(mapItems, '#store-listings-js', {
-        template: '#store-item-template',
+    let FJS = FilterJS(mapItems, `${set.itemConfig.itemContainer}`, {
+        template: `${set.itemConfig.itemTemplate}`,
         callbacks: {
             afterFilter: afterFilter
         }
     });
 
-    FJS.addCriteria({field: 'storeType', ele: '#store-filters input:checkbox', all: 'all'});
-    FJS.addCriteria({field: 'storeCountry', ele: '#country-filters input:checkbox', all: 'all'});
+    FJS.addCriteria({field: 'storeType', ele: '#filter-storetype input:checkbox', all: 'all'});
+    FJS.addCriteria({field: 'storeCountry', ele: '#filter-storecountry input:checkbox', all: 'all'});
+    FJS.addCriteria({field: 'storeBanner', ele: '#filter-storebanner input:checkbox', all: 'all'});
 
     window.FJS = FJS;
 });
 
-function renderStoreType() {
-    const types = ['sales', 'distributor', 'representative'];
-    let html = $('#store-filter-template').html();
+function renderStoreTypes() {
+    const types = set.itemConfig.itemFilters.storeType;
+    let html = $('#filter-storetype-input').html();
     let templateFn = FilterJS.templateBuilder(html);
-    let container = $('#store-filters');
+    let container = $('#filter-storetype');
 
     $.each(types, function(i, c) {
         container.append(templateFn({storeType: c, value: c}));
     });
 }
 
-function renderCountryType() {
-    const types = ['United States', 'Canada'];
-    let html = $('#country-filter-template').html();
+function renderCountryTypes() {
+    const types = set.itemConfig.itemFilters.storeCountry;
+    let html = $('#filter-storecountry-input').html();
     let templateFn = FilterJS.templateBuilder(html);
-    let container = $('#country-filters');
+    let container = $('#filter-storecountry');
 
     $.each(types, function(i, c) {
         container.append(templateFn({storeCountry: c, value: c}));
     });
 }
 
-function initInputs() {
-    $('#store-filters').find(':checkbox').prop('checked', true);
+function renderBannerTypes() {
+    const types = set.itemConfig.itemFilters.storeBanner;
+    let html = $('#filter-storebanner-input').html();
+    let templateFn = FilterJS.templateBuilder(html);
+    let container = $('#filter-storebanner');
+
+    $.each(types, function(i, c) {
+        container.append(templateFn({storeBanner: c, value: c}));
+    });
 }
+
+function initItems() {
+    $('.filter-storetype .filter-button').each(function() {
+        $(this).find(':checkbox').prop('checked', true).parent().attr('data-filter-active', '');
+
+        $(this).find('.marker').css('background-color', set.itemConfig.itemTypes[$(this).data('filter-markers')].color);
+
+        $(this).click(function() {
+            if ($(this).find(':checkbox').prop('checked')) {
+                $(this).find('.marker').css('background-color', set.itemConfig.itemTypes[$(this).data('filter-markers')].color);
+            } else {
+                $(this).find('.marker').css('background-color', set.itemConfig.itemTypes.default.color);
+            }
+        })
+    });
+
+    $('.filter-button label :checkbox').change(function() {
+        if (this.checked) {
+            $(this).parent().attr('data-filter-active', '');
+        } else {
+            $(this).parent().removeAttr('data-filter-active');
+        }
+    });
+}
+
+// Setup marker array to hold marker objects.
 let markers = [];
 
+// Setup the infoBubble outside of the map object to prevent duplicates.
 let infoBubble = new InfoBubble(set.infoBubbleConfig);
 
 let mapObject = {
@@ -231,107 +273,10 @@ let mapObject = {
 
     init: function(lat, lng, mapItems) {
         let self = this;
-        let newMapOptions = {
-            center: new google.maps.LatLng(lat, lng),
-            disableDefaultUI: true,
-            styles: [
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#707070"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#707070"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "landscape",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#f8f8f8"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi.park",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "visibility": "simplified"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "visibility": "simplified"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#88b04b"
-                        },
-                        {
-                            "weight": 0.5
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "saturation": -100
-                        }
-                    ]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                }
-            ],
-            zoom: 5
-        };
 
-        this.map = new google.maps.Map(document.getElementById(set.mapConfig.mapSelectorId), newMapOptions);
+        set.mapConfig.mapOptions.center = new google.maps.LatLng(lat, lng);
+
+        this.map = new google.maps.Map(document.getElementById(set.mapConfig.mapSelectorId), set.mapConfig.mapOptions);
 
         $.each(mapItems, function() {
             self.addMarker(this);
@@ -340,21 +285,25 @@ let mapObject = {
         this.setCenterPoint();
     },
 
+    // Add markers to the map.
     addMarker: function(mapItem) {
         let self = this;
 
+        // Setup base marker.
         let marker = new google.maps.Marker({
-            title: mapItem.storeName,
-            position: new google.maps.LatLng(mapItem.storeLat, mapItem.storeLng),
+            title: mapItem[set.markerConfig.markerTitle],
+            position: new google.maps.LatLng(mapItem[set.markerConfig.markerAddressLat], mapItem[set.markerConfig.markerAddressLng]),
             icon: set.markerConfig.markerIcon,
             map: self.map
         });
 
-        // Merge new marker object with the mapMarkerItem to create a complete marker.
+        // Merge new marker object with the mapItem to create a complete marker.
         Object.assign(marker, mapItem);
 
+        // Set the fill color of the marker icon to match the type of marker.
         marker.icon.fillColor = set.itemConfig.itemTypes[marker[set.markerConfig.markerType]].color;
 
+        // Setup content for the infoBubble.
         marker.infoBubbleContent = `\
                         <div class="marker-type">\
                                 <div class="marker-icon" style="background-color: ${marker.icon.fillColor};"></div> ${marker[set.markerConfig.markerType]}\
@@ -365,16 +314,21 @@ let mapObject = {
                                 <a class="marker-directions" href="https://google.com/maps/">Obtain Directions</a>\
                             </div>`;
 
+        // Push the marker to the markers array.
         markers.push(marker);
 
         // Add click functions to the markers.
         marker.addListener('click', function() {
+            // Close any open infoBubbles.
+            infoBubble.close();
+
             // Since infoBubbles aren't dynamically resized, we'll do it live.
             const heightCalcId = 'map-infobubble-height-calc';
 
             // Remove the current calculation div on the page, if there is one.
             $(`#${heightCalcId}`).remove();
 
+            // Set up calculation div for the resized numbers.
             $('body').append(`<div id="map-infobubble-height-calc"></div>`);
 
             // Setting the max width is necessary to have uniform infoBubble content widths.
@@ -384,34 +338,38 @@ let mapObject = {
             infoBubble.minWidth = $(`#${heightCalcId}`).outerWidth();
             infoBubble.minHeight = $(`#${heightCalcId}`).outerHeight();
 
-            // Close any open infoBubbles.
-            infoBubble.close();
-
             // Set content of a new infoBubble.
             infoBubble.setContent(marker.infoBubbleContent);
 
+            // Open up the new marker infoBubble.
             infoBubble.open(self.map, marker);
 
-            // Pan to clicked infoBubbles.
+            // Pan to clicked marker.
             this.map.panTo(this.getPosition());
+        });
+
+        // Don't forget to close any infoBubbles if anywhere else on the map is clicked.
+        this.map.addListener('click', function() {
+            infoBubble.close();
         });
     },
 
+    // Update the markers when filters are changed.
     updateMarkers: function(records, i) {
         let self = this;
-        console.log(records);
 
         $.each(markers, function(i) {
-            markers[i].setMap(null);
+            markers[i].setVisible(false);
         });
 
         $.each(records, function() {
-            markers[this.id].setMap(self.map);
+            markers[this.id].setVisible();
         });
 
         if(records.length) self.setCenterPoint();
     },
 
+    // Set the centerpoint for new filters.
     setCenterPoint: function() {
         let lat,
             lng,

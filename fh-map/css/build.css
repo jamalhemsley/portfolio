@@ -5521,24 +5521,31 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   top: 0;
   left: -9999px;
 }
-/* .filter-button {
-	cursor: pointer;
-	display: inline-block;
-	background-color: transparent;
-	border: 1px solid #e5e5e5;
-	border-radius: 50px;
-	color: @color-gray;
-	text-transform: uppercase;
-	margin-left: 1.5rem;
-	padding: 8px 16px;
-
-	&:focus { outline: none; }
-
-	&:hover { border-color: @color-green-hover; }
-
-	&[data-filter-active] { border-color: @color-green; }
-} */
-.filter-store-type {
+.filter-button {
+  display: inline-block;
+}
+.filter-button input {
+  display: none;
+}
+.filter-button label {
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #e5e5e5;
+  border-radius: 50px;
+  color: #9c9e9f;
+  text-transform: uppercase;
+  padding: 8px 16px;
+}
+.filter-button label:focus {
+  outline: none;
+}
+.filter-button label:hover {
+  border-color: #6f903c;
+}
+.filter-button label[data-filter-active] {
+  border: 1px solid #88b04b;
+}
+.filter-storetype {
   font-family: 'avertasemibold';
   font-size: 13px;
   font-size: 1.3rem;
@@ -5546,24 +5553,10 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   line-height: 1.7rem;
   text-align: right;
 }
-.filter-store-type .filter-button label {
-  cursor: pointer;
-  display: inline-block;
-  background-color: transparent;
-  border: 1px solid #e5e5e5;
-  border-radius: 50px;
-  color: #9c9e9f;
-  text-transform: uppercase;
+.filter-storetype .filter-button label {
   margin-left: 1.5rem;
-  padding: 8px 16px;
 }
-.filter-store-type .filter-button label:focus {
-  outline: none;
-}
-.filter-store-type .filter-button label:hover {
-  border-color: #6f903c;
-}
-.filter-store-type .filter-button .marker {
+.filter-storetype .filter-button .marker {
   display: inline-block;
   background-color: #f2f2f2;
   height: 1.7rem;
@@ -5577,23 +5570,27 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   mask-repeat: no-repeat;
   mask-size: 1.1rem;
 }
-.filter-store-country .c-tabs-content a {
+.filter-storecountry .filter-button {
+  border: none;
+  border-radius: 0;
+  font-family: 'avertasemibold';
   font-size: 13px;
   font-size: 1.3rem;
   line-height: 17px;
   line-height: 1.7rem;
+  margin-right: 1.8rem;
 }
-.filter-store-country .c-tabs-content a:hover {
+.filter-storecountry .filter-button label {
+  padding: 8px 0;
+  border: none;
+  border-radius: 0;
+}
+.filter-storecountry .filter-button label[data-filter-active] {
+  border: none;
   border-bottom: 2px solid #6f903c;
   color: #000;
-  text-decoration: none;
 }
-.filter-store-country .c-tabs-content a[data-filter-active] {
-  border-bottom: 2px solid #88b04b;
-  color: #000;
-  text-decoration: none;
-}
-.filter-store-banners {
+.filter-storebanner {
   font-family: 'avertasemibold';
   font-size: 13px;
   font-size: 1.3rem;
@@ -5601,34 +5598,41 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   line-height: 1.7rem;
   margin-top: 4rem;
 }
-.filter-store-banners .store-banners-reveal {
+.filter-storebanner .store-banners-reveal {
   display: block;
   cursor: pointer;
   padding-bottom: 2rem;
+  border-bottom: 1px solid #f2f2f2;
 }
-.filter-store-banners .store-banners-reveal .fa {
+.filter-storebanner .store-banners-reveal .fa {
   color: #9c9e9f;
   margin-left: 0.2rem;
 }
-.filter-store-banners ul {
+.filter-storebanner ul {
   list-style: none;
   margin: 0 0 2rem;
   padding: 2rem 1rem;
-  border-top: 1px solid #f2f2f2;
 }
-.filter-store-banners ul li {
+.filter-storebanner ul li {
   display: inline-block;
   margin: 0 1rem 1rem 0;
 }
-.filter-store-banners ul .filter-button {
+.filter-storebanner ul .filter-button {
   margin: 0;
 }
-.filter-store-banners ul .filter-button label {
+.filter-storebanner ul .filter-button label {
   display: block;
 }
 .store-listings {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+.store-listings .row-eq-height {
+  display: flex;
+  flex-wrap: wrap;
+}
+.store-listings .store-item {
+  display: flex;
 }
 .store-listings .store {
   border: 1px solid #e5e5e5;
@@ -5637,6 +5641,9 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   line-height: 22px;
   line-height: 2.2rem;
   margin-bottom: 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .store-listings .store .tb_type {
   border-bottom: 1px solid #e5e5e5;
@@ -5644,6 +5651,7 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   letter-spacing: -0.05rem;
   padding: 1.5rem 4rem;
   position: relative;
+  text-transform: capitalize;
 }
 .store-listings .store .tb_type .tb_type_icon {
   background-color: #f2f2f2;
@@ -5660,8 +5668,19 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   mask-repeat: no-repeat;
   mask-size: 1.5rem;
 }
+.store-listings .store .tb_type .tb_type_icon[data-storetype-color="sales"] {
+  background-color: #0f0708;
+}
+.store-listings .store .tb_type .tb_type_icon[data-storetype-color="distributor"] {
+  background-color: #9c9e9f;
+}
+.store-listings .store .tb_type .tb_type_icon[data-storetype-color="representative"] {
+  background-color: #88b04b;
+}
 .store-listings .store .tb_info {
   padding: 2.5rem 4rem;
+  flex: 1 0 auto;
+  position: relative;
 }
 .store-listings .store .tb_info .tb_name {
   font-weight: bold;
@@ -5670,6 +5689,7 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
 }
 .store-listings .store .tb_info .tb_banner {
   font-weight: bold;
+  text-transform: capitalize;
 }
 .store-listings .store .tb_info .tb_address p {
   display: block;
@@ -5694,14 +5714,15 @@ http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
   color: #9c9e9f;
   margin-right: 1rem;
 }
-.store-listings .store .tb_info .tb_link {
-  margin-top: 3rem;
+.store-listings .store .tb_link {
+  margin-top: 1rem;
+  padding: 0 4rem 2.5rem;
 }
-.store-listings .store .tb_info .tb_link a {
+.store-listings .store .tb_link a {
   color: #000;
   text-decoration: none;
 }
-.store-listings .store .tb_info .tb_link a img {
+.store-listings .store .tb_link a img {
   margin-left: 1rem;
 }
 .store-pagination {

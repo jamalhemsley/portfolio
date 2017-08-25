@@ -8,7 +8,6 @@
     <title>Map &amp; Filtering</title>
 
     <link href="css/build.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <style>
         body {
@@ -17,63 +16,99 @@
     </style>
 </head>
 <body>
-    <div class="pg-store-locator">
-        <div class="c-store-locations">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="map" id="map-canvas"></div>
-                    </div>
+    <div class="c-store-locations">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="map" id="map-canvas"></div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3 col-sm-offset-1 filter-store-country">
-                        <div id="country-filters"></div>
-                    </div>
-                    <div class="col-sm-7 filter-store-type">
-                        <div id="store-filters"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1 filter-store-banners">
-                        <div class="store-banners-reveal">Banners <i class="fa fa-caret-up"></i></div>
-                        <div class="store-banners-content">
-                            <ul>
-                                <li>
-                                    <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="distributor">Distributor Banner</button>
-                                </li>
-                                <li>
-                                    <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="corporate">Corporate Banner</button>
-                                </li>
-                                <li>
-                                    <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="sales">Sales Banner</button>
-                                </li>
-                                <li>
-                                    <button class="filter-button" data-filter-marker-type="storeBanner" data-filter-markers="representative">Sales Banner</button>
-                                </li>
-                            </ul>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-1">
+                    <div class="filter-storecountry" id="filter-storecountry"></div>
+                    <script id="filter-storecountry-input" type="text/html">
+                        <div class="filter-button">
+                            <label>
+                                <input type="checkbox" value="<%= value %>" />
+                                <span class="marker"></span><%= value %>
+                            </label>
                         </div>
+                    </script>
+                </div>
+                <div class="col-sm-6">
+                    <div class="filter-storetype" id="filter-storetype"></div>
+                    <script id="filter-storetype-input" type="text/html">
+                        <div class="filter-button" data-filter-markers="<%= value %>">
+                            <label>
+                                <input type="checkbox" value="<%= value %>" />
+                                <span class="marker"></span><%= value %>
+                            </label>
+                        </div>
+                    </script>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 filter-storebanner">
+                    <div class="store-banners-reveal">Banners <span class="fa fa-caret-up"></span></div>
+                    <div class="store-banners-content">
+                        <ul id="filter-storebanner"></ul>
+                        <script id="filter-storebanner-input" type="text/html">
+                            <li>
+                                <div class="filter-button">
+                                    <label>
+                                        <input type="checkbox" value="<%= value %>" />
+                                        <span class="marker"></span><%= value %>
+                                    </label>
+                                </div>
+                            </li>
+                        </script>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1 store-listings">
-                        <div class="row" id="store-listings-js"></div>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 store-listings">
+                    <div class="row row-eq-height" id="store-listings-js"></div>
+                    <script id="store-item-template" type="text/html">
+                        <div class="col-sm-4 store-item">
+                            <div class="store">
+                                <div class="tb_type">
+                                    <div class="tb_type_icon" data-storetype-color="<%= storeType %>"></div>
+                                    <%= storeType %>
+                                </div>
+                                <div class="tb_info">
+                                    <div class="tb_name"><%= storeName %></div>
+                                    <div class="tb_banner"><%= storeBanner %></div>
+                                    <div class="tb_address">
+                                        <p><%= storeAddress %></p>
+                                        <p><%= storeCountry %></p>
+                                        <a class="tb_directions" href="#">Obtain Directions</a>
+                                    </div>
+                                    <div class="tb_contact">
+                                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
+                                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
+                                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.com</div>
+                                    </div>
+                                </div>
+                                <div class="tb_link"><a href="<%= storeLink %>" title="Visiter le site Web">Visit Website <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
+                            </div>
+                        </div>
+                    </script>
                 </div>
-                <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1 store-pagination">
-                        <div class="c-paging">
-                            <div class="item item-current">
-                                <a href="#">1</a>
-                            </div>
-                            <div class="item">
-                                <a href="#">2</a>
-                            </div>
-                            <div class="item">
-                                <a href="#">3</a>
-                            </div>
-                            <div class="item next">
-                                <a href="#">Suivante</a>
-                            </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 store-pagination">
+                    <div class="c-paging">
+                        <div class="item item-current">
+                            <a href="#">1</a>
+                        </div>
+                        <div class="item">
+                            <a href="#">2</a>
+                        </div>
+                        <div class="item">
+                            <a href="#">3</a>
+                        </div>
+                        <div class="item next">
+                            <a href="#">Suivante</a>
                         </div>
                     </div>
                 </div>
@@ -81,49 +116,22 @@
         </div>
     </div>
 
-    <!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJOVC6O30bUKQAHbcFPcyoBNms2ugdyDI"></script>
     <script src="js/Rou/filter.min.js"></script>
     <script src="js/Rou/MapInfoBubble.js"></script>
     <script src="js/Rou/mapItems.js"></script>
     <script src="js/Rou/Map.js"></script>
-    <script id="store-item-template" type="text/html">
-        <div class="col-sm-4">
-            <div class="store">
-                <div class="tb_type">
-                    <div class="tb_type_icon"></div>
-                    <%= storeType %>
-                </div>
-                <div class="tb_info">
-                    <div class="tb_name"><%= storeName %></div>
-                    <div class="tb_banner"><%= storeBanner %></div>
-                    <div class="tb_address">
-                        <p><%= storeAddress %></p>
-                        <p><%= storeCountry %></p>
-                        <a class="tb_directions" href="#">Obtain Directions</a>
-                    </div>
-                    <div class="tb_contact">
-                        <div class="tb_phone"><i class="fa fa-phone"></i>1-418-663-1411</div>
-                        <div class="tb_fax"><i class="fa fa-building-o"></i>1-418-666-9619</div>
-                        <div class="tb_email"><i class="fa fa-envelope"></i>info@rouillard.com</div>
-                    </div>
-                    <div class="tb_link"><a href="<%= storeLink %>" title="Visiter le site Web">Visit Website <img src="img/icons/Fleche1.svg" style="width: 37px;"></a></div>
-                </div>
-            </div>
-        </div>
-    </script>
-    <script id="store-filter-template" type="text/html">
-        <div class="filter-button">
-            <input type="checkbox" id="<%= storeType %>" value="<%= value %>" />
-            <label for="<%= storeType %>"><span class="marker"></span><%= value %></label>
-        </div>
-    </script>
-    <script id="country-filter-template" type="text/html">
-        <div class="filter-button">
-            <input type="checkbox" id="<%= storeCountry %>" value="<%= value %>" />
-            <label for="<%= storeCountry %>"><span class="marker"></span><%= value %></label>
-        </div>
+    <script type="text/javascript">
+        $('.store-banners-reveal').click(function() {
+            $('#filter-storebanner').slideToggle(400, function() {});
+
+            if ($(this).find('span').hasClass('fa-caret-up')) {
+                $(this).find('span').removeClass('fa-caret-up').addClass('fa-caret-down');
+            } else {
+                $(this).find('span').removeClass('fa-caret-down').addClass('fa-caret-up');
+            }
+        });
     </script>
 </body>
 </html>
