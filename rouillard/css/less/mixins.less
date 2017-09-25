@@ -1,0 +1,31 @@
+/*
+font-size
+http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
+*/
+.font-size(@sizeValue) {
+    @remValue: @sizeValue;
+    @pxValue: (@sizeValue * 10);
+    font-size: ~"@{pxValue}px"; 
+    font-size: ~"@{remValue}rem";
+}
+.line-height(@sizeValue) {
+    @remValue: @sizeValue;
+    @pxValue: (@sizeValue * 10);
+    line-height: ~"@{pxValue}px"; 
+    line-height: ~"@{remValue}rem";
+}
+// Alias
+.fs(@fontsize, @lineheight){
+    .font-size(@fontsize);
+    .line-height(@lineheight);
+}
+
+//
+//
+//
+
+.keyframes(@name; @arguments) {
+    @-moz-keyframes @name { @arguments(); }
+    @-webkit-keyframes @name { @arguments(); }
+    @keyframes @name { @arguments(); }
+}

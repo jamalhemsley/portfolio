@@ -1,0 +1,39 @@
+.c-search {
+	width: 100%;
+	max-width: 350px;
+	overflow: hidden;
+
+	&.expand {
+		.w {
+			width: 350px;
+		}
+	}
+
+	.w {
+		border-bottom: 1px solid @color-gray;
+		overflow: hidden;
+		width: 145px;
+		float: right;
+		.transition(~"width 800ms ease-in-out");
+	}
+	.tb {
+		float: left;
+		width: calc(~"100% - 30px");
+
+		input {
+			font-family: 'averta';
+			.fs(1.4, 2.4);
+			color: #000;
+			border: none;			
+			width: 100%;
+		}
+	}
+	.icon {
+		float: right;
+
+		i {
+			color: @color-gray;
+			font-size: 22px;
+		}
+	}
+}

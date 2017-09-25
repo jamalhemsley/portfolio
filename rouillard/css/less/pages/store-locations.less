@@ -1,0 +1,271 @@
+.pg-store-locations {
+	.map-search {
+		background-image: url('../img/tmp/bloc-cta-2.png');
+		background-size: cover;
+		min-height: 304px;
+		margin-bottom: 2rem;
+
+		.cont {
+			top: 0;
+			left: 0;
+			z-index: 10;
+			transform: none;
+			width: 100%;
+			position: relative;
+
+			.c-ariane {
+				position: absolute;
+				top: 1.5rem;
+				left: 2rem;
+
+				a {
+					color: #fff;
+
+					&:after { color: #fff; }
+
+					&.active { font-family: 'avertasemibold'; }
+				}
+			}
+
+			.cont-inner {
+				font-family: 'avertalight';
+				.fs(1.4, 3.5);
+
+				.location-search-form {
+					margin: 12% auto 0;
+
+					span {
+						&.option {
+							display: block;
+							color: #fff;
+							padding: 16px 24px;
+						}
+					}
+
+					input[type="text"],
+					button,
+					.c-btn,
+					span.option {
+						.fs(1.4, 1.7);
+					}
+
+					.fa { margin-right: 1rem; }
+
+					label {
+						display: block;
+						color: #fff;
+						text-align: left;
+					}
+
+					button,
+					.c-btn {
+						cursor: pointer;
+						display: inline-block;
+						color: #fff;
+						border: none;
+						background-color: @color-green;
+						padding: 16px 24px;
+
+						&:hover {
+							text-decoration: none;
+							background-color: @color-green-hover;
+						}
+					}
+
+					fieldset {
+						display: block;
+						border: none;
+						margin: 0;
+						padding: 0;
+						width: auto;
+
+						input[type="text"] {
+							border: none;
+							display: inline-block;
+							text-align: left;
+							width: 50%;
+							color: #000;
+							padding: 16px 24px;
+							float: left;
+						}
+
+						button {
+							width: 35%;
+							float: left;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	footer,
+	.c-footer {
+		border-top: 0;
+		padding-top: 0;
+
+		.menu {
+			margin: 4rem auto;
+			text-align: center;
+			float: none;
+		}
+
+		.author {
+			margin-right: 0;
+			margin-bottom: 4rem;
+			float: none;
+
+			a { margin: 0 auto; }
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.pg-store-locations {
+		.map-search {
+			height: 334px;
+
+			.cont {
+				.cont-inner {
+					.location-search-form {
+						margin: 14% auto 0;
+
+						fieldset {
+							input[type="text"] {
+								width: 36rem !important;
+							}
+
+							button {
+								width: 20rem ;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		footer,
+		.c-footer {
+			.menu {
+				float: left;
+				text-align: left;
+			}
+
+			.author {
+				margin: 4rem auto;
+				float: right;
+			}
+		}
+	}
+}
+
+@media (max-width: 1092px) {
+	.c-logo {
+		left: 130px;
+	}
+
+	.c-menu-main,
+	.c-menu-sub,
+	.c-search,
+	.c-sociallinks {
+		display: none;
+	}
+}
+
+@media(min-width: 992px) {
+	.pg-store-locations {
+		.map-search {
+			height: 344px;
+
+			.cont {
+				.cont-inner {
+					font-family: 'avertalight';
+					.fs(1.4, 3.5);
+
+					.location-search-form {
+						margin: 15% auto 0;
+
+						span {
+							&.option {
+								display: inline-block;
+								float: left;
+							}
+						}
+
+						input[type="text"],
+						button,
+						.c-btn,
+						span.option {
+							.fs(1.4, 1.7);
+						}
+
+						.fa { margin-right: 1rem; }
+
+						label {
+							display: block;
+							color: #fff;
+							text-align: left;
+						}
+
+						button,
+						.c-btn {
+							cursor: pointer;
+							display: inline-block;
+							color: #fff;
+							float: left;
+							border: none;
+							background-color: @color-green;
+							padding: 16px 24px;
+
+							&:hover {
+								text-decoration: none;
+								background-color: @color-green-hover;
+							}
+						}
+
+						fieldset {
+							display: inline-block;
+							float: left;
+
+							input[type="text"] {
+								width: 24rem !important;
+							}
+
+							button {
+								width: 20rem ;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media(min-width: 1200px) {
+	.pg-store-locations {
+		.map-search {
+			height: 386px;
+
+			.cont {
+				.cont-inner {
+					font-family: 'avertalight';
+					.fs(1.4, 3.5);
+
+					.location-search-form {
+						margin: 12% auto 0;
+						fieldset {
+							input[type="text"] {
+								width: 42rem !important;
+							}
+
+							button {
+								width: 20rem ;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

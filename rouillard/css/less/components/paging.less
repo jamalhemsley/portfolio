@@ -1,0 +1,34 @@
+.c-paging {
+	a {
+		display: inline-block;
+		min-width: 44px;
+		min-height: 44px;
+		border: 1px solid @color-gray;
+		font-family: 'averta';
+		.fs(1.4, 2);
+		color: @color-gray;
+		text-align: center;
+		line-height: 44px;
+		text-transform: uppercase;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	
+	.item {
+		display: inline-block;	
+
+		&.next {
+			a {
+				padding: 0 16px;
+			}
+		}
+
+		&.item-current {
+			a {
+				border: 2px solid @color-green;
+			}
+		}
+	}
+}

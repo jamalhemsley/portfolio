@@ -1,0 +1,276 @@
+.c-btn {
+	text-transform: uppercase;
+	.fs(1.3, 1.5);
+	padding: 18px 50px;
+	text-decoration: none;
+	display: inline-block;
+	letter-spacing: 1px;
+	font-family: 'averta';
+
+	&.filled {
+		background-color: @color-green;
+		border: 1px solid @color-green;
+		color: #FFF;
+
+		&:hover {
+			background-color: @color-green-hover;
+			border: 1px solid @color-green-hover;
+			text-decoration: none;
+		}
+	}
+	&.empty {
+		background-color: #FFF;
+		color: #000;
+		border: 1px solid @color-green;
+
+		&:hover {
+			background-color: @color-green-hover;
+			border: 1px solid @color-green-hover;
+			color: #FFF;	
+			text-decoration: none;
+		}
+	}
+	&.frm {
+		background-color: #ececec;
+		color: @color-gray;
+		padding: 13px 12px;
+	}
+}
+
+.c-btn-arrow {
+
+	&.right {
+		font-family: 'averta';
+		.fs(2, 5.2);
+		text-decoration: none;
+		color: #000;
+
+		&:after {
+			background: url(../img/icon-arrow-right.svg) no-repeat scroll 0 0 transparent;
+			content: '';
+			width: 37px;
+			height: 9px;
+			display: inline-block;
+			margin-left: 20px;
+		}
+
+		&:hover {
+							
+			&:after {
+				.keyframes(bounce; {	
+					0%, 30%, 50% {
+						.translate(0, 0);
+					}					
+					10% { 
+						.translate(-10px, 0);
+					}
+					20% { 
+						.translate(20px, 0);
+					}
+					40% { 
+						.translate(15px, 0);
+					}
+				});
+				.animation(bounce 2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate);
+			}
+		}
+	}
+}
+
+.c-btn-icon-left {
+	color: @color-gray;
+	text-decoration: none;
+	.fs(1.4, 1.9);
+	font-family: 'averta';
+
+	&:hover {
+		color: #000;
+		text-decoration: none;
+
+		i {
+			color: @color-green-hover;
+		}
+	}
+
+	i {
+		margin-right: 2px;
+	}
+}
+
+.c-btn-dl {
+	font-family: 'averta';
+	.fs(1.4, 1.9);
+	color: #000;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: none;
+
+		.fa {
+			color: @color-green-hover;
+		}
+	}
+
+	.fa {
+		color: @color-gray;
+	}
+}
+
+.c-btn-doc {
+	font-family: 'avertalight';
+	.fs(1.2, 1.8);
+	color: #000;
+	text-decoration: none;
+	border: 1px solid @color-gray;
+	display: table;
+
+	&:hover {
+		text-decoration: none;
+
+		.fa {
+			&:nth-of-type(1) {
+				color: #000;
+			}
+			&:last-child {
+				color: @color-green;
+			}
+		}
+	}
+
+	.fa,
+	span {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.fa {
+		&:nth-of-type(1) {
+			font-size: 35px;
+			padding: 13px 20px 13px 13px;
+		}
+		&:last-child {
+			padding: 22px;
+			font-size: 14px;
+			color: @color-gray;
+		}
+	}
+	span {
+		width: 100%;
+	}
+}
+
+.c-lnk {
+	color: @color-gray;
+	.fs(1.2, 1.9);
+	font-family: 'averta';
+	text-decoration: underline;
+
+	&:hover {
+		//color: @color-green;
+	}
+}
+
+.c-icons-group {
+
+	overflow: hidden;
+	display: table;
+	border-collapse: collapse;
+
+	&.sm {
+
+		.icon {
+
+			a {
+				padding: 12px 11px 8px;
+			}
+			svg {
+				.size(15px, 15px);
+			}
+			i {
+				.fs(2.1, 2.1);
+			}
+		}
+	}
+	&.big {
+		.icon {
+			a {
+				padding: 13px;
+			}
+			svg {
+				.size(15px, 15px);
+			}
+			i {
+				.fs(2.1, 2.1);
+			}
+		}
+	}
+	.icon {
+		display: table-cell;				
+		border: 1px solid @color-gray;
+
+		&:hover {
+			svg {
+				fill: @color-green-hover;
+			}
+			i {
+				color: @color-green-hover;
+			}
+		}
+
+		a {			
+			display: block;
+			color: @color-gray;			
+		}		
+		svg {
+			fill: @color-gray;
+		}
+	}
+}
+
+.c-btn-rounded {
+	display: inline-block;
+	border: 1px solid @color-gray;
+	border-radius: 50px;
+	color: @color-gray;
+	font-family: 'averta';
+	.fs(1.2, 2);
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding: 6px 20px;
+
+	&:hover {
+		border-color: @color-green-hover;
+		text-decoration: none;
+	}
+
+	&.filled {
+		background-color: @color-green;
+		border: 1px solid @color-green;
+		color: #FFF;
+
+		&:hover {
+			background-color: @color-green-hover;
+			border: 1px solid @color-green-hover;
+			text-decoration: none;
+		}
+	}
+	&.empty {
+		background-color: #FFF;
+		color: #000;
+		border: 1px solid @color-green;
+
+		&:hover {
+			background-color: @color-green-hover;
+			border: 1px solid @color-green-hover;
+			color: #FFF;
+			text-decoration: none;
+		}
+	}
+	&.frm {
+		background-color: #ececec;
+		color: @color-gray;
+		padding: 13px 12px;
+	}
+}

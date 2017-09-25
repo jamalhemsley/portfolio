@@ -1,0 +1,58 @@
+.c-hero-slideshow {
+
+	.carousel-indicators {
+		bottom: 8.12%; //69px;
+
+		li {
+			background-color: #fff;
+			width: 60px;
+			height: 3px;
+			border: none;
+			margin: 1px 5px;
+
+			&.active {
+				margin-top: 1px;
+				background-color: @color-green;
+			}
+		}
+	}
+
+	.item {
+		img {
+			.img-responsive();
+		}
+	}
+	.cont {
+		color: #FFF;
+		font-family: 'averta';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		.translate(-50%, -50%);
+		text-align: center;
+
+		.title {
+			text-transform: uppercase;
+			.fs(6.4, 8);			
+		}
+		.txt {
+			.fs(2.4, 3.2);
+			margin-top: 5.77%; //34px;
+		}
+	}
+}
+
+@media (max-width: 1050px) {
+
+	.c-hero-slideshow {
+
+		.cont {
+			.title {
+				.fs(3.8, 4);
+			}
+			.txt {
+				.fs(1.4, 2);
+			}
+		}
+	}
+}
