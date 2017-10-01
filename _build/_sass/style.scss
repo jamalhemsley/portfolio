@@ -787,9 +787,10 @@
         .human-bio { padding: 4rem 2rem; }
 
             .human-bio__avatar {
-                position: sticky;
-                top: 3rem;
-                bottom: 0;
+                // Commented out until Chrome bug is fixed.
+                // position: sticky;
+                // top: 3rem;
+                // bottom: 0;
             }
 
         .footer--primary h3 { margin-top: 0.4rem; }
