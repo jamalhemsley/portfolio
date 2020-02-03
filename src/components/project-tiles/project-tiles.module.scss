@@ -62,7 +62,8 @@
 
         .project__image {
             filter: blur(0.125rem);
-            transform: scale(1.1);
+            -webkit-perspective: 1000;
+            transform: scale(1.1) translate3d(0, 0, 0);
         }
 
         .project__action {
@@ -120,7 +121,8 @@
     margin-bottom: 2rem;
     overflow: hidden;
     position: relative;
-    transform: translateY(0) scale(1);
+    -webkit-perspective: 1000;
+    transform: translateY(0) scale(1) translate3d(0, 0, 0);
     user-select: none;
 
     &::before {

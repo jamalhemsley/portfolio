@@ -24,7 +24,7 @@ function Banner() {
                     </p>
                 </div>
                 <a href="#contact" className={`${style.banner__link}`}>
-                    Let&rsquo;s work together.
+                    Let&#39;;s work together.
                 </a>
             </Wrapper>
         </section>
