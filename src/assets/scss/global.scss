@@ -1,0 +1,120 @@
+/*------------------------------------*\
+    #GLOBAL-STYLES
+\*------------------------------------*/
+
+/*-- Fonts --*/
+
+@font-face {
+    font-family: 'Posterama 1927';
+    font-display: optional;
+    font-style: normal;
+    font-weight: bold;
+    src: local('Posterama 1927 Bold'), local('Posterama1927-Bold'),
+        url('../fonts/hinted-posterama-1927-bold.woff2') format('woff2'),
+        url('../fonts/hinted-posterama-1927-bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Proxima Nova Alt';
+    font-display: optional;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Proxima Nova Alt Regular'), local('ProximaNovaA-Regular'),
+        url('../fonts/hinted-proxima-nova-alt-regular.woff2') format('woff2'),
+        url('../fonts/hinted-proxima-nova-alt-regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Proxima Nova Alt';
+    font-display: optional;
+    font-style: normal;
+    font-weight: bold;
+    src: local('Proxima Nova Alt Bold'), local('ProximaNovaA-Bold'),
+        url('../fonts/hinted-proxima-nova-alt-bold.woff2') format('woff2'),
+        url('../fonts/hinted-proxima-nova-alt-bold.woff') format('woff');
+}
+
+/*-- Base --*/
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+*::selection {
+    background: rgba($color-secondary, 0.8);
+    color: $color-light;
+}
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background: $color-background;
+    color: $color-primary;
+    font-family: $font-family-body;
+    -moz-font-feature-settings: 'kern' 1; // Enable Font Kerning
+    -ms-font-feature-settings: 'kern' 1; // Enable Font Kerning
+    -o-font-feature-settings: 'kern' 1; // Enable Font Kerning
+    -webkit-font-feature-settings: 'kern' 1; // Enable Font Kerning
+    font-feature-settings: 'dlig' on; // Enable Discretionary Ligatures
+    font-feature-settings: 'kern' 1; // Enable Font Kerning
+    font-feature-settings: 'liga' on; // Enable Ligatures
+    font-feature-settings: 'lnum' off; // Disable Lining Figures
+    font-feature-settings: 'onum' off; // Disable Old Style Figures
+    font-feature-settings: 'ss01' off; // Disable Alternate Glyphs
+    font-kerning: normal; // Enable Font Kerning
+    font-size: 100%;
+    -moz-osx-font-smoothing: grayscale; // Optimize Font Rendering
+    -webkit-font-smoothing: antialiased; // Enable Font Anti-aliasing
+    font-weight: $body-font-weight;
+    line-height: $body-line-height;
+    margin: 0;
+    text-align: left;
+    text-rendering: optimizeLegibility; // Legibility Over Rendering Speed
+}
+
+/*-- Layout --*/
+
+main {
+    display: block; // Render the `main` element consistently in IE.
+}
+
+/*-- Typography --*/
+
+a {
+    background-color: transparent; // Removes gray background on active links in IE 10
+}
+
+b,
+strong {
+    font-weight: bold; // Sets the correct font weight across browsers.
+}
+
+img {
+    border-style: none; // Remove the border on images inside links in IE 10.
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: $font-family-heading;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}

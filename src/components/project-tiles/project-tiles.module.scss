@@ -1,0 +1,223 @@
+/*------------------------------------*\
+    #PROJECT-TILES
+\*------------------------------------*/
+
+/*-- Base Section --*/
+
+.project-tiles {
+    background: $color-background;
+    padding: 3rem 0;
+}
+
+.project-tiles__inner {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+
+    @include bp(md) {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+}
+
+.project-tiles__column {
+    position: relative;
+    width: 100%;
+
+    @include bp(md) {
+        margin-right: 3rem;
+
+        &:first-child {
+            margin-top: -6rem;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+/*-- Project --*/
+
+.project {
+    display: block;
+    color: $color-primary;
+    float: left;
+    margin-top: 4rem;
+    text-decoration: none;
+    width: 100%;
+
+    &:hover {
+        .project__cover {
+            box-shadow: 0 1.5rem 1rem -1.25rem rgba($color-dark, 0.5);
+            transform: translateY(-0.25rem) scale(1.025);
+
+            &::before {
+                @include transition(opacity, 0.4s);
+                opacity: 0.75;
+            }
+        }
+
+        .project__image {
+            filter: blur(0.125rem);
+            transform: scale(1.1);
+        }
+
+        .project__action {
+            box-shadow: 0 1.25rem 1rem -1.25rem rgba($color-dark, 0.75);
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            transition: background 0.4s ease-in-out,
+                box-shadow 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s,
+                color 0.4s ease-in-out,
+                opacity 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s,
+                transform 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s;
+
+            .label {
+                max-width: 11rem;
+                padding-right: 0.75rem;
+                opacity: 1;
+                transition: padding 0.6s cubic-bezier(0.39, 0.575, 0.565, 1)
+                        0.4s,
+                    max-width 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 0.4s,
+                    opacity 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 0.7s;
+            }
+
+            &:active {
+                background: $color-secondary-dark;
+                box-shadow: 0 1rem 1.25rem -1rem rgba($color-dark, 0.9);
+                color: $color-light;
+                transform: translate(-50%, calc(-50% + 0.15rem)) scale(1);
+            }
+        }
+
+        .project__client {
+            color: $color-secondary-light;
+        }
+    }
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &:nth-child(even) {
+        margin-right: 0;
+    }
+}
+
+/*-- Project > Image --*/
+
+.project__cover {
+    @include transition(
+        box-shadow transform,
+        0.4s,
+        cubic-bezier(0.39, 0.575, 0.565, 1)
+    );
+    border-radius: 0.75rem;
+    display: flex;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    position: relative;
+    transform: translateY(0) scale(1);
+    user-select: none;
+
+    &::before {
+        @include transition(opacity, 0.4s);
+        @include z-index(1);
+        background: linear-gradient(60deg, $color-primary, $color-secondary);
+        content: '';
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        transition-delay: 0.1s;
+        width: 100%;
+    }
+}
+
+.project__image {
+    @include transition(
+        filter transform,
+        0.4s,
+        cubic-bezier(0.39, 0.575, 0.565, 1)
+    );
+    @include z-index(-1);
+    backface-visibility: hidden;
+    bottom: -1rem;
+    height: auto;
+    filter: blur(0);
+    left: -1rem;
+    right: -1rem;
+    top: -1rem;
+    width: 100%;
+}
+
+.project__action {
+    @include z-index(2);
+    align-items: center;
+    background: $color-light;
+    border-radius: 10rem;
+    color: $color-secondary;
+    display: flex;
+    font-family: $font-family-heading;
+    left: 50%;
+    line-height: 1;
+    min-width: 1rem;
+    opacity: 0;
+    padding: 1rem;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%) translateZ(0) scale(0.9);
+    transition: background 0.4s ease-in-out,
+        box-shadow 0.4s cubic-bezier(0.39, 0.575, 0.565, 1),
+        color 0.4s ease-in-out, opacity 0.4s cubic-bezier(0.39, 0.575, 0.565, 1),
+        transform 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+    white-space: nowrap;
+
+    .label {
+        max-width: 0;
+        opacity: 0;
+        transition: padding 0.1s ease-in-out 0.4s,
+            max-width 0.1s ease-in-out 0.4s, opacity 0.4s ease-in-out;
+    }
+
+    .icon {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        & > svg {
+            fill: currentColor;
+            height: auto;
+            margin-top: -0.1rem;
+            width: 1rem;
+        }
+    }
+
+    &:hover {
+        background: $color-secondary-light;
+        color: $color-light;
+    }
+}
+
+/*-- Project > Content --*/
+
+.project__content {
+    padding: 0 2rem;
+}
+
+.project__client {
+    @include transition(color, 0.4s);
+    color: $color-dark-alt;
+    font-family: $font-family-heading;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.project__desc {
+    font-size: 1.1rem;
+}

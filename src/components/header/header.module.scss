@@ -1,0 +1,142 @@
+/*------------------------------------*\
+    #HEADER
+\*------------------------------------*/
+
+/*-- Base --*/
+
+.global-header {
+    @include z-index(10);
+    display: flex;
+    justify-content: space-between;
+    left: 50%;
+    padding: 0 1.5rem;
+    position: absolute;
+    top: 3rem;
+    transform: translateX(-50%);
+    width: 100%;
+
+    @include bp(sm) {
+        top: 3.5rem;
+        width: map-get($grid-breakpoints, sm);
+    }
+
+    @include bp(md) {
+        top: 4rem;
+        width: map-get($grid-breakpoints, md);
+    }
+
+    @include bp(lg) {
+        top: 4.5rem;
+        width: map-get($grid-breakpoints, lg);
+    }
+
+    @include bp(xl) {
+        width: map-get($grid-breakpoints, xl);
+    }
+}
+
+/*-- Logo --*/
+
+.global-header__logo {
+    align-items: center;
+    display: flex;
+    padding-top: 0.5rem;
+    user-select: none;
+
+    @include bp(md) {
+        padding-top: 0.25rem;
+    }
+
+    & > img,
+    & > svg {
+        height: auto;
+        width: 5rem;
+
+        @include bp(md) {
+            width: 5.5rem;
+        }
+
+        @include bp(lg) {
+            width: 6rem;
+        }
+    }
+}
+
+.global-header__logo___light {
+    .path-main {
+        fill: $color-light;
+    }
+
+    .path-accent {
+        fill: $color-secondary;
+    }
+}
+
+.global-header__logo___dark {
+    .path-main {
+        fill: $color-primary;
+    }
+
+    .path-accent {
+        fill: $color-secondary;
+    }
+}
+
+/*-- Navigation --*/
+
+.global-header__nav {
+    user-select: none;
+
+    .nav-list {
+        display: flex;
+        justify-content: flex-end;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-item {
+        margin-right: 0.5rem;
+
+        @include bp(md) {
+            margin-right: 0.75rem;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .nav-link {
+        @include transition(background color transform);
+        align-items: center;
+        background: $color-black;
+        border-radius: 50%;
+        color: $color-light;
+        display: flex;
+        justify-content: center;
+        padding: 0.75rem;
+        transform: scale(0.9);
+
+        @include bp(md) {
+            padding: 1rem;
+        }
+
+        &:hover,
+        &:focus {
+            background: $color-secondary-light;
+            color: $color-light;
+            transform: scale(1);
+
+            .nav-link__icon {
+                fill: currentColor;
+            }
+        }
+    }
+
+    .nav-link__icon {
+        fill: $color-light;
+        height: auto;
+        width: 1.75rem;
+    }
+}

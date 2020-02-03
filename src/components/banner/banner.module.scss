@@ -1,0 +1,108 @@
+/*------------------------------------*\
+    #BANNER
+\*------------------------------------*/
+
+.banner {
+    display: block;
+    width: 100%;
+}
+
+.banner___header {
+    align-items: center;
+    background: $color-dark;
+    color: $color-primary-alt;
+    display: flex;
+    padding: calc(10rem + 5.625rem) 0 13rem;
+
+    @include bp(md) {
+        padding: calc(10rem + 5.625rem) 0 12rem;
+    }
+}
+
+.banner__title {
+    color: $color-light;
+    display: block;
+    font-family: $font-family-heading;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+
+    @include bp(sm) {
+        font-size: 2.5rem;
+    }
+
+    @include bp(md) {
+        font-size: 3.25rem;
+    }
+
+    @include bp(lg) {
+        font-size: 3.5rem;
+    }
+}
+
+.banner__mark {
+    color: $color-secondary;
+}
+
+.banner__desc,
+.banner__link {
+    font-size: 1.1rem;
+    line-height: 1.5;
+
+    @include bp(sm) {
+        font-size: 1.2rem;
+    }
+
+    @include bp(md) {
+        font-size: 1.5rem;
+    }
+}
+
+.banner__desc {
+    color: $color-primary-alt;
+    margin-bottom: 1.5rem;
+    max-width: 22rem;
+    width: 85%;
+
+    @include bp(sm) {
+        max-width: none;
+        width: 75%;
+    }
+
+    @include bp(md) {
+        width: 70%;
+    }
+
+    @include bp(lg) {
+        width: 60%;
+    }
+
+    @include bp(xl) {
+        width: 45%;
+    }
+
+    p {
+        margin-bottom: 1.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.banner__link {
+    @include transition(border color);
+    border-bottom: 0.125rem solid rgba($color-primary, 0.25);
+    color: $color-light;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0;
+    position: relative;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        border-color: currentColor;
+        color: $color-secondary-light;
+    }
+}
