@@ -6,14 +6,14 @@
  */
 
 import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
 
 function SiteMeta({ description, lang, meta, title }) {
     const { site } = useStaticQuery(
         graphql`
-            query {
+            query siteMeta {
                 site {
                     siteMetadata {
                         title

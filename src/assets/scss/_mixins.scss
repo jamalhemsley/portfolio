@@ -16,7 +16,11 @@
 
 /*-- Transitions --*/
 
-@mixin transition($props: all, $duration: 0.2s, $method: ease-in-out) {
+@mixin transition(
+    $props: all,
+    $duration: $transition-default-duration,
+    $method: $transition-default-type
+) {
     $prefixes: -webkit- -moz- -ms- -o-;
 
     @each $prefix in $prefixes {

@@ -2,11 +2,23 @@
     #PROJECT-TILES
 \*------------------------------------*/
 
-/*-- Base Section --*/
+/*-- Base --*/
 
 .project-tiles {
     background: $color-background;
-    padding: 3rem 0;
+    padding: 4rem 0 4rem;
+
+    @include bp(sm) {
+        padding-bottom: 5rem;
+    }
+
+    @include bp(md) {
+        padding-bottom: 6.5rem;
+    }
+
+    @include bp(lg) {
+        padding-bottom: 7.5rem;
+    }
 }
 
 .project-tiles__inner {
@@ -26,15 +38,46 @@
     position: relative;
     width: 100%;
 
-    @include bp(md) {
-        margin-right: 3rem;
+    &:first-child {
+        margin-top: -10rem;
 
-        &:first-child {
-            margin-top: -6rem;
+        @include bp(sm) {
+            margin-top: -10.5rem;
         }
 
-        &:last-child {
-            margin-right: 0;
+        @include bp(md) {
+            margin-right: 2.5rem;
+        }
+
+        @include bp(lg) {
+            margin-top: -11.5rem;
+            margin-right: 3rem;
+        }
+
+        @include bp(xl) {
+            margin-top: -12.5rem;
+        }
+    }
+
+    &:nth-child(2) {
+        @include bp(md) {
+            margin-top: -8rem;
+        }
+
+        @include bp(lg) {
+            margin-top: -8.5rem;
+        }
+
+        @include bp(xl) {
+            margin-top: -9rem;
+        }
+    }
+
+    &:last-child {
+        .project {
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 }
@@ -45,17 +88,22 @@
     display: block;
     color: $color-primary;
     float: left;
-    margin-top: 4rem;
+    margin-bottom: 4rem;
     text-decoration: none;
     width: 100%;
 
-    &:hover {
+    @include bp(sm) {
+        margin-bottom: 4.5rem;
+    }
+
+    &:hover,
+    &:focus {
         .project__cover {
-            box-shadow: 0 1.5rem 1rem -1.25rem rgba($color-dark, 0.5);
+            box-shadow: 0 1.5rem 1rem -1.25rem rgba($color-primary, 0.6);
             transform: translateY(-0.25rem) scale(1.025);
 
             &::before {
-                @include transition(opacity, 0.4s);
+                @include transition(opacity);
                 opacity: 0.75;
             }
         }
@@ -67,12 +115,9 @@
         }
 
         .project__action {
-            box-shadow: 0 1.25rem 1rem -1.25rem rgba($color-dark, 0.75);
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
-            transition: background 0.4s ease-in-out,
-                box-shadow 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s,
-                color 0.4s ease-in-out,
+            transition: background 0.4s ease-in-out, color 0.4s ease-in-out,
                 opacity 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s,
                 transform 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s;
 
@@ -85,39 +130,36 @@
                     max-width 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 0.4s,
                     opacity 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 0.7s;
             }
-
-            &:active {
-                background: $color-secondary-dark;
-                box-shadow: 0 1rem 1.25rem -1rem rgba($color-dark, 0.9);
-                color: $color-light;
-                transform: translate(-50%, calc(-50% + 0.15rem)) scale(1);
-            }
         }
 
-        .project__client {
+        .project__title {
             color: $color-secondary-light;
         }
     }
 
-    &:first-child {
-        margin-top: 0;
+    &:active {
+        .project__cover {
+            box-shadow: 0 0.75rem 1rem -0.75rem rgba($color-primary, 0.75);
+            transform: translateY(0) scale(1);
+
+            &::before {
+                opacity: 0.9;
+            }
+        }
     }
 
-    &:nth-child(even) {
-        margin-right: 0;
+    &:last-child {
+        @include bp(md) {
+            margin-bottom: 0;
+        }
     }
 }
 
-/*-- Project > Image --*/
+/*-- Project > Cover --*/
 
 .project__cover {
-    @include transition(
-        box-shadow transform,
-        0.4s,
-        cubic-bezier(0.39, 0.575, 0.565, 1)
-    );
+    @include transition(box-shadow transform);
     border-radius: 0.75rem;
-    display: flex;
     margin-bottom: 2rem;
     overflow: hidden;
     position: relative;
@@ -126,7 +168,7 @@
     user-select: none;
 
     &::before {
-        @include transition(opacity, 0.4s);
+        @include transition(opacity);
         @include z-index(1);
         background: linear-gradient(60deg, $color-primary, $color-secondary);
         content: '';
@@ -141,19 +183,11 @@
 }
 
 .project__image {
-    @include transition(
-        filter transform,
-        0.4s,
-        cubic-bezier(0.39, 0.575, 0.565, 1)
-    );
+    @include transition(filter transform);
     @include z-index(-1);
     backface-visibility: hidden;
-    bottom: -1rem;
     height: auto;
     filter: blur(0);
-    left: -1rem;
-    right: -1rem;
-    top: -1rem;
     width: 100%;
 }
 
@@ -173,18 +207,17 @@
     position: absolute;
     top: 50%;
     text-align: center;
-    transform: translate(-50%, -50%) translateZ(0) scale(0.9);
-    transition: background 0.4s ease-in-out,
-        box-shadow 0.4s cubic-bezier(0.39, 0.575, 0.565, 1),
-        color 0.4s ease-in-out, opacity 0.4s cubic-bezier(0.39, 0.575, 0.565, 1),
-        transform 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transform: translate(-50%, -50%) translateZ(0) scale(0.8);
+    transition: background 0.4s ease-in-out, color 0.4s ease-in-out,
+        opacity 0.4s ease-in-out 0.1s,
+        transform 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s;
     white-space: nowrap;
 
     .label {
         max-width: 0;
         opacity: 0;
-        transition: padding 0.1s ease-in-out 0.4s,
-            max-width 0.1s ease-in-out 0.4s, opacity 0.4s ease-in-out;
+        transition: padding 0.1s ease-in-out 0.5s,
+            max-width 0.1s ease-in-out 0.5s, opacity 0.5s ease-in-out;
     }
 
     .icon {
@@ -199,21 +232,24 @@
             width: 1rem;
         }
     }
-
-    &:hover {
-        background: $color-secondary-light;
-        color: $color-light;
-    }
 }
 
 /*-- Project > Content --*/
 
 .project__content {
     padding: 0 2rem;
+
+    @include bp(md) {
+        padding: 0 1.5rem;
+    }
+
+    @include bp(lg) {
+        padding: 0 2rem;
+    }
 }
 
-.project__client {
-    @include transition(color, 0.4s);
+.project__title {
+    @include transition(color);
     color: $color-dark-alt;
     font-family: $font-family-heading;
     font-size: 2rem;
@@ -222,4 +258,62 @@
 
 .project__desc {
     font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+
+    @include bp(sm) {
+        width: 85%;
+    }
+
+    @include bp(md) {
+        width: 100%;
+    }
+
+    @include bp(lg) {
+        width: 90%;
+    }
+
+    @include bp(xl) {
+        width: 80%;
+    }
+}
+
+.project__tags {
+    list-style: none;
+    margin-bottom: -0.5rem;
+    padding: 0;
+    width: 100%;
+
+    @include bp(sm) {
+        width: 85%;
+    }
+
+    @include bp(md) {
+        width: 100%;
+    }
+
+    @include bp(lg) {
+        width: 90%;
+    }
+
+    @include bp(xl) {
+        width: 80%;
+    }
+
+    .tag {
+        border: 0.0625rem solid currentColor;
+        border-radius: 0.25rem;
+        color: lighten($color-primary, 24%);
+        display: inline-flex;
+        font-family: $font-family-heading;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        margin-right: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        text-transform: uppercase;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
 }

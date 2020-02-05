@@ -2,6 +2,8 @@
     #BANNER
 \*------------------------------------*/
 
+/*-- Base --*/
+
 .banner {
     display: block;
     width: 100%;
@@ -12,12 +14,19 @@
     background: $color-dark;
     color: $color-primary-alt;
     display: flex;
-    padding: calc(10rem + 5.625rem) 0 13rem;
+    min-height: 105vh;
+    padding: calc(8rem + 4.125rem) 0 12rem;
 
-    @include bp(md) {
-        padding: calc(10rem + 5.625rem) 0 12rem;
+    @include bp(sm) {
+        padding-top: calc(7rem + 4.125rem);
+    }
+
+    @include bp(lg) {
+        padding: calc(6rem + 4.625rem) 0 12rem;
     }
 }
+
+/*-- Content --*/
 
 .banner__title {
     color: $color-light;
@@ -41,7 +50,22 @@
 }
 
 .banner__mark {
+    animation: rotateMark 20s linear infinite;
     color: $color-secondary;
+    display: inline-block;
+    margin: 0 0.75rem;
+    user-select: none;
+    vertical-align: middle;
+
+    @include bp(md) {
+        margin: 0 1rem;
+    }
+
+    @keyframes rotateMark {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 }
 
 .banner__desc,
@@ -81,17 +105,17 @@
         width: 45%;
     }
 
-    p {
-        margin-bottom: 1.5rem;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+    &:last-child {
+        margin-bottom: 0;
     }
 }
 
 .banner__link {
-    @include transition(border color);
+    @include transition(
+        border color,
+        0.4s,
+        cubic-bezier(0.39, 0.575, 0.565, 1)
+    );
     border-bottom: 0.125rem solid rgba($color-primary, 0.25);
     color: $color-light;
     display: inline-block;

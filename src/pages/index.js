@@ -5,14 +5,14 @@ import Banner from '../components/banner/banner';
 import ProjectTiles from '../components/project-tiles/project-tiles';
 
 const HomePage = () => (
-    <app>
+    <div id="app">
         <SiteMeta title="Front-end Developer" />
         <Header />
         <main role="main">
             <Banner />
             <ProjectTiles />
         </main>
-    </app>
+    </div>
 );
 
 export default HomePage;

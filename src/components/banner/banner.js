@@ -5,8 +5,8 @@
  */
 
 import React from 'react';
-import style from './banner.module.scss';
 import Wrapper from '../wrapper/wrapper';
+import style from './banner.module.scss';
 
 function Banner() {
     return (
@@ -14,17 +14,15 @@ function Banner() {
             <Wrapper>
                 <h2 className={`${style.banner__title}`}>
                     Producer
-                    <span className={`${style.banner__mark}`}> &times; </span>
+                    <span className={`${style.banner__mark}`}>&times;</span>
                     Creative
                 </h2>
-                <div className={`${style.banner__desc}`}>
-                    <p>
-                        Designing, crafting, and shooting the work that people
-                        want to spend time with.
-                    </p>
-                </div>
-                <a href="#contact" className={`${style.banner__link}`}>
-                    Let&#39;;s work together.
+                <p className={`${style.banner__desc}`}>
+                    Designing, crafting, and shooting the work that people want
+                    to spend time with.
+                </p>
+                <a className={`${style.banner__link}`} href="#footer">
+                    Let&rsquo;s work together.
                 </a>
             </Wrapper>
         </section>

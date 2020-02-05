@@ -6,33 +6,41 @@
 
 .global-header {
     @include z-index(10);
-    display: flex;
-    justify-content: space-between;
-    left: 50%;
-    padding: 0 1.5rem;
+    left: 0;
     position: absolute;
-    top: 3rem;
-    transform: translateX(-50%);
+    top: 2.5rem;
     width: 100%;
 
-    @include bp(sm) {
-        top: 3.5rem;
-        width: map-get($grid-breakpoints, sm);
-    }
-
-    @include bp(md) {
-        top: 4rem;
-        width: map-get($grid-breakpoints, md);
-    }
-
     @include bp(lg) {
-        top: 4.5rem;
-        width: map-get($grid-breakpoints, lg);
+        top: 3rem;
+    }
+}
+
+.global-header___dark {
+    .path-accent {
+        fill: $color-secondary;
     }
 
-    @include bp(xl) {
-        width: map-get($grid-breakpoints, xl);
+    .path-main {
+        fill: $color-primary;
     }
+}
+
+.global-header___light {
+    .global-header__logo {
+        .path-accent {
+            fill: $color-secondary;
+        }
+
+        .path-main {
+            fill: $color-light;
+        }
+    }
+}
+
+.global-header__inner {
+    display: flex;
+    justify-content: space-between;
 }
 
 /*-- Logo --*/
@@ -59,26 +67,6 @@
         @include bp(lg) {
             width: 6rem;
         }
-    }
-}
-
-.global-header__logo___light {
-    .path-main {
-        fill: $color-light;
-    }
-
-    .path-accent {
-        fill: $color-secondary;
-    }
-}
-
-.global-header__logo___dark {
-    .path-main {
-        fill: $color-primary;
-    }
-
-    .path-accent {
-        fill: $color-secondary;
     }
 }
 
@@ -131,6 +119,11 @@
             .nav-link__icon {
                 fill: currentColor;
             }
+        }
+
+        &:active {
+            background: $color-secondary-dark;
+            transform: scale(0.95);
         }
     }
 

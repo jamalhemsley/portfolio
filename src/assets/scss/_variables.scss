@@ -59,3 +59,8 @@ $z-index: (
     15: 1500,
     20: 2000,
 );
+
+/*-- Transitions --*/
+
+$transition-default-type: cubic-bezier(0.39, 0.575, 0.565, 1);
+$transition-default-duration: 0.4s;
