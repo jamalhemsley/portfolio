@@ -100,7 +100,7 @@
     &:focus {
         .project__cover {
             box-shadow: 0 1.5rem 1rem -1.25rem rgba($color-primary, 0.6);
-            transform: translateY(-0.25rem) scale(1.025);
+            transform: scale(1.025) translateY(-0.25rem);
 
             &::before {
                 @include transition(opacity);
@@ -110,8 +110,7 @@
 
         .project__image {
             filter: blur(0.125rem);
-            -webkit-perspective: 1000;
-            transform: scale(1.1) translate3d(0, 0, 0);
+            transform: scale(1);
         }
 
         .project__action {
@@ -159,12 +158,13 @@
 
 .project__cover {
     @include transition(box-shadow transform);
+    backface-visibility: hidden;
     border-radius: 0.75rem;
     margin-bottom: 2rem;
     overflow: hidden;
     position: relative;
-    -webkit-perspective: 1000;
-    transform: translateY(0) scale(1) translate3d(0, 0, 0);
+    transform: scale(1) translateY(0);
+    transform: translateY(0);
     user-select: none;
 
     &::before {
@@ -188,6 +188,7 @@
     backface-visibility: hidden;
     height: auto;
     filter: blur(0);
+    transform: scale(1.1);
     width: 100%;
 }
 
