@@ -100,16 +100,14 @@
     &:focus {
         .project__cover {
             box-shadow: 0 1.5rem 1rem -1.25rem rgba($color-primary, 0.6);
-            transform: scale(1.025) translateY(-0.25rem);
+            transform: scale(1) translateY(0);
 
             &::before {
-                @include transition(opacity);
                 opacity: 0.75;
             }
         }
 
         .project__image {
-            filter: blur(0.125rem);
             transform: scale(1);
         }
 
@@ -136,7 +134,7 @@
         }
     }
 
-    &:active {
+    /* &:active {
         .project__cover {
             box-shadow: 0 0.75rem 1rem -0.75rem rgba($color-primary, 0.75);
             transform: translateY(0) scale(1);
@@ -145,7 +143,7 @@
                 opacity: 0.9;
             }
         }
-    }
+    } */
 
     &:last-child {
         @include bp(md) {
@@ -163,8 +161,7 @@
     margin-bottom: 2rem;
     overflow: hidden;
     position: relative;
-    transform: scale(1) translateY(0);
-    transform: translateY(0);
+    transform: scale(0.96) translateY(0.5rem) translate3d(0, 0, 0);
     user-select: none;
 
     &::before {
@@ -177,18 +174,18 @@
         opacity: 0;
         position: absolute;
         top: 0;
+        transform: translate3d(0, 0, 0);
         transition-delay: 0.1s;
         width: 100%;
     }
 }
 
 .project__image {
-    @include transition(filter transform);
+    @include transition(transform);
     @include z-index(-1);
     backface-visibility: hidden;
     height: auto;
-    filter: blur(0);
-    transform: scale(1.1);
+    transform: scale(1.1) translate3d(0, 0, 0);
     width: 100%;
 }
 
