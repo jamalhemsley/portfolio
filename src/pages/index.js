@@ -1,3 +1,7 @@
+/**
+ * Index Page
+ */
+
 import React from 'react';
 import SiteMeta from '../components/site-meta/site-meta';
 import Header from '../components/header/header';

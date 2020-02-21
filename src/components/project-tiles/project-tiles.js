@@ -29,9 +29,9 @@ function ProjectTiles() {
                                 previewImage {
                                     childImageSharp {
                                         fluid(
-                                            maxWidth: 552
-                                            quality: 75
-                                            maxHeight: 425
+                                            maxWidth: 1104
+                                            quality: 100
+                                            maxHeight: 850
                                             cropFocus: CENTER
                                         ) {
                                             ...GatsbyImageSharpFluid
@@ -41,6 +41,10 @@ function ProjectTiles() {
                                         }
                                         id
                                     }
+                                    publicURL
+                                }
+                                previewVideo {
+                                    publicURL
                                 }
                             }
                             id
@@ -61,32 +65,66 @@ function ProjectTiles() {
                 return false;
             }
 
+            let projectMedia;
+            const projectImage = project.frontmatter.previewImage
+                ? project.frontmatter.previewImage
+                : null;
+            const projectImageSharp = projectImage
+                ? project.frontmatter.previewImage.childImageSharp
+                : null;
+            const projectVideo = project.frontmatter.previewVideo
+                ? project.frontmatter.previewVideo
+                : null;
+
+            if (!!projectImage && !!projectImageSharp) {
+                projectMedia = (
+                    <Img
+                        className={`${style.project__media}`}
+                        fluid={projectImageSharp.fluid}
+                        alt={`${project.frontmatter.title} Preview`}
+                    />
+                );
+            } else if (!!projectImage && !projectImageSharp) {
+                projectMedia = (
+                    <img
+                        className={`${style.project__media}`}
+                        src={projectImage.publicURL}
+                        alt={`${project.frontmatter.title} Preview`}
+                    />
+                );
+            } else if (projectVideo) {
+                projectMedia = (
+                    <video
+                        className={`${style.project__media}`}
+                        autoPlay
+                        loop
+                        muted
+                    >
+                        <source src={projectVideo.publicURL} type="video/mp4" />
+                    </video>
+                );
+            }
+
             return (
                 <a
                     className={style.project}
                     id={project.id}
                     href={project.frontmatter.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                 >
-                    <div className={`${style.project__cover}`}>
-                        <Img
-                            className={`${style.project__image}`}
-                            fluid={
-                                project.frontmatter.previewImage.childImageSharp
-                                    .fluid
-                            }
-                            alt={`${project.frontmatter.title} Preview`}
-                        />
+                    <div
+                        className={`${
+                            !!project.frontmatter.previewImage &&
+                            !!project.frontmatter.previewImage.childImageSharp
+                                ? style.project__cover
+                                : `${style.project__cover} ${style.project__cover___alt}`
+                        }`}
+                    >
+                        {projectMedia}
                         <div className={`${style.project__action}`}>
                             <span className={style.label}>
                                 View the Project
-                            </span>
-                            <span className={style.icon}>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 492.004 492.004"
-                                >
-                                    <path d="M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z" />
-                                </svg>
                             </span>
                         </div>
                     </div>

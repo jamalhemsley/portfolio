@@ -13,9 +13,12 @@ function Banner() {
         <section className={`${style.banner} ${style.banner___header}`}>
             <Wrapper>
                 <h2 className={`${style.banner__title}`}>
-                    Producer
-                    <span className={`${style.banner__mark}`}>&times;</span>
-                    Creative
+                    <span className={`${style.banner__staticText}`}>
+                        Producer
+                    </span>
+                    <span className={`${style.banner__markText}`}>
+                        Creative
+                    </span>
                 </h2>
                 <p className={`${style.banner__desc}`}>
                     Designing, crafting, and shooting the work that people want

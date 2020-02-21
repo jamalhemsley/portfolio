@@ -6,12 +6,12 @@
 
 .banner {
     display: block;
+    position: relative;
     width: 100%;
 }
 
 .banner___header {
     align-items: center;
-    background: $color-dark;
     color: $color-primary-alt;
     display: flex;
     min-height: 105vh;
@@ -24,6 +24,74 @@
     @include bp(lg) {
         padding: calc(6rem + 4.625rem) 0 12rem;
     }
+
+    &::after {
+        @include z-index(-1);
+        background: linear-gradient(
+            120deg,
+            $color-dark 40%,
+            $color-dark-alt 100%
+        );
+        content: '';
+        height: 100%;
+        left: 0;
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .banner__title,
+    .banner__desc,
+    .banner__link {
+        animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.75s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(1.5rem);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+}
+
+.banner___has-image {
+    &::after {
+        opacity: 0.95;
+    }
+
+    .banner__backdrop-container {
+        display: block;
+    }
+}
+
+.banner__backdrop-container {
+    @include z-index(-2);
+    display: none;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.banner__backdrop {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
 }
 
 /*-- Content --*/
@@ -49,21 +117,77 @@
     }
 }
 
-.banner__mark {
-    animation: rotateMark 20s linear infinite;
-    color: $color-secondary;
+.banner__static-text {
     display: inline-block;
-    margin: 0 0.75rem;
-    user-select: none;
-    vertical-align: middle;
+    margin-right: 0.75rem;
+
+    @include bp(sm) {
+        margin-right: 1rem;
+    }
 
     @include bp(md) {
-        margin: 0 1rem;
+        margin-right: 1.25rem;
+    }
+
+    @include bp(lg) {
+        margin-right: 1.5rem;
+    }
+}
+
+.banner__mark-text {
+    display: inline-block;
+    padding-left: 1.75rem;
+    position: relative;
+
+    @include bp(sm) {
+        padding-left: 2.25rem;
+    }
+
+    @include bp(md) {
+        padding-left: 2.75rem;
+    }
+
+    @include bp(md) {
+        padding-left: 3.25rem;
+    }
+
+    &::before {
+        @include z-index(1);
+        animation: rotateMark 20s linear infinite;
+        background: url('../../assets/images/icons/times.svg') center center
+            no-repeat;
+        background-size: 100%;
+        content: '';
+        height: 1rem;
+        left: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1rem;
+
+        @include bp(sm) {
+            height: 1.25rem;
+            width: 1.25rem;
+        }
+
+        @include bp(md) {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+
+        @include bp(lg) {
+            height: 1.75rem;
+            width: 1.75rem;
+        }
     }
 
     @keyframes rotateMark {
+        0% {
+            transform: translateY(-50%) rotate(0deg);
+        }
+
         100% {
-            transform: rotate(360deg);
+            transform: translateY(-50%) rotate(360deg);
         }
     }
 }

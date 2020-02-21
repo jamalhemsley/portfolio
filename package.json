@@ -18,13 +18,13 @@
   },
   "dependencies": {
     "gatsby": "^2.19.10",
+    "gatsby-image": "^2.2.39",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^18.0.1",
-    "gatsby-image": "^2.2.39",
     "gatsby-plugin-eslint": "^2.0.8",
     "gatsby-plugin-manifest": "^2.2.40",
     "gatsby-plugin-offline": "^3.0.33",
