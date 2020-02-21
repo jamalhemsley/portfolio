@@ -97,6 +97,7 @@ function ProjectTiles() {
                     <video
                         className={`${style.project__media}`}
                         autoPlay
+                        playsInline
                         loop
                         muted
                     >
