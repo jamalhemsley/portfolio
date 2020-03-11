@@ -21,7 +21,8 @@
     "gatsby-image": "^2.2.39",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "react-scroll": "^1.7.16"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^18.0.1",

@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: 'Posterama 1927';
-    font-display: optional;
+    font-display: swap;
     font-style: normal;
     font-weight: bold;
     src: local('Posterama 1927 Bold'), local('Posterama1927-Bold'),
@@ -16,7 +16,7 @@
 
 @font-face {
     font-family: 'Proxima Nova Alt';
-    font-display: optional;
+    font-display: swap;
     font-style: normal;
     font-weight: normal;
     src: local('Proxima Nova Alt Regular'), local('ProximaNovaA-Regular'),
@@ -26,7 +26,7 @@
 
 @font-face {
     font-family: 'Proxima Nova Alt';
-    font-display: optional;
+    font-display: swap;
     font-style: normal;
     font-weight: bold;
     src: local('Proxima Nova Alt Bold'), local('ProximaNovaA-Bold'),
@@ -91,6 +91,7 @@ main {
 
 a {
     background-color: transparent; // Removes gray background on active links in IE 10
+    cursor: pointer;
 }
 
 b,

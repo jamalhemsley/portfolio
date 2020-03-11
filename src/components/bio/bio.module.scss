@@ -65,7 +65,7 @@
     font-family: $font-family-heading;
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     text-transform: uppercase;
 
     @include bp(md) {
@@ -109,5 +109,12 @@
         &:last-child {
             margin-bottom: 0;
         }
+    }
+
+    h5 {
+        color: $color-light;
+        opacity: 0.75;
+        font-size: 1.1rem;
+        margin-bottom: 1.25rem;
     }
 }

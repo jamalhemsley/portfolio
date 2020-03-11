@@ -76,7 +76,11 @@ function Footer({ id }) {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Source on Github
+                        <span
+                            className={`${style.globalFooter__sourceLinkText}`}
+                        >
+                            Source on Github
+                        </span>
                         <span
                             className={`${style.globalFooter__sourceLinkIcon}`}
                         >

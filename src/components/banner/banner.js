@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import { Link } from 'react-scroll';
 import PropTypes from 'prop-types';
 import Wrapper from '../wrapper/wrapper';
 import style from './banner.module.scss';
@@ -25,9 +26,14 @@ function Banner({ id }) {
                     I&rsquo;m Jamal Ali-Mohammed, a front-end developer crafting
                     digital experiences that people want to spend time with.
                 </p>
-                <a className={`${style.banner__link}`} href="#footer">
+                <Link
+                    className={`${style.banner__link}`}
+                    to="footer"
+                    smooth
+                    duration={100}
+                >
                     Let&rsquo;s work together.
-                </a>
+                </Link>
             </Wrapper>
         </section>
     );

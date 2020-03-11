@@ -134,6 +134,14 @@
     }
 }
 
+.global-footer__source-link-text {
+    display: none;
+
+    @include bp(sm) {
+        display: inline-flex;
+    }
+}
+
 .global-footer__source-link-icon {
     align-items: center;
     display: inline-flex;
