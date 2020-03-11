@@ -48,6 +48,7 @@
 
 .skills__skill {
     @include transition(background box-shadow color transform);
+    backface-visibility: hidden;
     background: $color-dark;
     border-radius: 0.5rem;
     box-shadow: none;
@@ -57,13 +58,14 @@
     position: relative;
     text-align: center;
     text-decoration: none;
-    transform: scale(0.95);
+    transform: translateZ(0) scale(0.95) translateY(0);
 
     &:hover {
         background: lighten($color-dark, 8%);
-        box-shadow: 0 1.5rem 1rem -1.25rem rgba($color-dark, 0.75);
+        box-shadow: 0 1.5rem 1rem -1rem rgba($color-dark, 0.75);
         color: $color-light;
-        transform: scale(1);
+        // transform: scale(1);
+        transform: translateZ(0) scale(1) translateY(-0.125rem);
     }
 }
 

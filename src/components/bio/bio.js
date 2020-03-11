@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import { Link } from 'react-scroll';
 import PropTypes from 'prop-types';
 import Wrapper from '../wrapper/wrapper';
 import Skills from '../skills/skills';
@@ -43,13 +42,11 @@ function Bio({ id }) {
                                 </strong>
                             </p>
                             <p>
-                                <Link to="footer" smooth duration={100}>
-                                    Suspendisse potenti.
-                                </Link>{' '}
-                                Proin sed urna vel ipsum faucibus tempus vel
-                                eget orci. Nunc pellentesque sollicitudin neque,
-                                sit amet fringilla nunc gravida at. Sed libero
-                                enim, vestibulum nec libero facilisis, fermentum
+                                <a href="#footer">Suspendisse potenti.</a> Proin
+                                sed urna vel ipsum faucibus tempus vel eget
+                                orci. Nunc pellentesque sollicitudin neque, sit
+                                amet fringilla nunc gravida at. Sed libero enim,
+                                vestibulum nec libero facilisis, fermentum
                                 congue sem. Morbi pellentesque{' '}
                                 <a href="#contact">felis in nisl fermentum</a>,
                                 eu egestas augue sodales. Phasellus venenatis
