@@ -1,0 +1,113 @@
+/*------------------------------------*\
+    #BIO
+\*------------------------------------*/
+
+/*-- Base --*/
+
+.bio {
+    background: $color-dark-alt;
+    padding: 4rem 0;
+
+    @include bp(sm) {
+        padding: 5rem 0;
+    }
+
+    @include bp(md) {
+        padding: 5.5rem 0;
+    }
+
+    @include bp(lg) {
+        padding: 6.5rem 0;
+    }
+
+    @include bp(xl) {
+        padding: 8rem 0;
+    }
+}
+
+.bio__inner {
+    margin: 0 auto;
+    padding: 0 0.5rem;
+    width: 90%;
+
+    @include bp(md) {
+        width: 95%;
+    }
+
+    @include bp(lg) {
+        width: 80%;
+    }
+
+    @include bp(xl) {
+        width: 70%;
+    }
+}
+
+/*-- Content Rows --*/
+
+.bio__row {
+    margin-bottom: 3.5rem;
+
+    @include bp(md) {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4rem;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.bio__title {
+    color: $color-light;
+    display: block;
+    font-family: $font-family-heading;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+
+    @include bp(md) {
+        margin: 0 3rem 0 0;
+        width: 20%;
+    }
+}
+
+.bio__content {
+    color: $color-primary-alt;
+    display: block;
+    font-size: 1.1rem;
+
+    @include bp(md) {
+        flex: 1;
+    }
+
+    a:not([class]) {
+        @include transition(
+            border color,
+            0.4s,
+            cubic-bezier(0.39, 0.575, 0.565, 1)
+        );
+        border-bottom: 0.125rem solid rgba($color-primary, 0.25);
+        color: $color-light;
+        display: inline;
+        padding: 0;
+        position: relative;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            border-color: currentColor;
+            color: $color-secondary-light;
+        }
+    }
+
+    p {
+        margin-bottom: 1.25rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

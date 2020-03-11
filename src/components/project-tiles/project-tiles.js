@@ -5,12 +5,19 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import Wrapper from '../wrapper/wrapper';
 import style from './project-tiles.module.scss';
 
-function ProjectTiles() {
+function ProjectTiles({ id }) {
+    /**
+     * Get projects from the `work` folder via GraphQL.
+     *
+     * Queries for six projects and sorts them by the year specified in the
+     * project markdown.
+     */
     const query = useStaticQuery(
         graphql`
             query projectQuery {
@@ -55,9 +62,21 @@ function ProjectTiles() {
         `
     );
 
+    // Store retrieved projects in variable.
     const projects = query.allMarkdownRemark.edges;
 
+    /**
+     * @function showProjects
+     *
+     * @description Sorts projects evenly into one of two columns for visual
+     *              display.
+     *
+     * @param int The column number to sort projects into.
+     *
+     * @returns An array of projects rendered to the front-end view.
+     */
     function showProjects(column = 1) {
+        // Split retrieved projects into an array for it's respective column.
         const getProjects = projects.map(({ node }, index) => {
             const project = node;
 
@@ -65,6 +84,7 @@ function ProjectTiles() {
                 return false;
             }
 
+            // Attempt to get preview media for the projects.
             let projectMedia;
             const projectImage = project.frontmatter.previewImage
                 ? project.frontmatter.previewImage
@@ -77,6 +97,7 @@ function ProjectTiles() {
                 : null;
 
             if (!!projectImage && !!projectImageSharp) {
+                // Use image sharp if preview image is compatible.
                 projectMedia = (
                     <Img
                         className={`${style.project__media}`}
@@ -85,6 +106,7 @@ function ProjectTiles() {
                     />
                 );
             } else if (!!projectImage && !projectImageSharp) {
+                // Use image tag is preview image unsupported by image sharp.
                 projectMedia = (
                     <img
                         className={`${style.project__media}`}
@@ -93,6 +115,7 @@ function ProjectTiles() {
                     />
                 );
             } else if (projectVideo) {
+                // Use video tag if project preview video was provided.
                 projectMedia = (
                     <video
                         className={`${style.project__media}`}
@@ -106,10 +129,36 @@ function ProjectTiles() {
                 );
             }
 
+            // Establish projectTags variable container.
+            let projectTags;
+
+            if (project.frontmatter.tags) {
+                // Get the project tags and render each as a list element.
+                const projectTagItems = project.frontmatter.tags.map(
+                    (tag, i) => {
+                        const key = i;
+
+                        return (
+                            <li className={style.tag} key={key}>
+                                {tag}
+                            </li>
+                        );
+                    }
+                );
+
+                // Enclose project tags in list element.
+                projectTags = (
+                    <ul className={`${style.project__tags}`}>
+                        {projectTagItems}
+                    </ul>
+                );
+            }
+
             return (
                 <a
                     className={style.project}
-                    id={project.id}
+                    id={`project-${project.id}`}
+                    key={project.id}
                     href={project.frontmatter.link}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -136,11 +185,7 @@ function ProjectTiles() {
                         <p className={`${style.project__desc}`}>
                             {project.frontmatter.description}
                         </p>
-                        <ul className={`${style.project__tags}`}>
-                            {project.frontmatter.tags.map(tag => (
-                                <li className={style.tag}>{tag}</li>
-                            ))}
-                        </ul>
+                        {projectTags}
                     </div>
                 </a>
             );
@@ -150,7 +195,7 @@ function ProjectTiles() {
     }
 
     return (
-        <section className={style.projectTiles}>
+        <section className={style.projectTiles} id={id}>
             <Wrapper>
                 <div className={`${style.projectTiles__inner}`}>
                     <div className={`${style.projectTiles__column}`}>
@@ -164,5 +209,13 @@ function ProjectTiles() {
         </section>
     );
 }
+
+ProjectTiles.defaultProps = {
+    id: 'projects',
+};
+
+ProjectTiles.propTypes = {
+    id: PropTypes.string,
+};
 
 export default ProjectTiles;

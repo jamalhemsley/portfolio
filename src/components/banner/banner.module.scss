@@ -10,6 +10,8 @@
     width: 100%;
 }
 
+/*-- Banner > Header Style --*/
+
 .banner___header {
     align-items: center;
     color: $color-primary-alt;
@@ -62,6 +64,8 @@
     }
 }
 
+/*-- Banner > w/ Image Style --*/
+
 .banner___has-image {
     &::after {
         opacity: 0.95;
@@ -71,6 +75,8 @@
         display: block;
     }
 }
+
+/*-- Banner > Backdrop --*/
 
 .banner__backdrop-container {
     @include z-index(-2);
@@ -94,7 +100,9 @@
     width: 100%;
 }
 
-/*-- Content --*/
+/*-- Banner > Content --*/
+
+/*-- Banner > Content > Title --*/
 
 .banner__title {
     color: $color-light;
@@ -117,7 +125,8 @@
     }
 }
 
-.banner__static-text {
+// Non-animated Title Text
+.banner__title-static-text {
     display: inline-block;
     margin-right: 0.75rem;
 
@@ -134,7 +143,8 @@
     }
 }
 
-.banner__mark-text {
+// Animated Title Text
+.banner__title-mark-text {
     display: inline-block;
     padding-left: 1.75rem;
     position: relative;
@@ -191,6 +201,8 @@
         }
     }
 }
+
+/*-- Banner > Content > Description & Link --*/
 
 .banner__desc,
 .banner__link {

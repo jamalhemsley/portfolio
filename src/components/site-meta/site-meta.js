@@ -11,6 +11,9 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 function SiteMeta({ description, lang, meta, title }) {
+    /**
+     * Get site information via GraphQL from Gatsby site config.
+     */
     const { site } = useStaticQuery(
         graphql`
             query siteMeta {

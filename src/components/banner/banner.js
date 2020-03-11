@@ -5,24 +5,25 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Wrapper from '../wrapper/wrapper';
 import style from './banner.module.scss';
 
-function Banner() {
+function Banner({ id }) {
     return (
-        <section className={`${style.banner} ${style.banner___header}`}>
+        <section className={`${style.banner} ${style.banner___header}`} id={id}>
             <Wrapper>
                 <h2 className={`${style.banner__title}`}>
-                    <span className={`${style.banner__staticText}`}>
+                    <span className={`${style.banner__titleStaticText}`}>
                         Producer
                     </span>
-                    <span className={`${style.banner__markText}`}>
+                    <span className={`${style.banner__titleMarkText}`}>
                         Creative
                     </span>
                 </h2>
                 <p className={`${style.banner__desc}`}>
-                    Designing, crafting, and shooting the work that people want
-                    to spend time with.
+                    I&rsquo;m Jamal Ali-Mohammed, a front-end developer crafting
+                    digital experiences that people want to spend time with.
                 </p>
                 <a className={`${style.banner__link}`} href="#footer">
                     Let&rsquo;s work together.
@@ -31,5 +32,13 @@ function Banner() {
         </section>
     );
 }
+
+Banner.defaultProps = {
+    id: '',
+};
+
+Banner.propTypes = {
+    id: PropTypes.string,
+};
 
 export default Banner;
