@@ -10,6 +10,10 @@ module.exports = {
             linkedin: `jalimohammed`,
             twitter: `jamalxdavid`,
         },
+        source: {
+            provider: `Github`,
+            url: `https://github.com/jdaio/portfolio/`,
+        },
     },
     plugins: [
         `gatsby-plugin-react-helmet`,

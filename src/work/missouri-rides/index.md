@@ -1,10 +1,10 @@
 ---
 title: "Missouri Rides"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra blandit ex ac dapibus."
+description: "Building an easy to use site allowing those in need of transportation assistance to connect with providers in their communities."
 tags:
     - WordPress
     - © Hub & Spoke Creative
 link: "https://morides.org/"
-year: 2019
-previewImage: "./preview.jpg"
+date: 2019-07
+previewImage: "./preview.svg"
 ---

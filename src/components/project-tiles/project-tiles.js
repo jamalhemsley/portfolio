@@ -22,7 +22,7 @@ function ProjectTiles({ id }) {
         graphql`
             query projectQuery {
                 allMarkdownRemark(
-                    sort: { order: DESC, fields: frontmatter___year }
+                    sort: { order: DESC, fields: frontmatter___date }
                     limit: 6
                 ) {
                     edges {
@@ -32,7 +32,6 @@ function ProjectTiles({ id }) {
                                 link
                                 tags
                                 title
-                                year
                                 previewImage {
                                     childImageSharp {
                                         fluid(

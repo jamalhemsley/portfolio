@@ -19,6 +19,8 @@ if (
     require('smooth-scroll')('a[href*="#"]', {
         speed: 400,
         easing: 'easeInOutCubic',
+        updateURL: true,
+        popstate: true,
     });
 }
 

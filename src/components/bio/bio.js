@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import Wrapper from '../wrapper/wrapper';
 import Skills from '../skills/skills';

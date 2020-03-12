@@ -9,7 +9,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import Wrapper from '../wrapper/wrapper';
 import style from './footer.module.scss';
-import packageInfo from '../../../package.json';
 
 function Footer({ id }) {
     /**
@@ -23,6 +22,10 @@ function Footer({ id }) {
                         title
                         social {
                             email
+                        }
+                        source {
+                            provider
+                            url
                         }
                     }
                 }
@@ -71,8 +74,8 @@ function Footer({ id }) {
                     </p>
                     <a
                         className={`${style.globalFooter__sourceLink}`}
-                        href={packageInfo.homepage}
-                        title="View this site&rsquo;s source on Github"
+                        href={site.siteMetadata.source.url}
+                        title={`View this site on ${site.siteMetadata.source.provider}`}
                         target="_blank"
                         rel="noopener noreferrer"
                     >

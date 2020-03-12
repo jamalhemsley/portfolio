@@ -1,12 +1,11 @@
 ---
 title: "Tutors Autoresponder"
-description: "Praesent metus elit, vehicula a enim nec, bibendum finibus est."
+description: "Automating the student outreach process for providers on Tutors.com."
 tags:
     - Node.js
     - Segment
     - Gmail API
-    - Automation
 link: "https://github.com/jdaio/tutors-autoresponder"
-year: 2020
+date: 2020-01
 previewImage: "./preview.jpg"
 ---

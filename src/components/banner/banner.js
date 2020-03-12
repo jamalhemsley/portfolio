@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import Wrapper from '../wrapper/wrapper';
 import style from './banner.module.scss';
@@ -23,11 +24,11 @@ function Banner({ id }) {
                 </h2>
                 <p className={`${style.banner__desc}`}>
                     I&rsquo;m Jamal Ali-Mohammed, a front-end developer crafting
-                    digital experiences that people want to spend time with.
+                    engaging digital experiences.
                 </p>
-                <a className={`${style.banner__link}`} href="#footer">
+                <Link className={`${style.banner__link}`} to="#footer">
                     Let&rsquo;s work together.
-                </a>
+                </Link>
             </Wrapper>
         </section>
     );

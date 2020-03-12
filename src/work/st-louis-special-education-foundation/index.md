@@ -1,10 +1,10 @@
 ---
 title: "Special Education Foundation"
-description: "Aliquam erat volutpat. Integer ullamcorper ultricies tellus, sit amet gravida ligula egestas vitae."
+description: "Accessible design and code principles for this St. Louis organization that helps students achieve success both in school and beyond."
 tags:
     - WordPress
     - © Hub & Spoke Creative
 link: "https://sef-stl.org/"
-year: 2019
-previewImage: "./preview.jpg"
+date: 2019-01
+previewImage: "./preview.svg"
 ---

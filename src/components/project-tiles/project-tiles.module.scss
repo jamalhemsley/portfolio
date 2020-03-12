@@ -186,7 +186,6 @@
 .project__cover {
     @include transition(box-shadow transform);
     backface-visibility: hidden;
-    background: $color-primary;
     border-radius: 0.75rem;
     margin-bottom: 2rem;
     overflow: hidden;

@@ -1,11 +1,11 @@
 ---
 title: "Dakota Group"
-description: "Vivamus gravida, leo id rutrum pharetra, dui purus tempor nisi, id ornare nisi mauris non nisl."
+description: "Using clean, color-blocked design to create a straightforward online presence for a portfolio of targeted visual creative studios."
 tags:
     - Design
     - HTML / CSS
     - © Dakota Group
 link: "https://wearedakotagroup.com/"
-year: 2018
-previewImage: "./preview.jpg"
+date: 2018-09
+previewImage: "./preview.svg"
 ---

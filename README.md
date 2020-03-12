@@ -17,6 +17,7 @@ Things to (eventually) get around to doing:
 -   Build out case studies.
 -   Clean up repetitive CSS.
 -   Break down components into utilities that can be reused without additional code.
+-   Utilize a platform such as Contentful for better content management.
 
 ## License
 
