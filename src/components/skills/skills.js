@@ -142,7 +142,7 @@ const skillTypes = {
         name: 'Photoshop',
         url: 'https://www.adobe.com/products/photoshop.html',
         icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 234">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 1 240 234">
                 <path
                     d="M197.5 234h-155C19 234 0 215 0 191.5v-149C0 19 19 0 42.5 0h155C221 0 240 19 240 42.5v149c0 23.5-19 42.5-42.5 42.5z"
                     fill="#26c9ff"

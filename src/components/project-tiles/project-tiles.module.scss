@@ -125,7 +125,7 @@
     &:focus {
         .project__cover {
             box-shadow: 0 1.5rem 1rem -1.25rem rgba($color-primary, 0.6);
-            transform: scale(1) translateY(0);
+            transform: scale3d(1, 1, 1) translateY(0);
 
             &::before {
                 opacity: 0.9;
@@ -133,7 +133,7 @@
         }
 
         .project__media {
-            transform: scale(1) translate3d(0, 0, 0);
+            transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
         }
 
         @supports not (object-fit: cover) {
@@ -143,11 +143,15 @@
         }
 
         .project__action {
+            backface-visibility: hidden;
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
+            transform: scale(1) translate(-50%, -50%) translate3d(0, 0, 0);
             transition: opacity 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s,
-                transform 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s,
                 width 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s;
+            /**
+             * @TODO Figure out how to get this prop to work smoothly in Safari & Edge
+            */
+            // transform 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s
             width: 13.5rem;
 
             .label {
@@ -190,7 +194,7 @@
     margin-bottom: 2rem;
     overflow: hidden;
     position: relative;
-    transform: scale(0.96) translateY(0.5rem) translate3d(0, 0, 0);
+    transform: scale3d(0.96, 0.96, 1) translateY(0.5rem) translate3d(0, 0, 0);
     user-select: none;
 
     &::before {
@@ -214,7 +218,7 @@
 }
 
 // Additional padding for video backgrounds.
-.project__cover___alt {
+.project__cover___video {
     padding-bottom: 76.8116%;
 }
 
@@ -229,27 +233,43 @@
     position: absolute;
     right: 0;
     top: 0;
-    transform: scale(1.1) translate3d(0, 0, 0);
+    transform: scale3d(1.1, 1.1, 1) translate3d(0, 0, 0);
     width: 100%;
 }
 
-@supports not (object-fit: cover) {
+.project__media__video {
+    bottom: auto;
+    height: 100%;
+    left: 50%;
+    min-height: 100%;
+    min-width: 100%;
+    right: auto;
+    top: 50%;
+    transform: scale(1.1) translate(-50%, -50%) translate3d(0, 0, 0);
+    width: auto;
+}
+
+@supports (object-fit: cover) {
     .project__media___video {
-        bottom: auto;
+        @include transition(transform);
+        @include z-index(-1);
+        backface-visibility: hidden;
+        bottom: 0;
         height: 100%;
-        left: 50%;
-        min-height: 100%;
-        min-width: 100%;
-        right: auto;
-        top: 50%;
-        transform: scale(1.1) translate(-50%, -50%) translate3d(0, 0, 0);
-        width: auto;
+        left: 0;
+        object-fit: cover;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: scale3d(1.1, 1.1, 1) translate3d(0, 0, 0);
+        width: 100%;
     }
 }
 
 .project__action {
     @include z-index(2);
     align-items: center;
+    backface-visibility: hidden;
     background: url('../../assets/images/icons/arrow.svg') calc(100% - 0.75rem)
         calc(50% - 0.05rem) no-repeat $color-light;
     background-size: 1rem;
@@ -265,10 +285,11 @@
     position: absolute;
     top: 50%;
     text-align: center;
-    transform: scale(0.8) translate(-50%, -50%);
+    transform: scale(0.8) translate(-50%, -50%) translate3d(0, 0, 0);
     transition: opacity 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s,
         width 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s,
         transform 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s;
+    transform-origin: center;
     width: 3rem;
 
     .label {

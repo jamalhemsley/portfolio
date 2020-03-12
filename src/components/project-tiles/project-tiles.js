@@ -167,7 +167,7 @@ function ProjectTiles({ id }) {
                             !!project.frontmatter.previewImage &&
                             !!project.frontmatter.previewImage.childImageSharp
                                 ? style.project__cover
-                                : `${style.project__cover} ${style.project__cover___alt}`
+                                : `${style.project__cover} ${style.project__cover___video}`
                         }`}
                     >
                         {projectMedia}
