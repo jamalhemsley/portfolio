@@ -5,7 +5,8 @@ tags:
     - Node.js
     - Segment
     - Gmail API
+    - Automation
 link: "https://github.com/jdaio/tutors-autoresponder"
 year: 2020
-previewImage: "./preview.gif"
+previewImage: "./preview.jpg"
 ---

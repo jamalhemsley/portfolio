@@ -37,8 +37,8 @@ function ProjectTiles({ id }) {
                                     childImageSharp {
                                         fluid(
                                             maxWidth: 1104
-                                            quality: 100
-                                            maxHeight: 850
+                                            quality: 75
+                                            maxHeight: 852
                                             cropFocus: CENTER
                                         ) {
                                             ...GatsbyImageSharpFluid
@@ -118,7 +118,7 @@ function ProjectTiles({ id }) {
                 // Use video tag if project preview video was provided.
                 projectMedia = (
                     <video
-                        className={`${style.project__media}`}
+                        className={`${style.project__media} ${style.project__media___video}`}
                         autoPlay
                         playsInline
                         loop

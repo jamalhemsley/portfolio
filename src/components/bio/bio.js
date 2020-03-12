@@ -63,7 +63,7 @@ function Bio({ id }) {
                         </div>
                     </div>
                     <div className={`${style.bio__row}`}>
-                        <h4 className={`${style.bio__title}`}>Skills</h4>
+                        <h4 className={`${style.bio__title}`}>Skillset</h4>
                         <div className={`${style.bio__content}`}>
                             <h5>Design</h5>
                             <Skills skills={['sketch', 'photoshop']} />
