@@ -50,42 +50,41 @@ function Bio({ id }) {
                             <p>
                                 As a freelancer since 2013, I&rsquo;ve worked
                                 with a variety of clients and creative agencies.
-                                At the moment, I collaborate primarily
-                                with&nbsp;
+                                At the moment, I collaborate primarily with{' '}
                                 <a
                                     href="https://hubandspokecreative.com/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     Hub &amp; Spoke Creative
-                                </a>
-                                &nbsp;to create digital experiences that
-                                effectively connect with their audiences. While
-                                I&rsquo;m primarily a front-end developer, in
-                                the past I&rsquo;ve worked with companies and
-                                organizations such as&nbsp;
+                                </a>{' '}
+                                to create digital experiences that effectively
+                                connect with their audiences. While I&rsquo;m
+                                primarily a front-end developer, in the past
+                                I&rsquo;ve worked with companies and
+                                organizations such as{' '}
                                 <a
                                     href="https://www.properchannel.co/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     Proper Channel
-                                </a>
-                                &nbsp;and&nbsp;
+                                </a>{' '}
+                                and{' '}
                                 <a
                                     href="https://technole.org/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     Technole
-                                </a>
-                                &nbsp;in public relations, marketing and
-                                technical writing capacities.
+                                </a>{' '}
+                                in public relations, marketing and technical
+                                writing capacities.
                             </p>
                             <p>
                                 When I&rsquo;m not in a code editor, I typically
                                 spend time working on my writing, filming,
-                                catching up on some of&nbsp;
+                                catching up on some of{' '}
                                 <a
                                     href="https://trakt.tv/users/jamalxdavid"
                                     target="_blank"
@@ -93,7 +92,7 @@ function Bio({ id }) {
                                 >
                                     my most watched shows
                                 </a>
-                                , and seeing what&rsquo;s new on my&nbsp;
+                                , and seeing what&rsquo;s new on my{' '}
                                 <a
                                     href="https://www.youtube.com/channel/UCsqjHFMB_JYTaEnf_vmTNqg"
                                     target="_blank"
@@ -105,7 +104,7 @@ function Bio({ id }) {
                             </p>
                             <p>
                                 <a href="#footer">
-                                    Interested in working together?&nbsp;
+                                    Interested in working together?{' '}
                                     <strong>Let&rsquo;s connect.</strong>
                                 </a>
                             </p>

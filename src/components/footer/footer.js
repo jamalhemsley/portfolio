@@ -54,8 +54,8 @@ function Footer({ id }) {
                     </div>
                     <div className={`${style.globalFooter__content}`}>
                         <p>
-                            Interested in working together? I&rsquo;m currently
-                            accepting new projects and can be reached at&nbsp;
+                            Want to work together? I&rsquo;m currently accepting
+                            new projects and can be reached at{' '}
                             <a
                                 href={`mailto:${site.siteMetadata.social.email}?subject=Hello! 👋 Let's Work Together.`}
                                 title={`Shoot me an email at ${site.siteMetadata.social.email}.`}
