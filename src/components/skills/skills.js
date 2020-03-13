@@ -230,7 +230,7 @@ function Skills({ skills }) {
     /**
      * @function showSkills
      *
-     * @description Renders a box for each provided skill in th array.
+     * @description Renders a box for each provided skill in `skillArray`.
      *
      * @returns An array of skill elements rendered to the front-end view.
      */
