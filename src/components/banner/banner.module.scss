@@ -13,11 +13,13 @@
 /*-- Banner > Header Style --*/
 
 .banner___header {
+    @include z-index(1);
     align-items: center;
     color: $color-primary-alt;
     display: flex;
     min-height: 105vh;
     padding: calc(8rem + 4.125rem) 0 12rem;
+    position: relative;
 
     @include bp(sm) {
         padding-top: calc(7rem + 4.125rem);
