@@ -20,7 +20,7 @@ function Bio({ id }) {
                         <div className={`${style.bio__content}`}>
                             <p>
                                 <a
-                                    href="https://drive.google.com/open?id=1UYqUm5l9lpSswtI703OgfxF2-pZqmQ3k"
+                                    href="https://drive.google.com/open?id=1JRQABqvOONqYx-MQnxYHwbkjEUYea7gT"
                                     title="View My Resume"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -33,32 +33,81 @@ function Bio({ id }) {
                     <div className={`${style.bio__row}`}>
                         <h4 className={`${style.bio__title}`}>Profile</h4>
                         <div className={`${style.bio__content}`}>
-                            <p>
-                                <strong>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Curabitur vitae ex eget
-                                    libero pellentesque elementum. Integer non
-                                    augue purus. Aenean non sodales velit.
-                                </strong>
+                            <p className="lead">
+                                I&rsquo;m a front-end developer specializing in
+                                crafting engaging digital experiences for web
+                                and mobile applications.
                             </p>
                             <p>
-                                <a href="#footer">Suspendisse potenti.</a> Proin
-                                sed urna vel ipsum faucibus tempus vel eget
-                                orci. Nunc pellentesque sollicitudin neque, sit
-                                amet fringilla nunc gravida at. Sed libero enim,
-                                vestibulum nec libero facilisis, fermentum
-                                congue sem. Morbi pellentesque{' '}
-                                <a href="#contact">felis in nisl fermentum</a>,
-                                eu egestas augue sodales. Phasellus venenatis
-                                risus dolor, sed laoreet est efficitur in.
+                                I&rsquo;m passionate about turning great ideas
+                                into exciting, functional, accessible digital
+                                products. With seven years of experience in the
+                                industry, I&rsquo;ve built various products for
+                                individuals and organizations ranging from
+                                simple, highly converting marketing landing
+                                pages to mid-sized Node.js web applications.
                             </p>
                             <p>
-                                Integer rhoncus maximus tellus a pulvinar. Proin
-                                vitae turpis sit amet risus feugiat pretium
-                                varius vel mauris. Suspendisse in pretium nisi.{' '}
-                                <a href="#contact">Cras ut tellus ac</a> orci
-                                finibus congue eu sit amet augue. Donec molestie
-                                justo nec rutrum fermentum.
+                                As a freelancer since 2013, I&rsquo;ve worked
+                                with a variety of clients and creative agencies.
+                                At the moment, I collaborate primarily
+                                with&nbsp;
+                                <a
+                                    href="https://hubandspokecreative.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Hub &amp; Spoke Creative
+                                </a>
+                                &nbsp;to create digital experiences that
+                                effectively connect with their audiences. While
+                                I&rsquo;m primarily a front-end developer, in
+                                the past I&rsquo;ve worked with companies and
+                                organizations such as&nbsp;
+                                <a
+                                    href="https://www.properchannel.co/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Proper Channel
+                                </a>
+                                &nbsp;and&nbsp;
+                                <a
+                                    href="https://technole.org/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Technole
+                                </a>
+                                &nbsp;in public relations, marketing and
+                                technical writing capacities.
+                            </p>
+                            <p>
+                                When I&rsquo;m not in a code editor, I typically
+                                spend time working on my writing, filming,
+                                catching up on some of&nbsp;
+                                <a
+                                    href="https://trakt.tv/users/jamalxdavid"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    my most watched shows
+                                </a>
+                                , and seeing what&rsquo;s new on my&nbsp;
+                                <a
+                                    href="https://www.youtube.com/channel/UCsqjHFMB_JYTaEnf_vmTNqg"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    favorite YouTube channel
+                                </a>
+                                .
+                            </p>
+                            <p>
+                                <a href="#footer">
+                                    Interested in working together?&nbsp;
+                                    <strong>Let&rsquo;s connect.</strong>
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -66,7 +115,7 @@ function Bio({ id }) {
                         <h4 className={`${style.bio__title}`}>Skillset</h4>
                         <div className={`${style.bio__content}`}>
                             <h5>Design</h5>
-                            <Skills skills={['sketch', 'photoshop']} />
+                            <Skills skills={['sketch', 'xd', 'photoshop']} />
                             <h5>Code</h5>
                             <Skills
                                 skills={[
