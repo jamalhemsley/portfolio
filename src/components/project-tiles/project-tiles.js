@@ -49,6 +49,9 @@ function ProjectTiles({ id }) {
                                     }
                                     publicURL
                                 }
+                                previewVideo {
+                                    publicURL
+                                }
                             }
                             id
                         }
@@ -88,10 +91,9 @@ function ProjectTiles({ id }) {
             const projectImageSharp = projectImage
                 ? project.frontmatter.previewImage.childImageSharp
                 : null;
-            /*const projectVideo = project.frontmatter.previewVideo
+            const projectVideo = project.frontmatter.previewVideo
                 ? project.frontmatter.previewVideo
-                : null; */
-            const projectVideo = false;
+                : null;
 
             if (!!projectImage && !!projectImageSharp) {
                 // Use image sharp if preview image is compatible.
