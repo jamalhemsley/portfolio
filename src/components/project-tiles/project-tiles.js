@@ -49,9 +49,6 @@ function ProjectTiles({ id }) {
                                     }
                                     publicURL
                                 }
-                                previewVideo {
-                                    publicURL
-                                }
                             }
                             id
                         }
@@ -91,11 +88,8 @@ function ProjectTiles({ id }) {
             const projectImageSharp = projectImage
                 ? project.frontmatter.previewImage.childImageSharp
                 : null;
-            const projectVideo = project.frontmatter.previewVideo
-                ? project.frontmatter.previewVideo
-                : null;
 
-            if (!!projectImage && !!projectImageSharp) {
+            if (projectImageSharp) {
                 // Use image sharp if preview image is compatible.
                 projectMedia = (
                     <Img
@@ -104,7 +98,8 @@ function ProjectTiles({ id }) {
                         alt={`${project.frontmatter.title} Preview`}
                     />
                 );
-            } else if (!!projectImage && !projectImageSharp) {
+            } else {
+                console.log(projectImage);
                 // Use image tag is preview image unsupported by image sharp.
                 projectMedia = (
                     <img
@@ -112,19 +107,6 @@ function ProjectTiles({ id }) {
                         src={projectImage.publicURL}
                         alt={`${project.frontmatter.title} Preview`}
                     />
-                );
-            } else if (projectVideo) {
-                // Use video tag if project preview video was provided.
-                projectMedia = (
-                    <video
-                        className={`${style.project__media} ${style.project__media___video}`}
-                        autoPlay
-                        playsInline
-                        loop
-                        muted
-                    >
-                        <source src={projectVideo.publicURL} type="video/mp4" />
-                    </video>
                 );
             }
 
@@ -167,7 +149,7 @@ function ProjectTiles({ id }) {
                             !!project.frontmatter.previewImage &&
                             !!project.frontmatter.previewImage.childImageSharp
                                 ? style.project__cover
-                                : `${style.project__cover} ${style.project__cover___video}`
+                                : `${style.project__cover} ${style.project__cover___hasNoSharp}`
                         }`}
                     >
                         {projectMedia}
