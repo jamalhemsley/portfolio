@@ -45,6 +45,10 @@
         width: 100%;
     }
 
+    @media screen and (-ms-high-contrast: none) {
+        height: 105vh;
+    }
+
     .banner__title,
     .banner__desc,
     .banner__link {
