@@ -76,7 +76,6 @@ function Header({ id, isDark }) {
                                     className={style.navLink}
                                     href={`https://github.com/${site.siteMetadata.social.github}`}
                                     target="_blank"
-                                    title="Github"
                                     rel="noopener noreferrer"
                                 >
                                     <svg
@@ -95,7 +94,6 @@ function Header({ id, isDark }) {
                                     className={style.navLink}
                                     href={`https://linkedin.com/in/${site.siteMetadata.social.linkedin}`}
                                     target="_blank"
-                                    title="LinkedIn"
                                     rel="noopener noreferrer"
                                 >
                                     <svg
@@ -113,7 +111,6 @@ function Header({ id, isDark }) {
                                 <a
                                     className={style.navLink}
                                     href={`mailto:${site.siteMetadata.social.email}?subject=Hello! 👋 Let's Work Together.`}
-                                    title="Email"
                                 >
                                     <svg
                                         role="img"
