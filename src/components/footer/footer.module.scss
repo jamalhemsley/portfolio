@@ -151,5 +151,9 @@
         fill: currentColor;
         height: auto;
         width: 1.25rem;
+
+        @media screen and (-ms-high-contrast: none) {
+            max-height: 1.25rem;
+        }
     }
 }

@@ -139,12 +139,12 @@
         }
 
         .project__media___video {
-            transform: scale(1) translate(-50%, -50%) translate3d(0, 0, 0);
+            transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
         }
 
-        @supports (object-fit: cover) {
+        @supports (-ms-ime-align: auto) {
             .project__media___video {
-                transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+                transform: scale(1) translate3d(-50%, -50%, 0);
             }
         }
 
@@ -200,7 +200,7 @@
     margin-bottom: 2rem;
     overflow: hidden;
     position: relative;
-    transform: scale3d(0.96, 0.96, 1) translateY(0.5rem) translate3d(0, 0, 0);
+    transform: scale3d(0.96, 0.96, 1) translate3d(0, 0.5rem, 0);
     user-select: none;
 
     &::before {
@@ -244,31 +244,30 @@
 }
 
 .project__media___video {
-    bottom: auto;
+    @include transition(transform);
+    @include z-index(-1);
+    backface-visibility: hidden;
+    bottom: 0;
     height: 100%;
-    left: 50%;
-    min-height: 100%;
-    min-width: 100%;
-    right: auto;
-    top: 50%;
-    transform: scale(1.1) translate(-50%, -50%) translate3d(0, 0, 0);
-    width: auto;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale3d(1.1, 1.1, 1) translate3d(0, 0, 0);
+    width: 100%;
 }
 
-@supports (object-fit: cover) {
+@supports (-ms-ime-align: auto) {
     .project__media___video {
-        @include transition(transform);
-        @include z-index(-1);
-        backface-visibility: hidden;
-        bottom: 0;
-        height: 100%;
-        left: 0;
-        object-fit: cover;
-        position: absolute;
-        right: 0;
-        top: 0;
-        transform: scale3d(1.1, 1.1, 1) translate3d(0, 0, 0);
-        width: 100%;
+        bottom: auto;
+        left: 50%;
+        min-height: 100%;
+        min-width: 100%;
+        right: auto;
+        top: 50%;
+        transform: scale(1) translate3d(-50%, -50%, 0);
+        width: auto;
     }
 }
 
@@ -401,6 +400,10 @@
 
         &:last-child {
             margin-right: 0;
+        }
+
+        @media screen and (-ms-high-contrast: none) {
+            width: auto;
         }
     }
 }

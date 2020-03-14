@@ -77,12 +77,24 @@
         height: auto;
         width: 5rem;
 
+        @media screen and (-ms-high-contrast: none) {
+            max-height: 2.25rem;
+        }
+
         @include bp(md) {
             width: 5.5rem;
+
+            @media screen and (-ms-high-contrast: none) {
+                max-height: 2.5rem;
+            }
         }
 
         @include bp(lg) {
             width: 6rem;
+
+            @media screen and (-ms-high-contrast: none) {
+                max-height: 2.75rem;
+            }
         }
     }
 }
@@ -148,5 +160,9 @@
         fill: $color-light;
         height: auto;
         width: 1.75rem;
+
+        @media screen and (-ms-high-contrast: none) {
+            max-height: 1.75rem;
+        }
     }
 }

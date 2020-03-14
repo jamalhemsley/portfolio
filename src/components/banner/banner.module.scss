@@ -143,6 +143,10 @@
     @include bp(lg) {
         margin-right: 1.5rem;
     }
+
+    @media screen and (-ms-high-contrast: none) {
+        width: auto;
+    }
 }
 
 // Animated Title Text
@@ -191,6 +195,10 @@
             height: 1.75rem;
             width: 1.75rem;
         }
+    }
+
+    @media screen and (-ms-high-contrast: none) {
+        width: auto;
     }
 
     @keyframes rotateMark {
