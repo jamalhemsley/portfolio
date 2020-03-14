@@ -50,11 +50,5 @@ module.exports = {
             },
         },
         `gatsby-transformer-remark`,
-        {
-            resolve: `gatsby-plugin-load-script`,
-            options: {
-                src: `https://cdn.polyfill.io/v3/polyfill.js?features=default,Symbol`,
-            },
-        },
     ],
 };
