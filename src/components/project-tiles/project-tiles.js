@@ -99,7 +99,6 @@ function ProjectTiles({ id }) {
                     />
                 );
             } else {
-                console.log(projectImage);
                 // Use image tag is preview image unsupported by image sharp.
                 projectMedia = (
                     <img
