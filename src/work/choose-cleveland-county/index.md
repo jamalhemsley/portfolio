@@ -7,5 +7,5 @@ tags:
     - © RDG-One
 link: "https://chooseclevelandcountync.com/"
 date: 2019-08
-previewVideo: "./preview.mp4"
+previewImage: "./preview.jpg"
 ---
