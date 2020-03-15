@@ -60,6 +60,14 @@
     justify-content: space-between;
 }
 
+/*-- Header > Title --*/
+.global-header__title {
+    left: -150vw;
+    position: absolute;
+    text-indent: -150vw;
+    top: 0;
+}
+
 /*-- Header > Logo --*/
 
 .global-header__logo {

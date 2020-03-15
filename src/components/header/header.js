@@ -6,19 +6,21 @@
 
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import { globalHistory as history } from '@reach/router';
 import PropTypes from 'prop-types';
 import Wrapper from '../wrapper/wrapper';
 import style from './header.module.scss';
 
 function Header({ id, isDark }) {
     /**
-     * Get social media links from Gatsby site config.
+     * Get relevant site information from Gatsby site config.
      */
     const { site } = useStaticQuery(
         graphql`
             query siteHeader {
                 site {
                     siteMetadata {
+                        title
                         social {
                             email
                             github
@@ -30,6 +32,20 @@ function Header({ id, isDark }) {
         `
     );
 
+    /**
+     * Get current path of the page and set title.
+     */
+    const { location } = history;
+    let headerTitle;
+
+    if (location.pathname === '/') {
+        headerTitle = (
+            <h1 className={style.globalHeader__title}>
+                {site.siteMetadata.title}
+            </h1>
+        );
+    }
+
     return (
         <header className={style.globalHeader} id={id}>
             <Wrapper>
@@ -40,6 +56,7 @@ function Header({ id, isDark }) {
                             : style.globalHeader___light
                     }`}
                 >
+                    {headerTitle}
                     <div className={`${style.globalHeader__logo}`}>
                         <svg
                             id="logo"
