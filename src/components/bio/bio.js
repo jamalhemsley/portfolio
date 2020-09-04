@@ -48,38 +48,18 @@ function Bio({ id }) {
                                 pages to mid-sized Node.js web applications.
                             </p>
                             <p>
-                                As a freelancer since 2013, I&rsquo;ve worked
-                                with a variety of clients and creative agencies.
-                                At the moment, I collaborate primarily with{' '}
+                                While as a freelancer I&rsquo;ve worked with a
+                                wide variety of clients and creative agencies,
+                                at the moment I&rsquo;m currently working as a
+                                front-end developer at{' '}
                                 <a
-                                    href="https://hubandspokecreative.com/"
+                                    href="https://www.patronage.org"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    Hub &amp; Spoke Creative
-                                </a>{' '}
-                                to create digital experiences that effectively
-                                connect with their audiences. While I&rsquo;m
-                                primarily a front-end developer, in the past
-                                I&rsquo;ve worked with companies and
-                                organizations such as{' '}
-                                <a
-                                    href="https://www.properchannel.co/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Proper Channel
-                                </a>{' '}
-                                and{' '}
-                                <a
-                                    href="https://technole.org/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Technole
-                                </a>{' '}
-                                in public relations, marketing and technical
-                                writing capacities.
+                                    Patronage
+                                </a>
+                                .
                             </p>
                             <p>
                                 When I&rsquo;m not in a code editor, I typically
