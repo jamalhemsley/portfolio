@@ -48,10 +48,7 @@ function Bio({ id }) {
                                 pages to mid-sized Node.js web applications.
                             </p>
                             <p>
-                                While as a freelancer I&rsquo;ve worked with a
-                                wide variety of clients and creative agencies,
-                                at the moment I&rsquo;m currently working as a
-                                front-end developer at{' '}
+                                Currently, I&rsquo;m a front-end developer at{' '}
                                 <a
                                     href="https://www.patronage.org"
                                     target="_blank"
@@ -59,28 +56,7 @@ function Bio({ id }) {
                                 >
                                     Patronage
                                 </a>
-                                .
-                            </p>
-                            <p>
-                                When I&rsquo;m not in a code editor, I typically
-                                spend time working on my writing, filming,
-                                catching up on some of{' '}
-                                <a
-                                    href="https://trakt.tv/users/jamalxdavid"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    my most watched shows
-                                </a>
-                                , and seeing what&rsquo;s new on my{' '}
-                                <a
-                                    href="https://www.youtube.com/channel/UCsqjHFMB_JYTaEnf_vmTNqg"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    favorite YouTube channel
-                                </a>
-                                .
+                                , where I work on a variety of projects aimed at making the world a more socially and politically aware place.
                             </p>
                             <p>
                                 <a href="#footer">

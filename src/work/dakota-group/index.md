@@ -4,7 +4,6 @@ description: "Using clean, color-blocked design to create a straightforward onli
 tags:
     - Design
     - HTML / CSS
-    - © Dakota Group
 link: "https://wearedakotagroup.com/"
 date: 2018-09
 previewImage: "./preview.svg"

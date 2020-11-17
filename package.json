@@ -1,17 +1,17 @@
 {
   "name": "@jdaio/portfolio",
   "private": true,
-  "description": "The codebase for my portfolio.",
+  "description": "My front-end development portfolio.",
   "version": "1.0.0",
   "keywords": [
     "portfolio"
   ],
-  "homepage": "https://digitalheat.co/",
+  "homepage": "https://digitalhe.at/",
   "bugs": {
     "url": "https://github.com/jdaio/portfolio/issues"
   },
   "license": "MIT",
-  "author": "Jamal Ali-Mohammed <jamal@digitalheat.co> (https://digitalheat.co)",
+  "author": "Jamal Ali-Mohammed <jamal@digitalhe.at> (https://digitalhe.at)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jdaio/portfolio.git"

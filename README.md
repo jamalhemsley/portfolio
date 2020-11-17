@@ -1,6 +1,6 @@
 # Portfolio
 
-The official repository for [my portfolio](https://digitalheat.co). Feel free to take a look through the code.
+The official repository for my portfolio: [https://digitalhe.at](https://digitalhe.at).
 
 ## Getting Started
 

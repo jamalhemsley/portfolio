@@ -4,11 +4,8 @@ module.exports = {
         description: `Digital experiences built by Jamal Ali-Mohammed.`,
         author: `@jdaio`,
         social: {
-            email: `jamal@digitalheat.co`,
+            email: `jamal@digitalhe.at`,
             github: `jdaio`,
-            instagram: `jamal.david`,
-            linkedin: `jalimohammed`,
-            twitter: `jamalxdavid`,
         },
         source: {
             provider: `Github`,
