@@ -1,8 +1,0 @@
-**/*.min.js
-**/dist/
-**/build/
-**/node_modules/**
-**/vendor/**
-**/.cache/**
-**/public/**
-gatsby-config.js

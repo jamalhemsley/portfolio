@@ -1,51 +1,15 @@
 {
-  "name": "@jdaio/portfolio",
+  "name": "portfolio",
+  "version": "0.1.0",
   "private": true,
-  "description": "My front-end development portfolio.",
-  "version": "1.0.0",
-  "keywords": [
-    "portfolio"
-  ],
-  "homepage": "https://digitalhe.at/",
-  "bugs": {
-    "url": "https://github.com/jdaio/portfolio/issues"
-  },
-  "license": "MIT",
-  "author": "Jamal Ali-Mohammed <jamal@digitalhe.at> (https://digitalhe.at)",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jdaio/portfolio.git"
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
-    "gatsby": "^2.19.10",
-    "gatsby-image": "^2.2.39",
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-helmet": "^5.2.1",
-    "smooth-scroll": "^16.1.2"
-  },
-  "devDependencies": {
-    "eslint-config-airbnb": "^18.0.1",
-    "gatsby-plugin-eslint": "^2.0.8",
-    "gatsby-plugin-manifest": "^2.2.40",
-    "gatsby-plugin-offline": "^3.0.33",
-    "gatsby-plugin-react-helmet": "^3.1.21",
-    "gatsby-plugin-sass": "^2.1.27",
-    "gatsby-plugin-sharp": "^2.4.4",
-    "gatsby-source-filesystem": "^2.1.47",
-    "gatsby-transformer-remark": "^2.6.50",
-    "gatsby-transformer-sharp": "^2.3.13",
-    "node-sass": "^4.13.1",
-    "prettier": "^1.19.1",
-    "react-dom": "^16.12.0"
-  },
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "next": "10.0.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
   }
 }
