@@ -17,7 +17,7 @@
     "url": "git+https://github.com/jdaio/portfolio.git"
   },
   "dependencies": {
-    "gatsby": "^2.19.10",
+    "gatsby": "^2.26.1",
     "gatsby-image": "^2.2.39",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -31,7 +31,7 @@
     "gatsby-plugin-offline": "^3.0.33",
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-sass": "^2.1.27",
-    "gatsby-plugin-sharp": "^2.4.4",
+    "gatsby-plugin-sharp": "^2.8.0",
     "gatsby-source-filesystem": "^2.1.47",
     "gatsby-transformer-remark": "^2.6.50",
     "gatsby-transformer-sharp": "^2.3.13",
