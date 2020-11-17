@@ -1,11 +1,23 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
+  "name": "@jdaio/portfolio",
+  "description": "My front-end development portfolio.",
+  "author": "Jamal Ali-Mohammed <jamal@digitalhe.at> (https://digitalhe.at)",
+  "license": "MIT",
   "private": true,
+  "version": "0.1.0",
+  "homepage": "https://digitalhe.at",
+  "bugs": {
+    "url": "https://github.com/jdaio/portfolio/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdaio/portfolio.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export"
   },
   "dependencies": {
     "next": "10.0.1",
