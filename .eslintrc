@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["airbnb", "airbnb/hooks"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["import", "prettier", "react"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
