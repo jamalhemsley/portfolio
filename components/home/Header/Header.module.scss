@@ -1,0 +1,40 @@
+@import 'styles/scaffold';
+
+.Header__author {
+  color: $dark;
+  display: block;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.Header__title {
+  font-size: calc(1.25rem + 5.7vw);
+  margin-bottom: 1.5rem;
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 2rem;
+  }
+
+  @include media-breakpoint-up(xl) {
+    font-size: 6rem;
+  }
+}
+
+.Header__tagline {
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.Header__actions {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 1.5rem;
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 2rem;
+  }
+}

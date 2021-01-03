@@ -1,0 +1,48 @@
+@import 'styles/scaffold';
+
+.WorkList {
+  display: block;
+}
+
+.WorkList__inner {
+  background: $white;
+  box-shadow: 0 0.875rem 1.875rem -1.875rem $secondary;
+  border-radius: 1rem;
+  padding: 2.5rem 0;
+
+  @include media-breakpoint-up(lg) {
+    padding: 4rem 0;
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding: 5rem 0;
+  }
+}
+
+.WorkList__header {
+  padding: 0 0 2rem;
+
+  @include media-breakpoint-up(lg) {
+    padding: 0 2rem 1rem 0;
+  }
+}
+
+.WorkList__title {
+  width: 100%;
+}
+
+.WorkList__description {
+  width: 80%;
+
+  @include media-breakpoint-up(lg) {
+    width: 90%;
+  }
+}
+
+.WorkList__item {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

@@ -1,65 +1,66 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Prismic from '@prismicio/client';
+import { RichText } from 'prismic-reactjs';
+import { Client } from 'utils';
+import { DefaultLayout } from 'layouts';
+import { Meta } from 'components/global';
+import { Header, WorkList as Work } from 'components/home';
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+export const Home = ({ doc, works, site_settings }) => {
+  if (doc && doc.data) {
+    return (
+      <DefaultLayout siteSettings={site_settings}>
+        <Meta
+          title={
+            doc.data.meta_title
+              ? doc.data.meta_title
+              : RichText.asText(doc.data.title)
+          }
+          description={doc.data.meta_description}
+          author={site_settings.data.author}
+        />
+        <Header
+          author={site_settings.data.author}
+          title={doc.data.headline}
+          tagline={doc.data.tagline}
+          buttonLabel={doc.data.contact_button_label}
+          socialProfiles={site_settings.data.social_profiles}
+        />
+        <Work
+          title={doc.data.work_grid_title}
+          description={doc.data.work_grid_description}
+          works={works}
+        />
+      </DefaultLayout>
+    );
+  }
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+  return null;
+};
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+export async function getStaticProps() {
+  const client = Client();
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+  const doc = (await client.getSingle('home')) || {};
+  const site_settings = (await client.getSingle('site_settings')) || {};
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+  let works =
+    (await client.query(Prismic.Predicates.at('document.type', 'work'))) || [];
+  works = works.results;
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+  return {
+    props: {
+      doc,
+      site_settings,
+      works,
+    },
+  };
 }
+
+Home.propTypes = {
+  doc: PropTypes.shape({}).isRequired,
+  site_settings: PropTypes.shape({}),
+};
+
+export default Home;

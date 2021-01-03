@@ -1,0 +1,279 @@
+@import 'styles/scaffold';
+
+.StyleGuide {
+  display: block;
+}
+
+.StyleGuide__section {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 4rem;
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 0;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .count {
+    color: $secondary;
+    padding-right: 1rem;
+  }
+
+  .title {
+    margin-bottom: 2rem;
+
+    @include media-breakpoint-up(sm) {
+      margin-bottom: 3rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.StyleGuide__typography {
+  margin-bottom: 2rem;
+
+  @include media-breakpoint-up(sm) {
+    margin-bottom: 3rem;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .sample {
+    height: 3.5rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    user-select: none;
+    width: auto;
+  }
+
+  .credit {
+    display: block;
+    width: 100%;
+  }
+
+  .author {
+    display: inline;
+    font-weight: $font-weight-bold;
+
+    .icon {
+      align-items: center;
+      display: inline-flex;
+      opacity: 0.8;
+      padding-left: 0.4rem;
+      transition: $transition-base;
+    }
+
+    &:hover {
+      .icon {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.StyleGuide__colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  .swatch {
+    backface-visibility: hidden;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 0.875rem 2.5rem -1.25rem rgba($dark, 0);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 0 2rem 0;
+    outline: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: $transition-base;
+    width: 100%;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include media-breakpoint-up(sm) {
+      margin: 2rem 2rem 0 0;
+      width: calc(50% - 1rem);
+
+      &:nth-child(-n + 2) {
+        margin-top: 0;
+      }
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+    }
+
+    @include media-breakpoint-up(xxl) {
+      width: calc((100% / 3) - (4rem / 3));
+
+      &:nth-child(-n + 3) {
+        margin-top: 0;
+      }
+
+      &:nth-child(2n) {
+        margin-right: 2rem;
+      }
+
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+
+    &:hover {
+      border-radius: 1rem;
+      box-shadow: 0 0.875rem 2.5rem -1.25rem currentColor;
+      transform: translateY(-0.25rem);
+
+      .color {
+        height: 26rem;
+        width: 26rem;
+
+        @include media-breakpoint-up(sm) {
+          height: 23rem;
+          width: 23rem;
+        }
+
+        @include media-breakpoint-up(md) {
+          height: 16rem;
+          width: 16rem;
+        }
+
+        @include media-breakpoint-up(lg) {
+          height: 13rem;
+          width: 13rem;
+        }
+
+        @include media-breakpoint-up(xl) {
+          height: 15rem;
+          width: 15rem;
+        }
+
+        @include media-breakpoint-up(xxl) {
+          height: 12rem;
+          width: 12rem;
+        }
+
+        svg {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+          transition-delay: 0.3s;
+        }
+      }
+
+      .label {
+        background: $white;
+      }
+
+      .copy {
+        opacity: 1;
+        transition: $transition-base;
+        transition-delay: 0.3s;
+        transform: translate(-50%, -50%);
+      }
+
+      .code,
+      .name {
+        opacity: 0;
+        transition: $transition-base;
+        transition-delay: 0;
+      }
+    }
+  }
+
+  .colorContainer {
+    height: 8rem;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .color {
+    border-radius: 50%;
+    height: 5rem;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    transition: $transition-base;
+    width: 5rem;
+
+    svg {
+      height: auto;
+      left: 50%;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -60%);
+      transition: $transition-base;
+      transition-delay: 0;
+      width: 3rem;
+      z-index: 1;
+
+      @include media-breakpoint-up(mg) {
+        width: 3.5rem;
+      }
+
+      @include media-breakpoint-up(xxl) {
+        width: 3rem;
+      }
+    }
+  }
+
+  .label {
+    background: none;
+    padding: 1rem 0.5rem;
+    position: relative;
+    text-align: center;
+    transition: $transition-base;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .copy {
+    color: $secondary;
+    font-weight: $font-weight-bold;
+    left: 50%;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    transform: translate(-50%, -40%);
+    transition: $transition-base;
+    user-select: none;
+    z-index: 1;
+  }
+
+  .code {
+    color: $secondary;
+    font-weight: $font-weight-bold;
+    transition: $transition-base;
+    transition-delay: 0.3s;
+  }
+
+  .name {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    transition: $transition-base;
+    transition-delay: 0.3s;
+  }
+}

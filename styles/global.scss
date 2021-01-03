@@ -1,0 +1,137 @@
+@import 'styles/bootstrap/bootstrap';
+
+// Base
+body {
+  padding: 2rem 0;
+
+  @include media-breakpoint-up(lg) {
+    padding: 3rem 0;
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding: 4rem 0;
+  }
+}
+
+// Typography
+h1,
+.h1 {
+  letter-spacing: -0.0875rem;
+}
+
+h2,
+.h2 {
+  letter-spacing: -0.05rem;
+}
+
+h3,
+.h3 {
+  letter-spacing: -0.0375rem;
+}
+
+h4,
+.h4 {
+  letter-spacing: -0.025rem;
+}
+
+h5,
+.h5 {
+  letter-spacing: -0.0125rem;
+}
+
+.display-1 {
+  letter-spacing: -0.125rem;
+}
+
+.display-2 {
+  letter-spacing: -0.1125rem;
+}
+
+.display-3 {
+  letter-spacing: -0.0875rem;
+}
+
+.display-4 {
+  letter-spacing: -0.0625rem;
+}
+
+.display-5 {
+  letter-spacing: -0.05rem;
+}
+
+.display-6 {
+  letter-spacing: -0.025rem;
+}
+
+.lead {
+  font-size: calc(1.1rem + 0.3vw);
+  font-weight: 300;
+  letter-spacing: -0.01875rem;
+  line-height: 1.5;
+
+  @include media-breakpoint-up(xl) {
+    font-size: 1.5rem;
+  }
+}
+
+.lead-lg {
+  font-size: calc(1.25rem + 0.3vw);
+  font-weight: 300;
+  letter-spacing: -0.025rem;
+  line-height: 1.5;
+
+  @include media-breakpoint-up(xl) {
+    font-size: 2rem;
+  }
+}
+
+.text-standard {
+  a {
+    border-bottom: 0.125rem solid rgba($secondary-lighter, 0.25);
+    display: inline;
+    padding-bottom: 0;
+    position: relative;
+    transition: $transition-base;
+
+    &:hover {
+      border-bottom-color: $primary-dark;
+    }
+  }
+
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.text-gradient-primary {
+  background-clip: text;
+  background-image: $gradient-primary;
+  -webkit-text-fill-color: transparent;
+}
+
+// Layouts
+.section {
+  margin-bottom: 4rem;
+
+  @include media-breakpoint-up(sm) {
+    margin-bottom: 5rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: 6rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 7rem;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 8rem;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
