@@ -94,7 +94,7 @@ export async function getStaticPaths() {
 
   return {
     paths: works.map((work) => `/work/${work.uid}`),
-    fallback: true,
+    fallback: false,
   };
 }
 
