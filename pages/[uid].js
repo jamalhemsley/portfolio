@@ -5,9 +5,9 @@ import { DefaultLayout } from 'layouts';
 import { Content } from 'components/page';
 
 const Page = ({ page, site }) => {
-  const { heading, content, featured_image: featuredImage } = page.data;
-
   if (page && page.data) {
+    const { heading, content, featured_image: featuredImage } = page.data;
+
     return (
       <DefaultLayout site={site} content={page}>
         <Content

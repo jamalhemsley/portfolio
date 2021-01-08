@@ -7,15 +7,16 @@ import { Header, Work } from 'components/home';
 
 const Home = ({ site, page, work }) => {
   const { site_owner: owner } = site.data;
-  const {
-    headline,
-    tagline,
-    contact_button_label: contactButtonLabel,
-    work_grid_title: workGridTitle,
-    work_grid_description: workGridDescription,
-  } = page.data;
 
   if (page && page.data) {
+    const {
+      headline,
+      tagline,
+      contact_button_label: contactButtonLabel,
+      work_grid_title: workGridTitle,
+      work_grid_description: workGridDescription,
+    } = page.data;
+
     return (
       <DefaultLayout site={site} content={page}>
         <Header
