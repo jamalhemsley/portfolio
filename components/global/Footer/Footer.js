@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RichText } from 'prismic-reactjs';
-import { linkResolver } from 'prismic-configuration';
-import { htmlSerializer, textFormat } from 'utils';
-import { Button, ButtonGroup } from 'components/standard';
+import { renderText } from 'utils/content';
+import { Button, ButtonGroup, SiteLink } from 'components/common';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithubAlt } from '@fortawesome/free-brands-svg-icons';
@@ -11,39 +9,33 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Footer.module.scss';
 
-const Footer = ({ title, text, author, repository, socialProfiles }) => {
+const Footer = ({ title, text, social, owner, repository }) => {
+  // Get email for footer contact.
   let email = '';
 
-  if (socialProfiles) {
-    email = socialProfiles.find((profile) => profile.type === 'Email').name;
+  if (social) {
+    email = social.find((profile) => profile.type === 'Email').name;
   }
 
-  // Get the current year for the copyright.
-  const date = new Date().getFullYear();
-
   return (
-    <footer className={styles.Footer}>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-16'>
+    <footer id="footer" className={styles.Footer}>
+      <div className="container">
+        <div className="row">
+          <div className="col-16">
             <div className={styles.Footer__main}>
-              <div className='row'>
-                <div className='col-14 offset-1 col-md-12 offset-md-2 col-xl-10 offset-xl-3 col-xxl-8 offset-xxl-4'>
+              <div className="row">
+                <div className="col-14 offset-1 col-md-12 offset-md-2 col-xl-10 offset-xl-3 col-xxl-8 offset-xxl-4">
                   <div>
                     {title && (
                       <h2
                         className={`text-gradient-primary display-4 ${styles.Footer__title}`}>
-                        {textFormat(title)}
+                        {renderText(title, true)}
                       </h2>
                     )}
 
                     {text && (
                       <div className={styles.Footer__text}>
-                        <RichText
-                          render={text}
-                          linkResolver={linkResolver}
-                          htmlSerializer={htmlSerializer}
-                        />
+                        {renderText(text)}
                       </div>
                     )}
                   </div>
@@ -51,43 +43,35 @@ const Footer = ({ title, text, author, repository, socialProfiles }) => {
               </div>
 
               {email && (
-                <div className='row'>
-                  <div className='col-14 offset-1'>
+                <div className="row">
+                  <div className="col-14 offset-1">
                     <ButtonGroup className={styles.Footer__actions}>
                       <Button
-                        isLink={true}
-                        isBlank={true}
-                        link={`mailto:${email}`}
-                        icon={<FontAwesomeIcon icon={faPaperPlane} size='lg' />}
-                        size='lg'
-                        style='icon'
+                        label="Send a Message"
+                        link={`mailto:${email}?subject="Hello! Let's Work Together."`}
+                        icon={<FontAwesomeIcon icon={faPaperPlane} />}
+                        size="lg"
                       />
                     </ButtonGroup>
                   </div>
                 </div>
               )}
             </div>
-            {author || repository ? (
+            {owner || repository ? (
               <div className={styles.Footer__credits}>
-                {author && (
-                  <p
-                    key='footerCredit-author'
-                    className={styles.Footer__author}>
-                    &copy; {date} {textFormat(author)}.
+                {owner && (
+                  <p className={styles.Footer__owner}>
+                    &copy; {new Date().getFullYear()} {renderText(owner)}.
                   </p>
                 )}
 
                 {repository && (
-                  <a
-                    key='footerCredit-source'
-                    className={styles.Footer__source}
-                    href={repository}
-                    target='_blank'
-                    title='View the Source on Github'
-                    rel='noopener'>
+                  <SiteLink
+                    link={repository}
+                    className={styles.Footer__repository}>
                     <span>Source on Github</span>
-                    <FontAwesomeIcon icon={faGithubAlt} size='lg' />
-                  </a>
+                    <FontAwesomeIcon icon={faGithubAlt} size="lg" />
+                  </SiteLink>
                 )}
               </div>
             ) : null}
@@ -100,10 +84,18 @@ const Footer = ({ title, text, author, repository, socialProfiles }) => {
 
 Footer.propTypes = {
   title: PropTypes.string,
-  text: PropTypes.array,
-  author: PropTypes.string,
-  repository: PropTypes.string,
-  socialProfiles: PropTypes.array,
+  text: PropTypes.arrayOf(PropTypes.shape({})),
+  social: PropTypes.arrayOf(PropTypes.shape({})),
+  owner: PropTypes.string,
+  repository: PropTypes.shape({}),
+};
+
+Footer.defaultProps = {
+  title: '',
+  text: [],
+  social: [],
+  owner: '',
+  repository: {},
 };
 
 export default Footer;

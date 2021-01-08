@@ -1,17 +1,11 @@
 import React from 'react';
-import PropType from 'prop-types';
-import { Link, RichText } from 'prismic-reactjs';
-import { linkResolver } from 'prismic-configuration';
-import { htmlSerializer, textFormat } from 'utils';
+import PropTypes from 'prop-types';
+import { renderText } from 'utils/content';
+import { SiteLink } from 'components/common';
+import { ExternalLinkIcon, PaintBrushIcon } from 'components/icons';
 import copyToClipboard from './copyToClipboard';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import styles from './StyleGuide.module.scss';
-
-const ExternalLinkIcon = () => (
-  <img src='/icons/external-link-primary.svg' height='16' width='16' />
-);
 
 const Section = ({ count = 1, title, children }) => {
   let currentCount = count;
@@ -26,40 +20,67 @@ const Section = ({ count = 1, title, children }) => {
         <span className={`h4 ${styles.count}`}>{currentCount}</span>
       </div>
       <div className={styles.main}>
-        <h3 className={`h4 ${styles.title}`}>{title}</h3>
+        <h3 className={`h4 ${styles.title}`}>{renderText(title, true)}</h3>
         <div className={styles.body}>{children}</div>
       </div>
     </div>
   );
 };
 
+Section.propTypes = {
+  count: PropTypes.number,
+  title: PropTypes.string,
+  children: PropTypes.node,
+};
+
+Section.defaultProps = {
+  count: 0,
+  title: '',
+  children: null,
+};
+
 const TypographySample = ({ sample, author, link }) => {
+  const { url: sampleUrl, alt: sampleAlt } = sample;
+
   return (
     <div className={styles.StyleGuide__typography}>
       {sample && (
         <img
           className={styles.sample}
-          src={sample.url}
-          alt={sample.alt ? sample.alt : ''}
+          src={sampleUrl}
+          alt={renderText(sampleAlt, true) || ''}
         />
       )}
 
       {author && (
         <div className={`text-standard ${styles.credit}`}>
-          <a
-            className={styles.author}
-            href={Link.url(link.link, linkResolver)}
-            target='_blank'
-            rel='noopener'>
-            <span>By {textFormat(author)}</span>
+          <SiteLink link={link} className={styles.author}>
+            <span>By {renderText(author, true)}</span>
             <span className={styles.icon}>
-              <ExternalLinkIcon />
+              <ExternalLinkIcon width={16} height={16} />
             </span>
-          </a>
+          </SiteLink>
         </div>
       )}
     </div>
   );
+};
+
+TypographySample.propTypes = {
+  sample: PropTypes.shape({
+    url: PropTypes.string,
+    alt: PropTypes.string,
+  }),
+  author: PropTypes.string,
+  link: PropTypes.shape({
+    link: PropTypes.string,
+  }),
+};
+
+TypographySample.defaultProps = {
+  sample: {},
+  author: '',
+  link: {},
 };
 
 const ColorGrid = ({ colors }) => {
@@ -88,54 +109,42 @@ const ColorGrid = ({ colors }) => {
   if (colors) {
     return (
       <div className={styles.StyleGuide__colors}>
-        {colors.map((color, index) => (
-          <button
-            key={`color-${index}`}
-            className={styles.swatch}
-            style={{ color: color.color }}
-            onClick={(e) => copyColorToClipboard(e, color.color)}
-            onMouseLeave={(e) => resetColor(e)}>
-            <div className={styles.colorContainer}>
-              <div className={styles.color} style={{ background: color.color }}>
-                <svg
-                  viewBox='0 0 32 32'
-                  version='1.1'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <defs>
-                    <filter id='a'>
-                      <feColorMatrix
-                        in='SourceGraphic'
-                        values='0 0 0 0 0.956863 0 0 0 0 0.956863 0 0 0 0 0.964706 0 0 0 1.000000 0'
-                      />
-                    </filter>
-                  </defs>
-                  <g filter='url(#a)' fill='none' fillRule='evenodd'>
-                    <path
-                      d='M21.104 0c-.682 0-1.365.26-1.885.781l-5.024 5.024a1.22 1.22 0 001.724 1.724l1.805-1.805a1.332 1.332 0 111.885 1.883L19 8.219a1.024 1.024 0 101.448 1.448l-.057.057a1.332 1.332 0 011.885 0 1.332 1.332 0 010 1.885l.057-.057A1.024 1.024 0 1023.781 13l1.935-1.935a1.332 1.332 0 011.886 0 1.332 1.332 0 010 1.886l-3.13 3.13a1.22 1.22 0 001.723 1.724l5.024-5.024a2.666 2.666 0 000-3.77L22.989.78A2.658 2.658 0 0021.105 0zm-9.659 9.104c-.34 0-.68.13-.94.39l-3.057 3.058a2.666 2.666 0 000 3.77l1.411 1.415a1.934 1.934 0 010 2.734l-.205.209c-1.334 1.333-4.817 2.858-6.31 4.351C.11 27.265-.666 30.108.609 31.385c1.276 1.276 4.122.502 6.357-1.731 1.495-1.495 3.034-4.987 4.367-6.32l.196-.196a1.934 1.934 0 012.734 0l1.414 1.414a2.666 2.666 0 003.77 0l3.058-3.057a1.333 1.333 0 000-1.886L12.391 9.495c-.261-.26-.605-.39-.946-.39zM4 26.667a1.332 1.332 0 110 2.666 1.333 1.333 0 110-2.666z'
-                      fill='#535365'
-                      fillRule='nonzero'
-                    />
-                  </g>
-                </svg>
+        {colors.map((color, index) => {
+          const key = `color-${index}`;
+
+          return (
+            <button
+              key={key}
+              type="button"
+              className={styles.swatch}
+              style={{ color: color.color }}
+              onClick={(e) => copyColorToClipboard(e, color.color)}
+              onMouseLeave={(e) => resetColor(e)}>
+              <div className={styles.colorContainer}>
+                <div
+                  className={styles.color}
+                  style={{ background: color.color }}>
+                  <PaintBrushIcon />
+                </div>
               </div>
-            </div>
-            <div className={styles.label}>
-              <div className={styles.copy} data-copy-label>
-                Copy?
+              <div className={styles.label}>
+                <div className={styles.copy} data-copy-label>
+                  Copy?
+                </div>
+                <div className={styles.code}>{color.color}</div>
+                <div
+                  className={styles.name}
+                  style={{
+                    color: color.display_color
+                      ? color.display_color
+                      : color.color,
+                  }}>
+                  {renderText(color.name, true)}
+                </div>
               </div>
-              <div className={styles.code}>{color.color}</div>
-              <div
-                className={styles.name}
-                style={{
-                  color: color.display_color
-                    ? color.display_color
-                    : color.color,
-                }}>
-                {textFormat(color.name)}
-              </div>
-            </div>
-          </button>
-        ))}
+            </button>
+          );
+        })}
       </div>
     );
   }
@@ -143,45 +152,59 @@ const ColorGrid = ({ colors }) => {
   return null;
 };
 
-export const StyleGuide = ({ data, className }) => {
+ColorGrid.propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+ColorGrid.defaultProps = {
+  colors: {},
+};
+
+const StyleGuide = ({ data, className }) => {
+  const { items: colors } = data;
+  const {
+    typography_sample_1: typographySample1,
+    typography_author_1: typographyAuthor1,
+    typography_link_1: typographyLink1,
+    typography_sample_2: typographySample2,
+    typography_author_2: typographyAuthor2,
+    typography_link_2: typographyLink2,
+    typography_description: typographyDescription,
+  } = data.primary;
+
   if (data) {
     return (
       <section className={`${className} ${styles.StyleGuide}`}>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-14 offset-1'>
-              <div className='row'>
-                {data.items && (
-                  <Section count={1} title='Color Palette'>
-                    <ColorGrid colors={data.items} />
+        <div className="container">
+          <div className="row">
+            <div className="col-14 offset-1">
+              <div className="row">
+                {colors && (
+                  <Section count={1} title="Color Palette">
+                    <ColorGrid colors={colors} />
                   </Section>
                 )}
 
-                {data.primary.typography_sample_1 ||
-                data.primary.typography_sample_2 ? (
-                  <Section count={2} title='Typography'>
-                    {data.primary.typography_sample_1 && (
+                {typographySample1 || typographySample2 ? (
+                  <Section count={2} title="Typography">
+                    {typographySample1 && (
                       <TypographySample
-                        sample={data.primary.typography_sample_1}
-                        author={data.primary.typography_author_1}
-                        link={data.primary.typography_link_1}
+                        sample={typographySample1}
+                        author={typographyAuthor1}
+                        link={typographyLink1}
                       />
                     )}
 
-                    {data.primary.typography_sample_2 && (
+                    {typographySample2 && (
                       <TypographySample
-                        sample={data.primary.typography_sample_2}
-                        author={data.primary.typography_author_2}
-                        link={data.primary.typography_link_2}
+                        sample={typographySample2}
+                        author={typographyAuthor2}
+                        link={typographyLink2}
                       />
                     )}
 
                     <div className={styles.description}>
-                      <RichText
-                        render={data.primary.typography_description}
-                        linkResolver={linkResolver}
-                        htmlSerializer={htmlSerializer}
-                      />
+                      {renderText(typographyDescription)}
                     </div>
                   </Section>
                 ) : null}
@@ -194,6 +217,25 @@ export const StyleGuide = ({ data, className }) => {
   }
 
   return null;
+};
+
+StyleGuide.propTypes = {
+  data: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape({})),
+    primary: PropTypes.shape({
+      typography_sample_1: PropTypes.shape({}),
+      typography_sample_2: PropTypes.shape({}),
+      typography_author_1: PropTypes.string,
+      typography_author_2: PropTypes.string,
+      typography_link_1: PropTypes.shape({}),
+      typography_link_2: PropTypes.shape({}),
+      typography_description: PropTypes.arrayOf(PropTypes.shape({})),
+    }),
+  }),
+};
+
+StyleGuide.defaultProps = {
+  data: {},
 };
 
 export default StyleGuide;

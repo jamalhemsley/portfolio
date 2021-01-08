@@ -1,36 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Prismic from '@prismicio/client';
-import { RichText } from 'prismic-reactjs';
-import { Client } from 'utils';
+import { PrismicClient } from 'utils/prismic';
 import { DefaultLayout } from 'layouts';
-import { Meta } from 'components/global';
-import { Header, WorkList as Work } from 'components/home';
+import { Header, Work } from 'components/home';
 
-export const Home = ({ doc, works, site_settings }) => {
-  if (doc && doc.data) {
+const Home = ({ site, page, work }) => {
+  const { site_owner: owner } = site.data;
+  const {
+    headline,
+    tagline,
+    contact_button_label: contactButtonLabel,
+    work_grid_title: workGridTitle,
+    work_grid_description: workGridDescription,
+  } = page.data;
+
+  if (page && page.data) {
     return (
-      <DefaultLayout siteSettings={site_settings}>
-        <Meta
-          title={
-            doc.data.meta_title
-              ? doc.data.meta_title
-              : RichText.asText(doc.data.title)
-          }
-          description={doc.data.meta_description}
-          author={site_settings.data.author}
-        />
+      <DefaultLayout site={site} content={page}>
         <Header
-          author={site_settings.data.author}
-          title={doc.data.headline}
-          tagline={doc.data.tagline}
-          buttonLabel={doc.data.contact_button_label}
-          socialProfiles={site_settings.data.social_profiles}
+          preTitle={owner}
+          title={headline}
+          tagline={tagline}
+          contactButtonLabel={contactButtonLabel}
         />
         <Work
-          title={doc.data.work_grid_title}
-          description={doc.data.work_grid_description}
-          works={works}
+          title={workGridTitle}
+          description={workGridDescription}
+          work={work}
         />
       </DefaultLayout>
     );
@@ -39,28 +36,56 @@ export const Home = ({ doc, works, site_settings }) => {
   return null;
 };
 
-export async function getStaticProps() {
-  const client = Client();
+export async function getStaticProps({ preview = null, previewData = {} }) {
+  const { ref } = previewData;
 
-  const doc = (await client.getSingle('home')) || {};
-  const site_settings = (await client.getSingle('site_settings')) || {};
+  const client = PrismicClient();
 
-  let works =
-    (await client.query(Prismic.Predicates.at('document.type', 'work'))) || [];
-  works = works.results;
+  const site =
+    (await client.getSingle('site_settings', ref ? { ref } : null)) || {};
+  const page = (await client.getSingle('home', ref ? { ref } : null)) || {};
+
+  const getWork =
+    (await client.query(Prismic.Predicates.at('document.type', 'work'), {
+      orderings: '[my.work.date desc]',
+      pageSize: 10,
+      page: 1,
+    })) || [];
+
+  const { results: work } = getWork;
 
   return {
     props: {
-      doc,
-      site_settings,
-      works,
+      site,
+      page,
+      work,
+      preview,
     },
   };
 }
 
 Home.propTypes = {
-  doc: PropTypes.shape({}).isRequired,
-  site_settings: PropTypes.shape({}),
+  site: PropTypes.shape({
+    data: PropTypes.shape({
+      site_owner: PropTypes.string,
+    }),
+  }),
+  page: PropTypes.shape({
+    data: PropTypes.shape({
+      headline: PropTypes.string,
+      tagline: PropTypes.arrayOf(PropTypes.shape({})),
+      contact_button_label: PropTypes.string,
+      work_grid_title: PropTypes.string,
+      work_grid_description: PropTypes.arrayOf(PropTypes.shape({})),
+    }),
+  }),
+  work: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+Home.defaultProps = {
+  site: {},
+  page: {},
+  work: [],
 };
 
 export default Home;

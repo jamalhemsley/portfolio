@@ -7,6 +7,7 @@ module.exports = {
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+
     config.resolve.modules.push(path.resolve('./'));
 
     return config;

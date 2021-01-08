@@ -1,47 +1,60 @@
 import React from 'react';
-import PropType from 'prop-types';
-import { Link } from 'prismic-reactjs';
-import { linkResolver } from 'prismic-configuration';
-import { dateFormat, textFormat } from 'utils';
+import PropTypes from 'prop-types';
+import { renderDate, renderText } from 'utils/content';
+import { SiteLink } from 'components/common';
+import { ExternalLinkIcon } from 'components/icons';
 
 import styles from '../Overview.module.scss';
 
 const MetaWrapper = ({ title, children }) => (
   <div className={styles['Overview__meta-section']}>
-    <div className={styles.title}>{title}</div>
+    <div className={styles.title}>{renderText(title, true)}</div>
     <ul className={`text-standard ${styles.list}`}>{children}</ul>
   </div>
 );
 
-const ExternalLinkIcon = () => (
-  <img src='/icons/external-link-gradient.svg' height='16' width='16' />
-);
+MetaWrapper.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node,
+};
+
+MetaWrapper.defaultProps = {
+  title: '',
+  children: [],
+};
 
 export const OverviewMeta = ({ meta, date }) => (
   <aside className={styles.Overview__meta}>
-    <MetaWrapper title='Date'>
-      <li className={styles.item}>{dateFormat(date)}</li>
+    <MetaWrapper title="Date">
+      <li className={styles.item}>{renderDate(date)}</li>
     </MetaWrapper>
 
     {meta.map((section, index) => {
+      const key = `meta-${section.slice_type}-${index}`;
       switch (section.slice_type) {
         case 'agency':
           return (
             <MetaWrapper
-              key={`meta-${index}`}
+              key={key}
               title={section.items.length > 1 ? 'Agencies' : 'Agency'}>
               {section.items.map((item, i) => {
+                const metaKey = `agency-${i}`;
+
                 return (
-                  <li key={`agency-${i}`} className={styles.item}>
+                  <li key={metaKey} className={styles.item}>
                     {item.link ? (
-                      <a href={Link.url(item.link, linkResolver)}>
+                      <SiteLink link={item.link}>
                         <span>{item.name}</span>
                         <span className={styles.icon}>
-                          <ExternalLinkIcon />
+                          <ExternalLinkIcon
+                            type="gradient"
+                            height={16}
+                            width={16}
+                          />
                         </span>
-                      </a>
+                      </SiteLink>
                     ) : (
-                      textFormat(item.name)
+                      renderText(item.name, true)
                     )}
                   </li>
                 );
@@ -51,19 +64,25 @@ export const OverviewMeta = ({ meta, date }) => (
 
         case 'contributors':
           return (
-            <MetaWrapper key={`meta-${index}`} title='Contributors'>
+            <MetaWrapper key={key} title="Contributors">
               {section.items.map((item, i) => {
+                const metaKey = `contributor-${i}`;
+
                 return (
-                  <li key={`contributor-${i}`} className={styles.item}>
+                  <li key={metaKey} className={styles.item}>
                     {item.link ? (
-                      <a href={Link.url(item.link, linkResolver)}>
+                      <SiteLink link={item.link}>
                         <span>{item.name}</span>
                         <span className={styles.icon}>
-                          <ExternalLinkIcon />
+                          <ExternalLinkIcon
+                            type="gradient"
+                            height={16}
+                            width={16}
+                          />
                         </span>
-                      </a>
+                      </SiteLink>
                     ) : (
-                      textFormat(item.name)
+                      renderText(item.name, true)
                     )}
                   </li>
                 );
@@ -74,12 +93,14 @@ export const OverviewMeta = ({ meta, date }) => (
         case 'roles':
           return (
             <MetaWrapper
-              key={`meta-${index}`}
+              key={key}
               title={section.items.length > 1 ? 'Roles' : 'Role'}>
               {section.items.map((item, i) => {
+                const metaKey = `role-${i}`;
+
                 return (
-                  <li key={`role-${i}`} className={styles.item}>
-                    {textFormat(item.role)}
+                  <li key={metaKey} className={styles.item}>
+                    {renderText(item.role, true)}
                   </li>
                 );
               })}
@@ -88,11 +109,13 @@ export const OverviewMeta = ({ meta, date }) => (
 
         case 'technologies':
           return (
-            <MetaWrapper key={`meta-${index}`} title='Technologies'>
+            <MetaWrapper key={key} title="Technologies">
               {section.items.map((item, i) => {
+                const metaKey = `technology-${i}`;
+
                 return (
-                  <li key={`technology-${i}`} className={styles.item}>
-                    {textFormat(item.name)}
+                  <li key={metaKey} className={styles.item}>
+                    {renderText(item.name)}
                   </li>
                 );
               })}
@@ -107,8 +130,13 @@ export const OverviewMeta = ({ meta, date }) => (
 );
 
 OverviewMeta.propTypes = {
-  meta: PropType.array,
-  date: PropType.string,
+  meta: PropTypes.arrayOf(PropTypes.shape({})),
+  date: PropTypes.string,
+};
+
+OverviewMeta.defaultProps = {
+  meta: [],
+  date: '',
 };
 
 export default OverviewMeta;

@@ -217,6 +217,7 @@
     width: 5rem;
 
     svg {
+      fill: $light;
       height: auto;
       left: 50%;
       opacity: 0;
@@ -249,8 +250,7 @@
   }
 
   .copy {
-    color: $secondary;
-    font-weight: $font-weight-bold;
+    color: $dark;
     left: 50%;
     opacity: 0;
     pointer-events: none;
@@ -265,15 +265,19 @@
 
   .code {
     color: $secondary;
-    font-weight: $font-weight-bold;
+    opacity: 1;
+    text-transform: uppercase;
     transition: $transition-base;
     transition-delay: 0.3s;
+    will-change: opacity;
   }
 
   .name {
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
+    opacity: 1;
     transition: $transition-base;
     transition-delay: 0.3s;
+    will-change: opacity;
   }
 }

@@ -1,19 +1,20 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { PrismicScript } from 'utils';
+import { PrismicScript } from 'utils/prismic';
 
-class MyDocument extends Document {
+export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
+
     return { ...initialProps };
   }
 
   render() {
     return (
-      <Html lang='en'>
+      <Html lang="en">
         <Head>
-          <link rel='icon' href='/logo.svg' type='image/svg+xml' />
-          <link rel='stylesheet' href='/fonts/style.css' />
+          <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+          <link rel="stylesheet" href="/fonts/style.css" />
         </Head>
         <body>
           <Main />
@@ -24,5 +25,3 @@ class MyDocument extends Document {
     );
   }
 }
-
-export default MyDocument;

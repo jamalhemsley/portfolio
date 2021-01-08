@@ -7,11 +7,11 @@
  *
  */
 
-export default function copyToClipboard(str) {
+const copyToClipboard = (str) => {
   const el = document.createElement('textarea'); // Create a <textarea> element
 
-  let storeContentEditable = el.contentEditable;
-  let storeReadOnly = el.readOnly;
+  const storeContentEditable = el.contentEditable;
+  const storeReadOnly = el.readOnly;
 
   el.value = str; // Set its value to the string that you want copied
   el.contentEditable = true;
@@ -37,4 +37,6 @@ export default function copyToClipboard(str) {
 
   el.contentEditable = storeContentEditable;
   el.readOnly = storeReadOnly;
-}
+};
+
+export default copyToClipboard;

@@ -1,38 +1,67 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Link, RichText } from 'prismic-reactjs';
-import { linkResolver } from 'prismic-configuration';
-import { textFormat } from 'utils';
-import { SiteLink } from 'components/standard';
+import { Link } from 'prismic-reactjs';
+import { linkResolver } from 'config/prismic';
+import { renderText } from 'utils/content';
+import { SiteLink } from 'components/common';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faBars } from '@fortawesome/free-solid-svg-icons';
+import { Logo } from 'components/icons';
 
 import styles from './Header.module.scss';
 
-export const Header = ({ menu, socialProfiles }) => {
+const Header = ({ siteTitle, menu, social, currentUid }) => {
+  // Add class trigger for sticky header.
+  const headerEl = useRef(null);
+
+  const toggleMobileNav = (e) => {
+    headerEl.current.classList.toggle(styles.isExpanded);
+
+    e.preventDefault();
+    e.currentTarget.classList.toggle(styles.isActive);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([e]) =>
+        e.target.classList.toggle(styles.isSticky, e.intersectionRatio < 1),
+      { threshold: [1] }
+    );
+
+    if (headerEl.current) {
+      observer.observe(headerEl.current);
+    }
+  }, [headerEl]);
+
   return (
-    <header className={styles.Header}>
-      <div className='container'>
-        <div className={styles.Header__inner}>
-          <div className='row'>
-            <div className='col-3 col-md-2 d-flex align-items-center'>
-              <a href='/' className={styles.Header__brand}>
-                <Image
-                  src='/logo.svg'
-                  alt='Digital Heat Logo'
-                  height='85'
-                  width='67'
-                  quality='100'
-                />
-              </a>
-            </div>
-            <div className='col-11 offset-2 offset-md-3 col-lg-12 offset-lg-2 d-flex align-items-center justify-content-end'>
-              <Nav menu={menu} socialProfiles={socialProfiles} />
-            </div>
+    <header ref={headerEl} id="header" className={styles.Header}>
+      <div className="container">
+        <div className="row">
+          <div className="col-6 col-md-7 d-flex align-items-center">
+            <nav
+              className={`${styles.Header__nav} ${styles.Header__nav___primary}`}
+              role="navigation"
+              aria-label="Main Navigation">
+              <button
+                className={`btn ${styles.Header__toggle}`}
+                onClick={toggleMobileNav}
+                type="button">
+                <span />
+                <span />
+              </button>
+              <Nav menuLinks={menu} uid={currentUid} />
+            </nav>
+          </div>
+          <div className="col-4 col-sm-2 col-md-2 offset-md-0 d-flex align-items-center justify-content-center">
+            <a href="/" className={styles.Header__brand}>
+              <Logo title={siteTitle} className={styles.icon} />
+            </a>
+          </div>
+          <div className="col-6 col-md-7 d-flex align-items-center justify-content-end">
+            <Nav socialLinks={social} />
           </div>
         </div>
       </div>
@@ -40,29 +69,59 @@ export const Header = ({ menu, socialProfiles }) => {
   );
 };
 
-const Nav = ({ menu, socialProfiles }) => (
-  <nav
-    className={styles.Header__nav}
-    role='navigation'
-    aria-label='Main Navigation'>
-    <MenuLinks menu={menu} />
-    <SocialLinks socialProfiles={socialProfiles} />
-  </nav>
-);
+Header.propTypes = {
+  menu: PropTypes.arrayOf(PropTypes.shape({})),
+  social: PropTypes.arrayOf(PropTypes.shape({})),
+  siteTitle: PropTypes.string,
+  currentUid: PropTypes.string,
+};
 
-const MenuLinks = ({ menu }) => {
+Header.defaultProps = {
+  menu: [],
+  social: [],
+  siteTitle: '',
+  currentUid: '',
+};
+
+const Nav = ({ menuLinks, socialLinks, uid }) => {
+  if (menuLinks) return <MenuLinks links={menuLinks} uid={uid} />;
+
+  if (socialLinks)
+    return (
+      <nav className={styles.Header__nav} aria-label="Social Links">
+        <SocialLinks links={socialLinks} />
+      </nav>
+    );
+
+  return null;
+};
+
+Nav.propTypes = {
+  menuLinks: PropTypes.arrayOf(PropTypes.shape({})),
+  socialLinks: PropTypes.arrayOf(PropTypes.shape({})),
+  uid: PropTypes.string,
+};
+
+Nav.defaultProps = {
+  menuLinks: null,
+  socialLinks: null,
+  uid: '',
+};
+
+const MenuLinks = ({ links, uid }) => {
   // Initialize the router.
   const router = useRouter();
 
-  if (menu) {
+  if (links)
     return (
-      <ul className={styles['Header__nav-list']}>
-        {menu.map((menuLink, index) => {
-          const linkHref = Link.url(menuLink.link, linkResolver);
+      <ul className={styles.Header__navList}>
+        {links.map((link, index) => {
+          const itemKey = `menuItem-${index}`;
+          const linkHref = Link.url(link.link, linkResolver);
           let isActive = false;
 
           // If the current path is equal to the link path set it to current.
-          if (router.pathname === linkHref) {
+          if (router.pathname === linkHref || `/${uid}` === linkHref) {
             isActive = true;
           }
 
@@ -72,77 +131,77 @@ const MenuLinks = ({ menu }) => {
           }
 
           return (
-            <li
-              key={`menulink-${index}`}
-              className={styles['Header__nav-item']}>
-              <MenuLink
-                menuLink={menuLink}
-                linkClass={`${styles['Header__nav-link']} ${
-                  isActive ? styles['Header__nav-link--is-active'] : null
-                }`}
-              />
+            <li key={itemKey} className={styles.Header__navItem}>
+              <SiteLink
+                link={link.link}
+                className={`${styles.Header__navLink} ${
+                  isActive ? styles.isActive : null
+                }`}>
+                {renderText(link.label, true)}
+              </SiteLink>
             </li>
           );
         })}
       </ul>
     );
-  }
 
   return null;
 };
 
-const MenuLink = ({ menuLink, linkClass }) => (
-  <SiteLink link={menuLink.link} linkClass={linkClass} detectActive={true}>
-    {textFormat(menuLink.label)}
-  </SiteLink>
-);
+MenuLinks.propTypes = {
+  links: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  uid: PropTypes.string,
+};
 
-const SocialLinks = ({ socialProfiles }) => {
-  if (socialProfiles) {
-    const socialItems = [];
-    const socialLinks = [];
+MenuLinks.defaultProps = {
+  uid: '',
+};
 
-    socialProfiles.map((socialLink) => socialItems.push(socialLink));
+/**
+ * @todo Rename this function to something more relevant as it doesn't handle links.
+ */
+const SocialLinks = ({ links }) => {
+  if (links)
+    return (
+      <ul className={styles.Header__navList}>
+        {links.map((link, index) => {
+          const itemKey = `socialItem-${index}`;
 
-    for (const socialItem of socialItems) {
-      if (socialItem.type === 'Email') {
-        socialLinks.push(
-          <li key='social-email' className={styles['Header__nav-item']}>
-            <a
-              href={`mailto:${socialItem.name}`}
-              target='_blank'
-              rel='noopener'
-              className={`${styles['Header__nav-link']} ${styles['Header__nav-link--icon']}`}>
-              <FontAwesomeIcon icon={faPaperPlane} size='lg' />
-            </a>
-          </li>
-        );
-      }
+          switch (link.type) {
+            case 'Email':
+              return (
+                <li key={itemKey} className={styles.Header__navItem}>
+                  <SiteLink
+                    link={`mailto:${link.name}&subject="Hello! Let's Work Together."`}
+                    className={`${styles.Header__navLink} ${styles.Header__navLink___hasIcon}`}>
+                    <FontAwesomeIcon icon={faPaperPlane} size="lg" />
+                  </SiteLink>
+                </li>
+              );
 
-      if (socialItem.type === 'Github') {
-        socialLinks.push(
-          <li key='social-github' className={styles['Header__nav-item']}>
-            <a
-              href={`https://github.com/${socialItem.name}`}
-              target='_blank'
-              rel='noopener'
-              className={`${styles['Header__nav-link']} ${styles['Header__nav-link--icon']}`}>
-              <FontAwesomeIcon icon={faGithub} size='lg' />
-            </a>
-          </li>
-        );
-      }
-    }
+            case 'Github':
+              return (
+                <li key={itemKey} className={styles.Header__navItem}>
+                  <SiteLink
+                    link={`https://github.com/${link.name}`}
+                    className={`${styles.Header__navLink} ${styles.Header__navLink___hasIcon}`}>
+                    <FontAwesomeIcon icon={faGithub} size="lg" />
+                  </SiteLink>
+                </li>
+              );
 
-    return <ul className={styles['Header__nav-list']}>{socialLinks}</ul>;
-  }
+            default:
+              return null;
+          }
+        })}
+      </ul>
+    );
 
   return null;
 };
 
-Header.propTypes = {
-  menu: PropTypes.array,
-  socialProfiles: PropTypes.array,
+SocialLinks.propTypes = {
+  links: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Header;

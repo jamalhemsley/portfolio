@@ -71,3 +71,11 @@ $link-hover-decoration: none;
 
 // Transitions
 $transition-base: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+// Container variables for custom use.
+// scss-docs-start container-max-widths
+$container-sm: 540px;
+$container-md: 720px;
+$container-lg: 960px;
+$container-xl: 1140px;
+$container-xxl: 1320px;

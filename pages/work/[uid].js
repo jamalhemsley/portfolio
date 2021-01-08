@@ -1,41 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RichText } from 'prismic-reactjs';
-import { Client, PrismicQueries } from 'utils';
+import { PrismicClient, PrismicQueries } from 'utils/prismic';
 import { DefaultLayout } from 'layouts';
-import { Meta } from 'components/global';
 import { Header, Overview, Content } from 'components/work';
 
-export const Work = ({ work, site_settings }) => {
+const Work = ({ site, work }) => {
   if (work && work.data) {
+    const {
+      client,
+      date,
+      title,
+      tagline,
+      featured_image: featuredImage,
+      overview,
+      links,
+      work_meta: workMeta,
+      content,
+    } = work.data;
+
     return (
-      <DefaultLayout siteSettings={site_settings}>
-        <Meta
-          title={
-            work.data.meta_title
-              ? work.data.meta_title
-              : RichText.asText(work.data.title)
-          }
-          description={work.data.meta_description}
-          author={site_settings.data.author}
-        />
+      <DefaultLayout site={site} content={work}>
         <Header
-          client={work.data.client}
-          date={work.data.date}
-          title={work.data.title}
-          tagline={work.data.tagline}
-          image={work.data.featured_image}
+          client={client}
+          date={date}
+          title={title}
+          tagline={tagline}
+          image={featuredImage}
         />
-        <main>
-          <Overview
-            overview={work.data.overview}
-            links={work.data.links}
-            meta={work.data.work_meta}
-            date={work.data.date}
-            className='section'
-          />
-          <Content content={work.data.content} className='section' />
-        </main>
+        <Overview
+          overview={overview}
+          links={links}
+          meta={workMeta}
+          date={date}
+          className="section"
+        />
+        <Content content={content} className="section" />
       </DefaultLayout>
     );
   }
@@ -43,16 +42,49 @@ export const Work = ({ work, site_settings }) => {
   return null;
 };
 
-export async function getStaticProps({ params }) {
-  const client = Client();
+Work.propTypes = {
+  work: PropTypes.shape({
+    data: PropTypes.shape({
+      client: PropTypes.arrayOf(PropTypes.shape({})),
+      date: PropTypes.string,
+      title: PropTypes.arrayOf(PropTypes.shape({})),
+      tagline: PropTypes.string,
+      featured_image: PropTypes.shape({
+        url: PropTypes.string,
+      }),
+      overview: PropTypes.arrayOf(PropTypes.shape({})),
+      links: PropTypes.arrayOf(PropTypes.shape({})),
+      work_meta: PropTypes.arrayOf(PropTypes.shape({})),
+      content: PropTypes.arrayOf(PropTypes.shape({})),
+    }),
+  }),
+  site: PropTypes.shape({}),
+};
 
-  const work = (await client.getByUID('work', params.uid)) || {};
-  const site_settings = (await client.getSingle('site_settings')) || {};
+Work.defaultProps = {
+  site: {},
+  work: {},
+};
+
+export async function getStaticProps({
+  params,
+  preview = null,
+  previewData = {},
+}) {
+  const { ref } = previewData;
+
+  const client = PrismicClient();
+
+  const site =
+    (await client.getSingle('site_settings', ref ? { ref } : null)) || {};
+  const work =
+    (await client.getByUID('work', params.uid, ref ? { ref } : null)) || {};
 
   return {
     props: {
-      site_settings,
+      site,
       work,
+      preview,
     },
   };
 }
@@ -65,14 +97,5 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
-
-Work.propTypes = {
-  work: PropTypes.shape({}).isRequired,
-  site_settings: PropTypes.shape({}),
-};
-
-Work.defaultProps = {
-  work: {},
-};
 
 export default Work;

@@ -5,42 +5,68 @@
   /* stylelint-disable property-no-vendor-prefix */
   -webkit-backdrop-filter: blur(0.5rem);
   /* stylelint-enable property-no-vendor-prefix */
-  background: rgba($white, 0.85);
-  box-shadow: 0 1rem 2rem -2rem rgba($secondary, 0.4);
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 0;
   position: sticky;
-  top: 0;
+  top: -1px;
+  transition: $transition-base;
   z-index: $zindex-sticky;
 
-  @include media-breakpoint-up(sm) {
-    padding: 1rem 1.5rem;
+  &.isExpanded {
+    @include media-breakpoint-down(lg) {
+      .Header__nav___primary {
+        .Header__navList {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translate(-50%, 0);
+          z-index: 1;
+        }
+      }
+
+      &.isSticky {
+        background: $dark;
+      }
+    }
   }
 
-  @include media-breakpoint-up(lg) {
-    padding: 1rem 1.75rem;
-  }
+  &.isSticky {
+    background: rgba($dark, 0.85);
+    box-shadow: 0 1rem 2rem -2rem rgba($dark, 0.4);
 
-  @include media-breakpoint-up(xl) {
-    padding: 1rem 2rem;
+    .Header__navLink {
+      color: $secondary-light;
+
+      &:hover {
+        color: $light;
+      }
+
+      &.isActive {
+        color: $light;
+
+        &:hover {
+          color: $light;
+        }
+      }
+    }
   }
 }
 
 .Header__brand {
   align-items: center;
   display: flex;
-  max-width: 2rem;
+  max-width: 1.75rem;
   user-select: none;
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     max-width: 2.5rem;
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     max-width: 3rem;
   }
 
-  @include media-breakpoint-up(xl) {
-    max-width: 3.5rem;
+  .icon {
+    height: auto;
+    width: 100%;
   }
 }
 
@@ -50,7 +76,118 @@
   justify-content: flex-end;
 }
 
-.Header__nav-list {
+.Header__nav___primary {
+  @include media-breakpoint-down(lg) {
+    display: block;
+
+    .Header__navList {
+      background: $dark;
+      border-radius: 1rem;
+      box-shadow: 0 1rem 2.5rem -1.25rem $dark;
+      display: block;
+      left: 50%;
+      opacity: 0;
+      padding: 2rem 0;
+      position: absolute;
+      pointer-events: none;
+      top: calc(100% + 1rem);
+      transform: translate(-50%, 1rem);
+      transition: $transition-base;
+      width: calc(100% - 2rem);
+      z-index: -1;
+
+      @include media-breakpoint-up(sm) {
+        max-width: $container-sm;
+      }
+
+      @include media-breakpoint-up(md) {
+        max-width: $container-md;
+      }
+    }
+
+    .Header__navItem {
+      margin-bottom: 2rem;
+      margin-right: 0;
+      text-align: center;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .Header__navLink {
+      color: $secondary-light;
+      display: inline-block;
+      font-size: $font-size-lg;
+
+      &:hover {
+        color: $light;
+      }
+
+      &.isActive {
+        color: $light;
+
+        &:hover {
+          color: $light;
+        }
+      }
+    }
+  }
+}
+
+.Header__toggle {
+  display: inline-block;
+  height: 1.5rem;
+  padding: 0;
+  position: relative;
+  transform: rotate(0deg);
+  transition: $transition-base;
+  width: 1.75rem;
+
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+
+  span {
+    background: $secondary;
+    border-radius: 1rem;
+    display: block;
+    height: 0.125rem;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    transform: rotate(0deg) translateY(-50%);
+    transition: $transition-base;
+    width: 100%;
+
+    &:first-child {
+      top: calc(50% - 0.125rem - 0.25rem);
+    }
+
+    &:last-child {
+      top: calc(50% + 0.375rem);
+    }
+  }
+
+  &.isActive {
+    span {
+      background: $primary;
+
+      &:first-child {
+        top: 50%;
+        transform: rotate(-45deg) translateY(-50%);
+      }
+
+      &:last-child {
+        left: -0.0625rem;
+        top: 50%;
+        transform: rotate(45deg) translateY(-50%);
+      }
+    }
+  }
+}
+
+.Header__navList {
   display: flex;
   justify-content: flex-end;
   list-style: none;
@@ -74,12 +211,12 @@
   }
 }
 
-.Header__nav-item {
+.Header__navItem {
   display: block;
   margin-right: 1.25rem;
 
   @include media-breakpoint-up(sm) {
-    margin-right: 3rem;
+    margin-right: 1.75rem;
   }
 
   @include media-breakpoint-up(md) {
@@ -95,10 +232,9 @@
   }
 }
 
-.Header__nav-link {
+.Header__navLink {
   color: $secondary;
   display: block;
-  font-weight: bold;
   padding: 0.25rem 0;
   position: relative;
   transition: $transition-base;
@@ -107,14 +243,14 @@
     padding: 0.5rem 0;
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     font-size: $font-size-base * 1.125;
   }
 
   &::before {
     background: none;
     border-radius: 1rem;
-    bottom: -0.25rem;
+    bottom: 0;
     content: '';
     display: block;
     height: 0.25rem;
@@ -135,28 +271,30 @@
       width: calc(100% + 0.75rem);
     }
   }
-}
 
-.Header__nav-link--is-active {
-  color: $dark;
-
-  &::before {
-    background: $gradient-primary;
-    opacity: 1;
-    width: 100%;
-  }
-
-  &:hover {
+  &.isActive {
     color: $dark;
 
     &::before {
       background: $gradient-primary;
       opacity: 1;
+      transition: $transition-base;
+      width: 100%;
+    }
+
+    &:hover {
+      color: $dark;
+
+      &::before {
+        background: $gradient-primary;
+        opacity: 1;
+        width: calc(100% + 0.75rem);
+      }
     }
   }
 }
 
-.Header__nav-link--icon {
+.Header__navLink___hasIcon {
   &::before {
     display: none;
   }

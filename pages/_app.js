@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import 'styles/global.scss';
 
-function App({ Component, pageProps, router }) {
-  return <Component {...pageProps} key={router.route} />;
-}
+const App = ({ Component, pageProps }) => (
+  <>
+    <Component {...pageProps} />
+  </>
+);
 
 App.propTypes = {
   Component: PropTypes.func.isRequired,

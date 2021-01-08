@@ -1,18 +1,11 @@
 import Prismic from '@prismicio/client';
-import { PrismicClient as Client } from './prismicClient';
-
-export const PrismicQueries = {
-  fetchAllPages: fetchAllPages(),
-  fetchAllWork: fetchAllWork(),
-};
-
-export default PrismicQueries;
+import PrismicClient from './prismicClient';
 
 async function fetchAllPages(page = 1, routes = []) {
-  const response = await Client().query(
+  const response = await PrismicClient().query(
     Prismic.Predicates.at('document.type', 'page'),
     {
-      pageSize: 100,
+      pageSize: 20,
       page,
     }
   );
@@ -26,10 +19,11 @@ async function fetchAllPages(page = 1, routes = []) {
 }
 
 async function fetchAllWork(page = 1, routes = []) {
-  const response = await Client().query(
+  const response = await PrismicClient().query(
     Prismic.Predicates.at('document.type', 'work'),
     {
-      pageSize: 100,
+      orderings: '[my.work.date desc]',
+      pageSize: 20,
       page,
     }
   );
@@ -41,3 +35,10 @@ async function fetchAllWork(page = 1, routes = []) {
 
   return [...new Set(allRoutes)];
 }
+
+export const PrismicQueries = {
+  fetchAllPages: fetchAllPages(),
+  fetchAllWork: fetchAllWork(),
+};
+
+export default PrismicQueries;

@@ -1,28 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RichText } from 'prismic-reactjs';
-import { Client, PrismicQueries } from 'utils';
+import { PrismicClient, PrismicQueries } from 'utils/prismic';
 import { DefaultLayout } from 'layouts';
-import { Meta } from 'components/global';
 import { Content } from 'components/page';
 
-export const Page = ({ page, site_settings }) => {
+const Page = ({ page, site }) => {
+  const { heading, content, featured_image: featuredImage } = page.data;
+
   if (page && page.data) {
     return (
-      <DefaultLayout siteSettings={site_settings}>
-        <Meta
-          title={
-            page.data.meta_title
-              ? page.data.meta_title
-              : RichText.asText(page.data.title)
-          }
-          description={page.data.meta_description}
-          author={site_settings.data.author}
-        />
+      <DefaultLayout site={site} content={page}>
         <Content
-          content={page.data.content}
-          featuredImage={page.data.featured_image}
-          featuredImageAlt={page.data.featured_image_alt}
+          heading={heading}
+          content={content}
+          featuredImage={featuredImage}
         />
       </DefaultLayout>
     );
@@ -31,16 +22,41 @@ export const Page = ({ page, site_settings }) => {
   return null;
 };
 
-export async function getStaticProps({ params }) {
-  const client = Client();
+Page.propTypes = {
+  page: PropTypes.shape({
+    data: PropTypes.shape({
+      heading: PropTypes.arrayOf(PropTypes.shape({})),
+      content: PropTypes.arrayOf(PropTypes.shape({})),
+      featured_image: PropTypes.shape({}),
+    }),
+  }),
+  site: PropTypes.shape({}),
+};
 
-  const page = (await client.getByUID('page', params.uid)) || {};
-  const site_settings = (await client.getSingle('site_settings')) || {};
+Page.defaultProps = {
+  page: {},
+  site: {},
+};
+
+export async function getStaticProps({
+  params,
+  preview = null,
+  previewData = {},
+}) {
+  const { ref } = previewData;
+
+  const client = PrismicClient();
+
+  const site =
+    (await client.getSingle('site_settings', ref ? { ref } : null)) || {};
+  const page =
+    (await client.getByUID('page', params.uid, ref ? { ref } : null)) || {};
 
   return {
     props: {
+      site,
       page,
-      site_settings,
+      preview,
     },
   };
 }
@@ -53,14 +69,5 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
-
-Page.propTypes = {
-  page: PropTypes.shape({}).isRequired,
-  site_settings: PropTypes.shape({}),
-};
-
-Page.defaultProps = {
-  page: {},
-};
 
 export default Page;

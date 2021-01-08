@@ -1,4 +1,4 @@
-@import 'styles/bootstrap/bootstrap';
+@import './bootstrap/bootstrap';
 
 // Base
 body {
@@ -86,8 +86,20 @@ h5,
 }
 
 .text-standard {
+  h1 {
+    margin-bottom: 2.5rem;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 2rem;
+  }
+
   a {
-    border-bottom: 0.125rem solid rgba($secondary-lighter, 0.25);
+    border-bottom: 0.0625rem solid rgba($secondary-lighter, 0.25);
     display: inline;
     padding-bottom: 0;
     position: relative;
@@ -127,7 +139,7 @@ h5,
     margin-bottom: 7rem;
   }
 
-  @include media-breakpoint-up(xxl) {
+  @include media-breakpoint-up(xl) {
     margin-bottom: 8rem;
   }
 
