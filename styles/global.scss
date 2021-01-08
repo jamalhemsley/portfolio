@@ -1,6 +1,12 @@
 @import './bootstrap/bootstrap';
 @import './fonts';
 
+// Import Critical  CSS
+@import '../components/global/Header/Header.module.scss';
+@import '../layouts/Default/DefaultLayout.module.scss';
+@import '../components/common/Button/Button.module.scss';
+@import '../components/common/ButtonGroup/ButtonGroup.module.scss';
+
 // Base
 body {
   padding: 2rem 0;
