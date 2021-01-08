@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { renderText } from 'utils/content';
 import { Button, ButtonGroup } from 'components/common';
 import { OverviewMeta } from './OverviewMeta/OverviewMeta';
@@ -26,7 +25,7 @@ const Overview = ({ overview, links, meta, date, className }) => (
                   key={key}
                   link={link.link}
                   label={link.label}
-                  icon={<FontAwesomeIcon icon={faChevronRight} />}
+                  icon={<FontAwesomeIcon icon="chevron-right" />}
                   style={link.is_primary ? 'primary' : 'secondary'}
                   className={styles.Overview__link}
                 />

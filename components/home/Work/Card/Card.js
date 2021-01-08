@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { renderText } from 'utils/content';
 import { SiteLink } from 'components/common';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 import Image from './Image/Image';
 
 import animations from './animations';
@@ -52,7 +51,7 @@ const Card = ({ work }) => {
             <span className={styles.Card__moreText}>
               <span className={styles.text}>View the case study</span>
               <span className={styles.icon}>
-                <FontAwesomeIcon icon={faLongArrowAltRight} size="sm" />
+                <FontAwesomeIcon icon="long-arrow-alt-right" size="sm" />
               </span>
             </span>
           </footer>

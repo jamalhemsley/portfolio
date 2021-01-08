@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { renderDate, renderText } from 'utils/content';
 import { Button } from 'components/common';
 import Image from './Image/Image';
@@ -50,7 +49,7 @@ const Header = ({ client, date, title, tagline, image }) => {
             <Button
               label="View Case"
               link="#overview"
-              icon={<FontAwesomeIcon icon={faChevronDown} />}
+              icon={<FontAwesomeIcon icon="chevron-down" />}
             />
           </div>
         </div>

@@ -38,6 +38,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
+          {/* Fix FOUC on first load */}
           <script>0</script>
           <Main />
           <NextScript />

@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { renderText } from 'utils/content';
 import { Button, ButtonGroup } from 'components/common';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
 
@@ -44,7 +42,7 @@ const Header = ({ preTitle, title, tagline, contactButtonLabel }) => (
               <Button
                 label={renderText(contactButtonLabel)}
                 link="#footer"
-                icon={<FontAwesomeIcon icon={faComment} />}
+                icon={<FontAwesomeIcon icon="comment" />}
                 size="lg"
               />
             </ButtonGroup>

@@ -1,14 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'prismic-reactjs';
 import { linkResolver } from 'config/prismic';
 import { renderText } from 'utils/content';
 import { SiteLink } from 'components/common';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faPaperPlane, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from 'components/icons';
 
 import styles from './Header.module.scss';
@@ -177,7 +174,7 @@ const SocialLinks = ({ links }) => {
                     link={`mailto:${link.name}&subject="Hello! Let's Work Together."`}
                     className={`${styles.Header__navLink} ${styles.Header__navLink___hasIcon}`}>
                     <span className="text-visually-hidden">Email</span>
-                    <FontAwesomeIcon icon={faPaperPlane} size="lg" />
+                    <FontAwesomeIcon icon="paper-plane" size="lg" />
                   </SiteLink>
                 </li>
               );
@@ -189,7 +186,7 @@ const SocialLinks = ({ links }) => {
                     link={`https://github.com/${link.name}`}
                     className={`${styles.Header__navLink} ${styles.Header__navLink___hasIcon}`}>
                     <span className="text-visually-hidden">Github</span>
-                    <FontAwesomeIcon icon={faGithub} size="lg" />
+                    <FontAwesomeIcon icon={['fab', 'github']} size="lg" />
                   </SiteLink>
                 </li>
               );
