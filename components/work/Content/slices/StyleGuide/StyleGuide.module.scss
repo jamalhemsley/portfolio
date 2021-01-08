@@ -72,7 +72,7 @@
       display: inline-flex;
       opacity: 0.8;
       padding-left: 0.4rem;
-      transition: $transition-base;
+      transition: opacity $transition-base;
     }
 
     &:hover {
@@ -101,7 +101,8 @@
     outline: 0;
     overflow: hidden;
     padding: 0;
-    transition: $transition-base;
+    transition: border-radius $transition-base, box-shadow $transition-base,
+      transform $transition-base;
     width: 100%;
 
     &:last-child {
@@ -184,7 +185,7 @@
 
       .copy {
         opacity: 1;
-        transition: $transition-base;
+        transition: opacity $transition-base, transform $transition-base;
         transition-delay: 0.3s;
         transform: translate(-50%, -50%);
       }
@@ -192,7 +193,7 @@
       .code,
       .name {
         opacity: 0;
-        transition: $transition-base;
+        transition: opacity $transition-base;
         transition-delay: 0;
       }
     }
@@ -213,7 +214,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     transform-origin: center center;
-    transition: $transition-base;
+    transition: height $transition-base, width $transition-base;
     width: 5rem;
 
     svg {
@@ -224,7 +225,7 @@
       position: absolute;
       top: 50%;
       transform: translate(-50%, -60%);
-      transition: $transition-base;
+      transition: opacity $transition-base, transform $transition-base;
       transition-delay: 0;
       width: 3rem;
       z-index: 1;
@@ -258,7 +259,7 @@
     text-transform: uppercase;
     top: 50%;
     transform: translate(-50%, -40%);
-    transition: $transition-base;
+    transition: opacity $transition-base, transform $transition-base;
     user-select: none;
     z-index: 1;
   }
@@ -267,7 +268,7 @@
     color: $secondary;
     opacity: 1;
     text-transform: uppercase;
-    transition: $transition-base;
+    transition: opacity $transition-base;
     transition-delay: 0.3s;
     will-change: opacity;
   }
@@ -276,7 +277,7 @@
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
     opacity: 1;
-    transition: $transition-base;
+    transition: opacity $transition-base;
     transition-delay: 0.3s;
     will-change: opacity;
   }

@@ -6,10 +6,9 @@ import { DefaultLayout } from 'layouts';
 import { Header, Work } from 'components/home';
 
 const Home = ({ site, page, work }) => {
-  const { site_owner: owner } = site.data;
-
   if (page && page.data) {
     const {
+      pre_headline: preHeadline,
       headline,
       tagline,
       contact_button_label: contactButtonLabel,
@@ -20,7 +19,7 @@ const Home = ({ site, page, work }) => {
     return (
       <DefaultLayout site={site} content={page}>
         <Header
-          preTitle={owner}
+          preTitle={preHeadline}
           title={headline}
           tagline={tagline}
           contactButtonLabel={contactButtonLabel}
@@ -66,13 +65,10 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 }
 
 Home.propTypes = {
-  site: PropTypes.shape({
-    data: PropTypes.shape({
-      site_owner: PropTypes.string,
-    }),
-  }),
+  site: PropTypes.shape({}),
   page: PropTypes.shape({
     data: PropTypes.shape({
+      pre_headline: PropTypes.string,
       headline: PropTypes.string,
       tagline: PropTypes.arrayOf(PropTypes.shape({})),
       contact_button_label: PropTypes.string,

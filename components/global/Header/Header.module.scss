@@ -8,7 +8,7 @@
   padding: 0.75rem 0;
   position: sticky;
   top: -1px;
-  transition: $transition-base;
+  transition: background $transition-base, box-shadow $transition-base;
   z-index: $zindex-sticky;
 
   &.isExpanded {
@@ -24,13 +24,41 @@
 
       &.isSticky {
         background: $dark;
+
+        .Header__toggle {
+          span {
+            background: $primary;
+          }
+
+          &:hover {
+            span {
+              background: $primary-dark;
+            }
+          }
+        }
       }
     }
   }
 
   &.isSticky {
-    background: rgba($dark, 0.85);
+    background: rgba($dark, 0.95);
     box-shadow: 0 1rem 2rem -2rem rgba($dark, 0.4);
+
+    @supports (backdrop-filter: blur()) or (-webkit-backdrop-filter: blur()) {
+      background: rgba($dark, 0.85);
+    }
+
+    .Header__toggle {
+      span {
+        background: $secondary-light;
+      }
+
+      &:hover {
+        span {
+          background: $light;
+        }
+      }
+    }
 
     .Header__navLink {
       color: $secondary-light;
@@ -92,7 +120,7 @@
       pointer-events: none;
       top: calc(100% + 1rem);
       transform: translate(-50%, 1rem);
-      transition: $transition-base;
+      transition: opacity $transition-base, transform $transition-base;
       width: calc(100% - 2rem);
       z-index: -1;
 
@@ -141,11 +169,16 @@
   padding: 0;
   position: relative;
   transform: rotate(0deg);
-  transition: $transition-base;
   width: 1.75rem;
 
   @include media-breakpoint-up(lg) {
     display: none;
+  }
+
+  &:hover {
+    span {
+      background: $primary-dark;
+    }
   }
 
   span {
@@ -157,7 +190,7 @@
     opacity: 1;
     position: absolute;
     transform: rotate(0deg) translateY(-50%);
-    transition: $transition-base;
+    transition: background $transition-base, transform $transition-base;
     width: 100%;
 
     &:first-child {
@@ -170,6 +203,12 @@
   }
 
   &.isActive {
+    &:hover {
+      span {
+        background: $primary-dark;
+      }
+    }
+
     span {
       background: $primary;
 
@@ -237,7 +276,7 @@
   display: block;
   padding: 0.25rem 0;
   position: relative;
-  transition: $transition-base;
+  transition: color $transition-base;
 
   @include media-breakpoint-up(sm) {
     padding: 0.5rem 0;
@@ -258,7 +297,8 @@
     opacity: 0;
     position: absolute;
     transform: translateX(-50%);
-    transition: $transition-base;
+    transition: background $transition-base, opacity $transition-base,
+      width $transition-base;
     width: 0;
   }
 
@@ -278,7 +318,6 @@
     &::before {
       background: $gradient-primary;
       opacity: 1;
-      transition: $transition-base;
       width: 100%;
     }
 
@@ -300,7 +339,7 @@
   }
 
   svg {
-    transition: $transition-base;
+    transition: transform $transition-base;
   }
 
   &:hover {

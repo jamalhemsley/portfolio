@@ -14,7 +14,28 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-          <link rel="stylesheet" href="/fonts/style.css" />
+          <meta name="theme-color" content="#535365" key="meta_theme_color" />
+          <link
+            rel="preload"
+            href="/fonts/MessinaSans/MessinaSans-Black.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/MessinaSans/MessinaSans-Regular.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/MessinaSans/MessinaSans-Book.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
         </Head>
         <body>
           <Main />

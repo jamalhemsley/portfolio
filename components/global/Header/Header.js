@@ -34,6 +34,8 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
     if (headerEl.current) {
       observer.observe(headerEl.current);
     }
+
+    return () => observer.disconnect();
   }, [headerEl]);
 
   return (
@@ -55,7 +57,7 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
               <Nav menuLinks={menu} uid={currentUid} />
             </nav>
           </div>
-          <div className="col-4 col-sm-2 col-md-2 offset-md-0 d-flex align-items-center justify-content-center">
+          <div className="col-4 col-md-2 offset-md-0 d-flex align-items-center justify-content-center">
             <a href="/" className={styles.Header__brand}>
               <Logo title={siteTitle} className={styles.icon} />
             </a>
@@ -174,6 +176,7 @@ const SocialLinks = ({ links }) => {
                   <SiteLink
                     link={`mailto:${link.name}&subject="Hello! Let's Work Together."`}
                     className={`${styles.Header__navLink} ${styles.Header__navLink___hasIcon}`}>
+                    <span className="text-visually-hidden">Email</span>
                     <FontAwesomeIcon icon={faPaperPlane} size="lg" />
                   </SiteLink>
                 </li>
@@ -185,6 +188,7 @@ const SocialLinks = ({ links }) => {
                   <SiteLink
                     link={`https://github.com/${link.name}`}
                     className={`${styles.Header__navLink} ${styles.Header__navLink___hasIcon}`}>
+                    <span className="text-visually-hidden">Github</span>
                     <FontAwesomeIcon icon={faGithub} size="lg" />
                   </SiteLink>
                 </li>

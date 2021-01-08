@@ -1,4 +1,5 @@
 @import './bootstrap/bootstrap';
+@import './fonts';
 
 // Base
 body {
@@ -103,7 +104,7 @@ h5,
     display: inline;
     padding-bottom: 0;
     position: relative;
-    transition: $transition-base;
+    transition: border-bottom-color $transition-base, color $transition-base;
 
     &:hover {
       border-bottom-color: $primary-dark;
@@ -145,5 +146,23 @@ h5,
 
   &:last-child {
     margin-bottom: 0;
+  }
+}
+
+// Visiblity
+.text-visually-hidden {
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
+  height: 0.0625rem;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 0.0625rem;
+
+  &:focus {
+    clip: auto;
+    height: auto;
+    overflow: auto;
+    position: absolute;
+    width: auto;
   }
 }

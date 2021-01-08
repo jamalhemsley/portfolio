@@ -121,7 +121,7 @@
       display: inline-flex;
       opacity: 0.6;
       padding-left: 0.4rem;
-      transition: $transition-base;
+      transition: opacity $transition-base;
     }
 
     &:hover {

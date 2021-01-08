@@ -11,7 +11,7 @@ const GeneralText = ({ data, className }) => {
         <div className="container">
           <div className="row">
             {heading.length > 0 ? (
-              <div className="col-14 offset-1 col-lg-5 col-xxl-4">
+              <div className="col-14 offset-1 col-lg-5 col-xxl-4 text-standard">
                 <h2 className="h3">{renderText(heading, true)}</h2>
               </div>
             ) : null}
