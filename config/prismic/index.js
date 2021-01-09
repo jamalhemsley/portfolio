@@ -1,8 +1,8 @@
 // Prismic API Endpoint
-export const apiEndpoint = process.env.API_ENDPOINT;
+export const apiEndpoint = process.env.PRISMIC_API_ENDPOINT;
 
 // Prismic API Access Token
-export const accessToken = process.env.API_ACCESS_TOKEN;
+export const accessToken = process.env.PRISMIC_API_ACCESS_TOKEN;
 
 // Internal Link Resolution
 export const linkResolver = (doc) => {

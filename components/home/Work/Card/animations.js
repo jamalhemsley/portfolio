@@ -9,6 +9,7 @@ const animations = {
       },
     },
     hover: {
+      opacity: 0,
       y: -5,
       transition: {
         type: 'spring',
