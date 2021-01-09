@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import { Meta, Header, Footer } from 'components/global';
 
+import animations from './animations';
 import styles from './DefaultLayout.module.scss';
 
 const DefaultLayout = ({ site, content, children }) => {
@@ -23,7 +25,11 @@ const DefaultLayout = ({ site, content, children }) => {
   const { uid } = content;
 
   return (
-    <div className={styles.DefaultLayout}>
+    <motion.div
+      className={styles.DefaultLayout}
+      initial="exit"
+      animate="enter"
+      exit="exit">
       <Meta
         siteTitle={siteTitle}
         title={metaTitle || title}
@@ -36,7 +42,11 @@ const DefaultLayout = ({ site, content, children }) => {
         social={socialProfiles}
         currentUid={uid}
       />
-      <main className={styles.DefaultLayout__main}>{children}</main>
+      <motion.main
+        className={styles.DefaultLayout__main}
+        variants={animations.DefaultLayout}>
+        {children}
+      </motion.main>
       <Footer
         title={footerTitle}
         text={footerText}
@@ -44,7 +54,7 @@ const DefaultLayout = ({ site, content, children }) => {
         owner={siteOwner}
         repository={siteRepository}
       />
-    </div>
+    </motion.div>
   );
 };
 

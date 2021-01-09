@@ -3,6 +3,7 @@
 
 // Base
 body {
+  scroll-behavior: auto;
   padding: 2rem 0;
 
   @include media-breakpoint-up(lg) {

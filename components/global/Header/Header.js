@@ -15,7 +15,6 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
   const headerEl = useRef(null);
 
   const toggleMobileNav = (e) => {
-    setTimeout(100);
     headerEl.current.classList.toggle(styles.isExpanded);
 
     e.preventDefault();
@@ -36,6 +35,14 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
     return () => observer.disconnect();
   }, [headerEl]);
 
+  // Get the home page for the brand link.
+  let homeLink = null;
+
+  if (menu) {
+    [homeLink] = menu.filter((menuLink) => menuLink.link.type === 'home');
+    homeLink = homeLink.link;
+  }
+
   return (
     <header ref={headerEl} id="header" className={styles.Header}>
       <div className="container">
@@ -51,9 +58,9 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
             <Nav menuLinks={menu} uid={currentUid} />
           </div>
           <div className="col-4 col-md-2 offset-md-0 d-flex align-items-center justify-content-center">
-            <a href="/" className={styles.Header__brand}>
+            <SiteLink link={homeLink || '/'} className={styles.Header__brand}>
               <Logo title={siteTitle} className={styles.icon} />
-            </a>
+            </SiteLink>
           </div>
           <div className="col-6 col-md-7 d-flex align-items-center justify-content-end">
             <Nav socialLinks={social} />

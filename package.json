@@ -37,7 +37,8 @@
     "react-lazyload": "^3.1.0",
     "resize-observer-polyfill": "^1.5.1",
     "sass": "^1.32.0",
-    "smartquotes": "^2.3.2"
+    "smartquotes": "^2.3.2",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",

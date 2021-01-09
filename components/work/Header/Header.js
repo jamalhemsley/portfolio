@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { motion } from 'framer-motion';
 import { renderDate, renderText } from 'utils/content';
 import { Button } from 'components/common';
 import Image from './Image/Image';
@@ -55,12 +56,12 @@ const Header = ({ client, date, title, tagline, image }) => {
         </div>
         <div className="row">
           <div className="col-16">
-            <div className={styles.Header__cover}>
+            <motion.div className={styles.Header__cover} layoutId="cover">
               <Image image={image} className={styles.Header__image} />
               <div className={styles.Header__underlay}>
                 <img src={underlayImageUrl} alt="" />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -8,7 +8,8 @@
   position: relative;
   transition: box-shadow $transition-base;
   width: 100%;
-  will-change: box-shadow, transform;
+  will-change: box-shadow;
+  z-index: 1;
 
   &::before {
     content: '';
@@ -27,7 +28,6 @@
 
   &:hover {
     box-shadow: 0 0.875rem 2.5rem -1.25rem rgba($primary-dark, 0.75);
-    opacity: 1;
 
     .Card__background {
       &::before {
@@ -42,6 +42,7 @@
     .Card__client,
     .Card__title {
       color: $white;
+      text-shadow: none;
     }
 
     .Card__body {
@@ -89,7 +90,8 @@
   color: $light;
   font-weight: $font-weight-bold;
   margin: 0;
-  transition: color $transition-base;
+  text-shadow: 0.125rem 0.125rem 0.75rem rgba($dark, 0.6);
+  transition: color $transition-base, text-shadow $transition-base;
   width: 100%;
 }
 
@@ -155,6 +157,7 @@
   transform: translateY(50%);
   transition: opacity $transition-base, transform $transition-base;
   transition-delay: 0s;
+  will-change: transform;
   z-index: 1;
 
   .icon {
@@ -175,7 +178,7 @@
   z-index: -1;
 
   &::before {
-    background: linear-gradient(to bottom, rgba($dark, 0.6), transparent);
+    background: linear-gradient(to bottom, rgba($dark, 0.75), transparent);
     content: '';
     height: 50%;
     left: 0;
@@ -218,5 +221,32 @@
     height: auto;
     object-fit: cover;
     width: 100%;
+  }
+}
+
+#no-js {
+  .Card {
+    display: none;
+
+    /* transform: translateY(0);
+  transition: box-shadow $transition-base, transform $transition-base;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+
+    .Card__backgroundImage {
+      transform: scale(3);
+      transition: transform 90s linear;
+    }
+  } */
+  }
+
+  .Card__backgroundImage {
+    transform: scale(1);
+    transition: transform 2s linear;
+  }
+
+  .Card__moreText {
+    will-change: transform;
   }
 }

@@ -4,6 +4,7 @@ import Prismic from '@prismicio/client';
 import { PrismicClient } from 'utils/prismic';
 import { DefaultLayout } from 'layouts';
 import { Header, Work } from 'components/home';
+import { motion } from 'framer-motion';
 
 const Home = ({ site, page, work }) => {
   if (page && page.data) {
@@ -18,17 +19,19 @@ const Home = ({ site, page, work }) => {
 
     return (
       <DefaultLayout site={site} content={page}>
-        <Header
-          preTitle={preHeadline}
-          title={headline}
-          tagline={tagline}
-          contactButtonLabel={contactButtonLabel}
-        />
-        <Work
-          title={workGridTitle}
-          description={workGridDescription}
-          work={work}
-        />
+        <motion.div>
+          <Header
+            preTitle={preHeadline}
+            title={headline}
+            tagline={tagline}
+            contactButtonLabel={contactButtonLabel}
+          />
+          <Work
+            title={workGridTitle}
+            description={workGridDescription}
+            work={work}
+          />
+        </motion.div>
       </DefaultLayout>
     );
   }

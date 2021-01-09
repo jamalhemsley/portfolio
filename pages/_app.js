@@ -10,6 +10,7 @@ import {
   faLongArrowAltRight,
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
+import { AnimatePresence } from 'framer-motion';
 
 // Import Global and Critical CSS
 import 'styles/global.scss';
@@ -27,19 +28,23 @@ library.add(
   faPaperPlane
 );
 
-const App = ({ Component, pageProps }) => (
-  <>
-    <Component {...pageProps} />
-  </>
+const App = ({ Component, pageProps, router }) => (
+  <AnimatePresence exitBeforeEnter>
+    <Component {...pageProps} key={router.route} />
+  </AnimatePresence>
 );
 
 App.propTypes = {
   Component: PropTypes.func.isRequired,
   pageProps: PropTypes.shape({}),
+  router: PropTypes.shape({
+    route: PropTypes.string,
+  }),
 };
 
 App.defaultProps = {
   pageProps: {},
+  router: '',
 };
 
 export default App;
