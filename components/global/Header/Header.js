@@ -15,6 +15,7 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
   const headerEl = useRef(null);
 
   const toggleMobileNav = (e) => {
+    setTimeout(100);
     headerEl.current.classList.toggle(styles.isExpanded);
 
     e.preventDefault();
@@ -40,19 +41,14 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
       <div className="container">
         <div className="row">
           <div className="col-6 col-md-7 d-flex align-items-center">
-            <nav
-              className={`${styles.Header__nav} ${styles.Header__nav___primary}`}
-              role="navigation"
-              aria-label="Main Navigation">
-              <button
-                className={`btn ${styles.Header__toggle}`}
-                onClick={toggleMobileNav}
-                type="button">
-                <span />
-                <span />
-              </button>
-              <Nav menuLinks={menu} uid={currentUid} />
-            </nav>
+            <button
+              className={`btn ${styles.Header__navToggle}`}
+              onClick={toggleMobileNav}
+              type="button">
+              <span />
+              <span />
+            </button>
+            <Nav menuLinks={menu} uid={currentUid} />
           </div>
           <div className="col-4 col-md-2 offset-md-0 d-flex align-items-center justify-content-center">
             <a href="/" className={styles.Header__brand}>
@@ -113,35 +109,43 @@ const MenuLinks = ({ links, uid }) => {
 
   if (links)
     return (
-      <ul className={styles.Header__navList}>
-        {links.map((link, index) => {
-          const itemKey = `menuItem-${index}`;
-          const linkHref = Link.url(link.link, linkResolver);
-          let isActive = false;
+      <nav
+        className={`${styles.Header__nav} ${styles.Header__nav___primary}`}
+        role="navigation"
+        aria-label="Main Navigation">
+        <ul className={styles.Header__navList}>
+          {links.map((link, index) => {
+            const itemKey = `menuItem-${index}`;
+            const linkHref = Link.url(link.link, linkResolver);
+            let isActive = false;
 
-          // If the current path is equal to the link path set it to current.
-          if (router.pathname === linkHref || `/${uid}` === linkHref) {
-            isActive = true;
-          }
+            // If the current path is equal to the link path set it to current.
+            if (router.pathname === linkHref || `/${uid}` === linkHref) {
+              isActive = true;
+            }
 
-          // If it's a derivative of the homepage (work) set to current.
-          if (linkHref === '/' && router.pathname === '/work/[uid]') {
-            isActive = true;
-          }
+            // If it's a derivative of the homepage (work) set to current.
+            if (linkHref === '/' && router.pathname === '/work/[uid]') {
+              isActive = true;
+            }
 
-          return (
-            <li key={itemKey} className={styles.Header__navItem}>
-              <SiteLink
-                link={link.link}
-                className={`${styles.Header__navLink} ${
-                  isActive ? styles.isActive : null
-                }`}>
-                {renderText(link.label, true)}
-              </SiteLink>
-            </li>
-          );
-        })}
-      </ul>
+            return (
+              <li
+                key={itemKey}
+                className={styles.Header__navItem}
+                style={{ '--index': index }}>
+                <SiteLink
+                  link={link.link}
+                  className={`${styles.Header__navLink} ${
+                    isActive ? styles.isActive : null
+                  }`}>
+                  {renderText(link.label, true)}
+                </SiteLink>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
     );
 
   return null;

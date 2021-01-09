@@ -11,8 +11,9 @@ import {
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
 
-// Import Global CSS
+// Import Global and Critical CSS
 import 'styles/global.scss';
+import '../node_modules/@fortawesome/fontawesome-svg-core/styles.css';
 
 // Load in FontAwesome Icon Library
 library.add(

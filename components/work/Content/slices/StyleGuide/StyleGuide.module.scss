@@ -217,6 +217,11 @@
     transition: height $transition-base, width $transition-base;
     width: 5rem;
 
+    // Only subject safari to will-change
+    @supports not (offset-path: none) {
+      will-change: transform;
+    }
+
     svg {
       fill: $light;
       height: auto;
@@ -229,6 +234,11 @@
       transition-delay: 0;
       width: 3rem;
       z-index: 1;
+
+      // Only subject safari to will-change
+      @supports not (offset-path: none) {
+        will-change: transform;
+      }
 
       @include media-breakpoint-up(mg) {
         width: 3.5rem;

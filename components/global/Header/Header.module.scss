@@ -17,15 +17,27 @@
         .Header__navList {
           opacity: 1;
           pointer-events: auto;
+          top: calc(100% + 1rem);
           transform: translate(-50%, 0);
+          transition: opacity $transition-base 0.1s,
+            transform $transition-base 0.1s, visibility 0s linear 0s;
+          visibility: visible;
           z-index: 1;
+        }
+
+        .Header__navItem {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity $transition-base
+              calc(0.4s + (var(--index) * 200ms)),
+            transform $transition-base calc(0.4s + (var(--index) * 200ms));
         }
       }
 
       &.isSticky {
         background: $dark;
 
-        .Header__toggle {
+        .Header__navToggle {
           span {
             background: $primary;
           }
@@ -48,7 +60,7 @@
       background: rgba($dark, 0.85);
     }
 
-    .Header__toggle {
+    .Header__navToggle {
       span {
         background: $secondary-light;
       }
@@ -106,8 +118,6 @@
 
 .Header__nav___primary {
   @include media-breakpoint-down(lg) {
-    display: block;
-
     .Header__navList {
       background: $dark;
       border-radius: 1rem;
@@ -118,10 +128,12 @@
       padding: 2rem 0;
       position: absolute;
       pointer-events: none;
-      top: calc(100% + 1rem);
+      top: -999vw;
       transform: translate(-50%, 1rem);
-      transition: opacity $transition-base, transform $transition-base;
+      transition: opacity $transition-base, top 0s linear 0.5s,
+        transform $transition-base, visibility 0s linear 0.4s;
       width: calc(100% - 2rem);
+      visibility: hidden;
       z-index: -1;
 
       @include media-breakpoint-up(sm) {
@@ -136,7 +148,10 @@
     .Header__navItem {
       margin-bottom: 2rem;
       margin-right: 0;
+      opacity: 0;
       text-align: center;
+      transform: translateY(1rem);
+      transition: opacity $transition-base, transform $transition-base;
 
       &:last-child {
         margin-bottom: 0;
@@ -163,7 +178,7 @@
   }
 }
 
-.Header__toggle {
+.Header__navToggle {
   display: inline-block;
   height: 1.5rem;
   padding: 0;
@@ -179,6 +194,10 @@
     span {
       background: $primary-dark;
     }
+  }
+
+  &:focus {
+    box-shadow: none;
   }
 
   span {
@@ -345,6 +364,11 @@
   &:hover {
     svg {
       transform: scale(1.125);
+
+      // Only subject safari to will-change
+      @supports not (offset-path: none) {
+        will-change: transform;
+      }
     }
   }
 }

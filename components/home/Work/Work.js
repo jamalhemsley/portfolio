@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import ResizeObserver from 'resize-observer-polyfill';
 import { renderText } from 'utils/content';
+import { useResizeObserverWidth } from 'utils/dom';
 import Card from './Card/Card';
 
 import styles from './Work.module.scss';
@@ -18,28 +18,6 @@ const sortArray = (array, returnEven = null) => {
   return results;
 };
 
-const useResizeObserverWidth = ({ ref }) => {
-  const [width, setWidth] = useState({
-    width: 0,
-  });
-
-  const handleResize = (entries) => setWidth(entries[0].contentRect.width);
-
-  const [resizeObs] = useState(() =>
-    typeof window !== 'undefined' ? new ResizeObserver(handleResize) : undefined
-  );
-
-  useEffect(() => {
-    if (!resizeObs) return false;
-
-    if (ref.current) resizeObs.observe(ref.current);
-
-    return () => resizeObs.disconnect();
-  }, [ref, resizeObs]);
-
-  return width;
-};
-
 const Work = ({ title, description, work }) => {
   // Setup ref and state.
   const ref = useRef(null);
@@ -48,12 +26,6 @@ const Work = ({ title, description, work }) => {
   const workGridWidth = useResizeObserverWidth({ ref });
 
   useEffect(() => {
-    /* if (gridLayout.isSingleColumn === null) {
-      if (width < 928) setGridLayout({ isSingleColumn: true });
-
-      if (width >= 928) setGridLayout({ isSingleColumn: false });
-    } */
-
     if (workGridWidth < 928 && !workLayoutIsSingle) setWorkLayout(true);
     else if (workGridWidth >= 928 && workLayoutIsSingle) setWorkLayout(false);
   }, [workGridWidth, workLayoutIsSingle]);
