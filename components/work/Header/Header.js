@@ -8,7 +8,9 @@ import Image from './Image/Image';
 // import styles from './Header.module.scss';
 
 const Header = ({ client, date, title, tagline, image }) => {
-  const { url: underlayImageUrl } = image;
+  const {
+    xs: { url: underlayImageUrl },
+  } = image;
 
   return (
     <header className="WorkHeader">
@@ -74,7 +76,9 @@ Header.propTypes = {
   title: PropTypes.arrayOf(PropTypes.shape({})),
   tagline: PropTypes.string,
   image: PropTypes.shape({
-    url: PropTypes.string,
+    xs: PropTypes.shape({
+      url: PropTypes.string,
+    }),
   }),
 };
 
