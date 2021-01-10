@@ -12,6 +12,7 @@ import {
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
 import { AnimatePresence } from 'framer-motion';
+import { fixTimeoutTransition } from 'utils/dom';
 
 // Import Global and Critical CSS
 import 'styles/global.scss';
@@ -29,6 +30,10 @@ library.add(
   faPaperPlane
 );
 
+const TRANSITION_DURATION = 700;
+
+fixTimeoutTransition(TRANSITION_DURATION);
+
 const App = ({ Component, pageProps, router }) => {
   const nextRouter = useRouter();
 
@@ -43,7 +48,7 @@ const App = ({ Component, pageProps, router }) => {
       }, 700);
     };
 
-    const patchUnstyledFlash = () => {
+    /*const patchUnstyledFlash = () => {
       // Temporary fix to avoid flash of unstyled content
       // during route transitions. Keep an eye on this
       // issue and remove this code when resolved:
@@ -54,11 +59,12 @@ const App = ({ Component, pageProps, router }) => {
           elem.removeAttribute('media');
         });
       };
+
       tempFix();
     };
 
     nextRouter.events.on('routeChangeComplete', patchUnstyledFlash);
-    nextRouter.events.on('routeChangeStart', patchUnstyledFlash);
+    nextRouter.events.on('routeChangeStart', patchUnstyledFlash);*/
     nextRouter.events.on('beforeHistoryChange', changeRouteDelay);
 
     return () => {
