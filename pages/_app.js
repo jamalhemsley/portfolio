@@ -12,7 +12,7 @@ import {
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
 import { AnimatePresence } from 'framer-motion';
-import { fixTimeoutTransition } from 'utils/dom';
+//import { fixTimeoutTransition } from 'utils/dom';
 
 // Import Global and Critical CSS
 import 'styles/global.scss';
@@ -30,9 +30,9 @@ library.add(
   faPaperPlane
 );
 
-const TRANSITION_DURATION = 700;
+// const TRANSITION_DURATION = 700;
 
-fixTimeoutTransition(TRANSITION_DURATION);
+//fixTimeoutTransition(TRANSITION_DURATION);
 
 const App = ({ Component, pageProps, router }) => {
   const nextRouter = useRouter();
