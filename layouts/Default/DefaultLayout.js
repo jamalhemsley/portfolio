@@ -43,7 +43,7 @@ const DefaultLayout = ({ site, content, children }) => {
         currentUid={uid}
       />
       <motion.div variants={animations.DefaultLayout}>
-        <main className="DefaultLayour__main">{children}</main>
+        <main className="DefaultLayout__main">{children}</main>
         <Footer
           title={footerTitle}
           text={footerText}
