@@ -1,4 +1,4 @@
-// Converts dates to a `Month Year` format.
+// Converts dates to a `Month YYYY` format.
 const renderDate = (date) => {
   if (date)
     return new Intl.DateTimeFormat('en-US', {

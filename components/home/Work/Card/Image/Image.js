@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import { renderText } from 'utils/content';
+import { LazyImage } from 'components/common';
 
 import animations from '../animations';
 
 const Image = ({ image, className }) => {
+  const lazyImageContainer = useRef(null);
+
   const {
     alt,
     preview_xs: previewXs,
@@ -23,7 +25,10 @@ const Image = ({ image, className }) => {
   } = image;
 
   return (
-    <motion.picture className={className} variants={animations.CardImage}>
+    <motion.picture
+      ref={lazyImageContainer}
+      className={className}
+      variants={animations.CardImage}>
       <source
         srcSet={`${previewXxl.url}, ${previewXxl2x.url} 2x`}
         media="(min-width: 1400px)"
@@ -45,7 +50,11 @@ const Image = ({ image, className }) => {
         media="(min-width: 576px)"
       />
       <source srcSet={`${previewXs2x.url} 2x`} />
-      <img src={previewXs.url} alt={renderText(alt, true) || ''} />
+      <LazyImage
+        refContainer={lazyImageContainer}
+        src={previewXs.url}
+        alt={alt}
+      />
     </motion.picture>
   );
 };

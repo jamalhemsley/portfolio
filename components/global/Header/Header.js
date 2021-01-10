@@ -1,14 +1,16 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'prismic-reactjs';
+import { motion } from 'framer-motion';
 import { linkResolver } from 'config/prismic';
 import { renderText } from 'utils/content';
 import { SiteLink } from 'components/common';
 import { Logo } from 'components/icons';
 
 import styles from './Header.module.scss';
+import animations from './animations';
 
 const Header = ({ siteTitle, menu, social, currentUid }) => {
   // Add class trigger for sticky header.
@@ -22,6 +24,7 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
   };
 
   useEffect(() => {
+    // Sticky Header Observer
     const observer = new IntersectionObserver(
       ([e]) =>
         e.target.classList.toggle(styles.isSticky, e.intersectionRatio < 1),
@@ -32,7 +35,9 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
       observer.observe(headerEl.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, [headerEl]);
 
   // Get the home page for the brand link.
@@ -44,7 +49,11 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
   }
 
   return (
-    <header ref={headerEl} id="header" className={styles.Header}>
+    <motion.header
+      ref={headerEl}
+      id="header"
+      className={styles.Header}
+      variants={animations.Header}>
       <div className="container">
         <div className="row">
           <div className="col-6 col-md-7 d-flex align-items-center">
@@ -67,7 +76,7 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
           </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

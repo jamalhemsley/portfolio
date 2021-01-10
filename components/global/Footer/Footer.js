@@ -15,7 +15,8 @@ const Footer = ({ title, text, social, owner, repository }) => {
   }
 
   return (
-    <footer id="footer" className={styles.Footer}>
+    <footer className={styles.Footer}>
+      <div className="skip-link-destination" id="footer" />
       <div className="container">
         <div className="row">
           <div className="col-16">

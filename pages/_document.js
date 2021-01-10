@@ -43,7 +43,6 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
           <PrismicScript />
-          <script src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js" />
         </body>
       </Html>
     );

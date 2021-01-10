@@ -8,7 +8,8 @@ import { OverviewMeta } from './OverviewMeta/OverviewMeta';
 import styles from './Overview.module.scss';
 
 const Overview = ({ overview, links, meta, date, className }) => (
-  <section className={`${styles.Overview} ${className || ''}`} id="overview">
+  <section className={`${styles.Overview} ${className || ''}`}>
+    <div className="skip-link-destination" id="overview" />
     <div className="container">
       <div className="row">
         <div className="col-14 offset-1 col-lg-8 col-xl-9 offset-1">

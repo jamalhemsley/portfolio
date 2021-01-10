@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faGithubAlt } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -28,11 +29,33 @@ library.add(
   faPaperPlane
 );
 
-const App = ({ Component, pageProps, router }) => (
-  <AnimatePresence exitBeforeEnter>
-    <Component {...pageProps} key={router.route} />
-  </AnimatePresence>
-);
+const App = ({ Component, pageProps, router }) => {
+  const nextRouter = useRouter();
+
+  useEffect(() => {
+    const changeRouteDelay = async () => {
+      setTimeout(() => {
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'auto',
+        });
+      }, 700);
+    };
+
+    nextRouter.events.on('beforeHistoryChange', changeRouteDelay);
+
+    return () => {
+      nextRouter.events.off('beforeHistoryChange', changeRouteDelay);
+    };
+  }, [nextRouter.events]);
+
+  return (
+    <AnimatePresence exitBeforeEnter>
+      <Component {...pageProps} key={router.route} />
+    </AnimatePresence>
+  );
+};
 
 App.propTypes = {
   Component: PropTypes.func.isRequired,

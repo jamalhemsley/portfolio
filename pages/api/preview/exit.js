@@ -1,3 +1,4 @@
+// Exit Prismic Preview Mode
 const exitPreview = async (_, res) => {
   res.clearPreviewData();
 

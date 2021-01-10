@@ -23,6 +23,7 @@ $theme-colors: (
 );
 
 $gradient-primary: linear-gradient(135deg, $primary, $accent-pink 70%);
+$gradient-secondary: linear-gradient(135deg, $secondary, $dark 70%);
 
 // Typography
 $font-size-base: 1rem;

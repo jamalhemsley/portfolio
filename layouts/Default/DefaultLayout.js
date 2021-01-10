@@ -42,18 +42,16 @@ const DefaultLayout = ({ site, content, children }) => {
         social={socialProfiles}
         currentUid={uid}
       />
-      <motion.main
-        className={styles.DefaultLayout__main}
-        variants={animations.DefaultLayout}>
-        {children}
-      </motion.main>
-      <Footer
-        title={footerTitle}
-        text={footerText}
-        social={socialProfiles}
-        owner={siteOwner}
-        repository={siteRepository}
-      />
+      <motion.div variants={animations.DefaultLayout}>
+        <main className={styles.DefaultLayout__main}>{children}</main>
+        <Footer
+          title={footerTitle}
+          text={footerText}
+          social={socialProfiles}
+          owner={siteOwner}
+          repository={siteRepository}
+        />
+      </motion.div>
     </motion.div>
   );
 };

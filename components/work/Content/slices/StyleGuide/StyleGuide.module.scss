@@ -101,6 +101,7 @@
     outline: 0;
     overflow: hidden;
     padding: 0;
+    pointer-events: none;
     transition: border-radius $transition-base, box-shadow $transition-base,
       transform $transition-base;
     width: 100%;
@@ -111,6 +112,7 @@
 
     @include media-breakpoint-up(sm) {
       margin: 2rem 2rem 0 0;
+      pointer-events: auto;
       width: calc(50% - 1rem);
 
       &:nth-child(-n + 2) {

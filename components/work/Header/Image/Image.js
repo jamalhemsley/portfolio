@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { renderText } from 'utils/content';
+import { LazyImage } from 'components/common';
 
 const Image = ({ image, className }) => {
+  const lazyImageContainer = useRef(null);
+
   const {
     alt,
     url: xxlUrl,
@@ -20,7 +22,7 @@ const Image = ({ image, className }) => {
   } = image;
 
   return (
-    <picture className={className}>
+    <picture className={className} ref={lazyImageContainer}>
       <source
         srcSet={`${xxlUrl}, ${xxl2x.url} 2x`}
         media="(min-width: 1400px)"
@@ -33,7 +35,7 @@ const Image = ({ image, className }) => {
       <source srcSet={`${md.url}, ${md2x.url} 2x`} media="(min-width: 768px)" />
       <source srcSet={`${sm.url}, ${sm2x.url} 2x`} media="(min-width: 576px)" />
       <source srcSet={`${xs2x.url} 2x`} />
-      <img src={xs.url} alt={renderText(alt, true) || ''} />
+      <LazyImage refContainer={lazyImageContainer} src={xs.url} alt={alt} />
     </picture>
   );
 };

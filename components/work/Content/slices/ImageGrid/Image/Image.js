@@ -4,7 +4,6 @@ import { renderText } from 'utils/content';
 
 const Image = ({ image, width, className }) => {
   const isFull = width === 'Full';
-
   const {
     alt,
     xs,
