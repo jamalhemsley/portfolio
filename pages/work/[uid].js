@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PrismicClient, PrismicQueries } from 'utils/prismic';
-import { DefaultLayout } from 'layouts';
+import DefaultLayout from 'layouts';
 import { Header, Overview, Content } from 'components/work';
 
 const Work = ({ site, work }) => {

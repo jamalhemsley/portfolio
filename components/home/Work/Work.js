@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { renderText } from 'utils/content';
-import { useResizeObserverWidth } from 'utils/dom';
+import useResizeObserverWidth from 'utils/dom';
 import Card from './Card/Card';
 
 // import styles from './Work.module.scss';

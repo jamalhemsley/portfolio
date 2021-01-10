@@ -1,12 +1,8 @@
 import smartquotes from 'smartquotes';
 
-// Add a unique key to props.
-const propsWithUniqueKey = (props, key) => Object.assign(props || {}, { key });
-
 // HTML serializer to customize Prismic RichText output.
-const renderHtml = (type, element, content, children, key) => {
-  const props = {};
-
+const renderHtml = (type, element, content, children) => {
+  /* eslint-disable no-param-reassign */
   // Loop through arrays to convert quotes in strings to smart quotes.
   children.forEach((child, index) => {
     if (typeof child[0] === 'string')
@@ -24,6 +20,7 @@ const renderHtml = (type, element, content, children, key) => {
       });
     }
   });
+  /* eslint-enable no-param-reassign */
 };
 
 export default renderHtml;

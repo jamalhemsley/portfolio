@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PrismicClient, PrismicQueries } from 'utils/prismic';
-import { DefaultLayout } from 'layouts';
-import { Content } from 'components/page';
+import DefaultLayout from 'layouts';
+import Content from 'components/page';
 
 const Page = ({ page, site }) => {
   if (page && page.data) {

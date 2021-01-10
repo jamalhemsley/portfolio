@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { renderText } from 'utils/content';
-import { SiteLink } from '..';
+import SiteLink from '../SiteLink/SiteLink';
 
 // import styles from './Button.module.scss';
 

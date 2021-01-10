@@ -16,7 +16,7 @@
   },
   "plugins": ["import", "prettier", "react"],
   "rules": {
-    "camelcase": [1, { "ignoreDestructuring": true }],
+    "camelcase": ["warn", { "ignoreDestructuring": false }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-props-no-spreading": [
       1,

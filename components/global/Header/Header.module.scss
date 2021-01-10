@@ -38,6 +38,7 @@
         background: $dark;
 
         .Header__navToggle {
+          /* stylelint-disable max-nesting-depth */
           span {
             background: $primary;
           }
@@ -47,6 +48,7 @@
               background: $primary-dark;
             }
           }
+          /* stylelint-enable max-nesting-depth */
         }
       }
     }

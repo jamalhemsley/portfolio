@@ -1,1 +1,3 @@
-export { default as useResizeObserverWidth } from './useResizeObserverWidth';
+import useResizeObserverWidth from './useResizeObserverWidth';
+
+export default useResizeObserverWidth;

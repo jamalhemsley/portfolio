@@ -68,18 +68,18 @@
   },
   "husky": {
     "hooks": {
-      "postinstall": "husky install config/husky",
-      "pre-commit": "lint-staged"
+      "postinstall": "npx husky install",
+      "pre-commit": "npx lint-staged"
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
+    "**/*.{js,jsx}": [
+      "npx prettier --write",
+      "npx eslint --fix ."
     ],
-    "*.{css,scss}": [
-      "prettier --write",
-      "stylelint --fix"
+    "**/*.{css,scss}": [
+      "npx prettier --write",
+      "npx stylelint '**/*.scss' --fix"
     ]
   }
 }

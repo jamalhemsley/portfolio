@@ -23,7 +23,7 @@ const showPreview = async (req, res) => {
     </head>`
   );
 
-  res.end();
+  return () => res.end();
 };
 
 export default showPreview;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { renderText } from 'utils/content';
 
-const Meta = ({ siteTitle, title, description, image, hidePageTitle }) => {
+const Meta = ({ siteTitle, title, description, image }) => {
   // Format siteTitle, title and description text.
   const pageTitleFormatted = renderText(title, true);
   const siteTitleFormatted = renderText(siteTitle, true);
@@ -120,7 +120,6 @@ Meta.propTypes = {
   image: PropTypes.shape({
     url: PropTypes.string,
   }),
-  hidePageTitle: PropTypes.bool,
 };
 
 Meta.defaultProps = {
@@ -128,7 +127,6 @@ Meta.defaultProps = {
   title: null,
   description: null,
   image: null,
-  hidePageTitle: false,
 };
 
 export default Meta;

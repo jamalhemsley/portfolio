@@ -16,7 +16,9 @@
     "font-family-name-quotes": "always-unless-keyword",
     "font-weight-notation": "named-where-possible",
     "function-url-quotes": "always",
-    "max-nesting-depth": 3,
+    "max-nesting-depth": [3, {
+      ignore: ["blockless-at-rules", "pseudo-classes"]
+    }],
     "no-descending-specificity": null,
     "media-feature-name-no-vendor-prefix": true,
     "property-no-vendor-prefix": true,

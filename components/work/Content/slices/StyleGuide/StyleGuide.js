@@ -230,10 +230,12 @@ StyleGuide.propTypes = {
       typography_description: PropTypes.arrayOf(PropTypes.shape({})),
     }),
   }),
+  className: PropTypes.string,
 };
 
 StyleGuide.defaultProps = {
   data: {},
+  className: '',
 };
 
 export default StyleGuide;

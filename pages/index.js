@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Prismic from '@prismicio/client';
 import { PrismicClient } from 'utils/prismic';
-import { DefaultLayout } from 'layouts';
+import DefaultLayout from 'layouts';
 import { Header, Work } from 'components/home';
 import { motion } from 'framer-motion';
 
