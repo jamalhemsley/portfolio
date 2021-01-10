@@ -5,42 +5,38 @@ import { renderDate, renderText } from 'utils/content';
 import { Button } from 'components/common';
 import Image from './Image/Image';
 
-import styles from './Header.module.scss';
+// import styles from './Header.module.scss';
 
 const Header = ({ client, date, title, tagline, image }) => {
   const { url: underlayImageUrl } = image;
 
   return (
-    <header className={styles.Header}>
+    <header className="Header">
       <div className="container">
         <div className="row">
           <div className="col-14 offset-1">
             {client || date ? (
-              <div className={styles.Header__meta}>
+              <div className="Header__meta">
                 {client && (
-                  <span className={`h3 ${styles.Header__client}`}>
+                  <span className="h3 Header__client">
                     {renderText(client, true)}
                   </span>
                 )}
                 {date && (
-                  <span className={`h3 ${styles.Header__date}`}>
-                    {renderDate(date)}
-                  </span>
+                  <span className="h3 Header__date">{renderDate(date)}</span>
                 )}
               </div>
             ) : null}
 
             {title && (
-              <h1 className={styles.Header__title}>
-                {renderText(title, true)}
-              </h1>
+              <h1 className="Header__title">{renderText(title, true)}</h1>
             )}
           </div>
         </div>
         <div className="row">
           <div className="col-13 col-sm-12 col-md-11 offset-1 col-lg-9 col-xl-10 col-xxl-10">
             {tagline && (
-              <p className={`lead-lg ${styles.Header__tagline}`}>
+              <p className="lead-lg Header__tagline">
                 {renderText(tagline, true)}
               </p>
             )}
@@ -55,10 +51,10 @@ const Header = ({ client, date, title, tagline, image }) => {
         </div>
         <div className="row">
           <div className="col-16">
-            <div className={styles.Header__cover}>
-              <div className={styles.Header__coverContainer}>
-                <Image image={image} className={styles.Header__image} />
-                <div className={styles.Header__glow}>
+            <div className="Header__cover">
+              <div className="Header__coverContainer">
+                <Image image={image} className="Header__image" />
+                <div className="Header__glow">
                   <img src={underlayImageUrl} alt="" />
                 </div>
               </div>

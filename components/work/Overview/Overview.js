@@ -5,19 +5,19 @@ import { renderText } from 'utils/content';
 import { Button, ButtonGroup } from 'components/common';
 import { OverviewMeta } from './OverviewMeta/OverviewMeta';
 
-import styles from './Overview.module.scss';
+// import styles from './Overview.module.scss';
 
 const Overview = ({ overview, links, meta, date, className }) => (
-  <section className={`${styles.Overview} ${className || ''}`}>
+  <section className={`Overview ${className || ''}`}>
     <div className="skip-link-destination" id="overview" />
     <div className="container">
       <div className="row">
         <div className="col-14 offset-1 col-lg-8 col-xl-9 offset-1">
-          <h2 className={`h3 ${styles.Overview__title}`}>Overview</h2>
-          <div className={`text-standard ${styles.Overview__content}`}>
+          <h2 className="h3 Overview__title">Overview</h2>
+          <div className="text-standard Overview__content">
             {renderText(overview)}
           </div>
-          <ButtonGroup className={styles.Overview__links}>
+          <ButtonGroup className="Overview__links">
             {links.map((link, index) => {
               const key = `work-link-${index}`;
 
@@ -28,7 +28,7 @@ const Overview = ({ overview, links, meta, date, className }) => (
                   label={link.label}
                   icon={<FontAwesomeIcon icon="chevron-right" />}
                   style={link.is_primary ? 'primary' : 'secondary'}
-                  className={styles.Overview__link}
+                  className="Overview__link"
                 />
               );
             })}

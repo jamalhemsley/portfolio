@@ -4,12 +4,12 @@ import { renderDate, renderText } from 'utils/content';
 import { SiteLink } from 'components/common';
 import { ExternalLinkIcon } from 'components/icons';
 
-import styles from '../Overview.module.scss';
+// import styles from '../Overview.module.scss';
 
 const MetaWrapper = ({ title, children }) => (
-  <div className={styles['Overview__meta-section']}>
-    <div className={styles.title}>{renderText(title, true)}</div>
-    <ul className={`text-standard ${styles.list}`}>{children}</ul>
+  <div className="Overview__meta-section">
+    <div className="title">{renderText(title, true)}</div>
+    <ul className="text-standard list">{children}</ul>
   </div>
 );
 
@@ -24,9 +24,9 @@ MetaWrapper.defaultProps = {
 };
 
 export const OverviewMeta = ({ meta, date }) => (
-  <aside className={styles.Overview__meta}>
+  <aside className="Overview__meta">
     <MetaWrapper title="Date">
-      <li className={styles.item}>{renderDate(date)}</li>
+      <li className="item">{renderDate(date)}</li>
     </MetaWrapper>
 
     {meta.map((section, index) => {
@@ -41,11 +41,11 @@ export const OverviewMeta = ({ meta, date }) => (
                 const metaKey = `agency-${i}`;
 
                 return (
-                  <li key={metaKey} className={styles.item}>
+                  <li key={metaKey} className="item">
                     {item.link ? (
                       <SiteLink link={item.link}>
                         <span>{item.name}</span>
-                        <span className={styles.icon}>
+                        <span className="icon">
                           <ExternalLinkIcon
                             type="gradient"
                             height={16}
@@ -69,11 +69,11 @@ export const OverviewMeta = ({ meta, date }) => (
                 const metaKey = `contributor-${i}`;
 
                 return (
-                  <li key={metaKey} className={styles.item}>
+                  <li key={metaKey} className="item">
                     {item.link ? (
                       <SiteLink link={item.link}>
                         <span>{item.name}</span>
-                        <span className={styles.icon}>
+                        <span className="icon">
                           <ExternalLinkIcon
                             type="gradient"
                             height={16}
@@ -99,7 +99,7 @@ export const OverviewMeta = ({ meta, date }) => (
                 const metaKey = `role-${i}`;
 
                 return (
-                  <li key={metaKey} className={styles.item}>
+                  <li key={metaKey} className="item">
                     {renderText(item.role, true)}
                   </li>
                 );
@@ -114,7 +114,7 @@ export const OverviewMeta = ({ meta, date }) => (
                 const metaKey = `technology-${i}`;
 
                 return (
-                  <li key={metaKey} className={styles.item}>
+                  <li key={metaKey} className="item">
                     {renderText(item.name)}
                   </li>
                 );

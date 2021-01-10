@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { renderText } from 'utils/content';
 import { Button, ButtonGroup } from 'components/common';
 
-import styles from './Header.module.scss';
+// import styles from './Header.module.scss';
 
 const Header = ({ preTitle, title, tagline, contactButtonLabel }) => (
   <section className="section">
@@ -12,14 +12,13 @@ const Header = ({ preTitle, title, tagline, contactButtonLabel }) => (
       <div className="row">
         <div className="col-14 offset-1">
           {preTitle && (
-            <span className={`lead ${styles.Header__preTitle}`}>
+            <span className="lead Header__preTitle">
               {renderText(preTitle, true)}
             </span>
           )}
 
           {title && (
-            <h1
-              className={`display-1 text-gradient-primary ${styles.Header__title}`}>
+            <h1 className="display-1 text-gradient-primary Header__title">
               {renderText(title, true)}
             </h1>
           )}
@@ -28,7 +27,7 @@ const Header = ({ preTitle, title, tagline, contactButtonLabel }) => (
       <div className="row">
         <div className="col-12 offset-1 col-md-10 col-lg-10 col-xl-9">
           {tagline && (
-            <div className={`lead-lg text-standard ${styles.Header__tagline}`}>
+            <div className="lead-lg text-standard Header__tagline">
               {renderText(tagline)}
             </div>
           )}
@@ -38,7 +37,7 @@ const Header = ({ preTitle, title, tagline, contactButtonLabel }) => (
       {contactButtonLabel && (
         <div className="row">
           <div className="col-14 offset-1">
-            <ButtonGroup className={styles.Header__actions}>
+            <ButtonGroup className="Header__actions">
               <Button
                 label={renderText(contactButtonLabel)}
                 link="#footer"

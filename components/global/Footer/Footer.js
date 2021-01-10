@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { renderText } from 'utils/content';
 import { Button, ButtonGroup, SiteLink } from 'components/common';
 
-import styles from './Footer.module.scss';
+// import styles from './Footer.module.scss';
 
 const Footer = ({ title, text, social, owner, repository }) => {
   // Get email for footer contact.
@@ -15,26 +15,23 @@ const Footer = ({ title, text, social, owner, repository }) => {
   }
 
   return (
-    <footer className={styles.Footer}>
+    <footer className="Footer">
       <div className="skip-link-destination" id="footer" />
       <div className="container">
         <div className="row">
           <div className="col-16">
-            <div className={styles.Footer__main}>
+            <div className="Footer__main">
               <div className="row">
                 <div className="col-14 offset-1 col-md-12 offset-md-2 col-xl-10 offset-xl-3 col-xxl-8 offset-xxl-4">
                   <div>
                     {title && (
-                      <h2
-                        className={`text-gradient-primary display-4 ${styles.Footer__title}`}>
+                      <h2 className="text-gradient-primary display-4 Footer__title">
                         {renderText(title, true)}
                       </h2>
                     )}
 
                     {text && (
-                      <div className={styles.Footer__text}>
-                        {renderText(text)}
-                      </div>
+                      <div className="Footer__text">{renderText(text)}</div>
                     )}
                   </div>
                 </div>
@@ -43,7 +40,7 @@ const Footer = ({ title, text, social, owner, repository }) => {
               {email && (
                 <div className="row">
                   <div className="col-14 offset-1">
-                    <ButtonGroup className={styles.Footer__actions}>
+                    <ButtonGroup className="Footer__actions">
                       <Button
                         label="Send a Message"
                         link={`mailto:${email}?subject="Hello! Let's Work Together."`}
@@ -56,17 +53,15 @@ const Footer = ({ title, text, social, owner, repository }) => {
               )}
             </div>
             {owner || repository ? (
-              <div className={styles.Footer__credits}>
+              <div className="Footer__credits">
                 {owner && (
-                  <p className={styles.Footer__owner}>
+                  <p className="Footer__owner">
                     &copy; {new Date().getFullYear()} {renderText(owner)}.
                   </p>
                 )}
 
                 {repository && (
-                  <SiteLink
-                    link={repository}
-                    className={styles.Footer__repository}>
+                  <SiteLink link={repository} className="Footer__repository">
                     <span>Source on Github</span>
                     <FontAwesomeIcon icon={['fab', 'github-alt']} size="lg" />
                   </SiteLink>

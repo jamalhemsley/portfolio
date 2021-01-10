@@ -3,31 +3,29 @@ import PropTypes from 'prop-types';
 import { renderText } from 'utils/content';
 import { SiteLink } from '..';
 
-import styles from './Button.module.scss';
+// import styles from './Button.module.scss';
 
 const Button = ({ id, link, label, icon, type, size, className }) => {
-  const buttonClass = `${styles.Button} ${
-    size ? styles[`Button___${size}`] : ''
-  } ${styles[`Button___${type}`]} ${className || ''}`;
+  const buttonClass = `Button ${
+    size ? `Button___${size}` : ''
+  } ${`Button___${type}`} ${className || ''}`;
 
   if (link)
     return (
       <SiteLink id={id || ''} link={link} className={buttonClass}>
         {label && (
-          <span className={styles.Button__label}>
-            {renderText(label, true)}
-          </span>
+          <span className="Button__label">{renderText(label, true)}</span>
         )}
-        {icon && <span className={styles.icon}>{icon}</span>}
+        {icon && <span className="icon">{icon}</span>}
       </SiteLink>
     );
 
   return (
     <button id={id || ''} type="button" className={buttonClass}>
       {label && (
-        <span className={styles.Button__label}>{renderText(label, true)}</span>
+        <span className="Button__label">{renderText(label, true)}</span>
       )}
-      {icon && <span className={styles.icon}>{icon}</span>}
+      {icon && <span className="icon">{icon}</span>}
     </button>
   );
 };

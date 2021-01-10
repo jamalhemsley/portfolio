@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Meta, Header, Footer } from 'components/global';
 
 import animations from './animations';
-import styles from './DefaultLayout.module.scss';
+// import styles from './DefaultLayout.module.scss';
 
 const DefaultLayout = ({ site, content, children }) => {
   const {
@@ -26,7 +26,7 @@ const DefaultLayout = ({ site, content, children }) => {
 
   return (
     <motion.div
-      className={styles.DefaultLayout}
+      className="DefaultLayout"
       initial="exit"
       animate="enter"
       exit="exit">
@@ -43,7 +43,7 @@ const DefaultLayout = ({ site, content, children }) => {
         currentUid={uid}
       />
       <motion.div variants={animations.DefaultLayout}>
-        <main className={styles.DefaultLayout__main}>{children}</main>
+        <main className="DefaultLayour__main">{children}</main>
         <Footer
           title={footerTitle}
           text={footerText}

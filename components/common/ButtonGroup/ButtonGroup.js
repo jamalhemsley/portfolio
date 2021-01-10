@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './ButtonGroup.module.scss';
+// import styles from './ButtonGroup.module.scss';
 
 const ButtonGroup = ({ children, className }) => (
-  <div className={`${styles.ButtonGroup} ${className || ''}`}>{children}</div>
+  <div className={`ButtonGroup ${className || ''}`}>{children}</div>
 );
 
 ButtonGroup.propTypes = {

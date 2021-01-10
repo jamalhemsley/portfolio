@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { renderText } from 'utils/content';
 
-import styles from './TextCards.module.scss';
+// import styles from './TextCards.module.scss';
 
 const TextCard = ({ card, align }) => {
   if (card) {
@@ -19,10 +19,10 @@ const TextCard = ({ card, align }) => {
           align === 'left'
             ? 'col-14 offset-1 col-lg-7'
             : 'col-14 offset-1 col-lg-7 offset-lg-0'
-        } ${styles.TextCards__container}`}>
+        } TextCards__container`}>
         <div
-          className={`${styles.TextCards__card} ${
-            isHighlighted && styles['TextCards__card--highlighted']
+          className={`TextCards__card ${
+            isHighlighted && 'TextCards__card--highlighted'
           }`}>
           {title && (
             <h3 className={`h4 ${isHighlighted && 'text-gradient-primary'}`}>
@@ -31,15 +31,11 @@ const TextCard = ({ card, align }) => {
           )}
 
           {tagline && (
-            <p className={`lead ${styles.tagline}`}>
-              {renderText(tagline, true)}
-            </p>
+            <p className="lead tagline">{renderText(tagline, true)}</p>
           )}
 
           {content && (
-            <div className={`text-standard ${styles.content}`}>
-              {renderText(content)}
-            </div>
+            <div className="text-standard content">{renderText(content)}</div>
           )}
         </div>
       </div>
@@ -78,13 +74,13 @@ export const TextCards = ({ data, className }) => {
     );
 
     return (
-      <section className={`${className} ${styles.TextCards}`}>
+      <section className={`${className} TextCards`}>
         <div className="container">
           {itemRows.map((row, i) => {
             const key = `card-row-${i}`;
 
             return (
-              <div key={key} className={`row ${styles.TextCards__row}`}>
+              <div key={key} className="row TextCards__row">
                 {row.map((card, j) => {
                   const cardKey = `card-${j}`;
 

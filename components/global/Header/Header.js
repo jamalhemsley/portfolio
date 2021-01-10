@@ -9,25 +9,24 @@ import { renderText } from 'utils/content';
 import { SiteLink } from 'components/common';
 import { Logo } from 'components/icons';
 
-import styles from './Header.module.scss';
 import animations from './animations';
+// import styles from './Header.module.scss';
 
 const Header = ({ siteTitle, menu, social, currentUid }) => {
   // Add class trigger for sticky header.
   const headerEl = useRef(null);
 
   const toggleMobileNav = (e) => {
-    headerEl.current.classList.toggle(styles.isExpanded);
+    headerEl.current.classList.toggle('isExpanded');
 
     e.preventDefault();
-    e.currentTarget.classList.toggle(styles.isActive);
+    e.currentTarget.classList.toggle('isActive');
   };
 
   useEffect(() => {
     // Sticky Header Observer
     const observer = new IntersectionObserver(
-      ([e]) =>
-        e.target.classList.toggle(styles.isSticky, e.intersectionRatio < 1),
+      ([e]) => e.target.classList.toggle('isSticky', e.intersectionRatio < 1),
       { threshold: [1] }
     );
 
@@ -52,13 +51,13 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
     <motion.header
       ref={headerEl}
       id="header"
-      className={styles.Header}
+      className="Header"
       variants={animations.Header}>
       <div className="container">
         <div className="row">
           <div className="col-6 col-md-7 d-flex align-items-center">
             <button
-              className={`btn ${styles.Header__navToggle}`}
+              className="btn Header__navToggle"
               onClick={toggleMobileNav}
               type="button">
               <span />
@@ -67,8 +66,8 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
             <Nav menuLinks={menu} uid={currentUid} />
           </div>
           <div className="col-4 col-md-2 offset-md-0 d-flex align-items-center justify-content-center">
-            <SiteLink link={homeLink || '/'} className={styles.Header__brand}>
-              <Logo title={siteTitle} className={styles.icon} />
+            <SiteLink link={homeLink || '/'} className="Header__brand">
+              <Logo title={siteTitle} className="icon" />
             </SiteLink>
           </div>
           <div className="col-6 col-md-7 d-flex align-items-center justify-content-end">
@@ -99,7 +98,7 @@ const Nav = ({ menuLinks, socialLinks, uid }) => {
 
   if (socialLinks)
     return (
-      <nav className={styles.Header__nav} aria-label="Social Links">
+      <nav className="Header__nav" aria-label="Social Links">
         <SocialLinks links={socialLinks} />
       </nav>
     );
@@ -126,10 +125,10 @@ const MenuLinks = ({ links, uid }) => {
   if (links)
     return (
       <nav
-        className={`${styles.Header__nav} ${styles.Header__nav___primary}`}
+        className="Header__nav Header__nav___primary"
         role="navigation"
         aria-label="Main Navigation">
-        <ul className={styles.Header__navList}>
+        <ul className="Header__navList">
           {links.map((link, index) => {
             const itemKey = `menuItem-${index}`;
             const linkHref = Link.url(link.link, linkResolver);
@@ -148,13 +147,11 @@ const MenuLinks = ({ links, uid }) => {
             return (
               <li
                 key={itemKey}
-                className={styles.Header__navItem}
+                className="Header__navItem"
                 style={{ '--index': index }}>
                 <SiteLink
                   link={link.link}
-                  className={`${styles.Header__navLink} ${
-                    isActive ? styles.isActive : null
-                  }`}>
+                  className={`Header__navLink ${isActive ? 'isActive' : null}`}>
                   {renderText(link.label, true)}
                 </SiteLink>
               </li>
@@ -182,17 +179,17 @@ MenuLinks.defaultProps = {
 const SocialLinks = ({ links }) => {
   if (links)
     return (
-      <ul className={styles.Header__navList}>
+      <ul className="Header__navList">
         {links.map((link, index) => {
           const itemKey = `socialItem-${index}`;
 
           switch (link.type) {
             case 'Email':
               return (
-                <li key={itemKey} className={styles.Header__navItem}>
+                <li key={itemKey} className="Header__navItem">
                   <SiteLink
                     link={`mailto:${link.name}&subject="Hello! Let's Work Together."`}
-                    className={`${styles.Header__navLink} ${styles.Header__navLink___hasIcon}`}>
+                    className="Header__navLink Header__navLink___hasIcon">
                     <span className="text-visually-hidden">Email</span>
                     <FontAwesomeIcon icon="paper-plane" size="lg" />
                   </SiteLink>
@@ -201,10 +198,10 @@ const SocialLinks = ({ links }) => {
 
             case 'Github':
               return (
-                <li key={itemKey} className={styles.Header__navItem}>
+                <li key={itemKey} className="Header__navItem">
                   <SiteLink
                     link={`https://github.com/${link.name}`}
-                    className={`${styles.Header__navLink} ${styles.Header__navLink___hasIcon}`}>
+                    className="Header__navLink Header__navLink___hasIcon">
                     <span className="text-visually-hidden">Github</span>
                     <FontAwesomeIcon icon={['fab', 'github']} size="lg" />
                   </SiteLink>

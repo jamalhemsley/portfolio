@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { renderText } from 'utils/content';
 import { FeaturedImage } from '..';
 
-import styles from './Content.module.scss';
+// import styles from './Content.module.scss';
 
 const Content = ({ heading, content, featuredImage }) => (
   <section>
@@ -22,10 +22,7 @@ const Content = ({ heading, content, featuredImage }) => (
         </div>
         {featuredImage ? (
           <div className="order-1 order-lg-2 col-14 offset-1 col-lg-6 col-xl-7">
-            <FeaturedImage
-              image={featuredImage}
-              className={styles.Content__image}
-            />
+            <FeaturedImage image={featuredImage} className="Content__image" />
           </div>
         ) : null}
       </div>

@@ -5,7 +5,7 @@ import { SiteLink } from 'components/common';
 import { ExternalLinkIcon, PaintBrushIcon } from 'components/icons';
 import copyToClipboard from './copyToClipboard';
 
-import styles from './StyleGuide.module.scss';
+// import styles from './StyleGuide.module.scss';
 
 const Section = ({ count = 1, title, children }) => {
   let currentCount = count;
@@ -15,13 +15,13 @@ const Section = ({ count = 1, title, children }) => {
   }
 
   return (
-    <div className={`col-14 col-lg-8 ${styles.StyleGuide__section}`}>
-      <div className={styles.side}>
-        <span className={`h4 ${styles.count}`}>{currentCount}</span>
+    <div className="col-14 col-lg-8 StyleGuide__section">
+      <div className="side">
+        <span className="h4 count">{currentCount}</span>
       </div>
-      <div className={styles.main}>
-        <h3 className={`h4 ${styles.title}`}>{renderText(title, true)}</h3>
-        <div className={styles.body}>{children}</div>
+      <div className="main">
+        <h3 className="h4 title">{renderText(title, true)}</h3>
+        <div className="body">{children}</div>
       </div>
     </div>
   );
@@ -43,20 +43,20 @@ const TypographySample = ({ sample, author, link }) => {
   const { url: sampleUrl, alt: sampleAlt } = sample;
 
   return (
-    <div className={styles.StyleGuide__typography}>
+    <div className="StyleGuide__typography">
       {sample && (
         <img
-          className={styles.sample}
+          className="sample"
           src={sampleUrl}
           alt={renderText(sampleAlt, true) || ''}
         />
       )}
 
       {author && (
-        <div className={`text-standard ${styles.credit}`}>
-          <SiteLink link={link} className={styles.author}>
+        <div className="text-standard credit">
+          <SiteLink link={link} className="author">
             <span>By {renderText(author, true)}</span>
-            <span className={styles.icon}>
+            <span className="icon">
               <ExternalLinkIcon width={16} height={16} />
             </span>
           </SiteLink>
@@ -108,7 +108,7 @@ const ColorGrid = ({ colors }) => {
 
   if (colors) {
     return (
-      <div className={styles.StyleGuide__colors}>
+      <div className="StyleGuide__colors">
         {colors.map((color, index) => {
           const key = `color-${index}`;
 
@@ -116,24 +116,22 @@ const ColorGrid = ({ colors }) => {
             <button
               key={key}
               type="button"
-              className={styles.swatch}
+              className="swatch"
               style={{ color: color.color }}
               onClick={(e) => copyColorToClipboard(e, color.color)}
               onMouseLeave={(e) => resetColor(e)}>
-              <div className={styles.colorContainer}>
-                <div
-                  className={styles.color}
-                  style={{ background: color.color }}>
+              <div className="colorContainer">
+                <div className="color" style={{ background: color.color }}>
                   <PaintBrushIcon />
                 </div>
               </div>
-              <div className={styles.label}>
-                <div className={styles.copy} data-copy-label>
+              <div className="label">
+                <div className="copy" data-copy-label>
                   Copy?
                 </div>
-                <div className={styles.code}>{color.color}</div>
+                <div className="code">{color.color}</div>
                 <div
-                  className={styles.name}
+                  className="name"
                   style={{
                     color: color.display_color
                       ? color.display_color
@@ -174,7 +172,7 @@ const StyleGuide = ({ data, className }) => {
 
   if (data) {
     return (
-      <section className={`${className} ${styles.StyleGuide}`}>
+      <section className={`${className} StyleGuide`}>
         <div className="container">
           <div className="row">
             <div className="col-14 offset-1">
@@ -203,7 +201,7 @@ const StyleGuide = ({ data, className }) => {
                       />
                     )}
 
-                    <div className={styles.description}>
+                    <div className="description">
                       {renderText(typographyDescription)}
                     </div>
                   </Section>
