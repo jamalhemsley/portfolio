@@ -11,32 +11,34 @@ const Header = ({ client, date, title, tagline, image }) => {
   const { url: underlayImageUrl } = image;
 
   return (
-    <header className="Header">
+    <header className="WorkHeader">
       <div className="container">
         <div className="row">
           <div className="col-14 offset-1">
             {client || date ? (
-              <div className="Header__meta">
+              <div className="WorkHeader__meta">
                 {client && (
-                  <span className="h3 Header__client">
+                  <span className="h3 WorkHeader__client">
                     {renderText(client, true)}
                   </span>
                 )}
                 {date && (
-                  <span className="h3 Header__date">{renderDate(date)}</span>
+                  <span className="h3 WorkHeader__date">
+                    {renderDate(date)}
+                  </span>
                 )}
               </div>
             ) : null}
 
             {title && (
-              <h1 className="Header__title">{renderText(title, true)}</h1>
+              <h1 className="WorkHeader__title">{renderText(title, true)}</h1>
             )}
           </div>
         </div>
         <div className="row">
           <div className="col-13 col-sm-12 col-md-11 offset-1 col-lg-9 col-xl-10 col-xxl-10">
             {tagline && (
-              <p className="lead-lg Header__tagline">
+              <p className="lead-lg WorkHeader__tagline">
                 {renderText(tagline, true)}
               </p>
             )}
@@ -51,10 +53,10 @@ const Header = ({ client, date, title, tagline, image }) => {
         </div>
         <div className="row">
           <div className="col-16">
-            <div className="Header__cover">
-              <div className="Header__coverContainer">
-                <Image image={image} className="Header__image" />
-                <div className="Header__glow">
+            <div className="WorkHeader__cover">
+              <div className="WorkHeader__coverContainer">
+                <Image image={image} className="WorkHeader__image" />
+                <div className="WorkHeader__glow">
                   <img src={underlayImageUrl} alt="" />
                 </div>
               </div>

@@ -1,6 +1,6 @@
 @import 'styles/scaffold';
 
-.Header {
+.WorkHeader {
   margin-bottom: 3rem;
 
   @include media-breakpoint-up(sm) {
@@ -24,11 +24,11 @@
   }
 }
 
-.Header__meta {
+.WorkHeader__meta {
   margin-bottom: 0.5rem;
 }
 
-.Header__client {
+.WorkHeader__client {
   display: block;
   color: $secondary;
   width: 100%;
@@ -41,7 +41,7 @@
   }
 }
 
-.Header__date {
+.WorkHeader__date {
   color: $secondary-light;
   font-weight: $font-weight-light;
 
@@ -50,11 +50,11 @@
   }
 }
 
-.Header__title {
+.WorkHeader__title {
   margin-bottom: 0.75rem;
 }
 
-.Header__tagline {
+.WorkHeader__tagline {
   margin-bottom: 1.5rem;
 
   @include media-breakpoint-up(lg) {
@@ -62,12 +62,12 @@
   }
 }
 
-.Header__cover {
+.WorkHeader__cover {
   padding-top: 3rem;
   position: relative;
 }
 
-.Header__coverContainer {
+.WorkHeader__coverContainer {
   position: relative;
 
   &::before {
@@ -86,7 +86,7 @@
   }
 }
 
-.Header__image {
+.WorkHeader__image {
   backface-visibility: hidden;
   border-radius: 1rem;
   display: flex;
@@ -104,7 +104,7 @@
   }
 }
 
-.Header__glow {
+.WorkHeader__glow {
   bottom: -1rem;
   filter: blur(2rem);
   height: 4rem;
