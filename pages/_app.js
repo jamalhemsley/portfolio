@@ -43,10 +43,28 @@ const App = ({ Component, pageProps, router }) => {
       }, 700);
     };
 
-    //nextRouter.events.on('beforeHistoryChange', changeRouteDelay);
+    const patchUnstyledFlash = () => {
+      // Temporary fix to avoid flash of unstyled content
+      // during route transitions. Keep an eye on this
+      // issue and remove this code when resolved:
+      // https://github.com/vercel/next.js/issues/17464
+      const tempFix = () => {
+        const allStyleElems = document.querySelectorAll('style[media="x"]');
+        allStyleElems.forEach((elem) => {
+          elem.removeAttribute('media');
+        });
+      };
+      tempFix();
+    };
+
+    nextRouter.events.on('routeChangeComplete', patchUnstyledFlash);
+    nextRouter.events.on('routeChangeStart', patchUnstyledFlash);
+    nextRouter.events.on('beforeHistoryChange', changeRouteDelay);
 
     return () => {
-      //nextRouter.events.off('beforeHistoryChange', changeRouteDelay);
+      nextRouter.events.off('routeChangeComplete', patchUnstyledFlash);
+      nextRouter.events.off('routeChangeStart', patchUnstyledFlash);
+      nextRouter.events.off('beforeHistoryChange', changeRouteDelay);
     };
   }, [nextRouter.events]);
 
