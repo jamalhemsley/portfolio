@@ -4,7 +4,7 @@ const animations = {
     enter: {
       opacity: 1,
       transition: {
-        delay: 0.4,
+        delay: 0.6,
         duration: 0.4,
         ease: [0.39, 0.575, 0.565, 1],
       },

@@ -43,10 +43,10 @@ const App = ({ Component, pageProps, router }) => {
       }, 700);
     };
 
-    nextRouter.events.on('beforeHistoryChange', changeRouteDelay);
+    //nextRouter.events.on('beforeHistoryChange', changeRouteDelay);
 
     return () => {
-      nextRouter.events.off('beforeHistoryChange', changeRouteDelay);
+      //nextRouter.events.off('beforeHistoryChange', changeRouteDelay);
     };
   }, [nextRouter.events]);
 
