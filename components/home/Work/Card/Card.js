@@ -7,7 +7,7 @@ import { SiteLink } from 'components/common';
 import Image from './Image/Image';
 
 import animations from './animations';
-import styles from './Card.module.scss';
+// import styles from './Card.module.scss';
 
 const Card = ({ work }) => {
   const { client, title, tagline, featured_image: previewImage } = work.data;
@@ -16,50 +16,43 @@ const Card = ({ work }) => {
   if (work)
     return (
       <motion.article
-        className={styles.Card}
+        className="Card"
         initial="initial"
         whileHover="hover"
         whileTap="tap"
         animate="initial"
         variants={animations.Card}>
         <SiteLink link={work}>
-          <header className={styles.Card__header}>
-            <span className={styles.Card__client}>
-              {renderText(client, true)}
-            </span>
-            <h3 className={`h4 ${styles.Card__title}`}>
-              {renderText(title, true)}
-            </h3>
+          <header className="Card__header">
+            <span className="Card__client">{renderText(client, true)}</span>
+            <h3 className="h4 Card__title">{renderText(title, true)}</h3>
           </header>
-          <section className={`lead ${styles.Card__body}`}>
+          <section className="lead Card__body">
             {renderText(tagline, true)}
           </section>
-          <footer className={styles.Card__footer}>
+          <footer className="Card__footer">
             {tags ? (
-              <ul className={styles.Card__tags}>
+              <ul className="Card__tags">
                 {tags.map((tag, index) => {
                   const key = `tag-item-${index}`;
 
                   return (
-                    <li key={key} className={styles.Card__tag}>
+                    <li key={key} className="Card__tag">
                       {renderText(tag)}
                     </li>
                   );
                 })}
               </ul>
             ) : null}
-            <span className={styles.Card__moreText}>
-              <span className={styles.text}>View the case study</span>
-              <span className={styles.icon}>
+            <span className="Card__moreText">
+              <span className="text">View the case study</span>
+              <span className="icon">
                 <FontAwesomeIcon icon="long-arrow-alt-right" size="sm" />
               </span>
             </span>
           </footer>
-          <div className={styles.Card__background}>
-            <Image
-              className={styles.Card__backgroundImage}
-              image={previewImage}
-            />
+          <div className="Card__background">
+            <Image className="Card__backgroundImage" image={previewImage} />
           </div>
         </SiteLink>
       </motion.article>

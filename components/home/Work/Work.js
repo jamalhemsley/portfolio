@@ -4,7 +4,7 @@ import { renderText } from 'utils/content';
 import { useResizeObserverWidth } from 'utils/dom';
 import Card from './Card/Card';
 
-import styles from './Work.module.scss';
+// import styles from './Work.module.scss';
 
 const sortArray = (array, returnEven = null) => {
   let results = [];
@@ -32,26 +32,25 @@ const Work = ({ title, description, work }) => {
 
   // Gather all work items into an array.
   const workItems = work.map((project) => (
-    <div key={`work-${project.uid}`} className={styles.Work__item}>
+    <div key={`work-${project.uid}`} className="Work__item">
       <Card work={project} />
     </div>
   ));
 
   return (
-    <section className={`section ${styles.Work}`}>
+    <section className="section Work">
       <div className="container">
         <div className="row">
           <div className="col-16">
-            <div ref={ref} className={styles.Work__inner}>
+            <div ref={ref} className="Work__inner">
               <div className="row">
                 <div className="col-14 offset-1 col-lg-7">
                   {title || description ? (
-                    <div className={styles.Work__header}>
+                    <div className="Work__header">
                       {title && <h2>{renderText(title, true)}</h2>}
 
                       {description && (
-                        <div
-                          className={`lead text-standard ${styles.Work__description}`}>
+                        <div className="lead text-standard Work__description">
                           {renderText(description)}
                         </div>
                       )}
