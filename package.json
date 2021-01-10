@@ -1,51 +1,85 @@
 {
   "name": "@jdaio/portfolio",
-  "private": true,
-  "description": "My front-end development portfolio.",
-  "version": "1.0.0",
-  "keywords": [
-    "portfolio"
-  ],
-  "homepage": "https://digitalhe.at/",
+  "description": "Development portfolio for 2021.",
+  "author": {
+    "name": "Jamal Hemsley",
+    "email": "jamal@digitalhe.at",
+    "url": "https://digitalhe.at"
+  },
+  "homepage": "https://digitalhe.at",
   "bugs": {
     "url": "https://github.com/jdaio/portfolio/issues"
   },
-  "license": "MIT",
-  "author": "Jamal Ali-Mohammed <jamal@digitalhe.at> (https://digitalhe.at)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdaio/portfolio.git"
+    "url": "https://github.com/jdaio/portfolio.git"
+  },
+  "license": "MIT",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=14",
+    "npm": ">=6"
   },
   "dependencies": {
-    "gatsby": "^2.26.1",
-    "gatsby-image": "^2.2.39",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@prismicio/client": "^4.0.0",
+    "bootstrap": "^5.0.0-beta1",
+    "framer-motion": "^3.1.1",
+    "next": "10.0.4",
+    "prismic-reactjs": "^1.3.3",
     "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-helmet": "^5.2.1",
-    "smooth-scroll": "^16.1.2"
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-lazy-load-image-component": "^1.5.1",
+    "resize-observer-polyfill": "^1.5.1",
+    "sass": "^1.32.0",
+    "smartquotes": "^2.3.2",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
-    "eslint-config-airbnb": "^18.0.1",
-    "gatsby-plugin-eslint": "^2.0.8",
-    "gatsby-plugin-manifest": "^2.2.40",
-    "gatsby-plugin-offline": "^3.0.33",
-    "gatsby-plugin-react-helmet": "^3.1.21",
-    "gatsby-plugin-sass": "^2.1.27",
-    "gatsby-plugin-sharp": "^2.8.0",
-    "gatsby-source-filesystem": "^2.1.47",
-    "gatsby-transformer-remark": "^2.6.50",
-    "gatsby-transformer-sharp": "^2.3.13",
-    "node-sass": "^4.13.1",
-    "prettier": "^1.19.1",
-    "react-dom": "^16.12.0"
+    "@svgr/webpack": "^5.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^5.0.6",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "stylelint": "^13.8.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-prettier": "^1.1.2",
+    "stylelint-scss": "^3.18.0"
   },
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
+  },
+  "husky": {
+    "hooks": {
+      "postinstall": "husky install config/husky",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{css,scss}": [
+      "prettier --write",
+      "stylelint --fix"
+    ]
   }
 }
