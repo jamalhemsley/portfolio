@@ -2,7 +2,7 @@ import { linkResolver } from 'config/prismic';
 import { PrismicClient } from 'utils/prismic';
 
 // Enter Prismic's Preview Mode
-const showPreview = async (req, res) => {
+const enterPreview = async (req, res) => {
   const { token: ref, documentId } = req.query;
   const redirectUrl = await PrismicClient(req)
     .getPreviewResolver(ref, documentId)
@@ -26,4 +26,4 @@ const showPreview = async (req, res) => {
   return () => res.end();
 };
 
-export default showPreview;
+export default enterPreview;

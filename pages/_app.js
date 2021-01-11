@@ -51,7 +51,7 @@ const App = ({ Component, pageProps, router }) => {
   }, [nextRouter.events]);
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence initial={false} exitBeforeEnter>
       <Component {...pageProps} key={router.route} />
     </AnimatePresence>
   );
