@@ -1,0 +1,26 @@
+ [
+  {
+    "id": "home",
+    "name": "Home",
+    "repeatable": false,
+    "value": "home.json"
+  },
+  {
+    "id": "page",
+    "name": "Page",
+    "repeatable": true,
+    "value": "page.json"
+  },
+  {
+    "id": "work",
+    "name": "Work",
+    "repeatable": true,
+    "value": "work.json"
+  },
+  {
+    "id": "site_settings",
+    "name": "Site Settings",
+    "repeatable": false,
+    "value": "site_settings.json"
+  }
+]

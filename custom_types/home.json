@@ -1,0 +1,80 @@
+{
+  "Main" : {
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Title"
+      }
+    },
+    "pre_headline" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Pre Headline"
+      }
+    },
+    "headline" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Headline"
+      }
+    },
+    "tagline" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, strong, em, hyperlink",
+        "allowTargetBlank" : true,
+        "label" : "Tagline"
+      }
+    },
+    "contact_button_label" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Contact Button Label"
+      }
+    }
+  },
+  "Work" : {
+    "work_grid_title" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Work Grid Title"
+      }
+    },
+    "work_grid_description" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, strong, em, hyperlink",
+        "allowTargetBlank" : true,
+        "label" : "Work Grid Description"
+      }
+    }
+  },
+  "SEO" : {
+    "meta_title" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Meta Title",
+        "placeholder" : "SEO Title"
+      }
+    },
+    "meta_description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Meta Description",
+        "placeholder" : "SEO Description"
+      }
+    },
+    "meta_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 1200,
+          "height" : 900
+        },
+        "thumbnails" : [ ],
+        "label" : "Meta Image (1200x900)"
+      }
+    }
+  }
+}

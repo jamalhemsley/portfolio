@@ -1,0 +1,598 @@
+{
+  "Case Study" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "Slug"
+      }
+    },
+    "client" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Client",
+        "placeholder" : "Client",
+        "useAsTitle" : true
+      }
+    },
+    "date" : {
+      "type" : "Date",
+      "config" : {
+        "label" : "Release Date"
+      }
+    },
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading2",
+        "label" : "Project Title"
+      }
+    },
+    "tagline" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Tagline"
+      }
+    },
+    "featured_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 1288,
+          "height" : 575
+        },
+        "thumbnails" : [ {
+          "name" : "main_2x",
+          "width" : 2576,
+          "height" : 1150
+        }, {
+          "name" : "xl",
+          "width" : 1108,
+          "height" : 495
+        }, {
+          "name" : "xl_2x",
+          "width" : 2216,
+          "height" : 990
+        }, {
+          "name" : "lg",
+          "width" : 928,
+          "height" : 415
+        }, {
+          "name" : "lg_2x",
+          "width" : 1856,
+          "height" : 830
+        }, {
+          "name" : "md",
+          "width" : 688,
+          "height" : 360
+        }, {
+          "name" : "md_2x",
+          "width" : 1376,
+          "height" : 720
+        }, {
+          "name" : "sm",
+          "width" : 508,
+          "height" : 266
+        }, {
+          "name" : "sm_2x",
+          "width" : 1016,
+          "height" : 532
+        }, {
+          "name" : "xs",
+          "width" : 393,
+          "height" : 206
+        }, {
+          "name" : "xs_2x",
+          "width" : 786,
+          "height" : 412
+        }, {
+          "name" : "preview_xs",
+          "width" : 330,
+          "height" : 273
+        }, {
+          "name" : "preview_xs_2x",
+          "width" : 660,
+          "height" : 546
+        }, {
+          "name" : "preview_sm",
+          "width" : 441,
+          "height" : 364
+        }, {
+          "name" : "preview_sm_2x",
+          "width" : 882,
+          "height" : 728
+        }, {
+          "name" : "preview_md",
+          "width" : 598,
+          "height" : 494
+        }, {
+          "name" : "preview_md_2x",
+          "width" : 1196,
+          "height" : 988
+        }, {
+          "name" : "preview_lg",
+          "width" : 388,
+          "height" : 320
+        }, {
+          "name" : "preview_lg_2x",
+          "width" : 776,
+          "height" : 640
+        }, {
+          "name" : "preview_xl",
+          "width" : 467,
+          "height" : 385
+        }, {
+          "name" : "preview_xl_2x",
+          "width" : 934,
+          "height" : 770
+        }, {
+          "name" : "preview_xxl",
+          "width" : 546,
+          "height" : 450
+        }, {
+          "name" : "preview_xxl_2x",
+          "width" : 1092,
+          "height" : 900
+        } ],
+        "label" : "Featured Image (2576x1150)"
+      }
+    },
+    "overview" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, strong, em, hyperlink, list-item, o-list-item",
+        "allowTargetBlank" : true,
+        "label" : "Overview",
+        "labels" : [ "lead" ]
+      }
+    },
+    "links" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "is_primary" : {
+            "type" : "Boolean",
+            "config" : {
+              "placeholder_false" : "No",
+              "placeholder_true" : "Yes",
+              "default_value" : true,
+              "label" : "Primary Link"
+            }
+          },
+          "label" : {
+            "type" : "Text",
+            "config" : {
+              "label" : "Label"
+            }
+          },
+          "link" : {
+            "type" : "Link",
+            "config" : {
+              "allowTargetBlank" : true,
+              "label" : "Link"
+            }
+          }
+        },
+        "label" : "Project Links"
+      }
+    },
+    "content" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "text_cards" : [ ],
+          "large_text" : [ ],
+          "general_text" : [ ],
+          "header___text" : [ ],
+          "color_palette" : [ ],
+          "typography" : [ ],
+          "split_sections" : [ ],
+          "image_grid" : [ ],
+          "text_w__image" : [ ],
+          "styles" : [ ],
+          "style_guide" : [ ]
+        },
+        "choices" : {
+          "text_cards" : {
+            "type" : "Slice",
+            "fieldset" : "Text Cards",
+            "description" : "Cards with a title, subtitle and text content.",
+            "icon" : "apps",
+            "display" : "list",
+            "non-repeat" : { },
+            "repeat" : {
+              "card_is_highlighted" : {
+                "type" : "Boolean",
+                "config" : {
+                  "placeholder_false" : "Off",
+                  "placeholder_true" : "On",
+                  "default_value" : false,
+                  "label" : "Highlight Card"
+                }
+              },
+              "card_title" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Title"
+                }
+              },
+              "card_tagline" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Tagline"
+                }
+              },
+              "card_text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, strong, em, hyperlink, list-item, o-list-item",
+                  "allowTargetBlank" : true,
+                  "label" : "Text"
+                }
+              }
+            }
+          },
+          "large_text" : {
+            "type" : "Slice",
+            "fieldset" : "Large Text",
+            "description" : "Large text section.",
+            "icon" : "short_text",
+            "display" : "list",
+            "non-repeat" : {
+              "large_text_title" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading2",
+                  "label" : "Title"
+                }
+              },
+              "large_text_text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Large Text"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "general_text" : {
+            "type" : "Slice",
+            "fieldset" : "Text",
+            "description" : "Text Section",
+            "icon" : "format_size",
+            "display" : "list",
+            "non-repeat" : {
+              "heading" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading3",
+                  "label" : "Heading"
+                }
+              },
+              "content" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, preformatted, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item",
+                  "allowTargetBlank" : true,
+                  "label" : "Content",
+                  "labels" : [ "lead" ]
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "image_grid" : {
+            "type" : "Slice",
+            "fieldset" : "Image Grid",
+            "description" : "Images",
+            "icon" : "image",
+            "display" : "grid",
+            "non-repeat" : { },
+            "repeat" : {
+              "image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1288
+                  },
+                  "thumbnails" : [ {
+                    "name" : "main_2x",
+                    "width" : 2576,
+                    "height" : null
+                  }, {
+                    "name" : "xl",
+                    "width" : 1108,
+                    "height" : null
+                  }, {
+                    "name" : "xl_2x",
+                    "width" : 2216,
+                    "height" : null
+                  }, {
+                    "name" : "lg",
+                    "width" : 928,
+                    "height" : null
+                  }, {
+                    "name" : "lg_2x",
+                    "width" : 1856,
+                    "height" : null
+                  }, {
+                    "name" : "md",
+                    "width" : 688,
+                    "height" : null
+                  }, {
+                    "name" : "md_2x",
+                    "width" : 1376,
+                    "height" : null
+                  }, {
+                    "name" : "sm",
+                    "width" : 508,
+                    "height" : null
+                  }, {
+                    "name" : "sm_2x",
+                    "width" : 1016,
+                    "height" : null
+                  }, {
+                    "name" : "xs",
+                    "width" : 393,
+                    "height" : null
+                  }, {
+                    "name" : "xs_2x",
+                    "width" : 786,
+                    "height" : null
+                  }, {
+                    "name" : "half_main",
+                    "width" : 628,
+                    "height" : null
+                  }, {
+                    "name" : "half_main_2x",
+                    "width" : 1256,
+                    "height" : null
+                  }, {
+                    "name" : "half_xl",
+                    "width" : 538,
+                    "height" : null
+                  }, {
+                    "name" : "half_xl_2x",
+                    "width" : 1076,
+                    "height" : null
+                  }, {
+                    "name" : "half_lg",
+                    "width" : 448,
+                    "height" : null
+                  }, {
+                    "name" : "half_lg_2x",
+                    "width" : 896,
+                    "height" : null
+                  } ],
+                  "label" : "Image"
+                }
+              },
+              "image_width" : {
+                "type" : "Select",
+                "config" : {
+                  "options" : [ "Full", "Half" ],
+                  "default_value" : "Full",
+                  "label" : "Image Width"
+                }
+              },
+              "show_caption" : {
+                "type" : "Boolean",
+                "config" : {
+                  "placeholder_false" : "Off",
+                  "placeholder_true" : "On",
+                  "default_value" : false,
+                  "label" : "Show Caption"
+                }
+              }
+            }
+          },
+          "style_guide" : {
+            "type" : "Slice",
+            "fieldset" : "Style Guide",
+            "description" : "Project design breakdown.",
+            "icon" : "brush",
+            "display" : "list",
+            "non-repeat" : {
+              "typography_sample_1" : {
+                "type" : "Link",
+                "config" : {
+                  "select" : "media",
+                  "label" : "Typography Sample #1"
+                }
+              },
+              "typography_author_1" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Typography Author #1"
+                }
+              },
+              "typography_link_1" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "Typography Link #1"
+                }
+              },
+              "typography_sample_2" : {
+                "type" : "Link",
+                "config" : {
+                  "select" : "media",
+                  "label" : "Typography Sample #2"
+                }
+              },
+              "typography_author_2" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Typography Author #2"
+                }
+              },
+              "typography_link_2" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "Typography Link #2"
+                }
+              },
+              "typography_description" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, strong, em, hyperlink, list-item, o-list-item",
+                  "allowTargetBlank" : true,
+                  "label" : "Typography Description"
+                }
+              }
+            },
+            "repeat" : {
+              "name" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Name"
+                }
+              },
+              "color" : {
+                "type" : "Color",
+                "config" : {
+                  "label" : "Color"
+                }
+              },
+              "display_color" : {
+                "type" : "Color",
+                "config" : {
+                  "label" : "Display Color"
+                }
+              },
+              "use_light_scheme" : {
+                "type" : "Boolean",
+                "config" : {
+                  "placeholder_false" : "False",
+                  "placeholder_true" : "True",
+                  "default_value" : false,
+                  "label" : "Use Light Scheme"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "Metadata" : {
+    "work_meta" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "agency" : [ ],
+          "contributors" : [ ],
+          "role" : [ ],
+          "technologies" : [ ]
+        },
+        "choices" : {
+          "agency" : {
+            "type" : "Slice",
+            "fieldset" : "Agency",
+            "description" : "Name of agency this work was done for.",
+            "icon" : "business",
+            "display" : "list",
+            "non-repeat" : { },
+            "repeat" : {
+              "name" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Agency Name"
+                }
+              },
+              "link" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "Agency Link"
+                }
+              }
+            }
+          },
+          "contributors" : {
+            "type" : "Slice",
+            "fieldset" : "Contributors",
+            "description" : "People who helped with the work.",
+            "icon" : "people",
+            "display" : "list",
+            "non-repeat" : { },
+            "repeat" : {
+              "name" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Name"
+                }
+              },
+              "link" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "Link"
+                }
+              }
+            }
+          },
+          "roles" : {
+            "type" : "Slice",
+            "fieldset" : "Roles",
+            "description" : "Position in work project.",
+            "icon" : "flash_on",
+            "display" : "list",
+            "non-repeat" : { },
+            "repeat" : {
+              "role" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Role"
+                }
+              }
+            }
+          },
+          "technologies" : {
+            "type" : "Slice",
+            "fieldset" : "Technologies",
+            "description" : "Technologies used for the project.",
+            "icon" : "extension",
+            "display" : "list",
+            "non-repeat" : { },
+            "repeat" : {
+              "name" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Name",
+                  "placeholder" : "Name of tech used."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "SEO" : {
+    "meta_title" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Meta Title",
+        "placeholder" : "SEO Title"
+      }
+    },
+    "meta_description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Meta Description",
+        "placeholder" : "SEO Description"
+      }
+    },
+    "meta_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 1200,
+          "height" : 900
+        },
+        "thumbnails" : [ ],
+        "label" : "Meta Image (1200x900)"
+      }
+    }
+  }
+}

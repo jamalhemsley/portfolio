@@ -1,0 +1,95 @@
+{
+  "General": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Settings Title"
+      }
+    },
+    "site_title": {
+      "type": "Text",
+      "config": {
+        "label": "Site Title"
+      }
+    },
+    "site_owner": {
+      "type": "Text",
+      "config": {
+        "label": "Site Owner"
+      }
+    },
+    "site_repository": {
+      "type": "Link",
+      "config": {
+        "allowTargetBlank": true,
+        "label": "Site Repository"
+      }
+    }
+  },
+  "Social": {
+    "social_profiles": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "type": {
+            "type": "Select",
+            "config": {
+              "options": ["Email", "Github"],
+              "label": "Type",
+              "placeholder": "Profile Type"
+            }
+          },
+          "name": {
+            "type": "Text",
+            "config": {
+              "label": "Name"
+            }
+          }
+        },
+        "label": "Social Profiles"
+      }
+    }
+  },
+  "Header": {
+    "header_menu": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "label": {
+            "type": "Text",
+            "config": {
+              "label": "Label",
+              "placeholder": "Link Title"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "label": "Link",
+              "placeholder": "Link",
+              "allowTargetBlank": true
+            }
+          }
+        },
+        "label": "Header Menu"
+      }
+    }
+  },
+  "Footer": {
+    "footer_title": {
+      "type": "Text",
+      "config": {
+        "label": "Footer Title"
+      }
+    },
+    "footer_text": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em, hyperlink",
+        "allowTargetBlank": true,
+        "label": "Footer Text"
+      }
+    }
+  }
+}
