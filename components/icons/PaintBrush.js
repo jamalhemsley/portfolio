@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PaintBrushIcon = ({ height, width, className }) => (
+const PaintBrushIcon = ({ height, id, width, className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
     height={height || null}
     width={width || null}
     className={className || null}
-    aria-labelledby="iconPaintBrushTitleId"
     role="img">
-    <title id="iconPaintBrushTitleId">Paint Brush</title>
-
     <defs>
       <filter id="fill">
         <feColorMatrix

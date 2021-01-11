@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderDate, renderText } from 'utils/content';
+import { renderDate, renderSlug, renderText } from 'utils/content';
 import { SiteLink } from 'components/common';
 import { ExternalLinkIcon } from 'components/icons';
 

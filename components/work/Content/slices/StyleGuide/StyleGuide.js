@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderText } from 'utils/content';
+import { renderSlug, renderText } from 'utils/content';
 import { SiteLink } from 'components/common';
 import { ExternalLinkIcon, PaintBrushIcon } from 'components/icons';
 import copyToClipboard from './copyToClipboard';
@@ -122,7 +122,7 @@ const ColorGrid = ({ colors }) => {
               onMouseLeave={(e) => resetColor(e)}>
               <div className="colorContainer">
                 <div className="color" style={{ background: color.color }}>
-                  <PaintBrushIcon />
+                  <PaintBrushIcon id={color.color.split('#')[1]} />
                 </div>
               </div>
               <div className="label">

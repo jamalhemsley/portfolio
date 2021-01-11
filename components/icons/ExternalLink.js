@@ -8,10 +8,7 @@ const ExternalLinkIcon = ({ height, width, className, type }) => (
     height={height || null}
     width={width || null}
     className={className || null}
-    aria-labelledby="iconExternalLinkTitleId"
     role="img">
-    <title id="iconExternalLinkTitleId">External Link</title>
-
     <defs>
       <linearGradient
         x1="7.07%"
