@@ -1,7 +1,25 @@
-@import 'styles/scaffold';
+// @import 'styles/scaffold';
 
+// Animations
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Styles
 .Work {
+  animation: fadeInUp $transition-base forwards;
+  animation-delay: 1.8s;
   display: block;
+  opacity: 0;
+  transform: translateY(1rem);
 }
 
 .Work__inner {

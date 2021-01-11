@@ -26,7 +26,7 @@ const FeaturedImage = ({ image, className }) => {
       <source srcSet={`${md.url}, ${md2x.url} 2x`} media="(min-width: 768px)" />
       <source srcSet={`${sm.url}, ${sm2x.url} 2x`} media="(min-width: 576px)" />
       <source srcSet={`${xs2x.url} 2x`} />
-      <img src={xs.url} alt={renderText(alt, true) || ''} />
+      <img loading="lazy" src={xs.url} alt={renderText(alt, true) || ''} />
     </picture>
   );
 };
@@ -71,7 +71,7 @@ FeaturedImage.defaultProps = {
 };
 
 const Content = ({ heading, content, featuredImage }) => (
-  <section>
+  <section className="PageContent">
     <div className="container">
       <div className="row">
         <div
@@ -87,7 +87,10 @@ const Content = ({ heading, content, featuredImage }) => (
         </div>
         {featuredImage ? (
           <div className="order-1 order-lg-2 col-14 offset-1 col-lg-6 col-xl-7">
-            <FeaturedImage image={featuredImage} className="Content__image" />
+            <FeaturedImage
+              image={featuredImage}
+              className="PageContent__image"
+            />
           </div>
         ) : null}
       </div>

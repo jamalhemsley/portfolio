@@ -55,7 +55,7 @@ const Image = ({ image, width, className }) => {
       <source srcSet={`${md.url}, ${md2x.url} 2x`} media="(min-width: 768px)" />
       <source srcSet={`${sm.url}, ${sm2x.url} 2x`} media="(min-width: 576px)" />
       <source srcSet={`${xs2x.url} 2x`} />
-      <img src={xs.url} alt={renderText(alt, true) || ''} />
+      <img loading="lazy" src={xs.url} alt={renderText(alt, true) || ''} />
     </picture>
   );
 };

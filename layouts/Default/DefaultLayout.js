@@ -42,7 +42,10 @@ const DefaultLayout = ({ site, content, children }) => {
         social={socialProfiles}
         currentUid={uid}
       />
-      <motion.div variants={animations.DefaultLayout}>
+      <motion.div
+        className="DefaultLayout__container"
+        initial={false}
+        variants={animations.DefaultLayout}>
         <main className="DefaultLayout__main">{children}</main>
         <Footer
           title={footerTitle}

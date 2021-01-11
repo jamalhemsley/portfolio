@@ -33,25 +33,44 @@ const App = ({ Component, pageProps, router }) => {
   const nextRouter = useRouter();
 
   useEffect(() => {
-    const changeRouteDelay = async () => {
-      setTimeout(() => {
+    const onChangeRoute = async () => {
+      // eslint-disable-next-line no-underscore-dangle
+      const currentPath = await router._inFlightRoute;
+      const nextPath = nextRouter.asPath;
+
+      if (currentPath === nextPath) {
+        document.documentElement.removeAttribute('style');
+
         window.scroll({
           top: 0,
           left: 0,
-          behavior: 'auto',
+          behavior: 'smooth',
         });
-      }, 700);
+      } else {
+        document.documentElement.style.cssText +=
+          '; scroll-behavior: auto !important;';
+
+        setTimeout(() => {
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'auto',
+          });
+
+          document.documentElement.removeAttribute('style');
+        }, 700);
+      }
     };
 
-    nextRouter.events.on('beforeHistoryChange', changeRouteDelay);
+    nextRouter.events.on('beforeHistoryChange', onChangeRoute);
 
     return () => {
-      nextRouter.events.off('beforeHistoryChange', changeRouteDelay);
+      nextRouter.events.off('beforeHistoryChange', onChangeRoute);
     };
-  }, [nextRouter.events]);
+  }, [nextRouter, router]);
 
   return (
-    <AnimatePresence initial={false} exitBeforeEnter>
+    <AnimatePresence exitBeforeEnter>
       <Component {...pageProps} key={router.route} />
     </AnimatePresence>
   );
@@ -62,6 +81,7 @@ App.propTypes = {
   pageProps: PropTypes.shape({}),
   router: PropTypes.shape({
     route: PropTypes.string,
+    _inFlightRoute: PropTypes.string,
   }),
 };
 

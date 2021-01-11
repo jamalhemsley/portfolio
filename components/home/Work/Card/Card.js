@@ -6,7 +6,6 @@ import { renderText } from 'utils/content';
 import { SiteLink } from 'components/common';
 import Image from './Image/Image';
 
-import animations from './animations';
 // import styles from './Card.module.scss';
 
 const Card = ({ work }) => {
@@ -20,8 +19,7 @@ const Card = ({ work }) => {
         initial="initial"
         whileHover="hover"
         whileTap="tap"
-        animate="initial"
-        variants={animations.Card}>
+        animate="initial">
         <SiteLink link={work}>
           <header className="Card__header">
             <span className="Card__client">{renderText(client, true)}</span>

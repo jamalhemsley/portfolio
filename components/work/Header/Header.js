@@ -38,15 +38,16 @@ const Header = ({ client, date, title, tagline, image }) => {
           </div>
         </div>
         <div className="row">
-          <div className="col-13 col-sm-12 col-md-11 offset-1 col-lg-9 col-xl-10 col-xxl-10">
+          <div className="col-13 col-sm-12 col-md-11 offset-1 col-lg-10 col-xl-11 col-xxl-10">
             {tagline && (
               <p className="lead-lg WorkHeader__tagline">
                 {renderText(tagline, true)}
               </p>
             )}
           </div>
-          <div className="col-14 offset-1 col-lg-4 col-xl-3 offset-xl-1 d-lg-flex justify-content-lg-end align-items-lg-end">
+          <div className="col-14 offset-1 col-lg-4 offset-lg-0 col-xl-3 offset-xxl-1 d-lg-flex justify-content-lg-end align-items-lg-end">
             <Button
+              className="WorkHeader__skipLink"
               label="View Case"
               link="#overview"
               icon={<FontAwesomeIcon icon="chevron-down" />}

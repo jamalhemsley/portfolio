@@ -1,0 +1,17 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.WorkContent {
+  animation: fadeIn $transition-base forwards;
+  animation-delay: 1.9s;
+  backface-visibility: hidden;
+  display: block;
+  opacity: 0;
+}

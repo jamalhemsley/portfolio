@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderText } from 'utils/content';
 
-const Logo = ({ title, height, width, className }) => (
+const Logo = ({ height, width, className }) => (
   <svg
     className={className || null}
     xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +10,7 @@ const Logo = ({ title, height, width, className }) => (
     viewBox="0 0 67 85"
     aria-labelledby="iconLogoTitleId"
     role="img">
-    {title && <title id="iconLogoTitleId">{renderText(title, true)}</title>}
+    <title id="iconLogoTitleId">Logo</title>
 
     <defs>
       <linearGradient
@@ -41,17 +40,12 @@ const Logo = ({ title, height, width, className }) => (
 Logo.propTypes = {
   className: PropTypes.string,
   height: PropTypes.number,
-  title: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.shape({})),
-  ]),
   width: PropTypes.number,
 };
 
 Logo.defaultProps = {
   className: '',
   height: null,
-  title: '',
   width: null,
 };
 

@@ -1,5 +1,53 @@
-@import 'styles/scaffold';
+// @import 'styles/scaffold';
 
+// Animations
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInScaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(2rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Style
 .WorkHeader {
   margin-bottom: 3rem;
 
@@ -29,8 +77,11 @@
 }
 
 .WorkHeader__client {
+  animation: fadeInDown $transition-base forwards;
+  animation-delay: 0.7s;
   display: block;
   color: $secondary;
+  opacity: 0;
   width: 100%;
 
   @include media-breakpoint-up(sm) {
@@ -42,29 +93,60 @@
 }
 
 .WorkHeader__date {
+  animation: fadeInDown $transition-base forwards;
+  animation-delay: 1s;
   color: $secondary-light;
+  display: block;
   font-weight: $font-weight-light;
+  opacity: 0;
 
   @include media-breakpoint-up(sm) {
     margin-bottom: 0;
   }
+
+  @include media-breakpoint-up(md) {
+    animation: fadeInLeft $transition-base forwards;
+    animation-delay: 1s;
+    display: inline-block;
+    transform: translateX(-1rem);
+    will-change: transform;
+  }
 }
 
 .WorkHeader__title {
+  animation: fadeIn $transition-base forwards;
+  animation-delay: 1.4s;
   margin-bottom: 0.75rem;
+  opacity: 0;
 }
 
 .WorkHeader__tagline {
+  animation: fadeIn $transition-base forwards;
+  animation-delay: 1.4s;
   margin-bottom: 1.5rem;
+  opacity: 0;
 
   @include media-breakpoint-up(lg) {
     margin-bottom: 0;
   }
 }
 
+.WorkHeader__skipLink {
+  animation: fadeIn $transition-base forwards;
+  animation-delay: 1.4s;
+  opacity: 0;
+}
+
 .WorkHeader__cover {
+  animation: fadeInScaleUp 0.9s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation-delay: 1.5s;
+  backface-visibility: hidden;
+  display: block;
+  opacity: 0;
   padding-top: 3rem;
   position: relative;
+  transform: scale(0.8) translateY(2rem);
+  will-change: transform;
 }
 
 .WorkHeader__coverContainer {
@@ -75,8 +157,20 @@
     float: left;
     height: 0;
     margin-left: -0.0625rem;
-    padding-top: 575px / 1288px * 100%;
+    padding-top: 206px / 393px * 100%;
     width: 0.0625rem;
+
+    @include media-breakpoint-up(sm) {
+      padding-top: 266px / 508px * 100%;
+    }
+
+    @include media-breakpoint-up(md) {
+      padding-top: 360px / 688px * 100%;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding-top: 575px / 1288px * 100%;
+    }
   }
 
   &::after {
@@ -106,12 +200,18 @@
 
 .WorkHeader__glow {
   bottom: -1rem;
-  filter: blur(2rem);
+  filter: blur(1.5rem);
   height: 4rem;
-  left: 5%;
+  left: 7.5%;
   position: absolute;
-  width: 90%;
+  width: 85%;
   z-index: -1;
+
+  @include media-breakpoint-up(sm) {
+    filter: blur(2rem);
+    left: 5%;
+    width: 90%;
+  }
 
   @include media-breakpoint-up(lg) {
     bottom: -2rem;

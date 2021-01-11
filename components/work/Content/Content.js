@@ -9,7 +9,7 @@ import {
 } from './slices';
 
 const Content = ({ content, className }) => (
-  <div>
+  <div className="WorkContent">
     {content.map((section, index) => {
       const key = `section-${section.slice_type}-${index}`;
 

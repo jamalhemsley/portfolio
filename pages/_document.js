@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" className="no-js">
         <Head>
           <link rel="icon" href="/icon.svg" type="image/svg+xml" />
           <meta name="theme-color" content="#535365" key="meta_theme_color" />

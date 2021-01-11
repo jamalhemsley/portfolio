@@ -1,7 +1,23 @@
-@import 'styles/scaffold';
+// @import 'styles/scaffold';
 
+// Animations
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+// Style
 .Overview {
+  animation: fadeIn $transition-base forwards;
+  animation-delay: 2s;
+  backface-visibility: hidden;
   display: block;
+  opacity: 0;
 }
 
 .Overview__title {

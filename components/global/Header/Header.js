@@ -48,34 +48,32 @@ const Header = ({ siteTitle, menu, social, currentUid }) => {
   }
 
   return (
-    <motion.header
-      ref={headerEl}
-      id="header"
-      className="Header"
-      variants={animations.Header}>
-      <div className="container">
-        <div className="row">
-          <div className="col-6 col-md-7 d-flex align-items-center">
-            <button
-              className="btn Header__navToggle"
-              onClick={toggleMobileNav}
-              type="button">
-              <span />
-              <span />
-            </button>
-            <Nav menuLinks={menu} uid={currentUid} />
-          </div>
-          <div className="col-4 col-md-2 offset-md-0 d-flex align-items-center justify-content-center">
-            <SiteLink link={homeLink || '/'} className="Header__brand">
-              <Logo title={siteTitle} className="icon" />
-            </SiteLink>
-          </div>
-          <div className="col-6 col-md-7 d-flex align-items-center justify-content-end">
-            <Nav socialLinks={social} />
+    <header ref={headerEl} id="header" className="Header">
+      <motion.div className="Header__inner" variants={animations.Header}>
+        <div className="container">
+          <div className="row">
+            <div className="col-6 col-md-7 d-flex align-items-center">
+              <button
+                className="btn Header__navToggle"
+                onClick={toggleMobileNav}
+                type="button">
+                <span />
+                <span />
+              </button>
+              <Nav menuLinks={menu} uid={currentUid} />
+            </div>
+            <div className="col-4 col-md-2 offset-md-0 d-flex align-items-center justify-content-center">
+              <SiteLink link={homeLink || '/'} className="Header__brand">
+                <Logo title={siteTitle} className="icon" />
+              </SiteLink>
+            </div>
+            <div className="col-6 col-md-7 d-flex align-items-center justify-content-end">
+              <Nav socialLinks={social} />
+            </div>
           </div>
         </div>
-      </div>
-    </motion.header>
+      </motion.div>
+    </header>
   );
 };
 

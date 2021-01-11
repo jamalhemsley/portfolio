@@ -1,15 +1,19 @@
-@import 'styles/scaffold';
+// @import 'styles/scaffold';
 
 .Header {
-  backdrop-filter: blur(0.5rem);
-  /* stylelint-disable property-no-vendor-prefix */
-  -webkit-backdrop-filter: blur(0.5rem);
-  /* stylelint-enable property-no-vendor-prefix */
-  padding: 0.75rem 0;
-  position: sticky;
-  top: -1px;
-  transition: background $transition-base, box-shadow $transition-base;
-  z-index: $zindex-sticky;
+  min-height: 3.75rem;
+
+  @include media-breakpoint-up(sm) {
+    min-height: 4.25rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    min-height: 4.6875rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    min-height: 5.3125rem;
+  }
 
   &.isExpanded {
     @include media-breakpoint-down(lg) {
@@ -35,7 +39,9 @@
       }
 
       &.isSticky {
-        background: $dark;
+        .Header__inner {
+          background: $dark;
+        }
 
         .Header__navToggle {
           /* stylelint-disable max-nesting-depth */
@@ -55,11 +61,15 @@
   }
 
   &.isSticky {
-    background: rgba($dark, 0.95);
-    box-shadow: 0 1rem 2rem -2rem rgba($dark, 0.4);
+    .Header__inner {
+      background: rgba($dark, 0.95);
+      box-shadow: 0 1rem 2rem -2rem rgba($dark, 0.4);
+      position: fixed;
+      top: 0;
 
-    @supports (backdrop-filter: blur()) or (-webkit-backdrop-filter: blur()) {
-      background: rgba($dark, 0.85);
+      @supports (backdrop-filter: blur()) or (-webkit-backdrop-filter: blur()) {
+        background: rgba($dark, 0.85);
+      }
     }
 
     .Header__navToggle {
@@ -90,6 +100,18 @@
       }
     }
   }
+}
+
+.Header__inner {
+  backdrop-filter: blur(0.5rem);
+  /* stylelint-disable property-no-vendor-prefix */
+  -webkit-backdrop-filter: blur(0.5rem);
+  /* stylelint-enable property-no-vendor-prefix */
+  padding: 0.75rem 0;
+  position: absolute;
+  transition: background $transition-base, box-shadow $transition-base;
+  width: 100%;
+  z-index: $zindex-sticky;
 }
 
 .Header__brand {
@@ -154,6 +176,7 @@
       text-align: center;
       transform: translateY(1rem);
       transition: opacity $transition-base, transform $transition-base;
+      will-change: transform;
 
       &:last-child {
         margin-bottom: 0;

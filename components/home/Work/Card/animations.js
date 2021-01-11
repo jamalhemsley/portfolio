@@ -1,22 +1,4 @@
 const animations = {
-  Card: {
-    initial: {
-      y: 0,
-      transition: {
-        type: 'spring',
-        damping: 10,
-        stiffness: 70,
-      },
-    },
-    hover: {
-      y: -8,
-      transition: {
-        type: 'spring',
-        damping: 10,
-        stiffness: 80,
-      },
-    },
-  },
   CardImage: {
     initial: {
       scale: 1,

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderText } from 'utils/content';
 
-const PaintBrushIcon = ({ title, height, width, className }) => (
+const PaintBrushIcon = ({ height, width, className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
@@ -11,9 +10,7 @@ const PaintBrushIcon = ({ title, height, width, className }) => (
     className={className || null}
     aria-labelledby="iconPaintBrushTitleId"
     role="img">
-    {title && (
-      <title id="iconPaintBrushTitleId">{renderText(title, true)}</title>
-    )}
+    <title id="iconPaintBrushTitleId">Paint Brush</title>
 
     <defs>
       <filter id="fill">
@@ -36,17 +33,12 @@ const PaintBrushIcon = ({ title, height, width, className }) => (
 PaintBrushIcon.propTypes = {
   className: PropTypes.string,
   height: PropTypes.number,
-  title: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.shape({})),
-  ]),
   width: PropTypes.number,
 };
 
 PaintBrushIcon.defaultProps = {
   className: '',
   height: null,
-  title: '',
   width: null,
 };
 

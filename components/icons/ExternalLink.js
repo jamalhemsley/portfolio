@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderText } from 'utils/content';
 
-const ExternalLinkIcon = ({ title, height, width, className, type }) => (
+const ExternalLinkIcon = ({ height, width, className, type }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 14 14"
@@ -11,9 +10,7 @@ const ExternalLinkIcon = ({ title, height, width, className, type }) => (
     className={className || null}
     aria-labelledby="iconExternalLinkTitleId"
     role="img">
-    {title && (
-      <title id="iconExternalLinkTitleId">{renderText(title, true)}</title>
-    )}
+    <title id="iconExternalLinkTitleId">External Link</title>
 
     <defs>
       <linearGradient
@@ -38,10 +35,6 @@ ExternalLinkIcon.propTypes = {
   className: PropTypes.string,
   type: PropTypes.string,
   height: PropTypes.number,
-  title: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.shape({})),
-  ]),
   width: PropTypes.number,
 };
 
@@ -49,7 +42,6 @@ ExternalLinkIcon.defaultProps = {
   className: '',
   height: null,
   type: '',
-  title: '',
   width: null,
 };
 
