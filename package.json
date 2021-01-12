@@ -67,22 +67,27 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "analyze": "cross-env ANALYZE=true npm run build"
+    "analyze": "cross-env ANALYZE=true npm run build",
+    "lint-staged": "lint-staged",
+    "lint:css": "stylelint **/*.scss --fix",
+    "lint:js": "eslint --fix .",
+    "pretty:css": "prettier --write '**/*.{css,scss}'",
+    "pretty:js": "prettier --write '**/*.{js,jsx}'"
   },
   "husky": {
     "hooks": {
-      "postinstall": "npx husky install",
-      "pre-commit": "npx lint-staged"
+      "postinstall": "husky install",
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "**/*.{js,jsx}": [
-      "npx prettier --write",
-      "npx eslint --fix ."
+      "npm run pretty:js",
+      "npm run lint:js"
     ],
     "**/*.{css,scss}": [
-      "npx prettier --write",
-      "npx stylelint '**/*.scss' --fix"
+      "npm run pretty:css",
+      "npm run lint:css"
     ]
   }
 }
