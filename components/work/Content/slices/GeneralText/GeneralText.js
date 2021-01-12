@@ -19,8 +19,8 @@ const GeneralText = ({ data, className }) => {
             <div
               className={
                 heading.length > 0 && content
-                  ? 'col-14 offset-1 col-lg-8 col-xxl-9'
-                  : 'col-14 offset-1 col-lg-12 offset-lg-2 col-xl-10 offset-xl-3'
+                  ? 'col-14 offset-1 col-lg-8 col-xxl-9 text-standard'
+                  : 'col-14 offset-1 col-lg-12 offset-lg-2 col-xl-10 offset-xl-3 text-standard'
               }>
               {renderText(content)}
             </div>
