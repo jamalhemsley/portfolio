@@ -186,7 +186,7 @@ const SocialLinks = ({ links }) => {
               return (
                 <li key={itemKey} className="Header__navItem">
                   <SiteLink
-                    link={`mailto:${link.name}&subject="Hello! Let's Work Together."`}
+                    link={`mailto:${link.name}?subject=Hello, Let's Work Together!`}
                     className="Header__navLink Header__navLink___hasIcon">
                     <span className="text-visually-hidden">Email</span>
                     <FontAwesomeIcon icon="paper-plane" size="lg" />
