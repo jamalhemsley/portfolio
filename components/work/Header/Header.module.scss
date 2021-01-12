@@ -199,6 +199,9 @@
 }
 
 .WorkHeader__glow {
+  background-image: var(--background);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   bottom: -1rem;
   filter: blur(1.5rem);
   height: 4rem;
@@ -216,10 +219,5 @@
   @include media-breakpoint-up(lg) {
     bottom: -2rem;
     height: 6rem;
-  }
-
-  img {
-    height: 100%;
-    width: 100%;
   }
 }

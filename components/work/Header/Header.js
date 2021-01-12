@@ -59,9 +59,13 @@ const Header = ({ client, date, title, tagline, image }) => {
             <div className="WorkHeader__cover">
               <div className="WorkHeader__coverContainer">
                 <Image image={image} className="WorkHeader__image" />
-                <div className="WorkHeader__glow">
-                  <img src={underlayImageUrl} alt="" />
-                </div>
+                <div
+                  className="WorkHeader__glow"
+                  style={{
+                    /* stylelint-disable-next-line value-keyword-case */
+                    '--background': `url(${underlayImageUrl})`,
+                  }}
+                />
               </div>
             </div>
           </div>
