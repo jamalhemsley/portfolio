@@ -43,7 +43,7 @@ const Footer = ({ title, text, social, owner, repository }) => {
                     <ButtonGroup className="Footer__actions">
                       <Button
                         label="Send a Message"
-                        link={`mailto:${email}?subject="Hello! Let's Work Together."`}
+                        link={`mailto:${email}?subject=Hello, Let's Work Together!`}
                         icon={<FontAwesomeIcon icon="paper-plane" />}
                         size="lg"
                       />
