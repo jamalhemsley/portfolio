@@ -8,10 +8,7 @@ const Logo = ({ height, width, className }) => (
     height={height || null}
     width={width || null}
     viewBox="0 0 67 85"
-    aria-labelledby="iconLogoTitleId"
     role="img">
-    <title id="iconLogoTitleId">Logo</title>
-
     <defs>
       <linearGradient
         x1="35.4%"

@@ -128,6 +128,7 @@
   transform: translateY(0);
   transition: opacity $transition-base, transform $transition-base;
   transition-delay: 0.3s;
+  will-change: transform;
 }
 
 .Card__tag {
@@ -212,6 +213,7 @@
   width: 100%;
   position: absolute;
   top: 0;
+  will-change: transform;
 
   img {
     height: auto;
