@@ -185,23 +185,23 @@ const StyleGuide = ({ data, className }) => {
 
                 {typographySample1 || typographySample2 ? (
                   <Section count={2} title="Typography">
-                    {typographySample1 && (
+                    {typographySample1.url ? (
                       <TypographySample
                         sample={typographySample1}
                         author={typographyAuthor1}
                         link={typographyLink1}
                       />
-                    )}
+                    ) : null}
 
-                    {typographySample2 && (
+                    {typographySample2.url ? (
                       <TypographySample
                         sample={typographySample2}
                         author={typographyAuthor2}
                         link={typographyLink2}
                       />
-                    )}
+                    ) : null}
 
-                    <div className="description">
+                    <div className="text-standard description">
                       {renderText(typographyDescription)}
                     </div>
                   </Section>
